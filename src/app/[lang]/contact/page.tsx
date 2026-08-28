@@ -60,8 +60,8 @@ export default function ContactPage({ params }: { params: Promise<{ lang: string
                       <span className="text-lg mt-0.5">✉️</span>
                       <div>
                         <h4 className="text-sm font-bold text-slate-900 dark:text-white">Inquiry Email</h4>
-                        <a href="mailto:fkdigitalmedia@gmail.com" className="text-sm text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-                          fkdigitalmedia@gmail.com
+                        <a href="mailto:hello@calculadorasat.org" className="text-sm text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+                          hello@calculadorasat.org
                         </a>
                       </div>
                     </div>
@@ -224,8 +224,8 @@ export default function ContactPage({ params }: { params: Promise<{ lang: string
                     <span className="text-lg mt-0.5">✉️</span>
                     <div>
                       <h4 className="text-sm font-bold text-slate-900 dark:text-white">Correo de Consultas</h4>
-                      <a href="mailto:fkdigitalmedia@gmail.com" className="text-sm text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-                        fkdigitalmedia@gmail.com
+                      <a href="mailto:hello@calculadorasat.org" className="text-sm text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+                        hello@calculadorasat.org
                       </a>
                     </div>
                   </div>
