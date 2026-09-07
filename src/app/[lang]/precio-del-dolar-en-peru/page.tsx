@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function PrecioDolarPeruPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
-  const pageUrl = `https://calculadorasat.org${lang === 'en' ? '/en' : ''}/precio-del-dolar-en-peru`;
+  const pageUrl = 'https://www.calculadorasat.org/precio-del-dolar-en-peru';
 
   const marketRate = await getMarketExchangeRate();
   const sunatRate = await getSunatExchangeRate();
@@ -90,8 +90,8 @@ export default async function PrecioDolarPeruPage({ params }: PageProps) {
     '@type': 'BreadcrumbList',
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://calculadorasat.org' },
-      { '@type': 'ListItem', position: 2, name: 'Dólar Hoy', item: 'https://calculadorasat.org/dolar-hoy' },
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.calculadorasat.org' },
+      { '@type': 'ListItem', position: 2, name: 'Dólar Hoy', item: 'https://www.calculadorasat.org/dolar-hoy' },
       { '@type': 'ListItem', position: 3, name: 'Precio del Dólar en Perú', item: pageUrl }
     ]
   };

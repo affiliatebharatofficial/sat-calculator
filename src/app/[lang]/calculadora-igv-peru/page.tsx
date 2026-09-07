@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function IgvPeruPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
-  const pageUrl = `https://calculadorasat.org${lang === 'en' ? '/en' : ''}/calculadora-igv-peru`;
+  const pageUrl = 'https://www.calculadorasat.org/calculadora-igv-peru';
 
   const webAppSchema = {
     '@context': 'https://schema.org',
@@ -102,7 +102,7 @@ export default async function IgvPeruPage({ params }: PageProps) {
     '@type': 'BreadcrumbList',
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://calculadorasat.org' },
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.calculadorasat.org' },
       { '@type': 'ListItem', position: 2, name: 'Calculadora de IGV Perú', item: pageUrl }
     ]
   };

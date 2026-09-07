@@ -57,20 +57,13 @@ export default function DeveloperPortal({ params }: PageProps) {
     }
   };
 
-  const curlSnippet = `curl -X POST https://calculadorasat.org/api/calculate \\
+  const curlSnippet = `curl -X POST https://www.calculadorasat.org/api/calculate \\
   -H "Content-Type: application/json" \\
-  -H "x-api-key: YOUR_API_KEY_HERE" \\
-  -d '{
-    "calculatorId": "${selectedCalc}",
-    "inputs": ${jsonInputs.replace(/\n/g, '\n    ')}
-  }'`;
+  -d '${jsonInputs.replace(/\n/g, '').replace(/\s+/g, ' ')}'`;
 
-  const nodeSnippet = `const response = await fetch('https://calculadorasat.org/api/calculate', {
+  const nodeSnippet = `const response = await fetch('https://www.calculadorasat.org/api/calculate', {
   method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'x-api-key': 'YOUR_API_KEY_HERE'
-  },
+  headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
     calculatorId: '${selectedCalc}',
     inputs: ${jsonInputs.replace(/\n/g, '\n    ')}

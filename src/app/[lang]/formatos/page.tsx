@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function FormatosPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
-  const pageUrl = `https://calculadorasat.org${lang === 'en' ? '/en' : ''}/formatos`;
+  const pageUrl = 'https://www.calculadorasat.org/formatos';
 
   const webAppSchema = {
     '@context': 'https://schema.org',
@@ -93,7 +93,7 @@ export default async function FormatosPage({ params }: PageProps) {
     '@type': 'BreadcrumbList',
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://calculadorasat.org' },
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.calculadorasat.org' },
       { '@type': 'ListItem', position: 2, name: 'Formatos de RH', item: pageUrl }
     ]
   };

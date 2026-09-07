@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function ComisionesTarjetaPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
-  const pageUrl = `https://calculadorasat.org${lang === 'en' ? '/en' : ''}/calculadora-comisiones-tarjeta-dolares`;
+  const pageUrl = 'https://www.calculadorasat.org/calculadora-comisiones-tarjeta-dolares';
 
   const marketRate = await getMarketExchangeRate();
 
@@ -95,7 +95,7 @@ export default async function ComisionesTarjetaPage({ params }: PageProps) {
     '@type': 'BreadcrumbList',
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://calculadorasat.org' },
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.calculadorasat.org' },
       { '@type': 'ListItem', position: 2, name: 'Comisiones de Tarjeta en Dólares', item: pageUrl }
     ]
   };

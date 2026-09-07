@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function SunatPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
-  const pageUrl = `https://calculadorasat.org${lang === 'en' ? '/en' : ''}/tipo-de-cambio-sunat`;
+  const pageUrl = 'https://www.calculadorasat.org/tipo-de-cambio-sunat';
 
   // Server-side initial data fetch for fast SSR
   const initialRate = await getSunatExchangeRate();
@@ -139,7 +139,7 @@ export default async function SunatPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Inicio',
-        item: 'https://calculadorasat.org',
+        item: 'https://www.calculadorasat.org',
       },
       {
         '@type': 'ListItem',

@@ -2,6 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 
+import { isSpanishOnlyRoute } from '@/lib/seo';
+
 export default function SEOHreflang() {
   const pathname = usePathname();
 
@@ -14,7 +16,16 @@ export default function SEOHreflang() {
   const canonicalUrl = `${domain}${basePath === '/' ? '' : basePath}`;
   const englishUrl = `${domain}/en${basePath === '/' ? '' : basePath}`;
 
-  const currentCanonical = pathname.startsWith('/en') ? englishUrl : canonicalUrl;
+  const isSpanishOnly = isSpanishOnlyRoute(basePath);
+
+  if (isSpanishOnly) {
+    return (
+      <>
+        <link rel="alternate" hrefLang="es-MX" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
+      </>
+    );
+  }
 
   return (
     <>

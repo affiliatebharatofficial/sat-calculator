@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function SemanasCotizadasPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
-  const pageUrl = `https://calculadorasat.org${lang === 'en' ? '/en' : ''}/semanas-cotizadas-imss`;
+  const pageUrl = 'https://www.calculadorasat.org/semanas-cotizadas-imss';
 
   const webAppSchema = {
     '@context': 'https://schema.org',
@@ -101,7 +101,7 @@ export default async function SemanasCotizadasPage({ params }: PageProps) {
     '@type': 'BreadcrumbList',
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://calculadorasat.org' },
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.calculadorasat.org' },
       { '@type': 'ListItem', position: 2, name: 'Semanas Cotizadas IMSS', item: pageUrl }
     ]
   };

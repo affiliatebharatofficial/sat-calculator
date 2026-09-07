@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function DolarHoyPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
-  const pageUrl = `https://calculadorasat.org${lang === 'en' ? '/en' : ''}/dolar-hoy`;
+  const pageUrl = 'https://www.calculadorasat.org/dolar-hoy';
 
   // Server-side fetch live rates
   const marketRate = await getMarketExchangeRate();
@@ -81,15 +81,15 @@ export default async function DolarHoyPage({ params }: PageProps) {
     mainEntity: [
       {
         '@type': 'Question',
-        name: '¿Cuánto está el dólar hoy en Perú?',
+        name: '¿Dónde consultar el precio del dólar hoy en Perú?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `En el mercado interbancario de Perú, la cotización de compra se ubica en S/ ${marketRate.buyRate.toFixed(3)} y la cotización de venta en S/ ${marketRate.sellRate.toFixed(3)}.`
+          text: 'Puedes consultar el precio del dólar hoy actualizado en tiempo real en nuestra calculadora y monitor oficial.'
         }
       },
       {
         '@type': 'Question',
-        name: '¿Cuál es la diferencia entre el tipo de cambio del mercado y el tipo de cambio SUNAT?',
+        name: '¿Cuál es la diferencia entre el tipo de cambio SUNAT y el del mercado?',
         acceptedAnswer: {
           '@type': 'Answer',
           text: 'El tipo de cambio del mercado se actualiza en tiempo real según la oferta y demanda bancaria. El tipo de cambio SUNAT es fijado diariamente por la entidad tributaria para fines de facturación y liquidación de impuestos.'
@@ -111,7 +111,7 @@ export default async function DolarHoyPage({ params }: PageProps) {
     '@type': 'BreadcrumbList',
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://calculadorasat.org' },
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.calculadorasat.org' },
       { '@type': 'ListItem', position: 2, name: 'Dólar Hoy en Perú', item: pageUrl }
     ]
   };

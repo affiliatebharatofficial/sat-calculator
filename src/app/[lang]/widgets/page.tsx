@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function WidgetsPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
-  const pageUrl = `https://calculadorasat.org${lang === 'en' ? '/en' : ''}/widgets`;
+  const pageUrl = 'https://www.calculadorasat.org/widgets';
 
   const webAppSchema = {
     '@context': 'https://schema.org',
@@ -70,18 +70,18 @@ export default async function WidgetsPage({ params }: PageProps) {
     mainEntity: [
       {
         '@type': 'Question',
-        name: '¿Son 100% gratuitos los widgets para insertar en mi web?',
+        name: '¿Es 100% gratis insertar estos widgets en mi blog?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Sí, todos nuestros widgets son completamente gratuitos y de libre inserción para webmasters, blogs de noticias, portales contables y sitios personales.'
+          text: 'Sí, totalmente gratis y sin límites de visualización ni suscripciones requeridas.'
         }
       },
       {
         '@type': 'Question',
-        name: '¿Cómo insertar el widget de Dólar Hoy o IVA en WordPress?',
+        name: '¿Son responsivos y funcionan en móviles?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Solo debes copiar el código HTML <iframe> generado en nuestro constructor y pegarlo dentro de un bloque de HTML personalizado o widget de texto en tu editor de WordPress.'
+          text: 'Absolutamente. El diseño adapta la escala e interfaz al ancho del contenedor de tu página web de forma fluida.'
         }
       }
     ]
@@ -92,7 +92,7 @@ export default async function WidgetsPage({ params }: PageProps) {
     '@type': 'BreadcrumbList',
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://calculadorasat.org' },
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.calculadorasat.org' },
       { '@type': 'ListItem', position: 2, name: 'Widgets Webmasters', item: pageUrl }
     ]
   };

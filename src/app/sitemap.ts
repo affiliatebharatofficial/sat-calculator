@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { calculators } from '@/calculators';
 import posts from '@/data/posts.json';
+import { SPANISH_ONLY_ROUTES } from '@/lib/seo';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const domain = 'https://www.calculadorasat.org';
@@ -40,17 +41,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticEntries = staticPaths.map((path) => {
     const segment = path ? `/${path}` : '';
+    const isSpanishOnly = SPANISH_ONLY_ROUTES.includes(path);
     return {
       url: `${domain}${segment}`,
       lastModified: currentDate,
       changeFrequency: (path === '' || path === 'tipo-de-cambio-sunat') ? ('daily' as const) : ('weekly' as const),
       priority: path === '' ? 1.0 : (path.includes('tipo-de-cambio-sunat') ? 0.9 : 0.8),
-      alternates: {
-        languages: {
-          es: `${domain}${segment}`,
-          en: `${domain}/en${segment}`,
-        },
-      },
+      alternates: isSpanishOnly
+        ? {
+            languages: {
+              es: `${domain}${segment}`,
+            },
+          }
+        : {
+            languages: {
+              es: `${domain}${segment}`,
+              en: `${domain}/en${segment}`,
+            },
+          },
     };
   });
 

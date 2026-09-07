@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function DolaresASolesPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
-  const pageUrl = `https://calculadorasat.org${lang === 'en' ? '/en' : ''}/dolares-a-soles`;
+  const pageUrl = 'https://www.calculadorasat.org/dolares-a-soles';
 
   const initialRate = await getSunatExchangeRate();
 
@@ -58,7 +58,7 @@ export default async function DolaresASolesPage({ params }: PageProps) {
     applicationCategory: 'FinancialApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires JavaScript. Requires HTML5.',
-    description: 'Convierte dólares a soles peruanos fácilmente en tiempo real.',
+    description: 'Calculadora para convertir dólares estadounidenses (USD) a soles peruanos (PEN) usando el tipo de cambio SUNAT oficial o del mercado libre.',
     offers: {
       '@type': 'Offer',
       price: '0.00',
@@ -71,8 +71,8 @@ export default async function DolaresASolesPage({ params }: PageProps) {
     '@type': 'BreadcrumbList',
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://calculadorasat.org' },
-      { '@type': 'ListItem', position: 2, name: 'Dólar Hoy', item: 'https://calculadorasat.org/dolar-hoy' },
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.calculadorasat.org' },
+      { '@type': 'ListItem', position: 2, name: 'Dólar Hoy', item: 'https://www.calculadorasat.org/dolar-hoy' },
       { '@type': 'ListItem', position: 3, name: 'Dólares a Soles', item: pageUrl }
     ]
   };

@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function DolaresASolesPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
-  const pageUrl = `https://calculadorasat.org${lang === 'en' ? '/en' : ''}/calculadora-dolares-a-soles`;
+  const pageUrl = 'https://www.calculadorasat.org/calculadora-dolares-a-soles';
 
   const initialRate = await getSunatExchangeRate();
 
@@ -80,7 +80,7 @@ export default async function DolaresASolesPage({ params }: PageProps) {
       },
       {
         '@type': 'Question',
-        name: '¿Qué opción de tipo de cambio debo seleccionar?',
+        name: '¿Qué tipo de cambio debo utilizar?',
         acceptedAnswer: {
           '@type': 'Answer',
           text: 'Usa el Tipo de Cambio SUNAT si es para contabilidad o impuestos. Usa el Tipo de Cambio Personalizado para ingresar el precio de tu banco o casa de cambio.'
@@ -94,8 +94,8 @@ export default async function DolaresASolesPage({ params }: PageProps) {
     '@type': 'BreadcrumbList',
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://calculadorasat.org' },
-      { '@type': 'ListItem', position: 2, name: 'Tipo de Cambio SUNAT', item: 'https://calculadorasat.org/tipo-de-cambio-sunat' },
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.calculadorasat.org' },
+      { '@type': 'ListItem', position: 2, name: 'Tipo de Cambio SUNAT', item: 'https://www.calculadorasat.org/tipo-de-cambio-sunat' },
       { '@type': 'ListItem', position: 3, name: 'Dólares a Soles', item: pageUrl }
     ]
   };

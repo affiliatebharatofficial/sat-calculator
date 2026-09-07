@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function SolventarObligacionesPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
-  const pageUrl = `https://calculadorasat.org${lang === 'en' ? '/en' : ''}/tipo-de-cambio-para-solventar-obligaciones`;
+  const pageUrl = 'https://www.calculadorasat.org/tipo-de-cambio-para-solventar-obligaciones';
 
   const initialRate = await getSunatExchangeRate();
 
@@ -107,13 +107,13 @@ export default async function SolventarObligacionesPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Inicio',
-        item: 'https://calculadorasat.org',
+        item: 'https://www.calculadorasat.org',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Tipo de Cambio SUNAT',
-        item: 'https://calculadorasat.org/tipo-de-cambio-sunat',
+        item: 'https://www.calculadorasat.org/tipo-de-cambio-sunat',
       },
       {
         '@type': 'ListItem',

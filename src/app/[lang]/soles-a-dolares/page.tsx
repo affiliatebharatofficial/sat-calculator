@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function SolesADolaresPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
-  const pageUrl = `https://calculadorasat.org${lang === 'en' ? '/en' : ''}/soles-a-dolares`;
+  const pageUrl = 'https://www.calculadorasat.org/soles-a-dolares';
 
   const initialRate = await getSunatExchangeRate();
 
@@ -70,8 +70,8 @@ export default async function SolesADolaresPage({ params }: PageProps) {
     '@type': 'BreadcrumbList',
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://calculadorasat.org' },
-      { '@type': 'ListItem', position: 2, name: 'Dólar Hoy', item: 'https://calculadorasat.org/dolar-hoy' },
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.calculadorasat.org' },
+      { '@type': 'ListItem', position: 2, name: 'Dólar Hoy', item: 'https://www.calculadorasat.org/dolar-hoy' },
       { '@type': 'ListItem', position: 3, name: 'Soles a Dólares', item: pageUrl }
     ]
   };

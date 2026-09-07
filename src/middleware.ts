@@ -26,6 +26,38 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(newPathname, request.url), 301);
   }
 
+  // 2.1 If requesting an /en/ URL for a Spanish-only route, 301 redirect to canonical Spanish route
+  if (pathname.startsWith('/en/')) {
+    const pathWithoutEn = pathname.replace(/^\/en\//, '');
+    const firstSegment = pathWithoutEn.split('/')[0];
+    const spanishOnlyList = [
+      'calculadora-comisiones-tarjeta-dolares',
+      'consulta-ruc-sunat',
+      'widgets',
+      'calculadora-quinta-categoria-peru',
+      'tipo-de-cambio-para-solventar-obligaciones',
+      'tablas-e-indicadores-sunat',
+      'calculadora-gratificacion-peru',
+      'calculadora-cts-peru',
+      'calculadora-igv-peru',
+      'formatos',
+      'semanas-cotizadas-imss',
+      'dolar-hoy',
+      'precio-del-dolar-en-peru',
+      'tipo-de-cambio',
+      'tipo-de-cambio-sunat',
+      'dolares-a-soles',
+      'soles-a-dolares',
+      'calculadora-dolares-a-soles',
+      'calculadora-soles-a-dolares',
+      'calendario-fiscal',
+      'blog',
+    ];
+    if (spanishOnlyList.includes(firstSegment)) {
+      return NextResponse.redirect(new URL(`/${pathWithoutEn}`, request.url), 301);
+    }
+  }
+
   // 3. If it starts with a supported locale (currently only /en is left), let it pass
   const hasLocale = pathname.startsWith('/en/') || pathname === '/en';
   if (hasLocale) {

@@ -58,7 +58,7 @@ export default function WidgetBuilderClient() {
   const [copied, setCopied] = useState<boolean>(false);
 
   const iframeCode = `<iframe 
-  src="https://calculadorasat.org${selectedWidget.path}" 
+  src="https://www.calculadorasat.org${selectedWidget.path}" 
   width="${width}" 
   height="${height}" 
   style="border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden;" 
