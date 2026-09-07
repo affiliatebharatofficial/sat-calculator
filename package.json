@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "opennextjs-cloudflare build",
+    "build:next": "next build",
+    "build:cf": "opennextjs-cloudflare build",
     "start": "next start",
     "lint": "eslint",
     "test:unit": "npx tsx scripts/test-formulas.ts",
-    "build:cf": "npx opennextjs-cloudflare build",
-    "preview:cf": "npm run build:cf && wrangler dev",
-    "deploy:cf": "npm run build:cf && wrangler deploy"
+    "preview:cf": "npm run build && wrangler dev",
+    "deploy:cf": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@vercel/blob": "^2.5.0",
