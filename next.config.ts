@@ -184,6 +184,63 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
+      // 3.1 Nine Currency routes under /calculadoras/divisas/* (consolidated into universal /tipo-de-cambio)
+      {
+        source: '/calculadoras/divisas/dolar-hoy-mexico',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/divisas/euro-a-peso-mexicano',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/divisas/quetzal-a-peso-mexicano',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/divisas/yen-a-peso-mexicano',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/divisas/yuan-a-peso-mexicano',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/divisas/libra-a-peso-mexicano',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/divisas/franco-suizo-a-peso-mexicano',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/divisas/dolar-canadiense-a-peso-mexicano',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/divisas/real-brasileno-a-peso-mexicano',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/divisas',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/divisas',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+
       // 4. Core Mexican calculator slug aliases (0 chains)
       {
         source: '/calculadoras/sat/calculadora-isr',
@@ -213,6 +270,51 @@ const nextConfig: NextConfig = {
       {
         source: '/calculadoras/nomina/calculadora-prima-vacacional',
         destination: '/calculadoras/nomina/calculadora-vacaciones-prima',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/laboral/calculadora-vacaciones',
+        destination: '/calculadoras/nomina/calculadora-vacaciones-prima',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/laboral/calculadora-ptu',
+        destination: '/calculadoras/nomina/calculadora-ptu-reparto-utilidades',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/nomina/calculadora-ptu',
+        destination: '/calculadoras/nomina/calculadora-ptu-reparto-utilidades',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/laboral/calculadora-ptu-reparto-utilidades',
+        destination: '/calculadoras/nomina/calculadora-ptu-reparto-utilidades',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/laboral/calculadora-semanas-cotizadas-imss',
+        destination: '/calculadoras/nomina/calculadora-semanas-cotizadas-imss',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/fiscal/resico-vs-actividad-empresarial',
+        destination: '/calculadoras/resico/comparador-resico-actividad-empresarial',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/sat/resico-vs-actividad-empresarial',
+        destination: '/calculadoras/resico/comparador-resico-actividad-empresarial',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/sat/comparador-resico-actividad-empresarial',
+        destination: '/calculadoras/resico/comparador-resico-actividad-empresarial',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/resico/resico-vs-actividad-empresarial',
+        destination: '/calculadoras/resico/comparador-resico-actividad-empresarial',
         permanent: true,
       },
 
@@ -260,6 +362,36 @@ const nextConfig: NextConfig = {
       {
         source: '/calculadora-isr',
         destination: '/calculadoras/sat/calculadora-isr-pf',
+        permanent: true,
+      },
+      {
+        source: '/calculadora-ptu',
+        destination: '/calculadoras/nomina/calculadora-ptu-reparto-utilidades',
+        permanent: true,
+      },
+      {
+        source: '/calculadora-ptu-reparto-utilidades',
+        destination: '/calculadoras/nomina/calculadora-ptu-reparto-utilidades',
+        permanent: true,
+      },
+      {
+        source: '/calculadora-semanas-cotizadas-imss',
+        destination: '/calculadoras/nomina/calculadora-semanas-cotizadas-imss',
+        permanent: true,
+      },
+      {
+        source: '/semanas-cotizadas-imss',
+        destination: '/calculadoras/nomina/calculadora-semanas-cotizadas-imss',
+        permanent: true,
+      },
+      {
+        source: '/resico-vs-actividad-empresarial',
+        destination: '/calculadoras/resico/comparador-resico-actividad-empresarial',
+        permanent: true,
+      },
+      {
+        source: '/comparador-resico-actividad-empresarial',
+        destination: '/calculadoras/resico/comparador-resico-actividad-empresarial',
         permanent: true,
       },
     ];

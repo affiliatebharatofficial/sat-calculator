@@ -75,8 +75,22 @@ export const calculators: CalculatorConfig[] = [
   recargosCalculator
 ];
 
+const slugAliases: Record<string, string> = {
+  'calculadora-isr': 'calculadora-isr-pf',
+  'calculadora-resico': 'calculadora-resico-pf',
+  'calculadora-salario-neto': 'calculadora-salario-neto-bruto',
+  'calculadora-salario-bruto': 'calculadora-salario-neto-bruto',
+  'calculadora-salario': 'calculadora-salario-neto-bruto',
+  'calculadora-finiquito': 'calculadora-finiquito-liquidacion',
+  'calculadora-vacaciones': 'calculadora-vacaciones-prima',
+  'calculadora-prima-vacacional': 'calculadora-vacaciones-prima',
+  'calculadora-ptu': 'calculadora-ptu-reparto-utilidades',
+  'resico-vs-actividad-empresarial': 'comparador-resico-actividad-empresarial',
+};
+
 export function getCalculatorBySlug(slug: string): CalculatorConfig | undefined {
-  return calculators.find(c => c.slug === slug);
+  const canonicalSlug = slugAliases[slug] || slug;
+  return calculators.find(c => c.slug === canonicalSlug || c.slug === slug);
 }
 
 export function getCalculatorsByCategory(categorySlug: string): CalculatorConfig[] {

@@ -69,6 +69,19 @@ export function middleware(request: NextRequest) {
     '/calculadoras/peru/soles-a-dolares': '/tipo-de-cambio',
     '/calculadoras/peru/calculadora-soles-a-dolares': '/tipo-de-cambio',
 
+    // 9 Currency routes under /calculadoras/divisas/* (consolidated into universal /tipo-de-cambio)
+    '/calculadoras/divisas/dolar-hoy-mexico': '/tipo-de-cambio',
+    '/calculadoras/divisas/euro-a-peso-mexicano': '/tipo-de-cambio',
+    '/calculadoras/divisas/quetzal-a-peso-mexicano': '/tipo-de-cambio',
+    '/calculadoras/divisas/yen-a-peso-mexicano': '/tipo-de-cambio',
+    '/calculadoras/divisas/yuan-a-peso-mexicano': '/tipo-de-cambio',
+    '/calculadoras/divisas/libra-a-peso-mexicano': '/tipo-de-cambio',
+    '/calculadoras/divisas/franco-suizo-a-peso-mexicano': '/tipo-de-cambio',
+    '/calculadoras/divisas/dolar-canadiense-a-peso-mexicano': '/tipo-de-cambio',
+    '/calculadoras/divisas/real-brasileno-a-peso-mexicano': '/tipo-de-cambio',
+    '/calculadoras/divisas': '/tipo-de-cambio',
+    '/divisas': '/tipo-de-cambio',
+
     // Core Mexican calculator slug aliases (avoiding 404s and chains)
     '/calculadoras/sat/calculadora-isr': '/calculadoras/sat/calculadora-isr-pf',
     '/calculadoras/sat/calculadora-resico': '/calculadoras/sat/calculadora-resico-pf',
@@ -76,6 +89,15 @@ export function middleware(request: NextRequest) {
     '/calculadoras/nomina/calculadora-finiquito': '/calculadoras/nomina/calculadora-finiquito-liquidacion',
     '/calculadoras/nomina/calculadora-vacaciones': '/calculadoras/nomina/calculadora-vacaciones-prima',
     '/calculadoras/nomina/calculadora-prima-vacacional': '/calculadoras/nomina/calculadora-vacaciones-prima',
+    '/calculadoras/laboral/calculadora-vacaciones': '/calculadoras/nomina/calculadora-vacaciones-prima',
+    '/calculadoras/laboral/calculadora-ptu': '/calculadoras/nomina/calculadora-ptu-reparto-utilidades',
+    '/calculadoras/nomina/calculadora-ptu': '/calculadoras/nomina/calculadora-ptu-reparto-utilidades',
+    '/calculadoras/laboral/calculadora-ptu-reparto-utilidades': '/calculadoras/nomina/calculadora-ptu-reparto-utilidades',
+    '/calculadoras/laboral/calculadora-semanas-cotizadas-imss': '/calculadoras/nomina/calculadora-semanas-cotizadas-imss',
+    '/calculadoras/fiscal/resico-vs-actividad-empresarial': '/calculadoras/resico/comparador-resico-actividad-empresarial',
+    '/calculadoras/sat/resico-vs-actividad-empresarial': '/calculadoras/resico/comparador-resico-actividad-empresarial',
+    '/calculadoras/sat/comparador-resico-actividad-empresarial': '/calculadoras/resico/comparador-resico-actividad-empresarial',
+    '/calculadoras/resico/resico-vs-actividad-empresarial': '/calculadoras/resico/comparador-resico-actividad-empresarial',
 
     // Root shorthand aliases (direct 1-hop 301 to canonical)
     '/calculadora-finiquito': '/calculadoras/nomina/calculadora-finiquito-liquidacion',
@@ -87,6 +109,12 @@ export function middleware(request: NextRequest) {
     '/calculadora-aguinaldo': '/calculadoras/nomina/calculadora-aguinaldo',
     '/calculadora-iva': '/calculadoras/sat/calculadora-iva',
     '/calculadora-isr': '/calculadoras/sat/calculadora-isr-pf',
+    '/calculadora-ptu': '/calculadoras/nomina/calculadora-ptu-reparto-utilidades',
+    '/calculadora-ptu-reparto-utilidades': '/calculadoras/nomina/calculadora-ptu-reparto-utilidades',
+    '/calculadora-semanas-cotizadas-imss': '/calculadoras/nomina/calculadora-semanas-cotizadas-imss',
+    '/semanas-cotizadas-imss': '/calculadoras/nomina/calculadora-semanas-cotizadas-imss',
+    '/resico-vs-actividad-empresarial': '/calculadoras/resico/comparador-resico-actividad-empresarial',
+    '/comparador-resico-actividad-empresarial': '/calculadoras/resico/comparador-resico-actividad-empresarial',
   };
 
   const normalizedPath = pathname.replace(/\/$/, '') || '/';

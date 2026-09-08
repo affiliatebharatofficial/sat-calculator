@@ -51,8 +51,8 @@ export async function generateMetadata({ params }: PageProps) {
     };
   }
 
-  // If accessed with wrong category (e.g. /calculadoras/tipo-de-cambio/consulta-ruc-sunat), permanently redirect
-  if (baseCalculator.categorySlug && resolvedParams.category !== baseCalculator.categorySlug) {
+  // If accessed with wrong category or alias slug, permanently redirect to canonical URL
+  if ((baseCalculator.categorySlug && resolvedParams.category !== baseCalculator.categorySlug) || resolvedParams.slug !== baseCalculator.slug) {
     const langPrefix = lang === 'en' ? '/en' : '';
     permanentRedirect(`${langPrefix}/calculadoras/${baseCalculator.categorySlug}/${baseCalculator.slug}`);
   }
@@ -88,10 +88,10 @@ export default async function CalculatorPage({ params }: PageProps) {
     notFound();
   }
 
-  // Canonical Category Enforcement (301 Permanent Redirect)
+  // Canonical Category & Slug Enforcement (301 Permanent Redirect)
   // If the category in the URL does not match the calculator's true canonical category,
-  // permanently redirect to eliminate duplicate URLs (e.g. /calculadoras/tipo-de-cambio/ -> /calculadoras/peru/)
-  if (baseCalculator.categorySlug && resolvedParams.category !== baseCalculator.categorySlug) {
+  // or if accessed via an alias slug, permanently redirect to eliminate duplicate URLs
+  if ((baseCalculator.categorySlug && resolvedParams.category !== baseCalculator.categorySlug) || resolvedParams.slug !== baseCalculator.slug) {
     const langPrefix = lang === 'en' ? '/en' : '';
     permanentRedirect(`${langPrefix}/calculadoras/${baseCalculator.categorySlug}/${baseCalculator.slug}`);
   }
