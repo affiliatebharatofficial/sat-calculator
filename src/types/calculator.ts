@@ -25,6 +25,31 @@ export interface CalculatorStep {
   mathFormula?: string;
 }
 
+export interface CalculatorSourceReference {
+  name: string;
+  url?: string;
+  description?: string;
+}
+
+export interface CalculatorContent {
+  whatItDoes?: string;
+  whoShouldUse?: string[];
+  howItWorks?: string;
+  explanation: string;
+  formula: string;
+  example: string;
+  legislation: string;
+  faqs: FAQ[];
+  tips?: string[];
+  errors?: string[];
+  assumptions?: string[];
+  limitations?: string[];
+  relatedCalculators?: string[];
+  sources?: CalculatorSourceReference[];
+  lastUpdated?: string;
+  disclaimer?: string;
+}
+
 export interface CalculatorTranslation {
   title?: string;
   shortDescription?: string;
@@ -40,15 +65,7 @@ export interface CalculatorTranslation {
     placeholder?: string;
     options?: { label: string; value: any }[];
   }[];
-  content?: {
-    explanation?: string;
-    formula?: string;
-    example?: string;
-    legislation?: string;
-    faqs?: FAQ[];
-    tips?: string[];
-    errors?: string[];
-  };
+  content?: Partial<CalculatorContent>;
 }
 
 export interface CalculatorConfig {
@@ -69,14 +86,6 @@ export interface CalculatorConfig {
     results: CalculatorResultField[];
     steps: CalculatorStep[];
   };
-  content: {
-    explanation: string;
-    formula: string;
-    example: string;
-    legislation: string;
-    faqs: FAQ[];
-    tips?: string[];
-    errors?: string[];
-  };
+  content: CalculatorContent;
   translations?: Record<string, CalculatorTranslation>;
 }

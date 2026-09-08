@@ -113,32 +113,69 @@ export const ivaCalculator: CalculatorConfig = {
     };
   },
   content: {
-    explanation: 'El Impuesto al Valor Agregado (IVA) es un impuesto indirecto sobre el consumo en México. Se aplica a la entrega de bienes, la prestación de servicios, el arrendamiento de bienes y la importación. La tasa general es del 16%, con una tasa reducida del 8% aplicable en la Región Fronteriza Norte y Sur bajo ciertos estímulos fiscales, y tasa del 0% para exportaciones y alimentos básicos.',
-    formula: 'Para Agregar IVA: \nTotal = Subtotal * (1 + Tasa)\n\nPara Desglosar IVA: \nSubtotal = Total / (1 + Tasa)\nIVA = Total - Subtotal',
-    example: 'Si tienes un servicio que cuesta $1,000 pesos netos y quieres agregar el 16% de IVA, el cálculo es:\nIVA = $1,000 * 0.16 = $160 pesos.\nTotal a cobrar = $1,160 pesos.',
-    legislation: 'Ley del Impuesto al Valor Agregado (LIVA), Artículo 1 (Tasa General), Artículo 2-A (Tasa 0%), y Decretos de Estímulos Fiscales de las Fronteras Norte y Sur.',
+    whatItDoes: 'Calcula al instante el Impuesto al Valor Agregado (IVA) en México bajo dos modalidades operativas: agregar el impuesto sobre una base subtotal, o desglosarlo a partir de un precio final que ya lo incluye. Admite la tasa general del 16%, el estímulo fronterizo del 8% y la tasa del 0%.',
+    whoShouldUse: [
+      'Contribuyentes que emiten o reciben facturas electrónicas (CFDI 4.0)',
+      'Profesionistas independientes y freelancers que presupuestan sus honorarios netos',
+      'Comerciantes y negocios que fijan precios de venta al público en general',
+      'Consumidores que desean verificar el monto exacto de impuesto pagado en sus compras'
+    ],
+    howItWorks: 'El usuario selecciona si desea "Agregar IVA" o "Desglosar IVA", define el monto y elige la tasa aplicable (16%, 8% o 0%). El algoritmo aplica la operación aritmética inversa en caso de desglose o directa en caso de adición, generando el desglose formal de Subtotal, IVA y Total Neto.',
+    explanation: 'El Impuesto al Valor Agregado (IVA) es un impuesto indirecto sobre el consumo en México que grava la entrega de bienes, prestación de servicios independientes, otorgamiento del uso o goce temporal de bienes y la importación de bienes o servicios. La tasa general es del 16%, con una tasa reducida del 8% para municipios autorizados de la Zona Libre de la Frontera Norte y Sur, y tasa del 0% para productos de la canasta básica, medicinas de patente y exportaciones.',
+    formula: '1. Para Agregar IVA:\nIVA = Subtotal * Tasa\nTotal Neto = Subtotal + IVA = Subtotal * (1 + Tasa)\n\n2. Para Desglosar IVA:\nSubtotal = Total / (1 + Tasa)\nIVA = Total - Subtotal = Total * [ Tasa / (1 + Tasa) ]',
+    example: 'Caso A (Agregar IVA 16%):\n• Subtotal acordado: $5,000.00 MXN\n• IVA (16%): $5,000.00 × 0.16 = $800.00 MXN\n• Total a cobrar en factura: $5,800.00 MXN\n\nCaso B (Desglosar IVA 16% de precio de venta al público):\n• Precio cobrado al cliente: $1,160.00 MXN\n• Subtotal base: $1,160.00 ÷ 1.16 = $1,000.00 MXN\n• IVA retenido/trasladado: $1,160.00 - $1,000.00 = $160.00 MXN',
+    legislation: 'Ley del Impuesto al Valor Agregado (LIVA), Artículos 1 (Tasa General 16%), 1-A (Retenciones), 2-A (Tasa 0%), y Decretos de Estímulos Fiscales de la Región Fronteriza Norte y Sur publicados en el Diario Oficial de la Federación.',
+    tips: [
+      'Al emitir un CFDI 4.0, verifica que los importes cuadren con el redondeo a 2 decimales exigido por el Anexo 20 del SAT.',
+      'Si eres persona física del régimen de Actividad Empresarial o Servicios Profesionales y facturas a una Persona Moral, recuerda que te retendrán 2/3 partes del IVA (10.6667%) además del 10% de ISR.',
+      'El IVA trasladado (cobrado) no es un ingreso propio; se debe enterar al SAT en la declaración mensual restando el IVA acreditable (pagado en compras estrictamente indispensables).'
+    ],
+    assumptions: [
+      'Se asume que la operación está gravada a la tasa seleccionada y no se encuentra exenta de IVA conforme al Artículo 9 o 15 de la LIVA.',
+      'El cálculo considera importes en moneda nacional (MXN) con redondeo estándar a centavos.',
+      'No se aplican retenciones adicionales entre personas físicas y morales a menos que se calcule de forma separada.'
+    ],
+    limitations: [
+      'No contempla cálculos combinados de IEPS (Impuesto Especial sobre Producción y Servicios) simultáneos.',
+      'No determina la proporción de acreditamiento en caso de contribuyentes con actividades mixtas (gravadas y exentas).',
+      'No valida requisitos de deducibilidad formal de los comprobantes fiscales ante el SAT.'
+    ],
     faqs: [
       {
-        question: '¿Qué es el desglose de IVA?',
-        answer: 'Es el proceso matemático y contable de separar el impuesto del monto total pagado, para conocer el subtotal neto del bien o servicio comprado.'
+        question: '¿Por qué no se debe multiplicar el total por 0.16 para extraer el IVA?',
+        answer: 'Porque el total ya representa el 116% del precio base (100% subtotal + 16% IVA). Si multiplicas $1,160 por 0.16 obtendrás $185.60, lo cual es incorrecto. La operación matemáticamente correcta es dividir entre 1.16, arrojando el subtotal real de $1,000.00 y un IVA de $160.00.'
       },
       {
-        question: '¿Quiénes aplican la tasa del 8%?',
-        answer: 'Las personas físicas y morales que realicen actividades de enajenación de bienes, prestación de servicios independientes o concesión del uso o goce temporal de bienes en los municipios autorizados de la franja fronteriza norte o sur, y que cuenten con la autorización del SAT.'
+        question: '¿Quiénes pueden expedir facturas con la tasa del 8% de IVA?',
+        answer: 'Únicamente las personas físicas y morales registradas en el Padrón de Beneficiarios del Estímulo de la Región Fronteriza Norte o Sur, que cuenten con domicilio fiscal y realicen la entrega material de los bienes o prestación de servicios dentro de los municipios autorizados.'
+      },
+      {
+        question: '¿Cuál es la diferencia entre una actividad con tasa 0% y una exenta de IVA?',
+        answer: 'En la tasa 0% (como medicinas y alimentos no preparados), la operación sí está gravada por la ley a tasa cero, lo que permite al contribuyente solicitar la devolución del IVA pagado en sus insumos (saldo a favor). En las actividades exentas (como venta de casa habitación o servicios médicos), no se cobra IVA pero tampoco se puede recuperar el IVA pagado.'
+      },
+      {
+        question: '¿Qué es el IVA acreditable y cómo se calcula el pago mensual al SAT?',
+        answer: 'El IVA por pagar resulta de restar el IVA acreditable (el que pagaste a proveedores en compras deducibles) al IVA trasladado (el que cobraste a tus clientes). Si el IVA trasladado es mayor, pagas la diferencia; si el acreditable es mayor, obtienes saldo a favor.'
       }
     ],
-    tips: [
-      'Al emitir una factura, asegúrate de detallar el subtotal y el IVA por separado, ya que es una obligación de acuerdo al Artículo 29-A del Código Fiscal de la Federación (CFF).',
-      'Si eres persona física que presta servicios profesionales a una persona moral, recuerda que además del IVA se te retendrán 2/3 partes del mismo (10.6667%) y el 10% de ISR. Puedes simular esta conversión en la [Calculadora de Conversión de Impuestos (Gross-up)](/calculadoras/sat/calculadora-conversion-impuestos).'
+    sources: [
+      {
+        name: 'Servicio de Administración Tributaria (SAT) — Ley del IVA',
+        url: 'https://www.sat.gob.mx',
+        description: 'Texto oficial vigente de la Ley del Impuesto al Valor Agregado y resoluciones misceláneas.'
+      },
+      {
+        name: 'Diario Oficial de la Federación (DOF) — Decretos Fronterizos',
+        url: 'https://www.dof.gob.mx',
+        description: 'Decretos por los que se otorgan estímulos fiscales en la región fronteriza norte y sur.'
+      }
     ],
-    errors: [
-      'Multiplicar el total directamente por 0.16 para extraer el IVA. Esto es un error muy común. La forma correcta de extraer el IVA de un precio total es dividirlo entre 1.16.',
-      'Aplicar la tasa del 8% de manera generalizada sin contar con el registro de padrón de beneficiarios del estímulo fronterizo ante el SAT.'
-    ]
+    lastUpdated: 'Actualizado para el ejercicio fiscal 2026',
+    disclaimer: 'Esta calculadora es una herramienta interactiva de simulación aritmética y didáctica. Los cálculos no sustituyen la asesoría contable ni eximen de las validaciones de los sistemas de facturación autorizados por el SAT.'
   },
   translations: {
     en: {
-      title: 'IVA (VAT) Calculator',
+      title: 'IVA (VAT) Calculator Mexico',
       shortDescription: 'Add or extract the Value Added Tax (IVA) at the general 16%, 8% border, or 0% rate.',
       category: 'SAT Taxes',
       inputs: [
@@ -166,28 +203,50 @@ export const ivaCalculator: CalculatorConfig = {
         }
       ],
       content: {
-        explanation: 'The Value Added Tax (IVA) is an indirect tax on consumption in Mexico. It applies to the delivery of goods, provision of services, leasing of goods, and importation. The general rate is 16%, with a reduced rate of 8% applicable in the North and South Border Regions under certain tax incentives, and a 0% rate for exports and basic foods.',
-        formula: 'To Add IVA: \nTotal = Subtotal * (1 + Rate)\n\nTo Extract IVA: \nSubtotal = Total / (1 + Rate)\nIVA = Total - Subtotal',
-        example: 'If you have a service that costs $1,000 pesos net and you want to add 16% IVA, the calculation is:\nIVA = $1,000 * 0.16 = $160 pesos.\nTotal to charge = $1,160 pesos.',
-        legislation: 'Value Added Tax Law (LIVA), Article 1 (General Rate), Article 2-A (0% Rate), and Northern and Southern Border Tax Incentive Decrees.',
+        whatItDoes: 'Instantly calculates the Value Added Tax (IVA) in Mexico under two operating modes: adding tax onto a net subtotal, or extracting tax from a gross price that already includes it, supporting the 16% general rate, 8% border incentive, and 0% rate.',
+        whoShouldUse: [
+          'Businesses and individuals issuing or receiving Mexican electronic invoices (CFDI 4.0)',
+          'Independent contractors and freelancers pricing services for Mexican clients',
+          'Retailers setting consumer-facing prices with inclusive VAT',
+          'Consumers verifying the exact tax breakdown on Mexican purchases'
+        ],
+        howItWorks: 'Select whether to add or extract VAT, input the monetary amount, and select the tax rate. The engine applies exact inverse or direct arithmetic logic to output the subtotal, VAT, and grand total.',
+        explanation: 'The Value Added Tax (IVA) is an indirect consumption tax in Mexico applied to the transfer of goods, independent service provision, leasing of goods, and imports. The general statutory rate is 16%, with an 8% reduced rate in authorized Northern and Southern border zones, and a 0% rate for staple foodstuffs and patent medicines.',
+        formula: 'To Add IVA:\nTotal = Subtotal * (1 + Rate)\n\nTo Extract IVA:\nSubtotal = Total / (1 + Rate)\nIVA = Total - Subtotal',
+        example: 'Adding 16% VAT to $1,000 MXN:\n• Base Subtotal: $1,000.00 MXN\n• VAT (16%): $160.00 MXN\n• Invoiced Total: $1,160.00 MXN\n\nExtracting 16% VAT from $1,160 MXN:\n• Subtotal: $1,160 ÷ 1.16 = $1,000.00 MXN\n• Extracted VAT: $160.00 MXN',
+        legislation: 'Value Added Tax Law (LIVA), Articles 1 (16% General Rate), 1-A (Withholdings), 2-A (0% Rate), and Northern/Southern Border Tax Incentive Decrees.',
+        tips: [
+          'Ensure monetary amounts align with the standard 2-decimal rounding requirement of SAT CFDI 4.0 technical specifications.',
+          'Remember that freelance individuals billing Mexican corporations are subject to 2/3 VAT withholding (10.6667%) and 10% ISR withholding.',
+          'Collected VAT must be credited against input VAT paid on strictly necessary business expenses when filing monthly returns.'
+        ],
+        assumptions: [
+          'Assumes the transaction is subject to the chosen rate and not legally exempt under Articles 9 or 15 of the LIVA.',
+          'Calculations are rounded to standard cents in Mexican Pesos (MXN).'
+        ],
+        limitations: [
+          'Does not compute simultaneous excise duties (IEPS).',
+          'Does not calculate mixed-activity crediting ratios.'
+        ],
         faqs: [
           {
-            question: 'What is the IVA breakdown?',
-            answer: 'It is the mathematical and accounting process of separating the tax from the total amount paid, to know the net subtotal of the asset or service purchased.'
+            question: 'Why can’t I just multiply the total by 0.16 to extract VAT?',
+            answer: 'Because the total represents 116% of the base cost. Multiplying $1,160 by 0.16 produces $185.60 (incorrect). The arithmetically correct formula divides the total by 1.16 to obtain the $1,000.00 subtotal.'
           },
           {
-            question: 'How does the border rate (8%) work?',
-            answer: 'It is a regional tax incentive that reduces the effective VAT rate from 16% to 8% to stimulate commerce in municipalities bordering the US (North) and Guatemala/Belize (South).'
+            question: 'Who qualifies for the 8% border VAT rate?',
+            answer: 'Only taxpayers officially registered in the SAT Border Incentive Registry operating within authorized border municipalities with physical delivery of goods or services in those zones.'
           }
         ],
-        tips: [
-          'When issuing an invoice, make sure to detail the subtotal and IVA separately, as it is a requirement according to Article 29-A of the Mexican Federal Tax Code (CFF).',
-          'If you are an individual rendering professional services to a corporation (persona moral), remember that in addition to IVA, 2/3 of the tax (10.6667%) and 10% of ISR will be withheld. You can simulate this in the [Gross-up Withholding Calculator](/calculadoras/sat/calculadora-conversion-impuestos).'
+        sources: [
+          {
+            name: 'Mexican Tax Administration Service (SAT)',
+            url: 'https://www.sat.gob.mx',
+            description: 'Official portal for federal tax laws, rulings, and withholding guides.'
+          }
         ],
-        errors: [
-          'Multiplying the total directly by 0.16 to extract IVA. This is a very common mistake. The correct way to extract IVA from a total price is to divide it by 1.16.',
-          'Assuming that any purchase in the border area automatically has 8% IVA. The seller must be registered in the SAT Border Incentive Registry to apply this rate.'
-        ]
+        lastUpdated: 'Verified for Fiscal Year 2026',
+        disclaimer: 'This calculator is an educational simulation tool. It does not replace official tax filings or certified PAC invoicing software.'
       }
     }
   }

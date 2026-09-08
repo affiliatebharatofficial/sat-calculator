@@ -174,27 +174,80 @@ export const finiquitoCalculator: CalculatorConfig = {
     };
   },
   content: {
-    explanation: 'Al terminar la relación de trabajo en México, el empleado tiene derecho a cobrar su liquidación o finiquito. El finiquito incluye salarios pendientes, y proporcionales de aguinaldo, vacaciones y prima vacacional; aplica en cualquier baja laboral. La liquidación es una indemnización especial que se paga únicamente por despido injustificado, cierre de la empresa o reajuste de personal, sumando 3 meses de sueldo, 20 días por año y prima de antigüedad.',
-    formula: 'Finiquito = Salarios Devengados + Aguinaldo Proporcional + Vacaciones Proporcionales + Prima Vacacional Proporcional\n\nLiquidación = Finiquito + 90 Días de Sueldo + 20 Días por Año + Prima de Antigüedad (12 días por año topado a 2 salarios mínimos)',
-    example: 'Para un sueldo mensual bruto de $18,000 con 2 años completos de antigüedad, 180 días del año actual laborados, 5 días de sueldo devengados y despido injustificado:\nSueldo Diario = $600 pesos.\nFiniquito Bruto = $3,000 (Salarios) + $4,438.36 (Aguinaldo) + $3,945.21 (Vacaciones) + $986.30 (Prima) = $12,369.87 MXN.\nLiquidación Bruta = $54,000 (90 días) + $24,000 (20 días/año) + $14,891.80 (Prima de antigüedad con tope diario de $497.86) = $92,891.80 MXN.\nTotal a recibir = $105,261.67 MXN.',
-    legislation: 'Ley Federal del Trabajo (LFT), Artículo 47 (Causas de rescisión sin responsabilidad), Artículo 48 (Derecho a indemnización de 3 meses), Artículo 50 (Reglas de indemnización de 20 días por año), Artículo 76 al 80 (Vacaciones), Artículo 87 (Aguinaldo), Artículo 162 (Prima de antigüedad).',
+    whatItDoes: 'Calcula con precisión matemática y apego a la Ley Federal del Trabajo (LFT) el desglose de percepciones que le corresponden a un trabajador al concluir su relación laboral en México, distinguiendo entre renuncia voluntaria (finiquito con prestaciones devengadas) y despido injustificado (liquidación constitucional con indemnizaciones y prima de antigüedad).',
+    whoShouldUse: [
+      'Trabajadores que contemplan presentar su renuncia voluntaria y desean proyectar el cobro exacto de sus partes proporcionales de aguinaldo, vacaciones y salarios devengados',
+      'Empleados que enfrentan un despido injustificado, reajuste de personal o terminación unilateral de contrato por el patrón y necesitan validar su propuesta de liquidación',
+      'Especialistas de Recursos Humanos, contadores y gestores de nómina que elaboran convenios de terminación laboral conforme a la LFT',
+      'Abogados y asesores en conciliación laboral que requieren un desglose transparente de conceptos para mediaciones ante el Centro de Conciliación'
+    ],
+    howItWorks: 'Determina el salario diario dividiendo el sueldo mensual bruto entre 30 días. Calcula las prestaciones devengadas irrenunciables (salarios no pagados, aguinaldo proporcional de mínimo 15 días, y vacaciones proporcionales con base en la tabla de Vacaciones Dignas más el 25% de prima vacacional). En caso de despido injustificado, adiciona la indemnización constitucional de 90 días (3 meses), la indemnización de 20 días por cada año laborado, y la prima de antigüedad de 12 días por año con salario topado a 2 veces el salario mínimo general vigente.',
+    explanation: 'Al finalizar una relación laboral en México existen dos figuras jurídicas fundamentales: el Finiquito y la Liquidación. El Finiquito comprende los derechos irrenunciables que el trabajador ya devengó por el simple hecho de prestar sus servicios (salarios pendientes, proporción de aguinaldo, vacaciones no disfrutadas y prima vacacional); este pago corresponde en el 100% de las bajas, incluyendo la renuncia voluntaria. Por el contrario, la Liquidación o Indemnización Constitucional es una sanción económica y resarcitoria que la LFT impone al patrón cuando despide a un empleado sin una causa justificada de las previstas en el Artículo 47 de la LFT. La liquidación incluye 3 meses de salario, 20 días de compensación por año y la prima de antigüedad.',
+    formula: '1. Salario Diario = Sueldo Mensual Bruto / 30\n2. Salarios Devengados = Salario Diario * Días Pendientes de Pago\n3. Aguinaldo Proporcional = ( ( Salario Diario * 15 ) / 365 ) * Días del Año en Curso\n4. Días Vacaciones según Antigüedad = Tabla Art. 76 LFT (12 días año 1, 14 año 2, etc.)\n5. Vacaciones Proporcionales = ( Días Vacaciones / 365 ) * Días del Año en Curso * Salario Diario\n6. Prima Vacacional = Vacaciones Proporcionales * 0.25\n7. Subtotal Finiquito = Salarios + Aguinaldo + Vacaciones + Prima Vacacional\n-- En caso de Despido Injustificado (Liquidación):\n8. Indemnización Constitucional = Sueldo Mensual * 3 (o Salario Diario * 90)\n9. 20 Días por Año = Salario Diario * 20 * Años de Antigüedad\n10. Prima de Antigüedad = Min(Salario Diario, 2 * Salario Mínimo) * 12 * Años Totales\n11. Total a Recibir = Subtotal Finiquito + Subtotal Liquidación',
+    example: 'Para un trabajador con sueldo mensual de $18,000 MXN, 2 años cumplidos de antigüedad, 180 días laborados en el año actual, 5 días de salarios devengados y despido injustificado:\n• Salario Diario: $18,000 / 30 = $600.00 MXN\n• Salarios Devengados: $600 * 5 días = $3,000.00 MXN\n• Aguinaldo Proporcional: (($600 * 15) / 365) * 180 = $4,438.36 MXN\n• Vacaciones Proporcionales (año 3 le tocan 16 días): (16 / 365) * 180 * $600 = $4,734.25 MXN\n• Prima Vacacional (25%): $4,734.25 * 0.25 = $1,183.56 MXN\n• Subtotal Finiquito de Ley: $13,356.17 MXN\n• Indemnización Constitucional (3 meses): $18,000 * 3 = $54,000.00 MXN\n• 20 Días por Año (2 años): $600 * 20 * 2 = $24,000.00 MXN\n• Prima de Antigüedad: Tope diario ($248.93 * 2 = $497.86) * 12 días * 2.493 años = $14,891.80 MXN\n• Subtotal Liquidación por Despido: $92,891.80 MXN\n• Gran Total Bruto a Recibir: $106,247.97 MXN',
+    legislation: 'Ley Federal del Trabajo (LFT): Artículos 47 (causas de rescisión patronal justificada), 48 (derecho a reinstalación o indemnización de 3 meses y salarios vencidos), 50 (indemnización de 20 días por año cuando no procede reinstalación), 76 al 81 (vacaciones anuales pagadas y prima mínima del 25%), 87 (pago de aguinaldo), y 162 (prima de antigüedad con tope salarial de dos salarios mínimos generales). Ley del Impuesto sobre la Renta (LISR): Artículo 93 Fracción XIII (exención fiscal de 90 UMAs por año laborado en indemnizaciones).',
+    tips: [
+      'Si te están despidiendo injustificadamente, jamás firmes una hoja en blanco o una carta de renuncia voluntaria: firmar la renuncia extingue legalmente tu derecho a reclamar la indemnización de 3 meses y los 20 días por año.',
+      'Tienes un plazo legal perentorio de dos meses a partir del día siguiente al despido para acudir al Centro Federal o Local de Conciliación Laboral a solicitar una audiencia prejudicial obligatoria.',
+      'La prima de antigüedad tiene un límite máximo diario legal equivalente a 2 veces el salario mínimo general vigente; aunque percibas un sueldo elevado, este concepto específico se calcula con dicho tope.',
+      'Si el despido se formaliza legalmente, exige el desglose por escrito y verifica que las prestaciones devengadas (aguinaldo y vacaciones) no sean condicionadas a la aceptación de un porcentaje menor de indemnización.'
+    ],
+    assumptions: [
+      'El cálculo se realiza con base en el salario nominal ordinario dividido entre 30 días civiles.',
+      'Para la liquidación formal por despido, la ley marca el uso del Salario Diario Integrado (SDI) que adiciona las partes proporcionales de aguinaldo y prima vacacional a la base de cálculo de los 90 días y 20 días por año.',
+      'Se asume un año civil estándar de 365 días para el prorrateo de prestaciones proporcionales.',
+      'El cálculo no descuenta adeudos personales, créditos Infonavit ni préstamos internos que pudieran existir.'
+    ],
+    limitations: [
+      'No calcula salarios caídos ni intereses procesales derivados de un juicio laboral contencioso que sobrepase los plazos de conciliación.',
+      'No aplica para trabajadores del apartado B (servidores públicos regidos por leyes burocráticas especiales y tribunales federales de conciliación).',
+      'No realiza el cálculo final de retención de ISR sobre finiquito y liquidación, el cual requiere aplicar la tarifa del Art. 96 LISR para prestaciones ordinarias y el procedimiento de tasa efectiva del Art. 95 LISR para las indemnizaciones.'
+    ],
     faqs: [
       {
-        question: '¿Qué es la prima de antigüedad y cuándo aplica?',
-        answer: 'Es una compensación obligatoria de 12 días de salario por año. Si renuncias voluntariamente, solo tienes derecho a ella si cumpliste al menos 15 años de servicio en la empresa. Si eres despedido (sea justificado o injustificado), te corresponde recibirla por ley sin importar tus años laborados.'
+        question: '¿Cuál es la diferencia legal entre finiquito y liquidación?',
+        answer: 'El finiquito es el pago de los derechos laborales ya ganados por el trabajador (salarios pendientes, aguinaldo proporcional, vacaciones y prima vacacional no disfrutadas) y se entrega obligatoriamente en cualquier terminación, incluida la renuncia. La liquidación es una indemnización que se paga exclusivamente cuando el trabajador es despedido injustificadamente o cuando la empresa cierra, e integra 3 meses de salario, 20 días por año laborado y prima de antigüedad.'
       },
       {
-        question: '¿El finiquito y la liquidación pagan impuestos?',
-        answer: 'Sí. Las partes proporcionales de aguinaldo y prima vacacional tienen exenciones de ley (30 y 15 UMAS respectivamente). La indemnización de 3 meses, 20 días por año y prima de antigüedad están exentas de ISR hasta por un monto equivalente a 90 veces la UMA por cada año de servicio.'
+        question: '¿Me corresponde prima de antigüedad si presento mi renuncia voluntaria?',
+        answer: 'Por regla general no, a menos que tengas cumplidos 15 años de servicio ininterrumpido en la empresa (Art. 162 Fracción III LFT). Sin embargo, si eres despedido —ya sea con justificación legal o sin ella—, o si te separas con causa imputable al patrón (rescisión justificada), la prima de antigüedad de 12 días por año es obligatoria sin importar los años que lleves laborando.'
+      },
+      {
+        question: '¿Cómo se calcula el tope de la prima de antigüedad?',
+        answer: 'El Artículo 486 de la Ley Federal del Trabajo establece que si el salario que percibe el trabajador excede del doble del salario mínimo de la zona geográfica correspondiente, se considerará esa suma (2 salarios mínimos) como salario máximo para el pago de la prima de antigüedad. Si el salario del trabajador es inferior al doble del salario mínimo, se toma su salario diario real.'
+      },
+      {
+        question: '¿Cuánto tiempo tengo para demandar si sufro un despido injustificado?',
+        answer: 'Conforme al Artículo 518 de la LFT, el plazo legal es de dos meses contados a partir del día siguiente a la fecha del despido. Actualmente es obligatorio iniciar primero un procedimiento de conciliación prejudicial ante el Centro Federal o Local de Conciliación Laboral, el cual suspende temporalmente el cómputo del plazo de prescripción.'
+      },
+      {
+        question: '¿La indemnización por despido paga impuestos al SAT?',
+        answer: 'El Artículo 93 Fracción XIII de la Ley del ISR otorga una exención de hasta 90 veces el valor de la UMA diaria por cada año completo de servicios prestados (o fracciones mayores a 6 meses). El monto de la liquidación que supere este límite de exención acumulado causará retención de ISR conforme a la tasa efectiva del último sueldo ordinario mensual del trabajador.'
       }
     ],
-    tips: [
-      'Si el patrón te pide firmar una hoja de renuncia en blanco o voluntaria al momento de despedirte, te está privando de tu indemnización por despido. Asesórate ante la PROFEDET antes de firmar.',
-      'La prima de antigüedad se calcula con tu salario diario base, pero éste tiene un límite legal de dos veces el salario mínimo general vigente; no se calcula sobre sueldos elevados sin tope.'
+    relatedCalculators: [
+      'nomina/calculadora-aguinaldo',
+      'nomina/calculadora-salario-neto-bruto',
+      'nomina/calculadora-semanas-cotizadas-imss'
     ],
-    errors: [
-      'Creer que por renunciar voluntariamente te corresponde recibir la liquidación de los 3 meses y 20 días por año. Esos conceptos aplican exclusivamente para despidos o rescisiones con responsabilidad del patrón.',
-      'Ignorar que el reparto de utilidades (PTU) no cobrado del ejercicio anterior debe pagarse también si corresponde al periodo laborado, pero se cobra en las fechas de reparto, no necesariamente el día del despido.'
-    ]
+    sources: [
+      {
+        name: 'PROFEDET — Procuraduría Federal de la Defensa del Trabajo',
+        url: 'https://www.gob.mx/profedet',
+        description: 'Guía oficial de derechos y acompañamiento legal gratuito ante despidos y pago de finiquitos en México.'
+      },
+      {
+        name: 'Centro Federal de Conciliación y Registro Laboral (CFCRL)',
+        url: 'https://centrolaboral.gob.mx',
+        description: 'Instancia federal obligatoria para la conciliación prejudicial de conflictos individuales y colectivos de trabajo.'
+      },
+      {
+        name: 'Cámara de Diputados — Ley Federal del Trabajo',
+        url: 'https://www.diputados.gob.mx',
+        description: 'Texto vigente de los Artículos 48, 50, 76, 87 y 162 de la Ley Federal del Trabajo.'
+      }
+    ],
+    lastUpdated: 'Actualizado para el ejercicio fiscal 2026',
+    disclaimer: 'Esta calculadora es una herramienta interactiva con fines puramente informativos y de orientación general. La cuantificación definitiva de liquidaciones, integración del salario (SDI) y exenciones fiscales debe ser formalizada ante el Centro de Conciliación Laboral o validada por un profesional en derecho del trabajo.'
   }
 };

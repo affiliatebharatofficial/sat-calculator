@@ -102,27 +102,64 @@ export const resicoCalculator: CalculatorConfig = {
     };
   },
   content: {
-    explanation: 'El Régimen Simplificado de Confianza (RESICO) es un esquema fiscal en México vigente desde 2022 que busca simplificar el pago de impuestos para personas físicas con ingresos de hasta 3.5 millones de pesos al año. Su principal ventaja es que las tasas de ISR se reducen drásticamente (del 1% al 2.5%), pero a cambio, no se permite deducir ningún gasto para el cálculo del ISR.',
-    formula: 'ISR Bruto = Ingresos Totales Sin Deducciones * Tasa RESICO\n\nISR Neto a Pagar = ISR Bruto - Retención de Persona Moral (1.25%)',
-    example: 'Si tienes ingresos mensuales de $30,000 pesos, tu tasa aplicable de RESICO es del 1.10%.\nISR Bruto = $30,000 * 1.10% = $330 pesos.\nSi de esos $30,000 facturaste $10,000 a una Persona Moral, te retuvieron:\nRetención = $10,000 * 1.25% = $125 pesos.\nISR Neto a Pagar en tu declaración mensual = $330 - $125 = $205 pesos.',
-    legislation: 'Ley del Impuesto sobre la Renta (LISR), Título IV, Capítulo IV (Del Régimen Simplificado de Confianza para Personas Físicas), Artículos 113-E al 113-J.',
+    whatItDoes: 'Calcula el pago mensual del Régimen Simplificado de Confianza (RESICO) para personas físicas en México, determinando la tasa reducida aplicable (1.00% al 2.50%) según el nivel de ingresos brutos efectivamente cobrados y descontando la retención del 1.25% que aplican las personas morales.',
+    whoShouldUse: [
+      'Personas físicas en RESICO que realizan actividades empresariales, industriales o comerciales',
+      'Profesionistas y freelancers inscritos en RESICO (honorarios)',
+      'Arrendadores de bienes inmuebles habitacionales o comerciales bajo RESICO',
+      'Emprendedores que evalúan si sus ingresos proyectados (hasta $3.5M anuales) califican para este régimen'
+    ],
+    howItWorks: 'El contribuyente ingresa el monto total de ingresos cobrados en el mes (sin IVA) y especifica cuánto de ese total fue facturado a Personas Morales. El simulador identifica el escalón tarifario del Artículo 113-E (1.00%, 1.10%, 1.50%, 2.00% o 2.50%), calcula el ISR causado y descuenta la retención del 1.25% para obtener el pago neto.',
+    explanation: 'El Régimen Simplificado de Confianza (RESICO) para Personas Físicas fue introducido en la reforma fiscal mexicana de 2022 con el objetivo de fomentar la formalidad mediante tasas impositivas extraordinariamente bajas (entre el 1.0% y el 2.5%). Su característica definitoria es que el ISR se calcula directamente sobre los ingresos brutos cobrados, sin deducción de gastos para efectos de ISR, simplificando radicalmente la contabilidad.',
+    formula: '1. Tasa RESICO según Ingreso Mensual (Art. 113-E LISR):\n   • Hasta $25,000.00: 1.00%\n   • Hasta $50,000.00: 1.10%\n   • Hasta $83,333.33: 1.50%\n   • Hasta $208,333.33: 2.00%\n   • Hasta $291,666.67 (o $3.5M anuales): 2.50%\n2. ISR Bruto Causado = Ingresos Mensuales Cobrados * Tasa RESICO\n3. Retención Persona Moral = Ingresos Facturados a PM * 1.25%\n4. ISR Neto a Enterar al SAT = Max(0, ISR Bruto - Retención PM)',
+    example: 'Ingresos mensuales cobrados: $40,000.00 MXN\n• Monto facturado a una empresa (Persona Moral): $20,000.00 MXN\n• Monto facturado a particulares (Personas Físicas): $20,000.00 MXN\n\nCálculo:\n1. Escalón aplicable ($25,000.01 a $50,000.00): Tasa = 1.10%\n2. ISR Bruto Causado: $40,000.00 × 1.10% = $440.00 MXN\n3. Retención del 1.25% efectuada por la Persona Moral: $20,000.00 × 1.25% = $250.00 MXN\n4. ISR Neto a pagar al SAT en la declaración mensual: $440.00 - $250.00 = $190.00 MXN',
+    legislation: 'Ley del Impuesto sobre la Renta (LISR), Título IV, Capítulo II, Sección IV (Del Régimen Simplificado de Confianza para Personas Físicas), Artículos 113-E (Tasas y Requisitos), 113-F (Obligaciones), 113-G y 113-J (Retención del 1.25% por Personas Morales).',
+    tips: [
+      'Cumple puntualmente con la presentación de declaraciones provisionales mensuales a más tardar el día 17 del mes siguiente.',
+      'Mantén siempre activo el Buzón Tributario del SAT con medios de contacto actualizados y tu e.firma vigente para evitar ser reclasificado al Régimen General.',
+      'Aunque en RESICO no deduces gastos para ISR, ¡sigue pidiendo facturas de tus gastos indispensables! Las necesitarás para acreditar el IVA y pagar menos IVA al SAT.'
+    ],
+    assumptions: [
+      'Se asume que el contribuyente no excede el límite máximo de ingresos de $3,500,000.00 MXN al año.',
+      'Se asume que los ingresos provienen exclusivamente de actividades compatibles con RESICO (actividad empresarial, profesional, arrendamiento, o complementados con salarios e intereses).',
+      'No aplica para socios, accionistas ni partes relacionadas de personas morales.'
+    ],
+    limitations: [
+      'No calcula el IVA trasladado ni el IVA acreditable mensual, el cual se declara por cuerda separada al 16% o 8%.',
+      'No es aplicable si el contribuyente percibe ingresos por asimilados a salarios de partes relacionadas o plataformas tecnológicas con esquema de retención definitiva.',
+      'No contempla penalizaciones ni recargos por declaraciones presentadas fuera de plazo.'
+    ],
     faqs: [
       {
-        question: '¿Puedo deducir gastos en RESICO?',
-        answer: 'No. Para el cálculo del ISR en RESICO no se permite aplicar deducciones autorizadas de ningún tipo. Sin embargo, para efectos del IVA sí es útil mantener las deducciones, ya que puedes acreditar el IVA de tus gastos indispensables.'
+        question: '¿Puedo deducir gastos personales o de negocio para bajar el ISR en RESICO?',
+        answer: 'No. En RESICO el cálculo de ISR se realiza sobre los ingresos brutos cobrados sin restar ningún gasto o deducción. A cambio, la tasa máxima que pagarás es de solo 2.50% (en comparación con hasta el 35% del Régimen General).'
       },
       {
-        question: '¿Qué pasa si excedo los 3.5 millones de pesos al año?',
-        answer: 'Si en cualquier momento del año tus ingresos acumulables superan los 3.5 millones de pesos, deberás abandonar el RESICO a partir del mes siguiente y tributar en el Régimen de Actividad Empresarial o Arrendamiento general.'
+        question: '¿Qué sucede si mis ingresos superan los 3.5 millones de pesos en el año?',
+        answer: 'Si en algún momento del ejercicio fiscal tus ingresos acumulados rebasan los $3,500,000 MXN, la ley establece que debes salir de RESICO a partir del mes siguiente y tributar en el Régimen General de Actividad Empresarial o Arrendamiento, debiendo presentar declaraciones complementarias si la autoridad lo determina.'
+      },
+      {
+        question: '¿Quiénes NO pueden tributar en RESICO según la ley?',
+        answer: 'No pueden tributar en RESICO: socios o accionistas de personas morales (salvo excepciones como cooperativas o asociaciones civiles no lucrativas), residentes en el extranjero con establecimiento en México, quienes tengan ingresos sujetos a regímenes fiscales preferentes o quienes perciban honorarios a consejeros.'
+      },
+      {
+        question: '¿Cómo funciona la retención del 1.25% que me hace una Persona Moral?',
+        answer: 'Conforme al Artículo 113-J de la LISR, cuando una persona física en RESICO emite una factura a una persona moral, esta última está obligada por ley a retener el 1.25% del subtotal antes de IVA. Esa retención te genera un comprobante de retención y la descuentas directamente de tu pago mensual al SAT.'
       }
     ],
-    tips: [
-      'Recuerda presentar tus pagos provisionales a más tardar el día 17 del mes siguiente al que corresponda el pago.',
-      'Para permanecer en RESICO, debes mantener activado tu Buzón Tributario, contar con e.firma (firma electrónica) activa y presentar tus declaraciones anuales a tiempo.'
+    sources: [
+      {
+        name: 'SAT — Minisitio Oficial de RESICO',
+        url: 'https://www.sat.gob.mx',
+        description: 'Guías normativas, requisitos de permanencia y simuladores del Régimen Simplificado de Confianza.'
+      },
+      {
+        name: 'Cámara de Diputados — LISR Sección IV Art. 113-E',
+        url: 'https://www.diputados.gob.mx',
+        description: 'Marco legislativo del Régimen Simplificado de Confianza para personas físicas.'
+      }
     ],
-    errors: [
-      'Creer que RESICO te exime del pago de IVA. El estímulo fiscal de tasas bajas aplica exclusivamente para el ISR; el IVA sigue cobrándose y pagándose a la tasa general del 16% o la que corresponda.',
-      'Omitir la retención del 1.25% al facturar a personas morales. Si no la incluyes en la factura, el SAT te requerirá corregir el comprobante.'
-    ]
+    lastUpdated: 'Actualizado para el ejercicio fiscal 2026',
+    disclaimer: 'Esta calculadora es una herramienta de simulación contable con fines educativos y de planeación financiera. No sustituye la declaración mensual oficial en el Servicio de Administración Tributaria.'
   }
 };

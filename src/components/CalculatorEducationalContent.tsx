@@ -56,34 +56,81 @@ export default function CalculatorEducationalContent({
 
   if (!content) return null;
 
+  const lastUpdatedText =
+    content.lastUpdated ||
+    (isEn ? 'Fiscal Year 2026 — Verified & Active' : 'Ejercicio Fiscal 2026 — Vigente y Verificado');
+
   return (
     <article className="mt-12 space-y-12 text-slate-800 dark:text-slate-200">
-      {/* 1. Guide & Explanation Section */}
+      {/* 1. Main Guide & Educational Section */}
       <section
         id="guia-explicacion"
         className="scroll-mt-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8"
       >
-        <div className="border-b border-slate-200 dark:border-slate-800 pb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 mb-3 border border-blue-200 dark:border-blue-800">
+        {/* Header Metadata Pill */}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
             <i className="bi bi-book-half"></i>
-            {isEn ? 'Educational Guide & Methodology' : 'Guía Educativa y Metodología'}
+            {isEn ? 'Authoritative Guide & Methodology' : 'Guía Educativa y Metodología Oficial'}
           </div>
+          <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-3 py-1 rounded-full">
+            <i className="bi bi-calendar-check text-emerald-500"></i>
+            <span>{lastUpdatedText}</span>
+          </div>
+        </div>
+
+        {/* 1. What This Calculator Does */}
+        <div>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-white tracking-tight">
-            {isEn ? `How does the ${config.title} work?` : `¿Cómo funciona la ${config.title}?`}
+            {isEn ? `What does the ${config.title} do?` : `¿Qué hace la ${config.title}?`}
           </h2>
-          <p className="mt-4 text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed whitespace-pre-line">
-            {renderMarkdownLinks(content.explanation)}
+          <p className="mt-3 text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed whitespace-pre-line">
+            {renderMarkdownLinks(content.whatItDoes || content.explanation)}
           </p>
         </div>
 
-        {/* Formula & Practical Example Grid */}
+        {/* 2. Who Should Use It */}
+        {content.whoShouldUse && content.whoShouldUse.length > 0 && (
+          <div className="bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+            <h3 className="text-lg font-bold text-slate-950 dark:text-white mb-3 flex items-center">
+              <i className="bi bi-people-fill text-blue-600 mr-2"></i>
+              {isEn ? 'Who should use this calculator?' : '¿A quién va dirigida esta herramienta?'}
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              {content.whoShouldUse.map((target, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-start gap-2.5 p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300"
+                >
+                  <span className="text-blue-500 font-bold">✓</span>
+                  <span>{renderMarkdownLinks(target)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 3. How the Calculation Works */}
+        {content.howItWorks && (
+          <div>
+            <h3 className="text-xl font-extrabold text-slate-950 dark:text-white mb-3 flex items-center">
+              <i className="bi bi-gear-wide-connected text-indigo-500 mr-2"></i>
+              {isEn ? 'How the calculation works' : 'Cómo funciona el cálculo paso a paso'}
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed whitespace-pre-line">
+              {renderMarkdownLinks(content.howItWorks)}
+            </p>
+          </div>
+        )}
+
+        {/* 4 & 6. Formula and Realistic Worked Example Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {content.formula && (
             <div className="bg-slate-50 dark:bg-slate-950 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
               <div>
                 <h3 className="text-lg font-bold text-slate-950 dark:text-white mb-3 flex items-center">
                   <i className="bi bi-file-code-fill text-indigo-500 mr-2"></i>
-                  {isEn ? 'Calculation Formula & Logic' : 'Fórmula y Lógica de Cálculo'}
+                  {isEn ? 'Formula & Calculation Methodology' : 'Fórmula y Metodología de Cálculo'}
                 </h3>
                 <pre className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 font-mono text-xs text-slate-800 dark:text-slate-200 whitespace-pre-wrap leading-relaxed overflow-x-auto">
                   {content.formula}
@@ -91,8 +138,8 @@ export default function CalculatorEducationalContent({
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-3 italic">
                 {isEn
-                  ? 'Mathematical methodology applied according to active tax schedules.'
-                  : 'Metodología matemática aplicada según tablas y regulaciones vigentes.'}
+                  ? 'Mathematical methodology applied according to statutory tax tables and arithmetic logic.'
+                  : 'Metodología aritmética aplicada de acuerdo a las disposiciones y tarifas vigentes.'}
               </p>
             </div>
           )}
@@ -102,7 +149,7 @@ export default function CalculatorEducationalContent({
               <div>
                 <h3 className="text-lg font-bold text-slate-950 dark:text-white mb-3 flex items-center">
                   <i className="bi bi-lightbulb-fill text-yellow-500 mr-2"></i>
-                  {isEn ? 'Step-by-Step Practical Example' : 'Ejemplo Práctico Paso a Paso'}
+                  {isEn ? 'Realistic Worked Example' : 'Ejemplo Práctico con Números Reales'}
                 </h3>
                 <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-sm text-slate-700 dark:text-slate-300 whitespace-pre-line leading-relaxed">
                   {renderMarkdownLinks(content.example)}
@@ -110,19 +157,19 @@ export default function CalculatorEducationalContent({
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-3 italic">
                 {isEn
-                  ? 'Real-world simulation scenario to illustrate accurate output calculation.'
-                  : 'Escenario simulado del mundo real para ilustrar el cálculo paso a paso.'}
+                  ? 'Step-by-step numerical breakdown illustrating the exact calculation flow.'
+                  : 'Desglose numérico ilustrativo que refleja el flujo exacto de la operación.'}
               </p>
             </div>
           )}
         </div>
 
-        {/* Tips / Result Interpretation */}
+        {/* 7. Result Interpretation & Best Practices */}
         {content.tips && content.tips.length > 0 && (
           <div className="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/40 rounded-2xl p-6">
             <h3 className="text-lg font-bold text-emerald-900 dark:text-emerald-300 mb-3 flex items-center">
               <i className="bi bi-bookmark-check-fill text-emerald-600 mr-2"></i>
-              {isEn ? 'Result Interpretation & Best Practices' : 'Interpretación de Resultados y Buenas Prácticas'}
+              {isEn ? 'How to Understand the Result & Best Practices' : 'Cómo Interpretar el Resultado y Buenas Prácticas'}
             </h3>
             <ul className="space-y-2.5 text-sm text-emerald-950 dark:text-emerald-200 leading-relaxed">
               {content.tips.map((tip, index) => (
@@ -135,30 +182,54 @@ export default function CalculatorEducationalContent({
           </div>
         )}
 
-        {/* Limitations & Common Pitfalls */}
-        {content.errors && content.errors.length > 0 && (
-          <div className="bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 rounded-2xl p-6">
-            <h3 className="text-lg font-bold text-amber-900 dark:text-amber-300 mb-3 flex items-center">
-              <i className="bi bi-exclamation-octagon-fill text-amber-600 mr-2"></i>
-              {isEn ? 'Limitations & Common Pitfalls to Avoid' : 'Limitaciones y Errores Comunes a Evitar'}
-            </h3>
-            <ul className="space-y-2.5 text-sm text-amber-950 dark:text-amber-200 leading-relaxed">
-              {content.errors.map((error, index) => (
-                <li key={index} className="flex items-start">
-                  <span className="text-amber-600 dark:text-amber-400 mr-2 font-bold">•</span>
-                  <span>{renderMarkdownLinks(error)}</span>
-                </li>
-              ))}
-            </ul>
+        {/* 8. Assumptions & 9. Limitations Grid */}
+        {(content.assumptions?.length || content.limitations?.length || content.errors?.length) && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* 8. Assumptions */}
+            {content.assumptions && content.assumptions.length > 0 && (
+              <div className="bg-blue-50/60 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/40 rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-blue-950 dark:text-blue-200 mb-3 flex items-center">
+                  <i className="bi bi-check-circle-fill text-blue-600 mr-2"></i>
+                  {isEn ? 'Underlying Assumptions' : 'Supuestos del Cálculo'}
+                </h3>
+                <ul className="space-y-2 text-xs sm:text-sm text-blue-900 dark:text-blue-300 leading-relaxed">
+                  {content.assumptions.map((item, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <span className="text-blue-500 mr-2 font-bold">•</span>
+                      <span>{renderMarkdownLinks(item)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* 9. Limitations & Common Pitfalls */}
+            {((content.limitations && content.limitations.length > 0) ||
+              (content.errors && content.errors.length > 0)) && (
+              <div className="bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-amber-900 dark:text-amber-300 mb-3 flex items-center">
+                  <i className="bi bi-exclamation-octagon-fill text-amber-600 mr-2"></i>
+                  {isEn ? 'Limitations & Pitfalls to Avoid' : 'Limitaciones y Errores Frecuentes a Evitar'}
+                </h3>
+                <ul className="space-y-2 text-xs sm:text-sm text-amber-950 dark:text-amber-200 leading-relaxed">
+                  {(content.limitations || content.errors || []).map((error, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-amber-600 dark:text-amber-400 mr-2 font-bold">•</span>
+                      <span>{renderMarkdownLinks(error)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         )}
 
-        {/* Legal Basis & Source */}
+        {/* 5. Legal & Regulatory Basis */}
         {content.legislation && (
           <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
             <h3 className="text-base font-bold text-slate-950 dark:text-white mb-2 flex items-center">
               <i className="bi bi-briefcase-fill text-blue-500 mr-2"></i>
-              {isEn ? 'Legal Basis & Regulatory Framework' : 'Fundamento Legal y Marco Normativo'}
+              {isEn ? 'Applicable Legal & Regulatory Basis' : 'Fundamento Legal y Normativa Aplicable'}
             </h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm italic leading-relaxed">
               {renderMarkdownLinks(content.legislation)}
@@ -167,7 +238,7 @@ export default function CalculatorEducationalContent({
         )}
       </section>
 
-      {/* 2. Frequently Asked Questions Section */}
+      {/* 10. Frequently Asked Questions Section (3-6 FAQs) */}
       {content.faqs && content.faqs.length > 0 && (
         <section
           id="preguntas-frecuentes"
@@ -185,8 +256,8 @@ export default function CalculatorEducationalContent({
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-sm mt-2">
               {isEn
-                ? 'Answers to common tax, financial, and procedural inquiries.'
-                : 'Respuestas directas a las dudas fiscales, laborales y contables más comunes.'}
+                ? 'Clear, legally grounded answers to practical inquiries and procedures.'
+                : 'Respuestas directas con sustento técnico y legal a las dudas operativas más comunes.'}
             </p>
           </div>
 
@@ -215,7 +286,45 @@ export default function CalculatorEducationalContent({
         </section>
       )}
 
-      {/* 3. Related Tools Section */}
+      {/* 12. Data & Source References */}
+      {content.sources && content.sources.length > 0 && (
+        <section
+          id="fuentes-oficiales"
+          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4"
+        >
+          <h3 className="text-base font-bold text-slate-950 dark:text-white flex items-center gap-2">
+            <i className="bi bi-link-45deg text-blue-600 text-lg"></i>
+            {isEn ? 'Official Sources & Data References' : 'Fuentes Oficiales y Referencias Normativas'}
+          </h3>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600 dark:text-slate-400">
+            {content.sources.map((src, idx) => (
+              <li
+                key={idx}
+                className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800"
+              >
+                <div className="font-bold text-slate-900 dark:text-white mb-1">
+                  {src.url ? (
+                    <a
+                      href={src.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
+                    >
+                      <span>{src.name}</span>
+                      <i className="bi bi-box-arrow-up-right text-[10px]"></i>
+                    </a>
+                  ) : (
+                    src.name
+                  )}
+                </div>
+                {src.description && <p className="leading-normal">{src.description}</p>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* 11. Related Tools Section */}
       {relatedCalculators.length > 0 && (
         <section
           id="herramientas-relacionadas"
@@ -228,8 +337,8 @@ export default function CalculatorEducationalContent({
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
               {isEn
-                ? `Explore other calculators in the ${config.category} category.`
-                : `Explora otras herramientas complementarias en la categoría ${config.category}.`}
+                ? `Explore other financial simulators complementary to the ${config.category} domain.`
+                : `Explora otros simuladores y herramientas complementarias al área de ${config.category}.`}
             </p>
           </div>
 
@@ -264,7 +373,7 @@ export default function CalculatorEducationalContent({
         </section>
       )}
 
-      {/* 4. Official Informational Disclaimer */}
+      {/* 14. Official Informational Disclaimer */}
       <section
         id="aviso-legal"
         className="bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
@@ -276,7 +385,9 @@ export default function CalculatorEducationalContent({
               {isEn ? 'Legal & Informational Disclaimer' : 'Aviso Legal e Informativo'}
             </strong>
             <p>
-              {isEn
+              {content.disclaimer
+                ? renderMarkdownLinks(content.disclaimer)
+                : isEn
                 ? 'This calculator is a simulation tool designed for informative and educational purposes under current statutory provisions. It does not constitute formal accounting, legal, or fiscal advice. For official tax returns or binding procedures, consult an authorized public accountant or refer to the official regulations.'
                 : 'Esta calculadora es una herramienta de simulación informativa y didáctica basada en la legislación y disposiciones vigentes. Los resultados no constituyen asesoría contable, fiscal o legal vinculante. Para declaraciones formales o gestiones oficiales, consulta a un profesional contable calificado o acude a los canales oficiales.'}
             </p>

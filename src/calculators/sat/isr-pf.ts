@@ -121,27 +121,64 @@ export const isrPfCalculator: CalculatorConfig = {
     };
   },
   content: {
-    explanation: 'El Impuesto sobre la Renta (ISR) es el impuesto directo principal que grava los ingresos de personas físicas y morales en México. Para las personas físicas, el cálculo no es lineal, sino progresivo; se basa en tarifas con límites inferiores y superiores, una cuota fija y una tasa sobre el excedente del límite inferior, la cual aumenta a medida que suben los ingresos del contribuyente (del 1.92% al 35%).',
-    formula: 'ISR = Cuota Fija + [ ( Base Gravable - Límite Inferior ) * Tasa Excedente ]\nDonde:\nBase Gravable = Ingresos Acumulables - Deducciones Autorizadas',
-    example: 'Para un ingreso mensual de $25,000 con deducciones de $5,000, la base gravable es de $20,000.\nEl rango aplicable tiene un Límite Inferior de $15,487.72, Cuota Fija de $1,640.18 y Tasa de 21.36%.\nExcedente = $20,000 - $15,487.72 = $4,512.28\nImpuesto Marginal = $4,512.28 * 21.36% = $963.82\nISR total a pagar = $1,640.18 + $963.82 = $2,604.00',
-    legislation: 'Ley del Impuesto sobre la Renta (LISR), Título IV, Capítulo II (De los ingresos por actividades empresariales y profesionales) y Anexo 8 de la Resolución Miscelánea Fiscal vigente (RMF).',
+    whatItDoes: 'Calcula con precisión el pago provisional mensual del Impuesto sobre la Renta (ISR) para Personas Físicas en México (Régimen de Actividades Empresariales y Servicios Profesionales / Honorarios), aplicando las tablas progresivas oficiales y desglosando base gravable, límite inferior, excedente, cuota fija e impuesto marginal.',
+    whoShouldUse: [
+      'Personas físicas con Actividad Empresarial (comercio, talleres, manufactura, plataformas)',
+      'Profesionistas independientes que cobran por honorarios (médicos, abogados, desarrolladores, arquitectos)',
+      'Contadores y auxiliares que validan pagos provisionales mensuales ante el SAT',
+      'Contribuyentes que analizan su carga impositiva efectiva frente al régimen RESICO'
+    ],
+    howItWorks: 'A los ingresos cobrados del mes se les restan las deducciones autorizadas pagadas para obtener la Base Gravable. Dicha base se ubica en el renglón correspondiente de la tarifa oficial de 11 escalones del SAT. Se resta el Límite Inferior para hallar el Excedente, se multiplica por la Tasa Marginal del rango y se suma la Cuota Fija.',
+    explanation: 'El Impuesto sobre la Renta (ISR) es el impuesto directo fundamental que grava la utilidad o ganancia neta generada por personas físicas en México. A diferencia de otros gravámenes proporcionales, el ISR para personas físicas opera mediante un esquema progresivo estructurado en 11 tramos tarifarios, con tasas marginales que van desde el 1.92% hasta el 35.00%. A mayor utilidad neta, mayor es la tasa aplicable sobre el excedente del límite inferior.',
+    formula: '1. Base Gravable = Ingresos Acumulables Cobrados - Deducciones Autorizadas Pagadas\n2. Excedente = Base Gravable - Límite Inferior del Rango\n3. Impuesto Marginal = Excedente * (Tasa Marginal / 100)\n4. ISR Causado = Cuota Fija del Rango + Impuesto Marginal\n5. Ingreso Neto Estimado = Base Gravable - ISR Causado',
+    example: 'Ingresos del mes: $35,000.00 MXN | Gastos deducibles: $10,000.00 MXN\n• Base Gravable: $35,000.00 - $10,000.00 = $25,000.00 MXN\n• Rango aplicable (Anexo 8 RMF):\n  - Límite Inferior: $15,487.72 MXN\n  - Cuota Fija: $1,640.18 MXN\n  - Tasa sobre excedente: 21.36%\n• Cálculo del Excedente: $25,000.00 - $15,487.72 = $9,512.28 MXN\n• Impuesto Marginal: $9,512.28 × 21.36% = $2,031.82 MXN\n• ISR Causado a Pagar: $1,640.18 + $2,031.82 = $3,672.00 MXN (Tasa efectiva sobre utilidad: 14.69%)\n• Utilidad Neta Disponible: $25,000.00 - $3,672.00 = $21,328.00 MXN',
+    legislation: 'Ley del Impuesto sobre la Renta (LISR), Título IV (De las Personas Físicas), Capítulo II (De los Ingresos por Actividades Empresariales y Profesionales), Artículos 96, 100, 106, 109; y Anexo 8 de la Resolución Miscelánea Fiscal (RMF) vigente publicada por el SAT en el DOF.',
+    tips: [
+      'Solicita siempre CFDI con forma de pago bancarizada (tarjeta, transferencia, cheque) para cualquier gasto superior a $2,000 MXN para que sea deducible conforme al Art. 147 de la LISR (o desde $1 en gasolina).',
+      'Si emites recibos de honorarios a personas morales, recuerda registrar la retención del 10% de ISR en el comprobante fiscal, la cual se acredita contra el pago provisional mensual.',
+      'Lleva un control estricto de los ingresos cobrados efectivamente (flujo de efectivo), ya que en personas físicas el impuesto se causa al momento de percibir el dinero.'
+    ],
+    assumptions: [
+      'Aplica la tarifa mensual provisional de personas físicas con actividades empresariales y profesionales.',
+      'Se asume que los ingresos y gastos corresponden a flujo de efectivo efectivamente cobrado y pagado en el periodo.',
+      'No incluye retenciones previas de personas morales a menos que el usuario las descuente del impuesto final.'
+    ],
+    limitations: [
+      'No calcula la acumulación progresiva bimestral o trimestral para contribuyentes con pagos provisionales acumulativos anuales.',
+      'No contempla estímulos sectoriales específicos (ej. sector primario AGAPES o transportistas).',
+      'No calcula las deducciones personales anuales (médicos, colegiaturas, gastos funerarios), las cuales aplican exclusivamente en la Declaración Anual de abril.'
+    ],
     faqs: [
       {
-        question: '¿Qué son las deducciones autorizadas?',
-        answer: 'Son los gastos indispensables que realizas para poder llevar a cabo tu actividad económica, como compra de materia prima, renta de oficina, papelería, internet y sueldos de empleados.'
+        question: '¿Qué diferencia hay entre el ISR provisional mensual y la Declaración Anual?',
+        answer: 'Los pagos provisionales mensuales son anticipos a cuenta del impuesto del año. En abril del año siguiente, se presenta la Declaración Anual donde se suman todos los ingresos de enero a diciembre, se aplican las deducciones personales y se restan todos los pagos provisionales realizados. Si pagaste de más, obtienes saldo a favor para devolución.'
       },
       {
-        question: '¿Cuál es la diferencia entre el ISR provisional y el anual?',
-        answer: 'Los provisionales son pagos a cuenta mensuales que realizas a lo largo del año. En la declaración anual, se suman todos los ingresos y deducciones del año, se recalcula con la tabla anual y se restan los pagos provisionales ya realizados.'
+        question: '¿Qué gastos son considerados deducciones autorizadas para personas físicas?',
+        answer: 'Son aquellos gastos estrictamente indispensables para la actividad económica: renta del local u oficina, papelería, luz, internet, nóminas de trabajadores, cuotas patronales IMSS, honorarios contables y compra de mercancías. Deben contar con CFDI y estar pagados por medios electrónicos si exceden $2,000 MXN.'
+      },
+      {
+        question: '¿Por qué la tasa efectiva de ISR suele ser mucho menor que la tasa marginal?',
+        answer: 'Porque el ISR mexicano es escalonado. Si tu tasa marginal es del 21.36%, ese porcentaje solo se aplica al dinero que rebasa el límite inferior de tu escalón ($15,487.72 en el ejemplo), no a la totalidad de tu ingreso. Por ello, la tasa real pagada sobre la ganancia suele ser considerablemente inferior.'
+      },
+      {
+        question: '¿Puedo deducir gastos médicos o colegiaturas en mi pago provisional mensual?',
+        answer: 'No. Esos conceptos son "deducciones personales" y por mandato del Artículo 151 de la LISR únicamente pueden restarse en la Declaración Anual de personas físicas en el mes de abril, no en las declaraciones mensuales.'
       }
     ],
-    tips: [
-      'Asegúrate de solicitar facturas (CFDI) con el uso de CFDI correcto para todos tus gastos indispensables para que sean deducibles.',
-      'Si eres asalariado, también puedes deducir gastos personales en tu declaración anual (gastos médicos, colegiaturas, aportaciones voluntarias al afore, intereses de créditos hipotecarios).'
+    sources: [
+      {
+        name: 'SAT — Tablas y Tarifas de ISR Vigentes',
+        url: 'https://www.sat.gob.mx',
+        description: 'Resolución Miscelánea Fiscal y Anexo 8 con las tarifas oficiales de pagos provisionales.'
+      },
+      {
+        name: 'Cámara de Diputados — Ley del Impuesto sobre la Renta',
+        url: 'https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf',
+        description: 'Texto legal íntegro de la LISR que norma el Título IV para personas físicas.'
+      }
     ],
-    errors: [
-      'Creer que el impuesto es simplemente multiplicar tu ingreso por la tasa máxima (por ejemplo, el 30%). Recuerda que en México el ISR se calcula en escalones por brackets.',
-      'Intentar deducir gastos personales (como despensa de hogar o ropa general) en tus declaraciones provisionales de actividad empresarial; estos solo aplican en la declaración anual.'
-    ]
+    lastUpdated: 'Actualizado para el ejercicio fiscal 2026',
+    disclaimer: 'Esta calculadora es un simulador matemático basado en las tarifas provisionales de la Resolución Miscelánea Fiscal. No constituye una determinación fiscal oficial ni sustituye la declaración mensual en el portal del SAT.'
   }
 };

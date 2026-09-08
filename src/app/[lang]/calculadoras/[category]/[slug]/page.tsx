@@ -1,6 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { calculators, getCalculatorBySlug, getCalculatorsByCategory } from '../../../../../calculators';
+import { CalculatorConfig } from '../../../../../types/calculator';
 import CalculatorEngine from '../../../../../components/CalculatorEngine';
 import CalculatorEducationalContent from '../../../../../components/CalculatorEducationalContent';
 import RichSnippets from '../../../../../components/SEO/RichSnippets';
@@ -83,10 +84,23 @@ export default async function CalculatorPage({ params }: PageProps) {
   const calculator = getLocalizedConfig(baseCalculator, lang);
   const currentUrl = `https://www.calculadorasat.org/${lang === 'en' ? 'en/' : ''}calculadoras/${resolvedParams.category}/${resolvedParams.slug}`;
 
-  let relatedCalculators = getCalculatorsByCategory(calculator.categorySlug || resolvedParams.category)
-    .filter((c) => c.slug !== resolvedParams.slug)
-    .slice(0, 3)
-    .map((c) => getLocalizedConfig(c, lang));
+  let relatedCalculators: CalculatorConfig[] = [];
+  if (calculator.content?.relatedCalculators && calculator.content.relatedCalculators.length > 0) {
+    relatedCalculators = calculator.content.relatedCalculators
+      .map((slugOrPath: string) => {
+        const slug = slugOrPath.includes('/') ? slugOrPath.split('/')[1] : slugOrPath;
+        return calculators.find((c) => c.slug === slug || c.id === slug);
+      })
+      .filter((c: any): c is CalculatorConfig => Boolean(c))
+      .map((c: CalculatorConfig) => getLocalizedConfig(c, lang));
+  }
+
+  if (relatedCalculators.length === 0) {
+    relatedCalculators = getCalculatorsByCategory(calculator.categorySlug || resolvedParams.category)
+      .filter((c) => c.slug !== resolvedParams.slug)
+      .slice(0, 3)
+      .map((c) => getLocalizedConfig(c, lang));
+  }
 
   if (relatedCalculators.length === 0) {
     relatedCalculators = calculators

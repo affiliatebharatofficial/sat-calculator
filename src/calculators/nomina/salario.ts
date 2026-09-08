@@ -208,27 +208,64 @@ export const salaryCalculator: CalculatorConfig = {
     };
   },
   content: {
-    explanation: 'El salario en México se divide en bruto (la remuneración total acordada antes de deducciones) y neto (la cantidad de efectivo depositada al empleado tras retenciones legales). Los dos descuentos obligatorios para cualquier trabajador subordinado en nómina son el Impuesto sobre la Renta (ISR) y las cuotas de seguridad social al Instituto Mexicano del Seguro Social (IMSS).',
-    formula: 'Sueldo Neto = Sueldo Bruto - ISR - IMSS\n\nSueldo Bruto (Inverso) = Resuelto mediante método numérico de aproximación.',
-    example: 'Para un sueldo mensual bruto de $20,000 MXN:\nEl ISR correspondiente es de $2,604.00 MXN.\nLa cuota del IMSS obrera es de $482.00 MXN.\nSueldo neto resultante = $20,000 - $2,604.00 - $482.00 = $16,914.00 MXN.',
-    legislation: 'Ley Federal del Trabajo (LFT), Artículos 82 al 89 (Salario); Ley de Impuesto sobre la Renta (LISR), Artículo 96; y Ley del Seguro Social (LSS), Artículos 106 y 107.',
+    whatItDoes: 'Calcula con exactitud matemática la conversión bidireccional entre Salario Bruto y Salario Neto en México, detallando la retención mensual del Impuesto sobre la Renta (Art. 96 LISR) y las cuotas de seguridad social del trabajador ante el IMSS basadas en el Salario Base de Cotización (SBC). Permite calcular de Bruto a Neto o de Neto a Bruto.',
+    whoShouldUse: [
+      'Trabajadores subordinados que desean auditar las deducciones en sus recibos de nómina (CFDI)',
+      'Profesionales en procesos de selección o contratación que negocian sueldo neto vs bruto',
+      'Especialistas de Recursos Humanos y encargados de nómina que elaboran presupuestos salariales',
+      'Patrones y empleadores que requieren conocer el costo neto real para el trabajador'
+    ],
+    howItWorks: 'En modo "Bruto a Neto", calcula el factor de integración con prestaciones de ley (15 días aguinaldo y vacaciones dignas) para determinar el SBC, calcula las cuotas obreras del IMSS y aplica la tarifa progresiva del Art. 96 de ISR. En modo "Neto a Bruto", ejecuta un algoritmo de búsqueda binaria numérica para encontrar el salario bruto exacto que produce dicho neto libre.',
+    explanation: 'El salario en México se divide formalmente en dos conceptos: Salario Bruto (la remuneración contractual total pactada antes de retenciones de ley) y Salario Neto (el importe líquido transferido a la cuenta bancaria del trabajador). Por mandato legal, el patrón actúa como retenedor fiscal obligatorio, descontando el Impuesto sobre la Renta (ISR) y las cuotas de seguridad social obreras del IMSS (Enfermedades y Maternidad, Invalidez y Vida, y Cesantía en Edad Avanzada y Vejez).',
+    formula: '1. Modo Bruto a Neto:\n   • Factor de Integración = 1 + (Días Aguinaldo / 365) + (Días Vacaciones * Prima Vacacional / 365)\n   • SBC = Salario Diario * Factor de Integración (Topado a 25 UMAs)\n   • Cuota Obrera IMSS = Prestaciones en Dinero + Gastos Médicos Pensionados + Excedente 3 UMA + Invalidez y Vida + Cesantía y Vejez\n   • ISR Retenido = Aplicación de la tarifa mensual Art. 96 LISR sobre Salario Bruto\n   • Salario Neto = Salario Bruto - ISR Retenido - Cuota Obrera IMSS\n2. Modo Neto a Bruto: Resuelto por convergencia numérica sobre la función f(Bruto) - Neto = 0.',
+    example: 'Salario Mensual Bruto: $25,000.00 MXN (1 año de antigüedad, prestaciones de ley):\n• Salario Diario: $833.33 MXN\n• Factor de Integración (12 días vacaciones, 25% prima, 15 días aguinaldo): 1.0493\n• Salario Base de Cotización (SBC): $874.42 MXN\n• Deducción IMSS Trabajador (aprox 2.775% efectivo): $685.20 MXN\n• Retención de ISR (Tarifa mensual Art. 96): $3,672.00 MXN\n• Total Deducciones de Nómina: $4,357.20 MXN\n• Salario Neto Líquido a Recibir: $25,000.00 - $4,357.20 = $20,642.80 MXN',
+    legislation: 'Ley Federal del Trabajo (LFT), Artículos 82 al 89 (Del Salario); Ley del Impuesto sobre la Renta (LISR), Artículo 96 (Retenciones mensuales por salarios); Ley del Seguro Social (LSS), Artículos 27, 28 (Límite 25 UMAs), 106, 147 y 168 (Ramos de aseguramiento y cuotas obrero-patronales).',
+    tips: [
+      'Al recibir una oferta de trabajo, solicita siempre por escrito si el monto ofertado es "Bruto mensual" o "Neto mensual libre", para evitar discrepancias de hasta un 25% en tu percepción real.',
+      'Compara tu Salario Base de Cotización (SBC) que aparece en tu recibo de nómina con el que reporta el portal de Semanas Cotizadas del IMSS para verificar que tu patrón no te tenga registrado con salario mínimo.',
+      'Recuerda que las aportaciones al Infonavit y al AFORE de la subcuenta de vivienda son cubiertas en su mayor parte por el patrón, salvo que tengas un crédito hipotecario Infonavit activo en cuyo caso se descuenta de nómina.'
+    ],
+    assumptions: [
+      'Aplica las prestaciones mínimas de ley para el Salario Base de Cotización (15 días de aguinaldo y 25% de prima vacacional conforme a Vacaciones Dignas).',
+      'No incluye créditos activos de Infonavit, Fonacot ni préstamos de caja de ahorro, los cuales son descuentos individuales adicionales.',
+      'Aplica para la zona geográfica general del país.'
+    ],
+    limitations: [
+      'No contempla regímenes especiales de nómina sindicalizada con prestaciones superiores muy elevadas (vales de despensa, fondo de ahorro exento) sin parametrización individual.',
+      'No considera el Subsidio para el Empleo si el sueldo rebasa los topes mínimos legales de elegibilidad.',
+      'No deduce cuotas sindicales extraordinarias ni retenciones por pensión alimenticia ordenadas judicialmente.'
+    ],
     faqs: [
       {
-        question: '¿Qué es el Salario Base de Cotización (SBC)?',
-        answer: 'Es el salario con el que tu patrón te registra ante el IMSS. Se integra por tu salario diario más las prestaciones mínimas de ley (aguinaldo y vacaciones multiplicados por la prima vacacional) y otras prestaciones adicionales acordadas.'
+        question: '¿Qué es el Salario Base de Cotización (SBC) y por qué difiere de mi sueldo bruto?',
+        answer: 'El SBC es el monto diario con el que estás dado de alta ante el IMSS. Es superior a tu salario diario nominal porque incorpora el "factor de integración", el cual añade la parte proporcional diaria de tu aguinaldo y tu prima vacacional mínima que recibirás durante el año.'
       },
       {
-        question: '¿Por qué mi sueldo neto es menor que el bruto?',
-        answer: 'Porque tu patrón tiene la obligación legal de retener la cuota de ISR correspondiente a tu nivel de ingresos y tu aportación a la seguridad social (IMSS), y transferir esos fondos directamente a la tesorería del gobierno.'
+        question: '¿Hasta qué monto de salario se puede cotizar en el IMSS?',
+        answer: 'Conforme al Artículo 28 de la Ley del Seguro Social, el límite superior de cotización para el IMSS es de 25 veces el valor de la Unidad de Medida y Actualización (UMA) vigente. Los ingresos que superen este tope no pagan cuotas adicionales de seguridad social.'
+      },
+      {
+        question: '¿Por qué me retienen más ISR cuando gano un bono o trabajo horas extra?',
+        answer: 'Porque el ISR mexicano es progresivo. Al sumarse un bono o remuneración extraordinaria al sueldo del mes, el ingreso total brinca a un escalón más alto en la tarifa del Art. 96 de la LISR, aplicando una tasa marginal más alta sobre el excedente del nuevo rango.'
+      },
+      {
+        question: '¿El patrón puede descontar conceptos que no estén en la ley?',
+        answer: 'No. El Artículo 110 de la Ley Federal del Trabajo prohíbe terminantemente los descuentos en los salarios de los trabajadores, salvo los autorizados expresamente: pago de deudas con el patrón (topadas), cuotas del IMSS, ISR, aportaciones a cooperativas y cuotas sindicales.'
       }
     ],
-    tips: [
-      'Al negociar tu sueldo con un nuevo empleador, asegúrate siempre de dejar en claro si el monto acordado es NETO (libre) o BRUTO (antes de impuestos).',
-      'Revisa tus recibos de nómina digitales (CFDI) para constatar que las cantidades retenidas de ISR e IMSS coinciden con los cálculos de ley.'
+    sources: [
+      {
+        name: 'Instituto Mexicano del Seguro Social (IMSS) — Cuotas Obrero Patronales',
+        url: 'https://www.imss.gob.mx',
+        description: 'Tabla oficial de porcentajes de financiamiento de los ramos de aseguramiento del régimen obligatorio.'
+      },
+      {
+        name: 'Servicio de Administración Tributaria (SAT) — Tarifa Mensual del Art. 96 LISR',
+        url: 'https://www.sat.gob.mx',
+        description: 'Tarifas del impuesto sobre la renta aplicables a retenciones sobre salarios y asimilados.'
+      }
     ],
-    errors: [
-      'Suponer que la cuota obrera del IMSS es de un porcentaje fijo simple. Esta depende de la UMA vigente y del salario diario integrado (SBC).',
-      'Confundir las deducciones de nómina con créditos de vivienda (Infonavit) o pensiones alimenticias, que son descuentos adicionales individuales.'
-    ]
+    lastUpdated: 'Actualizado para el ejercicio fiscal 2026',
+    disclaimer: 'Esta calculadora es una herramienta de simulación de percepciones laborales basada en las disposiciones de la LFT, LISR y LSS. Las deducciones oficiales definitivas se reflejan en el CFDI de nómina timbrado por tu empleador.'
   }
 };

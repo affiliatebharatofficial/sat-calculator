@@ -95,27 +95,80 @@ export const cetesCalculator: CalculatorConfig = {
     };
   },
   content: {
-    explanation: 'Los CETES (Certificados de la Tesorería) son instrumentos de deuda bursátil emitidos por el Gobierno Federal de México. Al comprar un CETE estás prestando dinero al gobierno a cambio de un interés. Se consideran la inversión de menor riesgo en México porque cuentan con el respaldo del erario federal. Su cálculo utiliza una convención financiera estándar de año comercial de 360 días.',
-    formula: 'Interés Bruto = Capital * Tasa Anual * ( Plazo en Días / 360 )\n\nISR Retenido = Capital * Tasa ISR Anual * ( Plazo en Días / 360 )\n\nCapital Final = Capital + Interés Bruto - ISR Retenido',
-    example: 'Si inviertes $10,000 pesos en CETES a 28 días con una tasa anual del 11.00% y retención de ISR del 0.50%:\nRendimiento Bruto = $10,000 * 11.00% * (28 / 360) = $85.56 pesos.\nRetención ISR = $10,000 * 0.50% * (28 / 360) = $3.89 pesos.\nRendimiento Neto = $85.56 - $3.89 = $81.67 pesos.\nTotal al vencimiento = $10,081.67 pesos.',
-    legislation: 'Ley del Mercado de Valores y Ley de Ingresos de la Federación (establece la tasa de retención del ISR sobre el capital de las inversiones financieras año con año).',
+    whatItDoes: 'Simula con precisión bancaria y fiscal el rendimiento bruto, la retención provisional del Impuesto sobre la Renta (ISR sobre capital según la Ley de Ingresos de la Federación) y el saldo neto disponible al vencimiento al invertir en Certificados de la Tesorería de la Federación (CETES) a plazos de 28, 91, 182 y 364 días.',
+    whoShouldUse: [
+      'Inversionistas particulares y personas físicas que buscan proteger su patrimonio contra la inflación con el menor riesgo crediticio del mercado financiero mexicano',
+      'Ahorradores que evalúan fondos de emergencia con liquidez a corto plazo o reinversión periódica',
+      'Contribuyentes asalariados, profesionistas y personas con actividad empresarial que proyectan el impacto de las retenciones de ISR en sus ingresos por intereses',
+      'Estudiantes y profesionales de finanzas que requieren calcular la matemática financiera de pagarés gubernamentales emitidos a tasa de descuento'
+    ],
+    howItWorks: 'Aplica la fórmula financiera estándar de los mercados de deuda soberana en México: prorratea la tasa nominal anual por el plazo exacto de inversión tomando como base un año comercial de 360 días. Calcula el rendimiento bruto generado por el capital, computa la retención obligatoria de ISR sobre el capital invertido estipulada en el Artículo 21 de la Ley de Ingresos de la Federación, y deduce este impuesto para entregar el rendimiento neto final y el capital total acumulado al vencimiento.',
+    explanation: 'Los CETES (Certificados de la Tesorería de la Federación) son pagarés gubernamentales emitidos por la Secretaría de Hacienda y Crédito Público (SHCP) y colocados semanalmente por el Banco de México (Banxico). Se adquieren por debajo de su valor nominal de $10 pesos (a tasa de descuento) y al cumplirse el plazo pactado (28, 91, 182 o 364 días), el gobierno liquida los $10 pesos íntegros por título. Dado que cuentan con el respaldo directo de la recaudación tributaria federal, se consideran la inversión de menor riesgo crediticio en moneda nacional (tasa libre de riesgo en México).',
+    formula: '1. Rendimiento Bruto = Capital * ( Tasa Anual Nominal / 100 ) * ( Plazo en Días / 360 )\n2. Retención Fiscal de ISR = Capital * ( Tasa ISR LIF / 100 ) * ( Plazo en Días / 360 )\n3. Rendimiento Neto Libre = Rendimiento Bruto - Retención Fiscal de ISR\n4. Capital Total al Vencimiento = Capital + Rendimiento Neto Libre\n5. Tasa Neta Efectiva Anualizada = ( Rendimiento Neto / Capital ) * ( 360 / Plazo en Días ) * 100',
+    example: 'Para una inversión de $10,000.00 MXN a un plazo de 28 días con tasa anual del 11.00% y retención de ISR del 0.50% anual:\n• Factor de plazo (base 360 días): 28 / 360 = 0.077778\n• Rendimiento Bruto: $10,000.00 * 0.1100 * 0.077778 = $85.56 MXN\n• Retención Provisional de ISR SAT: $10,000.00 * 0.0050 * 0.077778 = $3.89 MXN\n• Rendimiento Neto Libre: $85.56 - $3.89 = $81.67 MXN\n• Capital Total Depositado al Vencimiento: $10,081.67 MXN',
+    legislation: 'Ley del Mercado de Valores; Ley de Ingresos de la Federación (LIF vigente, Artículo que fija la tasa de retención anual aplicable a los intereses que pagan los intermediarios financieros); Ley del Impuesto sobre la Renta (LISR), Artículos 54 y 135 (obligaciones de retención a instituciones financieras y acumulación de intereses reales en declaración anual); y Circulares de Operaciones de Mercado Abierto del Banco de México.',
+    tips: [
+      'Si mantienes una estrategia de largo plazo, activa la opción de "Reinversión Automática" en Cetesdirecto para aprovechar el interés compuesto (los intereses ganados compran nuevos títulos en cada ciclo).',
+      'La retención de ISR en CETES es un pago provisional a cuenta: en tu Declaración Anual del SAT, el impuesto definitivo se cobra únicamente sobre la ganancia real (tasa de interés menos la tasa de inflación oficial del año determinada por el INEGI).',
+      'Revisa los resultados de las subastas primarias que Banxico publica cada martes después de las 18:00 hrs para conocer las tasas actualizadas que regirán a partir del jueves siguiente.',
+      'Si requieres disponibilidad inmediata de lunes a viernes en horario bancario, evalúa mantener tus recursos en Bonddia (fondo diario de Cetesdirecto) en lugar de amarrar plazos fijos de 91 o 364 días.'
+    ],
+    assumptions: [
+      'El cálculo utiliza la convención bancaria y bursátil mexicana de año comercial de 360 días (meses normalizados de 30 días).',
+      'Se asume que los títulos son conservados por el inversionista hasta el vencimiento natural del plazo pactado.',
+      'La tasa de rendimiento anual se mantiene constante durante el periodo simulado.',
+      'No se aplican costos de corretaje o custodia, correspondiente a operaciones directas en Cetesdirecto.'
+    ],
+    limitations: [
+      'No modela la venta anticipada de títulos en el mercado secundario, donde el precio de liquidación puede sufrir minusvalías o plusvalías según la fluctuación de las tasas de mercado.',
+      'No calcula el impacto final de la inflación anualizada (interés real) ni el ajuste definitivo de la declaración anual ante el SAT.',
+      'No incluye inversiones complementarias como UDIBONOS (indexados a la inflación en UDIS) ni Bonos de Desarrollo de tasa fija.'
+    ],
     faqs: [
       {
-        question: '¿Qué es la retención provisional de ISR sobre inversiones?',
-        answer: 'Es un porcentaje de impuesto que las instituciones financieras (incluyendo la plataforma Cetes Directo) te descuentan de manera automática al momento de pagarte rendimientos. Funciona como un pago a cuenta que declaras en tu declaración anual del SAT.'
+        question: '¿Qué es Cetesdirecto y cobra alguna comisión por operar?',
+        answer: 'Cetesdirecto es una plataforma pública gratuita creada por la Secretaría de Hacienda y Crédito Público (SHCP) y operada por Nacional Financiera (Nafin). Permite a cualquier persona física mexicana comprar valores gubernamentales directamente de las subastas de Banxico sin intermediarios bancarios, casas de bolsa ni cobro de comisiones por apertura, manejo de cuenta o custodia.'
       },
       {
-        question: '¿Por qué se usa un año de 360 días para los cálculos de CETES?',
-        answer: 'Es una convención internacional en los mercados de dinero (mercado de renta fija) que simplifica el cómputo de intereses diarios utilizando meses de 30 días.'
+        question: '¿Por qué la retención de ISR se calcula sobre el capital y no sobre la ganancia?',
+        answer: 'La Ley de Ingresos de la Federación (LIF) y la Ley del ISR establecen que las instituciones financieras deben aplicar una tasa de retención provisional directa sobre el saldo promedio diario de capital invertido, independientemente del interés bruto generado. En la declaración anual, el SAT ajusta esta retención contra el interés real efectivamente obtenido.'
+      },
+      {
+        question: '¿Cómo se declaran las ganancias de CETES en la Declaración Anual?',
+        answer: 'En el mes de abril de cada año, Cetesdirecto emite una constancia fiscal de retenciones. En el aplicativo del SAT, tus intereses nominales y retenciones ya aparecen precargados. El sistema calcula el interés real restando la inflación anual: si la tasa de Cetes superó a la inflación, pagarás ISR por el excedente; si la inflación fue mayor, se genera una pérdida fiscal por intereses que puedes deducir.'
+      },
+      {
+        question: '¿Cuál es el monto mínimo y máximo para invertir en CETES?',
+        answer: 'El monto mínimo de inversión es de tan solo $100 pesos mexicanos. En su modalidad inicial simplificada (con firma electrónica básica por internet), la cuenta tiene un límite de depósito mensual aproximado de 3,000 UDIs (alrededor de $24,000 a $25,000 pesos al mes). Si autenticas tu cuenta con tu e.firma (firma electrónica avanzada del SAT), el límite de depósito se incrementa hasta $10 millones de pesos.'
+      },
+      {
+        question: '¿Puedo retirar mi dinero antes de que venza el plazo de los CETES?',
+        answer: 'Sí. Cetesdirecto permite la venta anticipada de tus títulos en días hábiles bancarios a través del mercado secundario. Sin embargo, al vender antes del vencimiento el precio del CETE se calcula al valor de mercado de ese día específico, lo que podría generar una ligera variación respecto al rendimiento originalmente estimado.'
       }
     ],
-    tips: [
-      'Monitorea las subastas semanales del Banco de México para verificar cómo se ajustan las tasas de rendimiento de acuerdo a la inflación y decisiones de política monetaria.',
-      'Si reinviertes automáticamente tus intereses al vencimiento (interés compuesto), tus ganancias crecerán de forma exponencial a mediano y largo plazo.'
+    relatedCalculators: [
+      'sat/calculadora-isr-pf',
+      'creditos/calculadora-credito-hipotecario',
+      'nomina/calculadora-salario-neto-bruto'
     ],
-    errors: [
-      'Creer que las ganancias de CETES están totalmente exentas de impuestos. Tienen un descuento de retención anual directo que varía de acuerdo a lo decretado en la Ley de Ingresos de la Federación.',
-      'Comparar plazos sin anualizar las tasas. Una tasa de Cete del 11% es anual; no significa que vayas a ganar el 11% al final de los 28 días, sino la proporción equivalente a esos 28 días.'
-    ]
+    sources: [
+      {
+        name: 'Cetesdirecto — Nacional Financiera (Nafin) / SHCP',
+        url: 'https://www.cetesdirecto.com',
+        description: 'Plataforma oficial del Gobierno de México para la adquisición directa de deuda gubernamental sin intermediarios.'
+      },
+      {
+        name: 'Banco de México (Banxico) — Sistema de Información Económica',
+        url: 'https://www.banxico.org.mx',
+        description: 'Estadísticas oficiales, subastas primarias semanales y calendario de colocación de valores gubernamentales.'
+      },
+      {
+        name: 'Secretaría de Hacienda y Crédito Público — Ley de Ingresos de la Federación',
+        url: 'https://www.finanzaspublicas.hacienda.gob.mx',
+        description: 'Disposiciones oficiales sobre la tasa anual de retención de ISR aplicable al sistema financiero nacional.'
+      }
+    ],
+    lastUpdated: 'Actualizado para el ejercicio fiscal 2026',
+    disclaimer: 'Esta calculadora es una herramienta de simulación financiera y didáctica. Los rendimientos reales dependen de las tasas de asignación resultantes de las subastas semanales del Banco de México y de las disposiciones vigentes en la Ley de Ingresos de la Federación. No constituye asesoría financiera ni oferta pública de valores.'
   }
 };
