@@ -1,12 +1,30 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { getSeoAlternates } from '@/lib/seo';
 
 interface PageProps {
   params: Promise<{
     lang: string;
   }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
+  const seoAlternates = getSeoAlternates('about', lang);
+
+  return {
+    title: lang === 'en'
+      ? 'About Us | Calculadora SAT & FkDigitalMedia'
+      : 'Acerca de Nosotros | Calculadora SAT y FkDigitalMedia',
+    description: lang === 'en'
+      ? 'Learn about Calculadora SAT, an independent digital initiative operated by FkDigitalMedia and created by Firoz Khan to provide transparent financial and tax calculators in Mexico and Peru.'
+      : 'Conoce Calculadora SAT, una iniciativa digital independiente operada por FkDigitalMedia y creada por Firoz Khan para ofrecer herramientas y calculadoras financieras y fiscales transparentes en México y Perú.',
+    alternates: seoAlternates,
+  };
 }
 
 export default async function AboutPage({ params }: PageProps) {
@@ -27,32 +45,73 @@ export default async function AboutPage({ params }: PageProps) {
               </h1>
             </div>
 
-            <div className="space-y-6 text-sm leading-relaxed text-slate-600 dark:text-slate-355">
+            <div className="space-y-6 text-sm leading-relaxed text-slate-600 dark:text-slate-350">
               <p className="text-lg text-slate-700 dark:text-slate-300 font-medium">
-                Calculadora SAT is an independent financial calculation platform with a primary focus on Mexico's tax, labor, and payroll systems (SAT, LISR, LIVA, LFT, and IMSS).
+                Calculadora SAT is an independent online calculation platform operated and maintained by <strong className="text-slate-900 dark:text-white">FkDigitalMedia</strong>, with a primary focus on Mexico&apos;s tax, labor, and payroll systems (SAT, LISR, LIVA, LFT, and IMSS).
               </p>
 
               <p>
-                In a region where tax and payroll regulations evolve constantly, our platform provides free educational tools that allow freelancers, small businesses, accountants, and employees to simulate their ISR, IMSS withholdings, VAT breakdowns, and severance pay without needing to decipher complex legal treatises.
+                The purpose of this website is to provide practical online calculators and explanatory resources designed to make complex fiscal, payroll, and personal finance calculations easier to understand. In a regulatory environment where tax laws and labor provisions evolve constantly, our platform allows employees, freelancers, small businesses, and accountants to simulate tax withholdings, social security contributions, VAT breakdowns, and severance pay without needing to navigate through intricate legal texts.
               </p>
+
+              <p>
+                Each calculator is built with transparency in mind: where applicable, our tools clearly display the underlying mathematical methodology, step-by-step calculation formulas, realistic examples, citations of official legal statutes, and explicit operational limitations.
+              </p>
+
+              <hr className="border-slate-200 dark:border-slate-800 my-6" />
+
+              {/* Creator & Digital Initiative Section */}
+              <section className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-2xl">👤</span>
+                  <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                    The Person and Initiative Behind Calculadora SAT
+                  </h2>
+                </div>
+
+                <div className="space-y-3 text-slate-600 dark:text-slate-350">
+                  <p>
+                    <strong className="text-slate-900 dark:text-white">Firoz Khan</strong> is the person responsible for the development, technical architecture, and ongoing management of Calculadora SAT.
+                  </p>
+                  <p>
+                    Calculadora SAT is developed and maintained as part of <strong className="text-slate-900 dark:text-white">FkDigitalMedia</strong>, the digital initiative behind the creation, deployment, and content maintenance of this web platform.
+                  </p>
+                  <p>
+                    We believe in open transparency and accountability for digital tools. Users and professionals interested in learning more about Firoz Khan, his background, or getting in touch can view his official professional profile on LinkedIn:
+                  </p>
+                  <div className="pt-2">
+                    <a
+                      href="https://www.linkedin.com/in/firoz-khan-1153358a/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-[#0A66C2] hover:bg-[#004182] text-white text-xs font-semibold rounded-lg transition-colors shadow-sm"
+                    >
+                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      </svg>
+                      <span>Connect with Firoz Khan on LinkedIn</span>
+                    </a>
+                  </div>
+                </div>
+              </section>
 
               <hr className="border-slate-200 dark:border-slate-800 my-6" />
 
               <h2 className="text-xl font-bold text-slate-900 dark:text-white">Why Mexico and Peru?</h2>
               <p>
-                Mexico represents our core specialization and original purpose. However, with the rise of remote work and cross-border commerce across Latin America, many professionals and businesses operate between Mexico and Peru.
+                Mexico represents our core specialization and original purpose. However, with the rise of remote work, cross-border contracting, and digital trade across Latin America, many professionals and businesses operate between Mexico and Peru.
               </p>
               <p>
-                To serve these users without compromising accuracy, we created a dedicated <strong className="text-slate-800 dark:text-slate-100">Peru Tools</strong> module. This section provides tailored calculators for Peruvian labor mandates (CTS, Gratificaciones, Renta de 5ta Categoría) and tax references (SUNAT, IGV 18%, USD/PEN exchange rates). Both jurisdictions are kept strictly separated to ensure country-specific compliance and clarity.
+                To serve these users without compromising accuracy or creating normative confusion, we established a separate section of dedicated <strong className="text-slate-800 dark:text-slate-100">Peru Tools</strong>. This section provides tailored calculators for Peruvian labor mandates (CTS, Gratificaciones de Ley, Renta de 5ta Categoría) and tax references (SUNAT, IGV 18%, USD/PEN exchange rates). Both jurisdictions are kept strictly separate so users can easily identify country-specific resources without ambiguity.
               </p>
 
               <hr className="border-slate-200 dark:border-slate-800 my-6" />
 
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Independent Portal & Disclaimer</h2>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Independent Portal & Non-Affiliation Notice</h2>
               <div className="p-4 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl text-xs text-amber-900 dark:text-amber-200">
                 <p className="font-semibold mb-1">⚠️ Important Legal Notice:</p>
                 <p>
-                  Calculadora SAT is an independent educational portal. It is <strong>NOT affiliated with, authorized, endorsed, or sponsored by</strong> the Servicio de Administración Tributaria (SAT) of Mexico, nor the Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) of Peru, nor any other government institution. All calculations are mathematical simulations for informational and planning purposes only and do not constitute formal tax or legal advice.
+                  Calculadora SAT is an independent educational portal. It is <strong>NOT affiliated with, authorized, endorsed, or sponsored by</strong> the Servicio de Administración Tributaria (SAT) of Mexico, the Instituto Mexicano del Seguro Social (IMSS), the Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) of Peru, the Ministerio de Trabajo y Promoción del Empleo (MTPE), nor any other government agency or public institution. All calculations are mathematical estimates intended for simulation, planning, and informational purposes only, and do not constitute binding tax, legal, or financial advice.
                 </p>
               </div>
 
@@ -85,14 +144,12 @@ export default async function AboutPage({ params }: PageProps) {
 
               <hr className="border-slate-200 dark:border-slate-800 my-6" />
 
-              <hr className="border-slate-200 dark:border-slate-800 my-6" />
-
               <h2 className="text-xl font-bold text-slate-900 dark:text-white">Methodology for Rate Maintenance & Formula Updates</h2>
               <p>
                 To maintain mathematical accuracy, our tools are continuously aligned with publicly published statutes and official government gazettes:
               </p>
               <div className="space-y-4 mt-2">
-                <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2">
+                <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl space-y-2">
                   <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
                     <span>🇲🇽</span> Mexican Regulatory Monitoring
                   </h3>
@@ -105,7 +162,7 @@ export default async function AboutPage({ params }: PageProps) {
                   </ul>
                 </div>
 
-                <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2">
+                <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl space-y-2">
                   <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
                     <span>🇵🇪</span> Peruvian Regulatory Monitoring
                   </h3>
@@ -119,12 +176,12 @@ export default async function AboutPage({ params }: PageProps) {
 
               <hr className="border-slate-200 dark:border-slate-800 my-6" />
 
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Our Team & Transparency Commitment</h2>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Transparency Commitment & Contact</h2>
               <p>
-                We are an independent team of software developers and financial calculation researchers passionate about building fast, accessible web utilities.
+                Calculadora SAT operates with an explicit commitment to transparency and truthfulness. We do not claim to be a licensed public accounting firm, a law practice, or a government agency. We do not invent fictitious professional qualifications, certifications, corporate titles, or fabricated advisory committees.
               </p>
               <p>
-                We do not claim to be a licensed accounting firm or a government agency. We do not invent fictitious professional credentials, fictitious expert panels, or pseudo-governmental endorsements. Our tools are public mathematical implementations of the laws cited above. If you notice any formula discrepancy or legislative change, we encourage you to contact us at <a href="mailto:hello@calculadorasat.org" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">hello@calculadorasat.org</a>.
+                Our work consists of reviewing publicly enacted statutes, transforming their formulas into open computational algorithms, and offering accessible web calculators. If you discover any formula discrepancy, recent regulatory change, or have feedback, please write directly to <a href="mailto:hello@calculadorasat.org" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">hello@calculadorasat.org</a>.
               </p>
             </div>
           </div>
@@ -150,21 +207,62 @@ export default async function AboutPage({ params }: PageProps) {
 
           <div className="space-y-6 text-sm leading-relaxed text-slate-600 dark:text-slate-350">
             <p className="text-lg text-slate-700 dark:text-slate-300 font-medium">
-              Calculadora SAT es una plataforma independiente de cálculo financiero y tributario cuyo eje principal es la normativa fiscal, laboral y de nómina en México (SAT, LISR, LIVA, LFT e IMSS).
+              Calculadora SAT es una plataforma digital independiente de cálculo financiero y tributario operada y mantenida por <strong className="text-slate-900 dark:text-white">FkDigitalMedia</strong>, cuyo eje principal es la normativa fiscal, laboral y de nómina en México (SAT, LISR, LIVA, LFT e IMSS).
             </p>
 
             <p>
-              En un entorno donde las regulaciones tributarias y laborales cambian con frecuencia, proporcionamos herramientas gratuitas y didácticas que permiten a trabajadores independientes, pymes, contadores y empleados simular sus retenciones de ISR, cuotas IMSS, desgloses de IVA y liquidaciones laborales de forma clara y accesible.
+              El propósito de este sitio web es ofrecer calculadoras en línea prácticas y recursos explicativos diseñados para facilitar la comprensión de cálculos fiscales, laborales y de finanzas personales que suelen ser complejos. En un entorno donde las regulaciones tributarias y las disposiciones de seguridad social cambian con frecuencia, nuestra plataforma permite a trabajadores asalariados, profesionales independientes, emprendedores y contadores simular retenciones de ISR, cuotas obrero-patronales del IMSS, desgloses de IVA y liquidaciones laborales de forma inmediata y sin necesidad de descifrar tratados legales extensos.
             </p>
+
+            <p>
+              Cada herramienta está diseñada bajo un principio de máxima transparencia metodológica: siempre que resulta aplicable, se incluye la metodología empleada, el desglose matemático paso a paso, ejemplos realistas, referencias a las fuentes legales oficiales correspondientes y las limitaciones de alcance del cálculo.
+            </p>
+
+            <hr className="border-slate-200 dark:border-slate-800 my-6" />
+
+            {/* Sección de Identidad: Responsable y Marca Digital */}
+            <section className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-2xl p-6">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-2xl">👤</span>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                  La Persona e Iniciativa Detrás de Calculadora SAT
+                </h2>
+              </div>
+
+              <div className="space-y-3 text-slate-600 dark:text-slate-350">
+                <p>
+                  <strong className="text-slate-900 dark:text-white">Firoz Khan</strong> es la persona responsable del desarrollo, arquitectura técnica y gestión de Calculadora SAT.
+                </p>
+                <p>
+                  Calculadora SAT se desarrolla y mantiene como parte de <strong className="text-slate-900 dark:text-white">FkDigitalMedia</strong>, la iniciativa digital detrás de la creación, publicación y soporte continuo de este sitio web.
+                </p>
+                <p>
+                  Creemos firmemente en la transparencia y en ofrecer una identidad verificable para los usuarios de nuestras herramientas. Si deseas conocer más sobre la trayectoria de Firoz Khan o conectar profesionalmente con él, puedes consultar su perfil oficial en LinkedIn:
+                </p>
+                <div className="pt-2">
+                  <a
+                    href="https://www.linkedin.com/in/firoz-khan-1153358a/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#0A66C2] hover:bg-[#004182] text-white text-xs font-semibold rounded-lg transition-colors shadow-sm"
+                  >
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    <span>Ver perfil de Firoz Khan en LinkedIn</span>
+                  </a>
+                </div>
+              </div>
+            </section>
 
             <hr className="border-slate-200 dark:border-slate-800 my-6" />
 
             <h2 className="text-xl font-bold text-slate-900 dark:text-white">¿Por qué herramientas de México y Perú?</h2>
             <p>
-              México constituye el núcleo fundamental y el motivo de ser de esta plataforma. No obstante, con la expansión del trabajo remoto, la contratación regional y el comercio digital entre países hispanohablantes, un número significativo de usuarios opera entre México y Perú.
+              México constituye el núcleo fundamental y el motivo original de ser de esta plataforma. No obstante, con la expansión del trabajo remoto, la contratación transfronteriza y el comercio digital entre países hispanohablantes, un número significativo de usuarios opera entre México y Perú.
             </p>
             <p>
-              Para dar respuesta a estas necesidades sin mezclar ni distorsionar las normas de cada país, creamos una sección independiente dedicada a las <strong className="text-slate-800 dark:text-slate-100">Herramientas de Perú</strong>. En ella se agrupan calculadoras específicas de la legislación laboral peruana (CTS, Gratificaciones de ley, Renta de 5ta Categoría) y tributaria (SUNAT, IGV 18%, tipo de cambio Soles/Dólares). Ambos ecosistemas permanecen separados para garantizar total claridad normativa.
+              Para dar respuesta a estas necesidades sin mezclar ni distorsionar las normas de cada país, creamos una sección independiente dedicada a las <strong className="text-slate-800 dark:text-slate-100">Herramientas de Perú</strong>. En ella se agrupan calculadoras específicas de la legislación laboral peruana (CTS, Gratificaciones de ley, Renta de 5ta Categoría) y tributaria (SUNAT, IGV 18%, tipo de cambio Soles/Dólares). Ambos ecosistemas permanecen estrictamente separados para que cualquier usuario identifique con claridad los recursos aplicables a su jurisdicción.
             </p>
 
             <hr className="border-slate-200 dark:border-slate-800 my-6" />
@@ -173,7 +271,7 @@ export default async function AboutPage({ params }: PageProps) {
             <div className="p-4 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl text-xs text-amber-900 dark:text-amber-200">
               <p className="font-semibold mb-1">⚠️ Aviso Legal Relevante:</p>
               <p>
-                Calculadora SAT es un sitio web de divulgación e información tecnológica independiente. <strong>NO está afiliado, patrocinado, avalado ni vinculado formalmente</strong> con el Servicio de Administración Tributaria (SAT) de México, ni con el Instituto Mexicano del Seguro Social (IMSS), ni con la Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) de Perú, ni con ninguna entidad pública. Todas las herramientas son simuladores matemáticos orientativos y no sustituyen la asesoría profesional de un contador público titulado o un abogado laboralista.
+                Calculadora SAT es un sitio web de divulgación tecnológica e información cuantitativa independiente. <strong>NO está afiliado, patrocinado, avalado ni vinculado formalmente</strong> con el Servicio de Administración Tributaria (SAT) de México, ni con el Instituto Mexicano del Seguro Social (IMSS), ni con la Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) de Perú, ni con el Ministerio de Trabajo y Promoción del Empleo (MTPE), ni con ninguna otra entidad gubernamental. Todas las herramientas son simuladores matemáticos de carácter estimativo y didáctico, por lo que no sustituyen la asesoría profesional vinculante de un contador público colegiado o un abogado especialista.
               </p>
             </div>
 
@@ -211,7 +309,7 @@ export default async function AboutPage({ params }: PageProps) {
               Para asegurar la exactitud de los cálculos, mantenemos un seguimiento riguroso de las publicaciones normativas emitidas por los organismos oficiales:
             </p>
             <div className="space-y-4 mt-2">
-              <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2">
+              <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl space-y-2">
                 <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
                   <span>🇲🇽</span> Monitoreo Normativo en México
                 </h3>
@@ -224,7 +322,7 @@ export default async function AboutPage({ params }: PageProps) {
                 </ul>
               </div>
 
-              <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2">
+              <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl space-y-2">
                 <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
                   <span>🇵🇪</span> Monitoreo Normativo en Perú
                 </h3>
@@ -238,12 +336,12 @@ export default async function AboutPage({ params }: PageProps) {
 
             <hr className="border-slate-200 dark:border-slate-800 my-6" />
 
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Nuestro Equipo y Compromiso de Transparencia</h2>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Compromiso de Transparencia y Contacto</h2>
             <p>
-              Somos un equipo independiente de desarrolladores de software e investigadores interesados en el cálculo tributario y la ingeniería de software financiero.
+              Calculadora SAT opera con un compromiso explícito de transparencia y veracidad. No pretendemos ser un despacho contable colegiado, un bufete jurídico ni un organismo gubernamental; no inventamos credenciales profesionales no verificables, grados de colegiatura inexistentes ni comités de expertos ficticios.
             </p>
             <p>
-              No somos un despacho contable colegiado ni una entidad gubernamental; no inventamos credenciales profesionales falsas, títulos no verificables ni comités de expertos ficticios. Nuestra labor consiste en estudiar la normativa legal pública, traducirla en algoritmos matemáticos abiertos y ofrecer simuladores claros y rápidos. Si detectas cualquier discrepancia en alguna fórmula o tabla, te invitamos a escribirnos directamente a <a href="mailto:hello@calculadorasat.org" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">hello@calculadorasat.org</a>.
+              Nuestra labor consiste en estudiar la normativa legal pública vigente, traducirla en algoritmos matemáticos abiertos y ofrecer simuladores rápidos, claros y gratuitos. Si detectas cualquier discrepancia en alguna fórmula o tabla, o deseas hacernos llegar tus sugerencias, te invitamos a escribirnos directamente a <a href="mailto:hello@calculadorasat.org" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">hello@calculadorasat.org</a>.
             </p>
           </div>
         </div>
@@ -253,3 +351,4 @@ export default async function AboutPage({ params }: PageProps) {
     </div>
   );
 }
+
