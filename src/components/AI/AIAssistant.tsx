@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 interface Message {
   role: 'user' | 'model';
@@ -12,15 +13,46 @@ interface AIAssistantProps {
 }
 
 export default function AIAssistant({ activeCalculatorContext }: AIAssistantProps) {
+  const pathname = usePathname() || '';
+
+  const isPeru =
+    pathname.includes('/calculadoras/peru') ||
+    pathname.includes('-peru') ||
+    pathname.includes('sunat') ||
+    pathname.includes('cts') ||
+    pathname.includes('gratificacion') ||
+    pathname.includes('quinta-categoria') ||
+    pathname.includes('soles') ||
+    pathname.includes('dolar-en-peru') ||
+    activeCalculatorContext?.toLowerCase().includes('perú') ||
+    activeCalculatorContext?.toLowerCase().includes('peru') ||
+    activeCalculatorContext?.toLowerCase().includes('sunat') ||
+    activeCalculatorContext?.toLowerCase().includes('cts') ||
+    activeCalculatorContext?.toLowerCase().includes('gratificación');
+
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'model',
-      text: '¡Hola! Soy tu Asistente Fiscal IA de Calculadora SAT. 🇲🇽\n\n¿Tienes alguna duda sobre tus impuestos, el cálculo de nómina, RESICO o qué gastos puedes deducir ante el SAT este año? ¡Pregúntame lo que quieras!'
+      text: isPeru
+        ? '¡Hola! Soy tu Asistente Laboral y Tributario IA. 🇵🇪\n\n¿Tienes dudas sobre tus beneficios de ley en Perú (CTS, Gratificación, Liquidación), cálculo del IGV (18%), Renta de 5ta categoría o trámites de SUNAT? ¡Pregúntame con confianza!'
+        : '¡Hola! Soy tu Asistente Fiscal IA de Calculadora SAT. 🇲🇽\n\n¿Tienes alguna duda sobre tus impuestos, el cálculo de nómina, RESICO o qué gastos puedes deducir ante el SAT este año? ¡Pregúntame lo que quieras!'
     }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  // Update initial message if route/context changes
+  useEffect(() => {
+    setMessages([
+      {
+        role: 'model',
+        text: isPeru
+          ? '¡Hola! Soy tu Asistente Laboral y Tributario IA. 🇵🇪\n\n¿Tienes dudas sobre tus beneficios de ley en Perú (CTS, Gratificación, Liquidación), cálculo del IGV (18%), Renta de 5ta categoría o trámites de SUNAT? ¡Pregúntame con confianza!'
+          : '¡Hola! Soy tu Asistente Fiscal IA de Calculadora SAT. 🇲🇽\n\n¿Tienes alguna duda sobre tus impuestos, el cálculo de nómina, RESICO o qué gastos puedes deducir ante el SAT este año? ¡Pregúntame lo que quieras!'
+      }
+    ]);
+  }, [isPeru]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -83,13 +115,21 @@ export default function AIAssistant({ activeCalculatorContext }: AIAssistantProp
     handleSend(suggestion);
   };
 
-  const suggestions = [
-    '¿Qué es y cómo funciona el RESICO?',
-    '¿Cómo calculo el IVA acreditable?',
-    '¿Qué gastos médicos son deducibles?',
-    '¿Cuándo se paga el aguinaldo por ley?',
-    'Diferencia entre sueldo neto y bruto'
-  ];
+  const suggestions = isPeru
+    ? [
+        '¿Cómo se calcula el pago de la CTS?',
+        '¿Cuándo se pagan las Gratificaciones de ley?',
+        '¿Cómo calcular el IGV (18%) de un monto?',
+        '¿Cómo funciona la Renta de 5ta Categoría?',
+        '¿Qué deducciones aplican con la UIT en SUNAT?'
+      ]
+    : [
+        '¿Qué es y cómo funciona el RESICO?',
+        '¿Cómo calculo el IVA acreditable?',
+        '¿Qué gastos médicos son deducibles?',
+        '¿Cuándo se paga el aguinaldo por ley?',
+        'Diferencia entre sueldo neto y bruto'
+      ];
 
   return (
     <>
@@ -104,7 +144,7 @@ export default function AIAssistant({ activeCalculatorContext }: AIAssistantProp
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
           </span>
-          <span className="hidden sm:inline font-bold text-xs mr-1">Asistente Fiscal IA</span>
+          <span className="hidden sm:inline font-bold text-xs mr-1">{isPeru ? 'Asistente Laboral IA' : 'Asistente Fiscal IA'}</span>
           <span className="text-lg sm:text-base">✨</span>
         </button>
       )}
@@ -118,10 +158,10 @@ export default function AIAssistant({ activeCalculatorContext }: AIAssistantProp
         {/* Drawer Header */}
         <div className="p-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <span className="text-xl">🤖</span>
+            <span className="text-xl">{isPeru ? '🇵🇪' : '🇲🇽'}</span>
             <div>
-              <h3 className="font-bold text-base leading-tight">Asistente Fiscal Inteligente</h3>
-              <p className="text-xs text-blue-100/80">SAT & Nómina México - IA Activa</p>
+              <h3 className="font-bold text-base leading-tight">{isPeru ? 'Asistente Inteligente Perú' : 'Asistente Fiscal Inteligente'}</h3>
+              <p className="text-xs text-blue-100/80">{isPeru ? 'SUNAT & Beneficios Laborales Perú - IA Activa' : 'SAT & Nómina México - IA Activa'}</p>
             </div>
           </div>
           <button

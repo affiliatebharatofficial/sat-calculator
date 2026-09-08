@@ -4,8 +4,8 @@ export const calculadoraSolesADolaresCalculator: CalculatorConfig = {
   id: 'calculo-soles-a-dolares',
   title: 'Calculadora Soles a Dólares',
   shortDescription: 'Convierte soles peruanos (PEN) a dólares estadounidenses (USD) usando el tipo de cambio SUNAT o una tasa personalizada.',
-  category: 'Tipo de Cambio',
-  categorySlug: 'tipo-de-cambio',
+  category: 'Herramientas Perú',
+  categorySlug: 'peru',
   slug: 'calculadora-soles-a-dolares',
   seo: {
     metaTitle: 'Calculadora Soles a Dólares: PEN a USD',

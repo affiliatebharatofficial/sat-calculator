@@ -51,8 +51,8 @@ export const consultaRucSunatCalculator: CalculatorConfig = {
   id: 'consulta-ruc-sunat',
   title: 'Consulta RUC SUNAT',
   shortDescription: 'Verifica la validez y estructura matemática de un número de RUC en Perú y aprende cómo consultar el padrón oficial de la SUNAT.',
-  category: 'Tipo de Cambio',
-  categorySlug: 'tipo-de-cambio',
+  category: 'Herramientas Perú',
+  categorySlug: 'peru',
   slug: 'consulta-ruc-sunat',
   seo: {
     metaTitle: 'Consulta RUC SUNAT: Cómo Consultar un RUC',

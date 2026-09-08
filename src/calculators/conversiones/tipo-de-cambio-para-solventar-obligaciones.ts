@@ -4,8 +4,8 @@ export const tipoCambioSolventarObligacionesCalculator: CalculatorConfig = {
   id: 'calculo-tipo-cambio-solventar-obligaciones',
   title: 'Tipo de Cambio para Solventar Obligaciones',
   shortDescription: 'Calcula el tipo de cambio oficial para la conversión de deudas y obligaciones en moneda extranjera en Perú.',
-  category: 'Tipo de Cambio',
-  categorySlug: 'tipo-de-cambio',
+  category: 'Herramientas Perú',
+  categorySlug: 'peru',
   slug: 'tipo-de-cambio-para-solventar-obligaciones',
   seo: {
     metaTitle: 'Tipo de Cambio para Solventar Obligaciones | SUNAT',

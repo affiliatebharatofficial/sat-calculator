@@ -86,6 +86,7 @@ export default function Home({ params }: { params: Promise<{ lang: string }> }) 
     { name: lang === 'en' ? 'Business' : 'Negocios', slug: 'negocios', icon: '🏢' },
     { name: lang === 'en' ? 'Accounting' : 'Contabilidad', slug: 'contabilidad', icon: '📊' },
     { name: lang === 'en' ? 'Conversions' : 'Conversiones', slug: 'conversiones', icon: '⚖️' },
+    { name: lang === 'en' ? 'Peru Tools (SUNAT)' : 'Herramientas Perú', slug: 'peru', icon: '🇵🇪' },
   ];
 
   return (
@@ -121,17 +122,49 @@ export default function Home({ params }: { params: Promise<{ lang: string }> }) 
               </div>
             </div>
 
-            {/* Quick Access Badges for Currency Features */}
+            {/* Quick Access Badges: Primary Mexico Tools */}
             <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs font-bold">
-              <span className="text-blue-200">Destacados:</span>
-              <Link href="/dolar-hoy" className="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition backdrop-blur-sm border border-white/20">
-                💵 Dólar Hoy en Perú
+              <span className="text-blue-200">{lang === 'en' ? 'Popular Mexico Tools:' : 'Destacados México:'}</span>
+              <Link href={`${lang === 'en' ? '/en' : ''}/calculadoras/sat/calculadora-iva`} className="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition backdrop-blur-sm border border-white/20">
+                🇲🇽 IVA 16% / 8%
               </Link>
-              <Link href="/tipo-de-cambio-sunat" className="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition backdrop-blur-sm border border-white/20">
-                🇵🇪 Tipo de Cambio SUNAT
+              <Link href={`${lang === 'en' ? '/en' : ''}/calculadoras/nomina/calculadora-salario-neto-bruto`} className="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition backdrop-blur-sm border border-white/20">
+                🇲🇽 Salario Neto vs Bruto
               </Link>
-              <Link href="/dolares-a-soles" className="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition backdrop-blur-sm border border-white/20">
-                💱 Dólares a Soles
+              <Link href={`${lang === 'en' ? '/en' : ''}/calculadoras/sat/calculadora-resico-pf`} className="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition backdrop-blur-sm border border-white/20">
+                🇲🇽 RESICO
+              </Link>
+              <Link href={`${lang === 'en' ? '/en' : ''}/calculadoras/nomina/calculadora-aguinaldo`} className="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition backdrop-blur-sm border border-white/20">
+                🇲🇽 Aguinaldo
+              </Link>
+              <Link href={`${lang === 'en' ? '/en' : ''}/calculadoras/nomina/calculadora-semanas-cotizadas-imss`} className="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition backdrop-blur-sm border border-white/20">
+                🇲🇽 Semanas IMSS
+              </Link>
+              <Link href={`${lang === 'en' ? '/en' : ''}/calculadoras/inversiones/calculadora-cetes-directo`} className="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition backdrop-blur-sm border border-white/20">
+                🇲🇽 CETES
+              </Link>
+            </div>
+
+            {/* Distinct Peru Callout Card */}
+            <div className="mt-8 max-w-xl mx-auto p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-left flex flex-col sm:flex-row items-center justify-between gap-3 shadow-lg">
+              <div className="flex items-center gap-3">
+                <span className="text-3xl shrink-0">🇵🇪</span>
+                <div>
+                  <div className="font-bold text-white text-sm">
+                    {lang === 'en' ? 'Looking for Peru Tools (SUNAT)?' : '¿Buscas herramientas para Perú?'}
+                  </div>
+                  <p className="text-blue-100 text-xs mt-0.5">
+                    {lang === 'en'
+                      ? 'IGV 18%, CTS, Gratifications, RUC queries, and official SUNAT exchange rates.'
+                      : 'Calcula IGV (18%), CTS, Gratificaciones, RUC y Tipo de Cambio SUNAT.'}
+                  </p>
+                </div>
+              </div>
+              <Link
+                href={`${lang === 'en' ? '/en' : ''}/calculadoras/peru`}
+                className="px-3.5 py-1.5 rounded-xl bg-white text-blue-900 hover:bg-blue-50 font-extrabold text-xs shrink-0 shadow-md transition whitespace-nowrap"
+              >
+                {lang === 'en' ? 'Go to Peru Section ➔' : 'Ver Sección Perú ➔'}
               </Link>
             </div>
           </div>

@@ -35,18 +35,30 @@ export default function Header({ lang = 'es', activePath }: HeaderProps) {
         </div>
 
         {/* Navigation Bar Row - Mobile Optimized Horizontal Scroll */}
-        <nav className="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-850/60 flex items-center gap-2 sm:gap-5 overflow-x-auto scrollbar-none text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-350 -mx-4 px-4 sm:mx-0 sm:px-0">
+        <nav className="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-850/60 flex items-center gap-1.5 sm:gap-4 overflow-x-auto scrollbar-none text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-350 -mx-4 px-4 sm:mx-0 sm:px-0">
           <Link
-            href="/dolar-hoy"
+            href={`${langPrefix}/calculadoras/sat`}
             className="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60"
           >
-            💵 Dólar Hoy
+            🏛️ {isEn ? 'SAT Taxes' : 'Impuestos SAT'}
           </Link>
           <Link
-            href="/tipo-de-cambio-sunat"
+            href={`${langPrefix}/calculadoras/nomina`}
             className="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60"
           >
-            🇵🇪 Tipo de Cambio SUNAT
+            💼 {isEn ? 'Payroll & Labor' : 'Nómina LFT'}
+          </Link>
+          <Link
+            href={`${langPrefix}/calculadoras/resico`}
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60"
+          >
+            🌱 RESICO
+          </Link>
+          <Link
+            href={`${langPrefix}/calculadoras/inversiones`}
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60"
+          >
+            📈 {isEn ? 'Investments' : 'Inversiones'}
           </Link>
           <Link
             href={`${langPrefix}/calendario-fiscal`}
@@ -54,23 +66,18 @@ export default function Header({ lang = 'es', activePath }: HeaderProps) {
           >
             📅 {isEn ? 'Tax Calendar' : 'Calendario Fiscal'}
           </Link>
+          <span className="text-slate-300 dark:text-slate-700 select-none hidden sm:inline">|</span>
+          <Link
+            href={`${langPrefix}/calculadoras/peru`}
+            className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800"
+          >
+            🇵🇪 {isEn ? 'Peru Tools' : 'Herramientas Perú'}
+          </Link>
           <Link
             href={`${langPrefix}/blog`}
             className="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60"
           >
             ✍️ Blog
-          </Link>
-          <Link
-            href={`${langPrefix}/formatos`}
-            className="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60"
-          >
-            📁 {isEn ? 'Templates' : 'Formatos RH'}
-          </Link>
-          <Link
-            href={`${langPrefix}/widgets`}
-            className="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60"
-          >
-            🧩 Widgets
           </Link>
         </nav>
       </div>

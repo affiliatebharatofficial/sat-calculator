@@ -76,6 +76,11 @@ const categoryTranslations: Record<string, Record<string, { name: string; desc: 
       name: 'Conversiones',
       desc: 'Herramientas útiles de conversión económica como unidades de referencia oficiales UMA.',
       icon: '⚖️'
+    },
+    'peru': {
+      name: 'Herramientas Perú (SUNAT)',
+      desc: 'Calculadoras laborales, tributarias y cambiarias para Perú: IGV (18%), CTS, Gratificaciones, Renta 5ta Categoría, Consulta RUC y Tipo de Cambio SUNAT.',
+      icon: '🇵🇪'
     }
   },
   'en': {
@@ -138,6 +143,11 @@ const categoryTranslations: Record<string, Record<string, { name: string; desc: 
       name: 'Conversions',
       desc: 'Useful economic conversion tools such as official UMA reference units.',
       icon: '⚖️'
+    },
+    'peru': {
+      name: 'Peru Tools (SUNAT)',
+      desc: 'Labor, tax, and currency calculators for Peru: IGV (18% VAT), CTS, Gratifications, 5th Category Tax, RUC queries, and official SUNAT exchange rates.',
+      icon: '🇵🇪'
     }
   }
 };

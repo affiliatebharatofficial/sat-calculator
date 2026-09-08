@@ -10,21 +10,21 @@
   },
   "footer": {
     "rights": "© 2026 Calculadora SAT. Todos los derechos reservados.",
-    "disclaimer": "Este sitio no está afiliado al Servicio de Administración Tributaria (SAT) oficial de México.",
+    "disclaimer": "Calculadora SAT es una plataforma independiente de orientación didáctica sin afiliación oficial con el Servicio de Administración Tributaria (SAT) de México ni con la Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) de Perú.",
     "privacy": "Privacidad",
     "terms": "Términos"
   },
   "ai_callout": {
     "badge": "Novedad Inteligente",
-    "title": "¿Dudas con el SAT? Pregunta a nuestro Asistente Fiscal IA",
-    "desc": "Resuelve tus dudas sobre deducciones, regímenes fiscales o explicaciones paso a paso directamente con Inteligencia Artificial.",
+    "title": "¿Dudas fiscales o laborales? Pregunta a nuestro Asistente IA",
+    "desc": "Resuelve tus dudas sobre deducciones, regímenes fiscales o prestaciones laborales directamente con Inteligencia Artificial.",
     "button": "Iniciar Asistente IA ✨"
   },
   "home": {
     "hero_badge": "Herramientas Gratuitas 100% Actualizadas para 2026",
-    "hero_title": "Calculadoras Fiscales y Financieras México",
-    "hero_desc": "Realiza proyecciones de impuestos, nómina, préstamos, inversiones y depreciaciones de forma gratuita, inmediata y con fundamento legal.",
-    "search_placeholder": "Buscar calculadora... (ej: IVA, RESICO, ISR, Horas Extra)",
+    "hero_title": "Calculadoras Fiscales y Laborales de México",
+    "hero_desc": "Simuladores gratuitos para calcular impuestos (SAT), prestaciones laborales (LFT/IMSS), finanzas y créditos en México. Incluye además un módulo independiente de herramientas para Perú (SUNAT y divisas).",
+    "search_placeholder": "Buscar calculadora... (ej: IVA, RESICO, Salario Neto, Aguinaldo, CTS Perú)",
     "favorites_title": "Tus Calculadoras Favoritas",
     "favorites_empty": "Marca calculadoras con una estrella ⭐ para tener acceso directo aquí.",
     "categories_title": "Explorar por Categoría",
@@ -71,6 +71,10 @@
     "finanzas-personales": {
       "name": "Finanzas Personales",
       "desc": "Proyecciones de AFORE, jubilación y presupuestos 50/30/20."
+    },
+    "peru": {
+      "name": "Herramientas Perú",
+      "desc": "Calculadoras oficiales para Perú: IGV (18%), CTS, Gratificaciones, Renta 5ta Categoría, Consulta RUC y Tipo de Cambio SUNAT."
     }
   },
   "engine": {

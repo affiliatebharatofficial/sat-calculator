@@ -4,8 +4,8 @@ export const gratificacionPeruCalculator: CalculatorConfig = {
   id: 'gratificacion-peru',
   title: 'Calculadora de Gratificación en Perú (Julio y Diciembre)',
   shortDescription: 'Calcula el monto de la gratificación legal de Fiestas Patrias (Julio) o Navidad (Diciembre) más la Bonificación Extraordinaria del 9% (EsSalud) o 6.75% (EPS).',
-  category: 'Nómina',
-  categorySlug: 'nomina',
+  category: 'Herramientas Perú',
+  categorySlug: 'peru',
   slug: 'calculadora-gratificacion-peru',
   seo: {
     metaTitle: 'Calculadora de Gratificación Perú 2026 | Julio y Diciembre',

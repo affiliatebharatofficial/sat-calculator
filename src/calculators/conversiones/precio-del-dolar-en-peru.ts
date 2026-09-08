@@ -4,8 +4,8 @@ export const precioDelDolarEnPeruCalculator: CalculatorConfig = {
   id: 'precio-del-dolar-en-peru',
   title: 'Precio del Dólar en Perú Hoy',
   shortDescription: 'Consulta y analiza el precio del dólar en Perú hoy, cotización de compra y venta e indicadores macroeconómicos del sol peruano.',
-  category: 'Tipo de Cambio',
-  categorySlug: 'tipo-de-cambio',
+  category: 'Herramientas Perú',
+  categorySlug: 'peru',
   slug: 'precio-del-dolar-en-peru',
   seo: {
     metaTitle: 'Precio del Dólar en Perú Hoy: Cotización USD/PEN',

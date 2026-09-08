@@ -4,8 +4,8 @@ export const dolarHoyCalculator: CalculatorConfig = {
   id: 'dolar-hoy-peru',
   title: 'Dólar Hoy en Perú',
   shortDescription: 'Cotización en tiempo real del precio del dólar de compra y venta en el mercado interbancario de Perú y tipo de cambio SUNAT.',
-  category: 'Tipo de Cambio',
-  categorySlug: 'tipo-de-cambio',
+  category: 'Herramientas Perú',
+  categorySlug: 'peru',
   slug: 'dolar-hoy',
   seo: {
     metaTitle: 'Dólar Hoy en Perú: Precio del Dólar y Tipo de Cambio',

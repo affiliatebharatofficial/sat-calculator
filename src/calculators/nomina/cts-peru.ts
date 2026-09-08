@@ -4,8 +4,8 @@ export const ctsPeruCalculator: CalculatorConfig = {
   id: 'cts-peru',
   title: 'Calculadora de CTS en Perú (Compensación por Tiempo de Servicios)',
   shortDescription: 'Calcula el monto del depósito semestral de CTS (Mayo y Noviembre) incluyendo el sexto de la gratificación recibida.',
-  category: 'Nómina',
-  categorySlug: 'nomina',
+  category: 'Herramientas Perú',
+  categorySlug: 'peru',
   slug: 'calculadora-cts-peru',
   seo: {
     metaTitle: 'Calculadora de CTS Perú 2026 | Mayo y Noviembre',

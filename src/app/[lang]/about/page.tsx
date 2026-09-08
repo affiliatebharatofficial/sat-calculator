@@ -43,37 +43,57 @@ export default async function AboutPage({ params }: PageProps) {
 
             <div className="space-y-6 text-sm leading-relaxed text-slate-600 dark:text-slate-355">
               <p className="text-lg text-slate-700 dark:text-slate-300 font-medium">
-                Calculadora SAT was born with a clear mission: to simplify complex tax calculations in Mexico and make them understandable and accessible to all citizens.
+                Calculadora SAT is an independent financial calculation platform with a primary focus on Mexico's tax, labor, and payroll systems (SAT, LISR, LIVA, LFT, and IMSS).
               </p>
 
               <p>
-                In a country where tax and payroll regulations change constantly, our platform provides free tools that allow freelancers, SMEs, accountants, and entrepreneurs to simulate their ISR, IMSS withholdings, VAT breakdowns, and severance pay without needing to be accounting specialists.
+                In a region where tax and payroll regulations evolve constantly, our platform provides free educational tools that allow freelancers, small businesses, accountants, and employees to simulate their ISR, IMSS withholdings, VAT breakdowns, and severance pay without needing to decipher complex legal treatises.
               </p>
+
+              <hr className="border-slate-200 dark:border-slate-800 my-6" />
+
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Why Mexico and Peru?</h2>
+              <p>
+                Mexico represents our core specialization and original purpose. However, with the rise of remote work and cross-border commerce across Latin America, many professionals and businesses operate between Mexico and Peru.
+              </p>
+              <p>
+                To serve these users without compromising accuracy, we created a dedicated <strong className="text-slate-800 dark:text-slate-100">Peru Tools</strong> module. This section provides tailored calculators for Peruvian labor mandates (CTS, Gratificaciones, Renta de 5ta Categoría) and tax references (SUNAT, IGV 18%, USD/PEN exchange rates). Both jurisdictions are kept strictly separated to ensure country-specific compliance and clarity.
+              </p>
+
+              <hr className="border-slate-200 dark:border-slate-800 my-6" />
+
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Independent Portal & Disclaimer</h2>
+              <div className="p-4 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl text-xs text-amber-900 dark:text-amber-200">
+                <p className="font-semibold mb-1">⚠️ Important Legal Notice:</p>
+                <p>
+                  Calculadora SAT is an independent educational portal. It is <strong>NOT affiliated with, authorized, endorsed, or sponsored by</strong> the Servicio de Administración Tributaria (SAT) of Mexico, nor the Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) of Peru, nor any other government institution. All calculations are mathematical simulations for informational and planning purposes only and do not constitute formal tax or legal advice.
+                </p>
+              </div>
 
               <hr className="border-slate-200 dark:border-slate-800 my-6" />
 
               <h2 className="text-xl font-bold text-slate-900 dark:text-white">Our Mission</h2>
               <p>
-                Democratize access to reliable, robust, and updated fiscal calculation tools in accordance with the Mexican legal framework (LISR, LIVA, LFT, and IMSS), empowering taxpayers to plan their cash flow and audit their payroll stubs.
+                Democratize access to reliable, robust, and updated fiscal calculation tools in accordance with applicable legal frameworks (LISR, LIVA, LFT, IMSS in Mexico; SUNAT and Peruvian Labor Decrees in Peru), empowering taxpayers and employees to plan their finances and audit their payroll stubs.
               </p>
 
               <h2 className="text-xl font-bold text-slate-900 dark:text-white">Our Core Values</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
                 <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
                   <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">🎯 Precision</h3>
-                  <p className="text-xs text-slate-400">We mathematically update and audit our rates against the official SAT publications in the Federation Official Gazette (DOF).</p>
+                  <p className="text-xs text-slate-400">We mathematically audit our rates against official publications from the Mexican DOF and Peruvian SUNAT/El Peruano.</p>
                 </div>
                 <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
                   <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">⚡ Speed</h3>
-                  <p className="text-xs text-slate-400">We develop a fast-loading SPA architecture with instant processing directly in the browser.</p>
+                  <p className="text-xs text-slate-400">We develop a fast-loading SPA architecture with instant processing directly in your browser.</p>
                 </div>
                 <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
                   <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">🔒 Total Privacy</h3>
-                  <p className="text-xs text-slate-400">Your data is never uploaded or saved to external databases; everything runs locally.</p>
+                  <p className="text-xs text-slate-400">Your financial data is processed on-device and is never stored in external databases.</p>
                 </div>
                 <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
                   <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">💡 Accessibility</h3>
-                  <p className="text-xs text-slate-400">We design a clean UI that breaks down complex arithmetic operations step-by-step.</p>
+                  <p className="text-xs text-slate-400">We design clean UIs that break down complex arithmetic and legal deductions step-by-step.</p>
                 </div>
               </div>
 
@@ -81,15 +101,13 @@ export default async function AboutPage({ params }: PageProps) {
 
               <h2 className="text-xl font-bold text-slate-900 dark:text-white">Our Team</h2>
               <p>
-                We are a multidisciplinary team composed of accounting advisors, software developers, and Mexican tax experts. We combine technical expertise with a deep understanding of Mexican tax legislation to design educational and practical solutions for everyday use.
+                We are a multidisciplinary team composed of accounting advisors, software developers, and regional tax researchers. We combine technical expertise with a deep understanding of Mexican and Latin American fiscal frameworks to build practical, educational solutions.
               </p>
             </div>
           </div>
         </main>
 
-        <footer className="border-t border-slate-200 dark:border-slate-850 bg-white dark:bg-slate-900 py-8 text-center text-slate-500 text-xs">
-          <p>© 2026 Calculadora SAT. All rights reserved. Designed under the tax legal framework of Mexico.</p>
-        </footer>
+        <Footer lang={lang} />
       </div>
     );
   }
@@ -122,37 +140,57 @@ export default async function AboutPage({ params }: PageProps) {
 
           <div className="space-y-6 text-sm leading-relaxed text-slate-600 dark:text-slate-350">
             <p className="text-lg text-slate-700 dark:text-slate-300 font-medium">
-              Calculadora SAT nació con una misión clara: simplificar los complejos cálculos fiscales en México y hacerlos comprensibles y accesibles para todos los ciudadanos.
+              Calculadora SAT es una plataforma independiente de cálculo financiero y tributario cuyo eje principal es la normativa fiscal, laboral y de nómina en México (SAT, LISR, LIVA, LFT e IMSS).
             </p>
 
             <p>
-              En un país donde los trámites tributarios y de nómina cambian de forma constante, nuestra plataforma proporciona herramientas gratuitas que permiten a trabajadores independientes, pymes, contadores y emprendedores simular sus retenciones de ISR, IMSS, desgloses de IVA y liquidaciones sin necesidad de ser especialistas contables.
+              En un entorno donde las regulaciones tributarias y laborales cambian con frecuencia, proporcionamos herramientas gratuitas y didácticas que permiten a trabajadores independientes, pymes, contadores y empleados simular sus retenciones de ISR, cuotas IMSS, desgloses de IVA y liquidaciones laborales de forma clara y accesible.
             </p>
+
+            <hr className="border-slate-200 dark:border-slate-800 my-6" />
+
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">¿Por qué herramientas de México y Perú?</h2>
+            <p>
+              México constituye el núcleo fundamental y el motivo de ser de esta plataforma. No obstante, con la expansión del trabajo remoto, la contratación regional y el comercio digital entre países hispanohablantes, un número significativo de usuarios opera entre México y Perú.
+            </p>
+            <p>
+              Para dar respuesta a estas necesidades sin mezclar ni distorsionar las normas de cada país, creamos una sección independiente dedicada a las <strong className="text-slate-800 dark:text-slate-100">Herramientas de Perú</strong>. En ella se agrupan calculadoras específicas de la legislación laboral peruana (CTS, Gratificaciones de ley, Renta de 5ta Categoría) y tributaria (SUNAT, IGV 18%, tipo de cambio Soles/Dólares). Ambos ecosistemas permanecen separados para garantizar total claridad normativa.
+            </p>
+
+            <hr className="border-slate-200 dark:border-slate-800 my-6" />
+
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Portal Independiente y Deslinde de Responsabilidad</h2>
+            <div className="p-4 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl text-xs text-amber-900 dark:text-amber-200">
+              <p className="font-semibold mb-1">⚠️ Aviso Legal Relevante:</p>
+              <p>
+                Calculadora SAT es un sitio web de divulgación e información tecnológica independiente. <strong>NO está afiliado, patrocinado, avalado ni vinculado formalmente</strong> con el Servicio de Administración Tributaria (SAT) de México, ni con la Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) de Perú, ni con ninguna entidad pública. Todas las herramientas son simuladores matemáticos orientativos y no sustituyen la asesoría profesional de un contador público titulado o un abogado laboralista.
+              </p>
+            </div>
 
             <hr className="border-slate-200 dark:border-slate-800 my-6" />
 
             <h2 className="text-xl font-bold text-slate-900 dark:text-white">Nuestra Misión</h2>
             <p>
-              Democratizar el acceso a herramientas de cálculo fiscal confiables, robustas y actualizadas de acuerdo al marco legal mexicano (LISR, LIVA, LFT e IMSS), empoderando a los contribuyentes para planificar su flujo de caja y auditar sus recibos de nómina.
+              Democratizar el acceso a herramientas de cálculo fiscal confiables, transparentes y actualizadas con el marco legal aplicable (LISR, LIVA, LFT e IMSS en México; normativas de SUNAT y leyes laborales en Perú), empoderando a contribuyentes y trabajadores para planificar su flujo de caja y auditar sus recibos de pago.
             </p>
 
             <h2 className="text-xl font-bold text-slate-900 dark:text-white">Nuestros Valores Fundamentales</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
               <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
                 <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">🎯 Precisión</h3>
-                <p className="text-xs text-slate-450">Actualizamos y auditamos matemáticamente nuestras tarifas contra las publicaciones del DOF del SAT.</p>
+                <p className="text-xs text-slate-450">Auditamos nuestras fórmulas contra las publicaciones oficiales del DOF del SAT en México y El Peruano / SUNAT en Perú.</p>
               </div>
               <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
                 <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">⚡ Velocidad</h3>
-                <p className="text-xs text-slate-450">Desarrollamos una arquitectura SPA de carga inmediata y procesamiento instantáneo en el navegador.</p>
+                <p className="text-xs text-slate-450">Desarrollamos una arquitectura de carga inmediata y procesamiento en el navegador.</p>
               </div>
               <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
                 <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">🔒 Privacidad Total</h3>
-                <p className="text-xs text-slate-450">Tus datos nunca se suben ni se registran en bases de datos externas; todo corre de forma local.</p>
+                <p className="text-xs text-slate-450">Tus datos financieros se calculan en tu dispositivo y nunca se almacenan en servidores externos.</p>
               </div>
               <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
                 <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">💡 Accesibilidad</h3>
-                <p className="text-xs text-slate-450">Diseñamos una UI limpia que desglosa paso a paso las operaciones aritméticas complejas.</p>
+                <p className="text-xs text-slate-450">Diseñamos una interfaz limpia que desglosa paso a paso deducciones, tasas y retenciones.</p>
               </div>
             </div>
 
@@ -160,7 +198,7 @@ export default async function AboutPage({ params }: PageProps) {
 
             <h2 className="text-xl font-bold text-slate-900 dark:text-white">Nuestro Equipo</h2>
             <p>
-              Somos un equipo multidisciplinario compuesto por asesores contables, desarrolladores de software y expertos en fiscalidad mexicana. Combinamos experiencia técnica con un conocimiento profundo de la legislación tributaria mexicana para diseñar soluciones didácticas útiles para el día a día.
+              Somos un equipo multidisciplinario compuesto por asesores contables, desarrolladores de software y especialistas en tributación regional. Combinamos experiencia técnica con un conocimiento riguroso de la legislación para diseñar soluciones didácticas útiles para el día a día.
             </p>
           </div>
         </div>

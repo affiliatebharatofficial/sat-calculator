@@ -10,21 +10,21 @@
   },
   "footer": {
     "rights": "© 2026 Calculadora SAT. All rights reserved.",
-    "disclaimer": "This site is not affiliated with the official Mexican Tax Administration Service (SAT).",
+    "disclaimer": "Calculadora SAT is an independent educational simulation platform with no official affiliation with the Mexican Tax Administration Service (SAT) or the Peruvian National Customs and Tax Administration (SUNAT).",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service"
   },
   "ai_callout": {
     "badge": "Smart Feature",
-    "title": "Questions about SAT? Ask our AI Tax Assistant",
-    "desc": "Solve your doubts about deductions, tax regimes, or step-by-step explanations directly with Artificial Intelligence.",
+    "title": "Tax or Labor Questions? Ask our AI Assistant",
+    "desc": "Solve your questions about deductions, tax regimes, or labor benefits directly with Artificial Intelligence.",
     "button": "Start AI Assistant ✨"
   },
   "home": {
     "hero_badge": "Free Tools 100% Updated for 2026",
-    "hero_title": "Mexican Tax & Financial Calculators",
-    "hero_desc": "Perform calculations for taxes, payroll, loans, investments, and depreciation for free, instantly, and with legal backing.",
-    "search_placeholder": "Search calculator... (e.g. IVA, RESICO, ISR, Overtime)",
+    "hero_title": "Mexican Tax & Labor Calculators",
+    "hero_desc": "Free simulators to calculate taxes (SAT), statutory labor benefits (LFT/IMSS), personal finance, and loans in Mexico. Includes a dedicated section for Peru (SUNAT & currency tools).",
+    "search_placeholder": "Search calculator... (e.g. IVA, RESICO, Net Salary, Aguinaldo, CTS Peru)",
     "favorites_title": "Your Favorite Calculators",
     "favorites_empty": "Mark calculators with a star ⭐ to get direct access here.",
     "categories_title": "Browse by Category",
@@ -71,6 +71,10 @@
     "finanzas-personales": {
       "name": "Personal Finance",
       "desc": "Projections for Mexican retirement funds (AFORE), pension, and 50/30/20 budget."
+    },
+    "peru": {
+      "name": "Peru Tools",
+      "desc": "Official calculators for Peru: IGV (18% VAT), CTS, Gratifications, 5th Category Tax, RUC queries, and SUNAT exchange rates."
     }
   },
   "engine": {

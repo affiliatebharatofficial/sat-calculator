@@ -4,8 +4,8 @@ export const igvPeruCalculator: CalculatorConfig = {
   id: 'igv-peru',
   title: 'Calculadora de IGV Perú (18%)',
   shortDescription: 'Calcula, agrega o desglosa el 18% del Impuesto General a las Ventas (IGV) en Perú para facturas electrónicas y declaraciones SUNAT.',
-  category: 'Conversiones',
-  categorySlug: 'conversiones',
+  category: 'Herramientas Perú',
+  categorySlug: 'peru',
   slug: 'calculadora-igv-peru',
   seo: {
     metaTitle: 'Calculadora de IGV Perú 18% | Desglosar y Agregar IGV SUNAT',

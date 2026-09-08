@@ -4,8 +4,8 @@ export const quintaCategoriaPeruCalculator: CalculatorConfig = {
   id: 'quinta-categoria-peru',
   title: 'Calculadora de Impuesto a la Renta de 5ta Categoría (Perú 2026)',
   shortDescription: 'Calcula la retención mensual del Impuesto a la Renta de Quinta Categoría para trabajadores en planilla deduciendo las 7 UIT vigentes.',
-  category: 'Nómina',
-  categorySlug: 'nomina',
+  category: 'Herramientas Perú',
+  categorySlug: 'peru',
   slug: 'calculadora-quinta-categoria-peru',
   seo: {
     metaTitle: 'Calculadora Renta de 5ta Categoría 2026 Perú | SUNAT',

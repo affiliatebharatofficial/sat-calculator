@@ -19,8 +19,8 @@ export const tablasEIndicadoresSunatCalculator: CalculatorConfig = {
   id: 'tablas-e-indicadores-sunat',
   title: 'Tablas e Indicadores SUNAT',
   shortDescription: 'Consulta los valores tributarios oficiales de Perú, histórico de la UIT, escalas del Impuesto a la Renta y parámetros de referencia de la SUNAT.',
-  category: 'Tipo de Cambio',
-  categorySlug: 'tipo-de-cambio',
+  category: 'Herramientas Perú',
+  categorySlug: 'peru',
   slug: 'tablas-e-indicadores-sunat',
   seo: {
     metaTitle: 'Tablas e Indicadores SUNAT: UIT y Valores Tributarios Perú',
