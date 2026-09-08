@@ -1,9 +1,8 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import LanguageSelector from '@/components/LanguageSelector';
+import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ThemeToggle from '@/components/ThemeToggle';
 import { getSeoAlternates } from '@/lib/seo';
 
 interface PageProps {
@@ -34,23 +33,10 @@ export default async function DisclaimerPage({ params }: PageProps) {
 
   if (lang === 'en') {
     return (
-      <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-800 dark:text-slate-200 font-sans">
-        <header className="border-b border-slate-200 dark:border-slate-850 py-6 bg-white dark:bg-slate-900 shadow-sm">
-          <div className="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <Link href="/en" className="font-extrabold text-xl text-slate-900 dark:text-white hover:opacity-90 transition">
-              Calculadora<span className="text-blue-600 dark:text-blue-400">SAT</span>
-            </Link>
-            <div className="flex items-center space-x-4">
-              <Link href="/en" className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline whitespace-nowrap">
-                ← Back to Home
-              </Link>
-              <ThemeToggle />
-              <LanguageSelector />
-            </div>
-          </div>
-        </header>
+      <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-800 dark:text-slate-200 font-sans flex flex-col justify-between">
+        <Header lang={lang} />
 
-        <main className="max-w-3xl mx-auto px-4 py-12">
+        <main className="max-w-3xl mx-auto px-4 py-12 flex-grow">
           <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-2xl p-8 shadow-sm space-y-6">
             <div className="flex items-center gap-3 mb-2">
               <span className="text-3xl">⚖️</span>
@@ -117,23 +103,10 @@ export default async function DisclaimerPage({ params }: PageProps) {
   }
 
   return (
-    <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-800 dark:text-slate-200 font-sans">
-      <header className="border-b border-slate-200 dark:border-slate-850 py-6 bg-white dark:bg-slate-900 shadow-sm">
-        <div className="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <Link href="/" className="font-extrabold text-xl text-slate-900 dark:text-white hover:opacity-90 transition">
-            Calculadora<span className="text-blue-600 dark:text-blue-400">SAT</span>
-          </Link>
-          <div className="flex items-center space-x-4">
-            <Link href="/" className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline whitespace-nowrap">
-              ← Volver al Inicio
-            </Link>
-            <ThemeToggle />
-            <LanguageSelector />
-          </div>
-        </div>
-      </header>
+    <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-800 dark:text-slate-200 font-sans flex flex-col justify-between">
+      <Header lang={lang} />
 
-      <main className="max-w-3xl mx-auto px-4 py-12">
+      <main className="max-w-3xl mx-auto px-4 py-12 flex-grow">
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-2xl p-8 shadow-sm space-y-6">
           <div className="flex items-center gap-3 mb-2">
             <span className="text-3xl">⚖️</span>

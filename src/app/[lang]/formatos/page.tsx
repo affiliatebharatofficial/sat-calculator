@@ -182,7 +182,7 @@ export default async function FormatosPage({ params }: PageProps) {
                   ¿Cómo calcular el monto que corresponde en el Recibo de Finiquito?
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400 text-xs">
-                  Puedes utilizar nuestra <Link href="/calculadoras/nomina/calculadora-finiquito" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Calculadora de Finiquito</Link> para obtener el desglose exacto de importes proporcionales antes de imprimir tu documento.
+                  Puedes utilizar nuestra <Link href="/calculadoras/nomina/calculadora-finiquito-liquidacion" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Calculadora de Finiquito</Link> para obtener el desglose exacto de importes proporcionales antes de imprimir tu documento.
                 </p>
               </div>
 
@@ -202,7 +202,7 @@ export default async function FormatosPage({ params }: PageProps) {
               🌐 Red de Herramientas de Nómina Relacionadas
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm font-semibold">
-              <Link href="/calculadoras/nomina/calculadora-finiquito" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+              <Link href="/calculadoras/nomina/calculadora-finiquito-liquidacion" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
                 <span className="text-2xl">🧾</span>
                 <div>
                   <div className="text-slate-900 dark:text-white font-bold">Calculadora de Finiquito</div>

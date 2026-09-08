@@ -166,6 +166,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/calculadoras/sat/calculadora-resico',
+        destination: '/calculadoras/sat/calculadora-resico-pf',
+        permanent: true,
+      },
+      {
         source: '/calculadoras/nomina/calculadora-salario-neto',
         destination: '/calculadoras/nomina/calculadora-salario-neto-bruto',
         permanent: true,
@@ -173,6 +178,63 @@ const nextConfig: NextConfig = {
       {
         source: '/calculadoras/nomina/calculadora-finiquito',
         destination: '/calculadoras/nomina/calculadora-finiquito-liquidacion',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/nomina/calculadora-vacaciones',
+        destination: '/calculadoras/nomina/calculadora-vacaciones-prima',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/nomina/calculadora-prima-vacacional',
+        destination: '/calculadoras/nomina/calculadora-vacaciones-prima',
+        permanent: true,
+      },
+
+      // 5. Root shorthand aliases (direct 1-hop 301 to canonical)
+      {
+        source: '/calculadora-finiquito',
+        destination: '/calculadoras/nomina/calculadora-finiquito-liquidacion',
+        permanent: true,
+      },
+      {
+        source: '/calculadora-salario-neto',
+        destination: '/calculadoras/nomina/calculadora-salario-neto-bruto',
+        permanent: true,
+      },
+      {
+        source: '/calculadora-salario-bruto',
+        destination: '/calculadoras/nomina/calculadora-salario-neto-bruto',
+        permanent: true,
+      },
+      {
+        source: '/calculadora-salario',
+        destination: '/calculadoras/nomina/calculadora-salario-neto-bruto',
+        permanent: true,
+      },
+      {
+        source: '/calculadora-resico',
+        destination: '/calculadoras/sat/calculadora-resico-pf',
+        permanent: true,
+      },
+      {
+        source: '/calculadora-vacaciones',
+        destination: '/calculadoras/nomina/calculadora-vacaciones-prima',
+        permanent: true,
+      },
+      {
+        source: '/calculadora-aguinaldo',
+        destination: '/calculadoras/nomina/calculadora-aguinaldo',
+        permanent: true,
+      },
+      {
+        source: '/calculadora-iva',
+        destination: '/calculadoras/sat/calculadora-iva',
+        permanent: true,
+      },
+      {
+        source: '/calculadora-isr',
+        destination: '/calculadoras/sat/calculadora-isr-pf',
         permanent: true,
       },
     ];

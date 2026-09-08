@@ -159,7 +159,90 @@ export const resicoCalculator: CalculatorConfig = {
         description: 'Marco legislativo del Régimen Simplificado de Confianza para personas físicas.'
       }
     ],
+    relatedCalculators: [
+      'sat/calculadora-iva',
+      'sat/calculadora-isr-pf',
+      'sat/comparador-resico-actividad-empresarial'
+    ],
     lastUpdated: 'Actualizado para el ejercicio fiscal 2026',
     disclaimer: 'Esta calculadora es una herramienta de simulación contable con fines educativos y de planeación financiera. No sustituye la declaración mensual oficial en el Servicio de Administración Tributaria.'
+  },
+  translations: {
+    en: {
+      title: 'RESICO Individual Tax Calculator',
+      shortDescription: 'Calculate simplified income tax (ISR) for individuals under Mexico\'s Simplified Trust Regime (RESICO).',
+      category: 'RESICO',
+      seo: {
+        metaTitle: 'Mexico RESICO Calculator 2026 - Simplified Tax Regime',
+        metaDescription: 'Calculate monthly ISR under Mexico\'s RESICO regime (1% to 2.5% rates). Includes 1.25% corporate withholding calculations.',
+        keywords: ['mexico resico calculator', 'resico tax sat', 'simplified trust regime mexico', 'resico withholding 1.25']
+      },
+      content: {
+        whatItDoes: 'Calculates monthly income tax (ISR) under Mexico\'s Simplified Trust Regime (RESICO) for individuals, determining the statutory reduced rate (1.00% to 2.50%) based on gross collected revenue and crediting the 1.25% withholding applied by corporate clients.',
+        whoShouldUse: [
+          'Self-employed individuals, freelancers, and consultants registered under RESICO in Mexico',
+          'Small business owners and merchants with annual revenue under $3.5M MXN',
+          'Residential or commercial real estate landlords operating under the RESICO framework',
+          'Entrepreneurs evaluating tax liabilities under simplified gross revenue taxation'
+        ],
+        howItWorks: 'Enter total gross collected income for the month (excluding VAT) and specify amounts billed to corporate entities (Personas Morales). The simulator identifies the applicable bracket under Article 113-E (1.00%, 1.10%, 1.50%, 2.00%, or 2.50%), computes gross ISR, and subtracts the 1.25% corporate withholding to produce the net monthly tax payable.',
+        explanation: 'Mexico\'s Simplified Trust Regime (RESICO) was established to promote formalization through exceptionally low progressive tax rates (1.0% to 2.5%). Tax is calculated directly on gross cash receipts without expense deductions for ISR purposes, drastically simplifying tax accounting for qualifying individuals.',
+        formula: '1. Monthly RESICO Rate (Art. 113-E LISR):\n   • Up to $25,000.00: 1.00%\n   • Up to $50,000.00: 1.10%\n   • Up to $83,333.33: 1.50%\n   • Up to $208,333.33: 2.00%\n   • Up to $291,666.67 (or $3.5M annual): 2.50%\n2. Gross ISR = Monthly Collected Income * RESICO Rate\n3. Corporate Withholding = Income Billed to Corporate Clients * 1.25%\n4. Net ISR Payable to SAT = Max(0, Gross ISR - Corporate Withholding)',
+        example: 'Monthly collected income: $40,000.00 MXN\n• Amount billed to companies (Personas Morales): $20,000.00 MXN\n• Amount billed to individuals: $20,000.00 MXN\n\nCalculation:\n1. Applicable Bracket ($25,000.01 to $50,000.00): Rate = 1.10%\n2. Gross ISR: $40,000.00 × 1.10% = $440.00 MXN\n3. Corporate Withholding (1.25% on $20,000.00): $250.00 MXN\n4. Net ISR to pay SAT in monthly tax filing: $440.00 - $250.00 = $190.00 MXN',
+        legislation: 'Mexican Income Tax Law (LISR), Title IV, Chapter II, Section IV (Simplified Trust Regime for Individuals), Articles 113-E (Rates and Requirements), 113-F (Obligations), 113-G and 113-J (1.25% Corporate Withholding).',
+        tips: [
+          'File provisional monthly declarations no later than the 17th day of the following calendar month.',
+          'Keep your SAT Tax Mailbox (Buzón Tributario) and e.firma active to prevent automatic reclassification to the General Regime.',
+          'Even though expenses cannot be deducted for ISR in RESICO, keep requesting electronic invoices (CFDI) for business expenses to credit and reduce VAT (IVA) payable.'
+        ],
+        assumptions: [
+          'The taxpayer does not exceed the annual gross revenue limit of $3,500,000.00 MXN.',
+          'Income originates exclusively from RESICO-eligible activities (business, professional fees, or leasing, combinable with wages and interest).',
+          'The taxpayer is not a partner, shareholder, or related party of a corporate entity.'
+        ],
+        limitations: [
+          'Does not calculate Value Added Tax (VAT/IVA), which is declared separately at 16% or 8%.',
+          'Does not apply to taxpayers receiving fees from related parties or gig economy digital platforms subject to definitive withholding.',
+          'Does not calculate surcharges or penalties for late tax filings.'
+        ],
+        faqs: [
+          {
+            question: 'Can I deduct business or personal expenses to reduce ISR in RESICO?',
+            answer: 'No. In RESICO, income tax is calculated strictly on gross collected revenue without deductions. In return, the top tax bracket is only 2.50% (compared to up to 35% in the General Regime).'
+          },
+          {
+            question: 'What happens if my annual revenue exceeds 3.5 million pesos?',
+            answer: 'If cumulative revenue exceeds $3,500,000 MXN at any point during the tax year, the law mandates exiting RESICO starting the following month and filing under the General Regime with progressive rates.'
+          },
+          {
+            question: 'Who is ineligible for RESICO under Mexican law?',
+            answer: 'Ineligible parties include shareholders or partners of corporate entities (with limited exceptions), foreign residents with permanent establishments in Mexico, and taxpayers subject to preferential tax regimes.'
+          },
+          {
+            question: 'How does the 1.25% corporate withholding work?',
+            answer: 'Under Article 113-J of the LISR, when an individual in RESICO invoices a corporate entity (Persona Moral), the company must withhold 1.25% of the subtotal before VAT. You credit this withholding directly against your monthly tax payment to the SAT.'
+          }
+        ],
+        sources: [
+          {
+            name: 'SAT — Official RESICO Portal',
+            url: 'https://www.sat.gob.mx',
+            description: 'Official tax authority guidelines, eligibility criteria, and declaration filing requirements.'
+          },
+          {
+            name: 'Chamber of Deputies — Income Tax Law Art. 113-E',
+            url: 'https://www.diputados.gob.mx',
+            description: 'Statutory legal text governing the Simplified Trust Regime for individuals.'
+          }
+        ],
+        relatedCalculators: [
+          'sat/calculadora-iva',
+          'sat/calculadora-isr-pf',
+          'sat/comparador-resico-actividad-empresarial'
+        ],
+        lastUpdated: 'Updated for fiscal year 2026',
+        disclaimer: 'This calculator is an educational tax simulation tool. It does not replace formal monthly declarations submitted through the official SAT portal.'
+      }
+    }
   }
 };

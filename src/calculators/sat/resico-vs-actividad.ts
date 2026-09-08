@@ -190,5 +190,94 @@ export const resicoVsActividadCalculator: CalculatorConfig = {
     ],
     lastUpdated: 'Actualizado para el ejercicio fiscal 2026',
     disclaimer: 'Este comparador fiscal ofrece una estimación matemática y analítica de orientación didáctica. La conveniencia integral de un régimen involucra variables patrimoniales adicionales como deducciones personales anuales, pérdidas acumuladas de años previos, acreditamiento de IVA y restricciones de accionistas. Se recomienda consultar a un Contador Público colegiado antes de presentar avisos al RFC.'
+  },
+  translations: {
+    en: {
+      title: 'RESICO vs General Business Regime Comparison',
+      shortDescription: 'Compare monthly income tax liabilities between RESICO (gross revenue) and the General Business Regime (net profit with deductions).',
+      category: 'RESICO',
+      seo: {
+        metaTitle: 'RESICO vs General Regime Tax Comparison 2026 - Mexico',
+        metaDescription: 'Which tax regime is better for you? Compare Mexican RESICO (no expense deductions) against the General Business Regime with authorized deductions.',
+        keywords: ['resico vs general regime', 'mexico tax comparison', 'which tax regime is best mexico', 'resico expense deductions']
+      },
+      content: {
+        whatItDoes: 'Interactively and simultaneously compares monthly income tax (ISR) liabilities between Mexico\'s Simplified Trust Regime (RESICO, reduced direct rates from 1.00% to 2.50% on collected revenue without deductions) and the General Business and Professional Activities Regime (progressive rates under Art. 96/106 LISR up to 35% on net profit after deductible expenses), identifying the optimal tax regime and monthly net savings.',
+        whoShouldUse: [
+          'Independent professionals, consultants, and service providers registering with the RFC or evaluating tax regime migration',
+          'Merchants, business owners, and entrepreneurs evaluating the financial impact of deductible expenses on monthly taxes',
+          'Certified public accountants and financial advisors conducting comparative tax planning for individual taxpayers in Mexico',
+          'Taxpayers operating with slim profit margins determining whether RESICO is more costly than deducting authorized business expenses'
+        ],
+        howItWorks: 'Takes gross monthly collected cash revenue. For RESICO, it applies the statutory flat rate (1.00% to 2.50%) per Article 113-E without allowing expense deductions. For the General Business Regime, it subtracts authorized deductible expenses to determine net taxable profit, applying the progressive monthly tax brackets of Article 96/106. It then compares both outcomes to highlight the tax-minimizing regime.',
+        explanation: 'The critical factor determining whether to elect RESICO or the General Business Regime is the operational profit margin and the ratio of deductible business expenses. RESICO applies an exceptionally low rate to gross invoiced revenue without deductions, making it highly advantageous for service providers and low-overhead professions where profit margins exceed 30% to 40%. Conversely, the General Regime allows deducting all indispensable business expenses and inventories; for high-volume, low-margin businesses (such as wholesalers where operating expenses represent 85% to 95% of gross revenue), the net taxable base in the General Regime becomes small enough that progressive tax can be lower than RESICO\'s flat gross tax.',
+        formula: '• RESICO:\n1. Taxable Base = Gross Collected Revenue (excluding VAT)\n2. ISR RESICO = Taxable Base * RESICO Rate Art. 113-E (1.00% to 2.50%)\n• General Business Regime:\n1. Net Taxable Profit = Max(0, Gross Collected Revenue - Authorized Deductible Expenses)\n2. Excess over Lower Bracket = Net Taxable Profit - Lower Bracket Limit\n3. Marginal Tax = Excess * ( Marginal Rate / 100 )\n4. General Regime ISR = Fixed Quota + Marginal Tax\n• Comparison:\nMonthly Tax Savings = | General Regime ISR - RESICO ISR |',
+        example: 'Taxpayer with $35,000.00 MXN gross monthly collected income and $15,000.00 MXN in authorized deductible expenses:\n• Under RESICO: $35,000.00 falls into the second tier (up to $50,000.00) with a direct rate of 1.10%.\n  Monthly ISR Payable = $35,000.00 * 1.10% = $385.00 MXN.\n• Under General Business Regime:\n  Net taxable profit = $35,000.00 - $15,000.00 = $20,000.00 MXN.\n  Monthly progressive bracket: Lower limit $15,487.72, Fixed quota $1,640.18, Marginal rate 21.36%.\n  Excess = $20,000.00 - $15,487.72 = $4,512.28 MXN.\n  Marginal tax = $4,512.28 * 21.36% = $963.82 MXN.\n  Monthly ISR Payable = $1,640.18 + $963.82 = $2,604.00 MXN.\n• Comparative Assessment: RESICO delivers monthly tax savings of $2,219.00 MXN ($26,628.00 MXN annually) over the General Regime.',
+        legislation: 'Mexican Income Tax Law (LISR): Articles 113-E through 113-J (Simplified Trust Regime for Individuals) and Articles 100 through 110 (General Business and Professional Activities Regime); and current Tax Miscellaneous Resolution (RMF Annex 8 progressive brackets).',
+        tips: [
+          'Even if you elect RESICO and cannot deduct expenses for ISR, continue requesting electronic invoices (CFDI) for business expenses to credit and reduce VAT (IVA) on monthly returns.',
+          'When invoicing corporate clients (Personas Morales) under RESICO, companies must withhold 1.25% ISR, which credits directly against your monthly tax liability.',
+          'If your business operates on gross margins below 10%, analyze carefully: a 1% to 2% flat tax on gross receipts may consume 10% to 25% of real net profit.',
+          'Shareholders, partners, or directors of corporate entities are legally excluded from RESICO (Art. 113-E LISR) and must file under the General Business Regime.'
+        ],
+        assumptions: [
+          'Revenues and expenses represent cash flows actually collected and paid during the simulated calendar month.',
+          'Deductible expenses meet statutory tax requirements under Article 105 of the LISR (valid CFDI invoices, electronic payment for transactions exceeding $2,000 MXN).',
+          'Past unamortized tax losses are not factored into the simulation.',
+          'Projected annual gross revenue does not exceed the statutory RESICO ceiling of $3.5 million MXN.'
+        ],
+        limitations: [
+          'Does not examine statutory corporate exclusions (e.g. equity stakes in private companies or fees from related parties).',
+          'Does not calculate Value Added Tax (VAT/IVA), which operates under the same legal rules for both regimes.',
+          'Does not include annual personal deductions (medical, dental, tuition expenses), which are exclusive to the General Regime annual return and barred in RESICO.'
+        ],
+        faqs: [
+          {
+            question: 'Who is legally barred from electing RESICO in Mexico?',
+            answer: 'Article 113-E of the Income Tax Law expressly excludes partners or shareholders of corporate entities (with narrow exceptions for agricultural co-ops), foreign residents with Mexican establishments, individuals subject to preferential tax regimes, and taxpayers earning over $3,500,000 MXN annually.'
+          },
+          {
+            question: 'How does Value Added Tax (VAT/IVA) apply under RESICO?',
+            answer: 'VAT rules are unchanged under RESICO. The standard 16% rate (or 0% for exempt goods) applies. You continue charging VAT to customers and can credit VAT paid on essential business expenses accompanied by valid CFDI invoices.'
+          },
+          {
+            question: 'Can I claim personal deductions on my annual tax return in RESICO?',
+            answer: 'No. RESICO does not allow annual personal deductions (such as medical expenses, health insurance premiums, or tuition). In exchange, taxpayers benefit from exceptionally low rates (1% to 2.5%).'
+          },
+          {
+            question: 'What happens if annual gross receipts surpass 3.5 million pesos in RESICO?',
+            answer: 'Once cumulative revenue exceeds $3,500,000 MXN during the fiscal year, the SAT automatically reclassifies the taxpayer into the General Business Regime starting the following month, requiring progressive tax filing.'
+          },
+          {
+            question: 'When can I switch tax regimes with the SAT?',
+            answer: 'Taxpayers may voluntarily switch regimes by submitting an economic activity update notice on the official SAT portal no later than January 31 of each tax year, effective for the full calendar year.'
+          }
+        ],
+        relatedCalculators: [
+          'sat/calculadora-resico-pf',
+          'sat/calculadora-isr-pf',
+          'sat/calculadora-iva'
+        ],
+        sources: [
+          {
+            name: 'SAT — Official RESICO Information Portal',
+            url: 'https://www.sat.gob.mx',
+            description: 'Official regulations, compliance guidelines, and simulation tools for the Simplified Trust Regime.'
+          },
+          {
+            name: 'PRODECON — Practical Guide to RESICO vs General Regime',
+            url: 'https://www.gob.mx/prodecon',
+            description: 'Taxpayer defense ombudsman criteria regarding regime compatibility and strategic selection.'
+          },
+          {
+            name: 'Chamber of Deputies — Mexican Income Tax Law',
+            url: 'https://www.diputados.gob.mx',
+            description: 'Statutory text of Articles 100-110 and 113-E through 113-J of the LISR.'
+          }
+        ],
+        lastUpdated: 'Updated for fiscal year 2026',
+        disclaimer: 'This tax comparison tool provides mathematical estimations for educational planning purposes. Comprehensive regime selection requires evaluating annual personal deductions, accumulated losses, and corporate shareholding status with a licensed Mexican CPA.'
+      }
+    }
   }
 };

@@ -385,6 +385,31 @@ if (comisionesCalc) {
   failedTests++;
 }
 
+// 31. Test Vacaciones Dignas y Prima Vacacional (2026 UMA Benchmark)
+const vacacionesCalc = calculators.find(c => c.id === 'calculo-vacaciones');
+if (vacacionesCalc) {
+  const res = vacacionesCalc.calculate({ sueldo_mensual: 16000, antiguedad: 1, tasa_prima: 25, dias_tomar: 0 });
+  const diasLey = res.results.find(r => r.label === 'Días de Vacaciones por Ley')?.value;
+  const pagoVacaciones = res.results.find(r => r.label === 'Pago de Sueldo de Vacaciones')?.value;
+  const primaBruta = res.results.find(r => r.label === 'Prima Vacacional Bruta')?.value;
+  const exento = res.results.find(r => r.label === 'Monto Exento de ISR (15 UMAs 2026)')?.value;
+  const primaNeta = res.results.find(r => r.isMain)?.value;
+
+  assert(diasLey === 12, 'Vacaciones: 1 año de antigüedad otorga 12 días bajo Vacaciones Dignas');
+  assert(pagoVacaciones === 6400, 'Vacaciones: Pago de vacaciones para $16k es $6,400 MXN');
+  assert(primaBruta === 1600, 'Vacaciones: Prima bruta al 25% es $1,600 MXN');
+  assert(exento === 1600, 'Vacaciones: Monto exento es $1,600 MXN (100% de la prima al estar bajo el tope de 15 UMAs)');
+  assert(primaNeta === 1600, 'Vacaciones: Prima neta es $1,600 MXN (100% libre de ISR)');
+
+  // Test with salary above 15 UMA limit to test cap
+  const resCap = vacacionesCalc.calculate({ sueldo_mensual: 30000, antiguedad: 1, tasa_prima: 25, dias_tomar: 0 });
+  const exentoCap = resCap.results.find(r => r.label === 'Monto Exento de ISR (15 UMAs 2026)')?.value;
+  assert(Math.round((exentoCap || 0) * 100) / 100 === 1697.10, 'Vacaciones: Para sueldo alto, el tope exento es exactamente 15 UMAs 2026 ($1,697.10 MXN)');
+} else {
+  console.error('No se encontró la calculadora de Vacaciones.');
+  failedTests++;
+}
+
 console.log(`\n========================================`);
 console.log(`RESULTADOS DE LAS PRUEBAS UNITARIAS:`);
 console.log(`PASARON: ${passedTests} de ${passedTests + failedTests}`);

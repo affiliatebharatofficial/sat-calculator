@@ -66,8 +66,22 @@ export function middleware(request: NextRequest) {
 
     // Core Mexican calculator slug aliases (avoiding 404s and chains)
     '/calculadoras/sat/calculadora-isr': '/calculadoras/sat/calculadora-isr-pf',
+    '/calculadoras/sat/calculadora-resico': '/calculadoras/sat/calculadora-resico-pf',
     '/calculadoras/nomina/calculadora-salario-neto': '/calculadoras/nomina/calculadora-salario-neto-bruto',
     '/calculadoras/nomina/calculadora-finiquito': '/calculadoras/nomina/calculadora-finiquito-liquidacion',
+    '/calculadoras/nomina/calculadora-vacaciones': '/calculadoras/nomina/calculadora-vacaciones-prima',
+    '/calculadoras/nomina/calculadora-prima-vacacional': '/calculadoras/nomina/calculadora-vacaciones-prima',
+
+    // Root shorthand aliases (direct 1-hop 301 to canonical)
+    '/calculadora-finiquito': '/calculadoras/nomina/calculadora-finiquito-liquidacion',
+    '/calculadora-salario-neto': '/calculadoras/nomina/calculadora-salario-neto-bruto',
+    '/calculadora-salario-bruto': '/calculadoras/nomina/calculadora-salario-neto-bruto',
+    '/calculadora-salario': '/calculadoras/nomina/calculadora-salario-neto-bruto',
+    '/calculadora-resico': '/calculadoras/sat/calculadora-resico-pf',
+    '/calculadora-vacaciones': '/calculadoras/nomina/calculadora-vacaciones-prima',
+    '/calculadora-aguinaldo': '/calculadoras/nomina/calculadora-aguinaldo',
+    '/calculadora-iva': '/calculadoras/sat/calculadora-iva',
+    '/calculadora-isr': '/calculadoras/sat/calculadora-isr-pf',
   };
 
   const normalizedPath = pathname.replace(/\/$/, '') || '/';

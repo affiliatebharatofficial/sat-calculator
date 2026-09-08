@@ -2,8 +2,7 @@
 
 import React, { useState, use } from 'react';
 import Link from 'next/link';
-import LanguageSelector from '../../../components/LanguageSelector';
-import ThemeToggle from '../../../components/ThemeToggle';
+import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 interface PageProps {
@@ -23,22 +22,20 @@ export default function DeveloperPortal({ params }: PageProps) {
 
   const handleTestAPI = async () => {
     setLoading(true);
-    setApiResponse(null);
     try {
-      const response = await fetch('/api/calculate', {
+      const parsedInputs = JSON.parse(jsonInputs);
+      const res = await fetch('/api/calculate', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           calculatorId: selectedCalc,
-          inputs: JSON.parse(jsonInputs)
+          inputs: parsedInputs
         })
       });
-      const data = await response.json();
+      const data = await res.json();
       setApiResponse(data);
-    } catch (error: any) {
-      setApiResponse({ error: lang === 'en' ? 'Invalid input JSON or server error.' : 'JSON de entrada inválido o error en el servidor.' });
+    } catch (err: any) {
+      setApiResponse({ error: 'JSON malformado o error de red: ' + err.message });
     } finally {
       setLoading(false);
     }
@@ -52,8 +49,10 @@ export default function DeveloperPortal({ params }: PageProps) {
       setJsonInputs(JSON.stringify({ ingresos: 35000, deducciones: 8000, periodo: 'mensual' }, null, 2));
     } else if (id === 'calculo-resico-pf') {
       setJsonInputs(JSON.stringify({ ingresos: 45000, factura_persona_moral: true, ingresos_persona_moral: 20000 }, null, 2));
-    } else if (id === 'calculo-salario') {
-      setJsonInputs(JSON.stringify({ monto: 25000, tipo_calculo: 'bruto_a_neto', antiguedad: 1 }, null, 2));
+    } else if (id === 'calculo-salario' || id === 'calculo-salario-neto-bruto') {
+      setJsonInputs(JSON.stringify({ salario: 25000, direccion: 'bruto_a_neto', periodo: 'mensual' }, null, 2));
+    } else if (id === 'calculo-finiquito') {
+      setJsonInputs(JSON.stringify({ tipo_baja: 'despido_injustificado', salario_mensual: 20000, fecha_ingreso: '2022-01-01', fecha_salida: '2026-06-30' }, null, 2));
     }
   };
 
@@ -74,24 +73,10 @@ console.log(data);`;
 
   if (lang === 'en') {
     return (
-      <div className="bg-slate-900 min-h-screen text-slate-100 font-sans">
-        {/* Navigation Header */}
-        <header className="border-b border-slate-800 py-6 bg-slate-955">
-          <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <Link href="/en" className="font-extrabold text-xl text-white hover:opacity-90 transition">
-              Calculadora<span className="text-blue-500">SAT</span> <span className="text-xs uppercase bg-blue-900/50 text-blue-400 px-2 py-0.5 rounded-full font-bold">Devs</span>
-            </Link>
-            <div className="flex items-center space-x-4 sm:space-x-6">
-              <Link href="/en" className="text-sm font-semibold text-blue-400 hover:underline whitespace-nowrap">
-                ← Back to Portal
-              </Link>
-              <ThemeToggle />
-              <LanguageSelector />
-            </div>
-          </div>
-        </header>
+      <div className="bg-slate-900 min-h-screen text-slate-100 font-sans flex flex-col justify-between">
+        <Header lang={lang} />
 
-        <main className="max-w-6xl mx-auto px-4 py-12">
+        <main className="max-w-6xl mx-auto px-4 py-12 flex-grow">
           {/* Hero Section */}
           <section className="mb-16 text-center md:text-left">
             <span className="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-400 bg-blue-950/40 rounded-full border border-blue-900/50">
@@ -204,24 +189,10 @@ console.log(data);`;
   }
 
   return (
-    <div className="bg-slate-900 min-h-screen text-slate-100 font-sans">
-      {/* Navigation Header */}
-      <header className="border-b border-slate-800 py-6 bg-slate-955">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <Link href="/" className="font-extrabold text-xl text-white hover:opacity-90 transition">
-            Calculadora<span className="text-blue-500">SAT</span> <span className="text-xs uppercase bg-blue-900/50 text-blue-400 px-2 py-0.5 rounded-full font-bold">Devs</span>
-          </Link>
-          <div className="flex items-center space-x-4 sm:space-x-6">
-            <Link href="/" className="text-sm font-semibold text-blue-400 hover:underline whitespace-nowrap">
-              ← Regresar al Portal
-            </Link>
-            <ThemeToggle />
-            <LanguageSelector />
-          </div>
-        </div>
-      </header>
+    <div className="bg-slate-900 min-h-screen text-slate-100 font-sans flex flex-col justify-between">
+      <Header lang={lang} />
 
-      <main className="max-w-6xl mx-auto px-4 py-12">
+      <main className="max-w-6xl mx-auto px-4 py-12 flex-grow">
         {/* Hero Section */}
         <section className="mb-16 text-center md:text-left">
           <span className="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-400 bg-blue-955/40 rounded-full border border-blue-900/50">
