@@ -1,7 +1,8 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { getCalculatorBySlug } from '../../../../../calculators';
+import { calculators, getCalculatorBySlug, getCalculatorsByCategory } from '../../../../../calculators';
 import CalculatorEngine from '../../../../../components/CalculatorEngine';
+import CalculatorEducationalContent from '../../../../../components/CalculatorEducationalContent';
 import RichSnippets from '../../../../../components/SEO/RichSnippets';
 import dynamic from 'next/dynamic';
 const AIAssistant = dynamic(() => import('../../../../../components/AI/AIAssistant'));
@@ -30,7 +31,8 @@ function getLocalizedConfig(config: any, lang: string) {
     seo: {
       ...config.seo,
       ...(trans.seo || {})
-    }
+    },
+    content: trans.content ? { ...config.content, ...trans.content } : config.content,
   };
 }
 
@@ -81,6 +83,18 @@ export default async function CalculatorPage({ params }: PageProps) {
   const calculator = getLocalizedConfig(baseCalculator, lang);
   const currentUrl = `https://www.calculadorasat.org/${lang === 'en' ? 'en/' : ''}calculadoras/${resolvedParams.category}/${resolvedParams.slug}`;
 
+  let relatedCalculators = getCalculatorsByCategory(calculator.categorySlug || resolvedParams.category)
+    .filter((c) => c.slug !== resolvedParams.slug)
+    .slice(0, 3)
+    .map((c) => getLocalizedConfig(c, lang));
+
+  if (relatedCalculators.length === 0) {
+    relatedCalculators = calculators
+      .filter((c) => c.slug !== resolvedParams.slug)
+      .slice(0, 3)
+      .map((c) => getLocalizedConfig(c, lang));
+  }
+
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-900 dark:text-slate-100 font-sans flex flex-col justify-between">
       <Header lang={lang} />
@@ -106,6 +120,13 @@ export default async function CalculatorPage({ params }: PageProps) {
 
         {/* Main Engine Component */}
         <CalculatorEngine slug={resolvedParams.slug} lang={lang} />
+
+        {/* Server-Rendered Educational Content, Methodology, FAQs & Related Tools */}
+        <CalculatorEducationalContent
+          config={calculator}
+          lang={lang}
+          relatedCalculators={relatedCalculators}
+        />
 
         {/* Contextual AI Assistant Drawer */}
         <AIAssistant activeCalculatorContext={calculator.title} />

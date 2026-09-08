@@ -133,6 +133,54 @@ export default function CalculatorEngine({ slug, lang = 'es' }: CalculatorEngine
   const [saveName, setSaveName] = useState('');
   const [showSaveModal, setShowSaveModal] = useState(false);
 
+  const handleTabClick = (tab: 'calculator' | 'explanation' | 'faq') => {
+    setActiveTab(tab);
+    const targetId =
+      tab === 'calculator'
+        ? 'calculadora'
+        : tab === 'explanation'
+        ? 'guia-explicacion'
+        : 'preguntas-frecuentes';
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleObserver = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target.id === 'calculadora') {
+            setActiveTab('calculator');
+          } else if (entry.target.id === 'guia-explicacion') {
+            setActiveTab('explanation');
+          } else if (entry.target.id === 'preguntas-frecuentes') {
+            setActiveTab('faq');
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleObserver, {
+      root: null,
+      rootMargin: '-15% 0px -60% 0px',
+      threshold: 0,
+    });
+
+    const calcEl = document.getElementById('calculadora');
+    const guideEl = document.getElementById('guia-explicacion');
+    const faqEl = document.getElementById('preguntas-frecuentes');
+
+    if (calcEl) observer.observe(calcEl);
+    if (guideEl) observer.observe(guideEl);
+    if (faqEl) observer.observe(faqEl);
+
+    return () => observer.disconnect();
+  }, []);
+
   // Sync URL query params and localStorage on initial mount
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -356,7 +404,8 @@ export default function CalculatorEngine({ slug, lang = 'es' }: CalculatorEngine
       <div className="border-b border-slate-200 dark:border-slate-800 mb-6 overflow-x-auto scrollbar-none">
         <nav className="flex space-x-8 min-w-max pb-1" aria-label="Tabs">
           <button
-            onClick={() => setActiveTab('calculator')}
+            type="button"
+            onClick={() => handleTabClick('calculator')}
             className={`py-4 px-1 border-b-2 font-medium text-sm transition-all duration-200 whitespace-nowrap ${
               activeTab === 'calculator'
                 ? 'border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400'
@@ -366,7 +415,8 @@ export default function CalculatorEngine({ slug, lang = 'es' }: CalculatorEngine
             <i className="bi bi-calculator-fill mr-2"></i>{dict.tab_calculator}
           </button>
           <button
-            onClick={() => setActiveTab('explanation')}
+            type="button"
+            onClick={() => handleTabClick('explanation')}
             className={`py-4 px-1 border-b-2 font-medium text-sm transition-all duration-200 whitespace-nowrap ${
               activeTab === 'explanation'
                 ? 'border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400'
@@ -376,7 +426,8 @@ export default function CalculatorEngine({ slug, lang = 'es' }: CalculatorEngine
             <i className="bi bi-info-circle-fill mr-2"></i>{dict.tab_guide}
           </button>
           <button
-            onClick={() => setActiveTab('faq')}
+            type="button"
+            onClick={() => handleTabClick('faq')}
             className={`py-4 px-1 border-b-2 font-medium text-sm transition-all duration-200 whitespace-nowrap ${
               activeTab === 'faq'
                 ? 'border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400'
@@ -388,9 +439,8 @@ export default function CalculatorEngine({ slug, lang = 'es' }: CalculatorEngine
         </nav>
       </div>
 
-      {/* Tab Contents */}
-      {activeTab === 'calculator' && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      {/* Calculator Section */}
+      <div id="calculadora" className="scroll-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Inputs Section */}
           <div className="lg:col-span-6 space-y-6">
             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-6">
@@ -641,97 +691,6 @@ export default function CalculatorEngine({ slug, lang = 'es' }: CalculatorEngine
             )}
           </div>
         </div>
-      )}
-
-      {/* Guide Tab */}
-      {activeTab === 'explanation' && (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-8 space-y-8">
-          <div>
-            <h2 className="text-2xl font-bold text-slate-950 dark:text-white mb-3">
-              {dict.guide_title}
-            </h2>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">
-              {renderTextWithLinks(config.content.explanation)}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-slate-50 dark:bg-slate-950 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
-              <h3 className="font-bold text-slate-950 dark:text-white mb-2 flex items-center">
-                <i className="bi bi-file-code-fill text-indigo-500 mr-2"></i> {dict.guide_formula}
-              </h3>
-              <pre className="font-mono text-xs text-slate-800 dark:text-slate-200 whitespace-pre-wrap">
-                {config.content.formula}
-              </pre>
-            </div>
-            <div className="bg-slate-50 dark:bg-slate-950 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
-              <h3 className="font-bold text-slate-950 dark:text-white mb-2 flex items-center">
-                <i className="bi bi-lightbulb-fill text-yellow-500 mr-2"></i> {dict.guide_example}
-              </h3>
-              <p className="text-sm text-slate-700 dark:text-slate-300 whitespace-pre-line">
-                {renderTextWithLinks(config.content.example)}
-              </p>
-            </div>
-          </div>
-
-          {config.content.tips && config.content.tips.length > 0 && (
-            <div>
-              <h3 className="font-bold text-slate-950 dark:text-white mb-3 flex items-center">
-                <i className="bi bi-bookmark-check-fill text-emerald-500 mr-2"></i> {dict.guide_tips}
-              </h3>
-              <ul className="list-disc list-inside space-y-2 pl-2 text-slate-700 dark:text-slate-300 text-sm">
-                {config.content.tips.map((tip: any, index: number) => (
-                  <li key={index}>{renderTextWithLinks(tip)}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {config.content.errors && config.content.errors.length > 0 && (
-            <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 p-6 rounded-xl">
-              <h3 className="font-bold text-red-800 dark:text-red-300 mb-3 flex items-center">
-                <i className="bi bi-exclamation-octagon-fill text-red-500 mr-2"></i> {dict.guide_errors}
-              </h3>
-              <ul className="list-disc list-inside space-y-2 pl-2 text-red-700 dark:text-red-400 text-sm">
-                {config.content.errors.map((error: any, index: number) => (
-                  <li key={index}>{renderTextWithLinks(error)}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          <div>
-            <h3 className="font-bold text-slate-950 dark:text-white mb-2 flex items-center">
-              <i className="bi bi-briefcase-fill text-blue-500 mr-2"></i> {dict.guide_legislation}
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 text-sm italic">
-              {config.content.legislation}
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* FAQ Tab */}
-      {activeTab === 'faq' && (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-8 space-y-6">
-          <h2 className="text-2xl font-bold text-slate-950 dark:text-white mb-6">
-            {dict.faq_title}
-          </h2>
-          <div className="space-y-6">
-            {config.content.faqs.map((faq: any, index: number) => (
-              <div key={index} className="border-b border-slate-200 dark:border-slate-800 pb-6 last:border-0 last:pb-0">
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-start">
-                  <span className="text-blue-600 dark:text-blue-400 mr-2">Q.</span>
-                  {faq.question}
-                </h3>
-                <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed pl-6 whitespace-pre-line">
-                  {renderTextWithLinks(faq.answer)}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
+      </div>
   );
 }
