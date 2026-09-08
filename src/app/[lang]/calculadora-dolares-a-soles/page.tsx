@@ -7,9 +7,9 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  permanentRedirect('/dolares-a-soles');
+  permanentRedirect('/tipo-de-cambio');
 }
 
-export default async function CalculadoraDolaresSolesPage({ params }: PageProps) {
-  permanentRedirect('/dolares-a-soles');
+export default async function Page({ params }: PageProps) {
+  permanentRedirect('/tipo-de-cambio');
 }

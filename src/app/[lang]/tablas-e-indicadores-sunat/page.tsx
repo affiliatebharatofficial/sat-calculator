@@ -7,9 +7,9 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  permanentRedirect('/calculadoras/peru/tablas-e-indicadores-sunat');
+  permanentRedirect('/calculadoras/peru/tipo-de-cambio-sunat');
 }
 
-export default async function TablasIndicadoresPage({ params }: PageProps) {
-  permanentRedirect('/calculadoras/peru/tablas-e-indicadores-sunat');
+export default async function Page({ params }: PageProps) {
+  permanentRedirect('/calculadoras/peru/tipo-de-cambio-sunat');
 }

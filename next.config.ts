@@ -36,37 +36,37 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/calculadoras/tipo-de-cambio/tablas-e-indicadores-sunat',
-        destination: '/calculadoras/peru/tablas-e-indicadores-sunat',
+        destination: '/calculadoras/peru/tipo-de-cambio-sunat',
         permanent: true,
       },
       {
         source: '/calculadoras/tipo-de-cambio/tipo-de-cambio-para-solventar-obligaciones',
-        destination: '/calculadoras/peru/tipo-de-cambio-para-solventar-obligaciones',
+        destination: '/calculadoras/peru/tipo-de-cambio-sunat',
         permanent: true,
       },
       {
         source: '/calculadoras/tipo-de-cambio/dolar-hoy',
-        destination: '/dolar-hoy',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
       {
         source: '/calculadoras/tipo-de-cambio/precio-del-dolar-en-peru',
-        destination: '/dolar-hoy',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
       {
         source: '/calculadoras/tipo-de-cambio/calculadora-dolares-a-soles',
-        destination: '/dolares-a-soles',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
       {
         source: '/calculadoras/tipo-de-cambio/calculadora-soles-a-dolares',
-        destination: '/dolares-a-soles',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
       {
         source: '/calculadoras/tipo-de-cambio/soles-a-dolares',
-        destination: '/dolares-a-soles',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
 
@@ -103,59 +103,84 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/tablas-e-indicadores-sunat',
-        destination: '/calculadoras/peru/tablas-e-indicadores-sunat',
+        destination: '/calculadoras/peru/tipo-de-cambio-sunat',
         permanent: true,
       },
       {
         source: '/tipo-de-cambio-para-solventar-obligaciones',
-        destination: '/calculadoras/peru/tipo-de-cambio-para-solventar-obligaciones',
+        destination: '/calculadoras/peru/tipo-de-cambio-sunat',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/peru/tablas-e-indicadores-sunat',
+        destination: '/calculadoras/peru/tipo-de-cambio-sunat',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/peru/tipo-de-cambio-para-solventar-obligaciones',
+        destination: '/calculadoras/peru/tipo-de-cambio-sunat',
         permanent: true,
       },
 
-      // 3. Consolidated currency routes
+      // 3. Consolidated currency routes (all redirect to Universal Converter /tipo-de-cambio)
+      {
+        source: '/dolar-hoy',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
       {
         source: '/precio-del-dolar-en-peru',
-        destination: '/dolar-hoy',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/dolares-a-soles',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
       {
         source: '/calculadora-dolares-a-soles',
-        destination: '/dolares-a-soles',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
       {
         source: '/soles-a-dolares',
-        destination: '/dolares-a-soles',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
       {
         source: '/calculadora-soles-a-dolares',
-        destination: '/dolares-a-soles',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
       {
         source: '/calculadoras/peru/precio-del-dolar-en-peru',
-        destination: '/dolar-hoy',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
       {
         source: '/calculadoras/peru/dolar-hoy',
-        destination: '/dolar-hoy',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/peru/dolares-a-soles',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
       {
         source: '/calculadoras/peru/calculadora-dolares-a-soles',
-        destination: '/dolares-a-soles',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
       {
         source: '/calculadoras/peru/soles-a-dolares',
-        destination: '/dolares-a-soles',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
       {
         source: '/calculadoras/peru/calculadora-soles-a-dolares',
-        destination: '/dolares-a-soles',
+        destination: '/tipo-de-cambio',
         permanent: true,
       },
 

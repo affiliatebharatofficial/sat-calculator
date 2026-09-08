@@ -7,9 +7,9 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  permanentRedirect('/dolar-hoy');
+  permanentRedirect('/tipo-de-cambio');
 }
 
-export default async function PrecioDolarPeruPage({ params }: PageProps) {
-  permanentRedirect('/dolar-hoy');
+export default async function Page({ params }: PageProps) {
+  permanentRedirect('/tipo-de-cambio');
 }

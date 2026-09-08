@@ -20,23 +20,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('tipo-de-cambio', lang);
 
   return {
-    title: 'Tipo de Cambio Oficial SAT y Banxico: Dólar a Pesos (USD/MXN)',
-    description: 'Calcula la conversión de dólares a pesos mexicanos (USD a MXN) según el tipo de cambio oficial del SAT, Banxico FIX y el Diario Oficial de la Federación (DOF).',
+    title: 'Conversor de Divisas y Tipo de Cambio Oficial (USD, MXN, PEN)',
+    description: 'Conversor universal de divisas: convierte dólares a pesos mexicanos (USD a MXN) y soles peruanos (USD a PEN) con tipos de cambio oficiales de Banxico FIX, SAT y SUNAT.',
     keywords: [
       'tipo de cambio sat',
-      'tipo de cambio banxico',
-      'tipo de cambio dof',
+      'conversor de divisas',
       'dolar a pesos mexicanos',
-      'convertir dolares a pesos',
+      'dolares a soles',
+      'soles a dolares',
+      'tipo de cambio banxico',
       'usd to mxn',
+      'usd to pen',
       'tipo de cambio oficial mexico',
-      'dolar fix banxico',
-      'tipo de cambio para impuestos sat'
+      'tipo de cambio sunat'
     ],
     alternates: seoAlternates,
     openGraph: {
-      title: 'Tipo de Cambio Oficial SAT y Banxico: Dólar a Pesos (USD/MXN)',
-      description: 'Calcula la conversión de dólares a pesos mexicanos (USD a MXN) según el tipo de cambio oficial del SAT, Banxico FIX y el Diario Oficial de la Federación (DOF).',
+      title: 'Conversor de Divisas y Tipo de Cambio Oficial (USD, MXN, PEN)',
+      description: 'Conversor universal de divisas: convierte dólares a pesos mexicanos (USD a MXN) y soles peruanos (USD a PEN) con tipos de cambio oficiales de Banxico FIX, SAT y SUNAT.',
       url: seoAlternates.canonical,
       siteName: 'Calculadora SAT',
       locale: 'es_MX',
@@ -129,13 +130,13 @@ export default async function TipoCambioPage({ params }: PageProps) {
         {/* Hero Section */}
         <div className="text-center max-w-3xl mx-auto mb-10">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 mb-4 border border-emerald-200 dark:border-emerald-800">
-            🇲🇽 México • Referencia Oficial SAT / Banxico
+            🇲🇽 México & 🇵🇪 Perú • Conversor de Divisas Universal
           </span>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
-            Tipo de Cambio Oficial SAT y Banxico
+            Conversor de Divisas y Tipo de Cambio Oficial
           </h1>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-350 mt-3 font-medium leading-relaxed">
-            Convertidor oficial de Dólares a Pesos Mexicanos (USD a MXN) según las disposiciones del Código Fiscal de la Federación (Art. 20 CFF) y el Diario Oficial de la Federación (DOF).
+            Convierte dólares estadounidenses (USD), pesos mexicanos (MXN) y soles peruanos (PEN) con tasas de referencia oficiales de Banxico FIX, SAT y SUNAT.
           </p>
         </div>
 
@@ -276,19 +277,11 @@ export default async function TipoCambioPage({ params }: PageProps) {
                 </div>
               </Link>
 
-              <Link href="/dolar-hoy" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">🇵🇪</span>
+              <Link href="/calculadoras/sat/calculadora-iva" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">🧾</span>
                 <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Dólar Hoy en Perú</div>
-                  <div className="text-xs text-slate-500 font-normal">Cotización interbancaria en tiempo real</div>
-                </div>
-              </Link>
-
-              <Link href="/dolares-a-soles" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">💱</span>
-                <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Dólares a Soles (USD ↔ PEN)</div>
-                  <div className="text-xs text-slate-500 font-normal">Conversor bidireccional instantáneo</div>
+                  <div className="text-slate-900 dark:text-white font-bold">Calculadora de IVA</div>
+                  <div className="text-xs text-slate-500 font-normal">Desglose de IVA 16% y 8% Fronterizo</div>
                 </div>
               </Link>
 

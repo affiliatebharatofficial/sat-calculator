@@ -7,9 +7,9 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  permanentRedirect('/calculadoras/peru/tipo-de-cambio-para-solventar-obligaciones');
+  permanentRedirect('/calculadoras/peru/tipo-de-cambio-sunat');
 }
 
-export default async function TipoCambioSolventarPage({ params }: PageProps) {
-  permanentRedirect('/calculadoras/peru/tipo-de-cambio-para-solventar-obligaciones');
+export default async function Page({ params }: PageProps) {
+  permanentRedirect('/calculadoras/peru/tipo-de-cambio-sunat');
 }

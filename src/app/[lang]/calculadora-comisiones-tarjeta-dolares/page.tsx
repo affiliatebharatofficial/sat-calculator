@@ -193,18 +193,18 @@ export default async function ComisionesTarjetaPage({ params }: PageProps) {
               🌐 Red Completa de Calculadoras Cambiarias
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm font-semibold">
-              <Link href="/dolar-hoy" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+              <Link href="/tipo-de-cambio" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
                 <span className="text-2xl">📈</span>
                 <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Dólar Hoy en Perú</div>
-                  <div className="text-xs text-slate-500 font-normal">Cotización en tiempo real</div>
+                  <div className="text-slate-900 dark:text-white font-bold">Conversor Universal de Divisas</div>
+                  <div className="text-xs text-slate-500 font-normal">USD, MXN y PEN con tasas oficiales</div>
                 </div>
               </Link>
-              <Link href="/dolares-a-soles" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">💵</span>
+              <Link href="/calculadoras/peru/calculadora-igv-peru" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">🧾</span>
                 <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Dólares a Soles (USD ↔ PEN)</div>
-                  <div className="text-xs text-slate-500 font-normal">Conversor bidireccional</div>
+                  <div className="text-slate-900 dark:text-white font-bold">Calculadora de IGV Perú</div>
+                  <div className="text-xs text-slate-500 font-normal">18% IGV para comprobantes</div>
                 </div>
               </Link>
               <Link href="/calculadoras/peru/tipo-de-cambio-sunat" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">

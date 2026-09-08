@@ -10,6 +10,6 @@ export async function generateMetadata({ params }: PageProps) {
   permanentRedirect('/calculadoras/peru/tipo-de-cambio-sunat');
 }
 
-export default async function TipoCambioSunatPage({ params }: PageProps) {
+export default async function Page({ params }: PageProps) {
   permanentRedirect('/calculadoras/peru/tipo-de-cambio-sunat');
 }

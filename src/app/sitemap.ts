@@ -22,8 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'formatos',
     'widgets',
     'semanas-cotizadas-imss',
-    'dolar-hoy',
-    'dolares-a-soles',
     'tipo-de-cambio',
   ];
 

@@ -165,20 +165,27 @@ export default function CalculatorEducationalContent({
         </div>
 
         {/* 7. Result Interpretation & Best Practices */}
-        {content.tips && content.tips.length > 0 && (
+        {(content.howToInterpret || (content.tips && content.tips.length > 0)) && (
           <div className="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/40 rounded-2xl p-6">
             <h3 className="text-lg font-bold text-emerald-900 dark:text-emerald-300 mb-3 flex items-center">
               <i className="bi bi-bookmark-check-fill text-emerald-600 mr-2"></i>
-              {isEn ? 'How to Understand the Result & Best Practices' : 'Cómo Interpretar el Resultado y Buenas Prácticas'}
+              {isEn ? 'How to Understand & Interpret the Result' : 'Cómo Interpretar el Resultado y Buenas Prácticas'}
             </h3>
-            <ul className="space-y-2.5 text-sm text-emerald-950 dark:text-emerald-200 leading-relaxed">
-              {content.tips.map((tip, index) => (
-                <li key={index} className="flex items-start">
-                  <span className="text-emerald-600 dark:text-emerald-400 mr-2 font-bold">•</span>
-                  <span>{renderMarkdownLinks(tip)}</span>
-                </li>
-              ))}
-            </ul>
+            {content.howToInterpret && (
+              <p className="text-sm text-emerald-950 dark:text-emerald-200 leading-relaxed mb-4 whitespace-pre-line font-medium">
+                {renderMarkdownLinks(content.howToInterpret)}
+              </p>
+            )}
+            {content.tips && content.tips.length > 0 && (
+              <ul className="space-y-2.5 text-sm text-emerald-950 dark:text-emerald-200 leading-relaxed">
+                {content.tips.map((tip, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="text-emerald-600 dark:text-emerald-400 mr-2 font-bold">•</span>
+                    <span>{renderMarkdownLinks(tip)}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         )}
 

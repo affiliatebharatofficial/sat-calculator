@@ -35,6 +35,7 @@ export interface CalculatorContent {
   whatItDoes?: string;
   whoShouldUse?: string[];
   howItWorks?: string;
+  howToInterpret?: string;
   explanation: string;
   formula: string;
   example: string;

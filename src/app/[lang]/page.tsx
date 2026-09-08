@@ -598,24 +598,30 @@ export default function Home({ params }: { params: Promise<{ lang: string }> }) 
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-600 dark:text-slate-350 leading-relaxed">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs text-slate-600 dark:text-slate-350 leading-relaxed">
               <div className="p-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-200/80 dark:border-slate-850">
-                <strong className="text-slate-900 dark:text-white block mb-1">1. Diario Oficial de la Federación (DOF):</strong>
+                <strong className="text-slate-900 dark:text-white block mb-1">1. DOF y Marco Fiscal (México):</strong>
                 {isEn
-                  ? 'We track federal tax decrees, the annual Resolución Miscelánea Fiscal (RMF), and official Annex 8 tables for progressive ISR brackets.'
-                  : 'Monitoreamos las publicaciones de la RMF y el CFF para sincronizar las tarifas progresivas del ISR (Art. 96 y 152 LISR).'}
+                  ? 'We track federal tax decrees, the annual Resolución Miscelánea Fiscal (RMF), and official Annex 8 tables for progressive ISR brackets (LISR).'
+                  : 'Monitoreamos publicaciones del DOF, la RMF y el CFF para sincronizar las tarifas progresivas del ISR (Art. 96 y 152 LISR).'}
               </div>
               <div className="p-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-200/80 dark:border-slate-850">
                 <strong className="text-slate-900 dark:text-white block mb-1">2. INEGI, CONASAMI e IMSS:</strong>
                 {isEn
                   ? 'UMA indexes are refreshed each January (effective Feb 1), minimum wages are audited per zone (General/ZLFN), and social security contribution limits (25 UMAs) are kept compliant.'
-                  : 'El valor de la UMA se actualiza cada enero con vigor en febrero, los salarios mínimos conforme a la CONASAMI y topes de cotización IMSS a 25 UMAs.'}
+                  : 'El valor de la UMA se actualiza cada enero con vigor en febrero, salarios mínimos por zona según CONASAMI y topes de cotización IMSS a 25 UMAs.'}
               </div>
               <div className="p-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-200/80 dark:border-slate-850">
-                <strong className="text-slate-900 dark:text-white block mb-1">3. El Peruano y SUNAT:</strong>
+                <strong className="text-slate-900 dark:text-white block mb-1">3. Módulo Especializado (Perú):</strong>
                 {isEn
-                  ? 'Annual UIT decree revisions and SBS currency closing rates are systematically programmed into our Peruvian calculators.'
-                  : 'Incorporamos el valor de la UIT decretado por el MEF y las disposiciones tributarias de la SUNAT para 5ta categoría y comprobantes electrónicos.'}
+                  ? 'Peruvian tools operate under separate statutory sources (El Peruano, MEF for UIT values, and SUNAT for 18% IGV and payroll withholdings).'
+                  : 'Las herramientas de Perú constituyen un módulo complementario basado en decretos del MEF (UIT anual), SBS y resoluciones de la SUNAT.'}
+              </div>
+              <div className="p-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-200/80 dark:border-slate-850">
+                <strong className="text-slate-900 dark:text-white block mb-1">4. Iniciativa y Dirección Editorial:</strong>
+                {isEn
+                  ? 'Calculadora SAT is an independent digital initiative developed by FkDigitalMedia under the direction of Firoz Khan, focused on algorithm transparency.'
+                  : 'Iniciativa digital independiente desarrollada por FkDigitalMedia bajo la dirección de Firoz Khan, enfocada en transparencia algorítmica y neutralidad.'}
               </div>
             </div>
 
