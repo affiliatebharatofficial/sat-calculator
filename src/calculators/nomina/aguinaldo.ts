@@ -196,6 +196,11 @@ export const aguinaldoCalculator: CalculatorConfig = {
         description: 'Texto legal de la LFT sobre prestaciones y gratificaciones anuales de los trabajadores.'
       }
     ],
+    relatedCalculators: [
+      'nomina/calculadora-salario-neto-bruto',
+      'nomina/calculadora-finiquito-liquidacion',
+      'nomina/calculadora-vacaciones-prima'
+    ],
     lastUpdated: 'Actualizado para el ejercicio fiscal 2026',
     disclaimer: 'Esta calculadora es una herramienta interactiva de carácter informativo y didáctico. Los montos finales y retenciones exactas deben validarse en el comprobante fiscal digital por internet (CFDI) emitido por tu empresa empleadora.'
   }

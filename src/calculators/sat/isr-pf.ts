@@ -178,7 +178,84 @@ export const isrPfCalculator: CalculatorConfig = {
         description: 'Texto legal íntegro de la LISR que norma el Título IV para personas físicas.'
       }
     ],
+    relatedCalculators: [
+      'sat/calculadora-iva',
+      'nomina/calculadora-salario-neto-bruto',
+      'sat/calculadora-resico-pf'
+    ],
     lastUpdated: 'Actualizado para el ejercicio fiscal 2026',
     disclaimer: 'Esta calculadora es un simulador matemático basado en las tarifas provisionales de la Resolución Miscelánea Fiscal. No constituye una determinación fiscal oficial ni sustituye la declaración mensual en el portal del SAT.'
+  },
+  translations: {
+    en: {
+      title: 'Personal Income Tax (ISR) Calculator Mexico',
+      shortDescription: 'Calculate monthly or annual Mexican personal income tax (ISR) under business activities, professional services (honorarios), or leasing regimes.',
+      category: 'SAT Federal Taxes',
+      inputs: [
+        {
+          id: 'ingresos',
+          label: 'Cumulative Gross Income ($)',
+          placeholder: 'Enter gross income for the period'
+        },
+        {
+          id: 'deducciones',
+          label: 'Authorized Deductions ($)',
+          placeholder: 'Enter business expenses for the period'
+        },
+        {
+          id: 'periodo',
+          label: 'Calculation Period',
+          options: [
+            { label: 'Monthly', value: 'mensual' },
+            { label: 'Annual', value: 'anual' }
+          ]
+        }
+      ],
+      content: {
+        whatItDoes: 'Accurately calculates the Mexican personal income tax (ISR) provisional payments for independent professionals (honorarios) and business individuals, applying official progressive 11-tier tax tables under Article 96 & 152 of the LISR.',
+        whoShouldUse: [
+          'Freelancers and independent contractors billing clients through CFDI invoices',
+          'Individuals with business activities (commerce, workshops, services, digital platforms)',
+          'Accountants and bookkeepers validating monthly provisional tax filings before SAT submission',
+          'Taxpayers analyzing effective tax burden vs. the simplified regime (RESICO)'
+        ],
+        howItWorks: 'Authorized business expenses are subtracted from collected gross income to compute the Taxable Base. This base is matched against the 11-bracket official statutory tax table. The Lower Limit is subtracted to compute the Excess, multiplied by the Marginal Rate, and added to the Fixed Quota.',
+        explanation: 'Personal Income Tax (ISR) is the direct progressive tax on net profits in Mexico. Unlike flat taxes, Mexican personal income tax employs an 11-bracket progressive rate ranging from 1.92% up to 35.00%. The higher the net taxable income, the higher the marginal percentage applied to the excess over the lower threshold.',
+        formula: '1. Taxable Base = Gross Income - Authorized Deductions\n2. Excess = Taxable Base - Lower Limit\n3. Marginal Tax = Excess * (Marginal Rate / 100)\n4. Total ISR Due = Fixed Quota + Marginal Tax\n5. Estimated Net Income = Taxable Base - Total ISR Due',
+        example: 'Gross Monthly Income: $35,000.00 MXN | Business Deductions: $10,000.00 MXN\n• Taxable Base: $35,000.00 - $10,000.00 = $25,000.00 MXN\n• Bracket: Lower Limit $15,487.72 | Fixed Quota $1,640.18 | Marginal Rate 21.36%\n• Excess: $25,000.00 - $15,487.72 = $9,512.28 MXN\n• Marginal Tax: $9,512.28 * 21.36% = $2,031.82 MXN\n• Total ISR Due: $1,640.18 + $2,031.82 = $3,672.00 MXN (Effective rate: 14.69%)\n• Net Profit: $25,000.00 - $3,672.00 = $21,328.00 MXN',
+        legislation: 'Mexican Income Tax Law (LISR), Title IV (Individuals), Articles 96, 100, 106, 109, and Annex 8 of the current Miscellaneous Tax Resolution (RMF).',
+        tips: [
+          'Always pay deductible business expenses over $2,000 MXN using electronic means (wire, credit/debit card, cheque) to preserve tax deductibility under Art. 147 LISR.',
+          'Remember that corporations billing you for professional services must withhold 10% ISR at source, which you credit against your monthly payment.'
+        ],
+        assumptions: [
+          'Applies official provisional monthly rates for individuals with professional or business activities.',
+          'Assumes income and expenses are on a cash-flow basis (effectively collected and paid).'
+        ],
+        limitations: [
+          'Does not calculate annual personal deductions (medical, tuition), which apply exclusively in the annual April tax return.',
+          'Does not compute sector-specific agricultural or transport tax credits.'
+        ],
+        faqs: [
+          {
+            question: 'Why is the effective tax rate lower than the marginal bracket rate?',
+            answer: 'Because the Mexican ISR is graduated. A 21.36% marginal rate applies solely to the income dollars exceeding the bracket threshold ($15,487.72), not your entire income. Lower segments are taxed at lower rates starting at 1.92%.'
+          },
+          {
+            question: 'Can I deduct medical expenses in monthly provisional payments?',
+            answer: 'No. Under Article 151 LISR, personal deductions (doctor visits, hospital bills, tuition) can only be deducted on the Annual Tax Return filed in April.'
+          }
+        ],
+        sources: [
+          {
+            name: 'SAT — Mexican Tax Administration Service',
+            url: 'https://www.sat.gob.mx',
+            description: 'Official federal tax portal containing current progressive rate schedules and tax rulings.'
+          }
+        ],
+        lastUpdated: 'Verified for Fiscal Year 2026',
+        disclaimer: 'This calculator is a mathematical simulation tool based on official SAT tax brackets. It does not replace official tax declarations submitted on the SAT portal.'
+      }
+    }
   }
 };

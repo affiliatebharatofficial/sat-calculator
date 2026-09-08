@@ -23,11 +23,21 @@ export const calculadoraDolaresASolesCalculator: CalculatorConfig = {
   },
   inputs: [
     {
+      id: 'direccion',
+      label: 'Dirección de Conversión',
+      type: 'select',
+      defaultValue: 'usd_to_pen',
+      options: [
+        { label: 'Dólares a Soles (USD → PEN)', value: 'usd_to_pen' },
+        { label: 'Soles a Dólares (PEN → USD)', value: 'pen_to_usd' }
+      ]
+    },
+    {
       id: 'monto',
-      label: 'Monto en Dólares (USD)',
+      label: 'Monto a Convertir',
       type: 'number',
       defaultValue: 100,
-      placeholder: 'Ingresa la cantidad en USD'
+      placeholder: 'Ingresa la cantidad'
     },
     {
       id: 'modo_tasa',
@@ -50,11 +60,13 @@ export const calculadoraDolaresASolesCalculator: CalculatorConfig = {
   ],
   calculate: (inputs) => {
     const monto = parseFloat(inputs.monto) || 0;
+    const direccion = inputs.direccion || 'usd_to_pen';
+    const isUsdToPen = direccion === 'usd_to_pen';
     const modoTasa = inputs.modo_tasa || 'sunat_venta';
     const tasaCustom = parseFloat(inputs.tasa_custom) || 3.75;
 
     const tasaUtilizada = tasaCustom;
-    const resultado = monto * tasaUtilizada;
+    const resultado = isUsdToPen ? (monto * tasaUtilizada) : (tasaUtilizada > 0 ? monto / tasaUtilizada : 0);
 
     const modoLabel = modoTasa === 'sunat_venta'
       ? 'SUNAT Venta'
@@ -65,9 +77,9 @@ export const calculadoraDolaresASolesCalculator: CalculatorConfig = {
     return {
       results: [
         {
-          label: 'Monto Ingresado (USD)',
+          label: isUsdToPen ? 'Monto Ingresado (USD)' : 'Monto Ingresado (PEN)',
           value: monto,
-          formatted: `US$ ${monto.toFixed(2)} USD`
+          formatted: isUsdToPen ? `US$ ${monto.toFixed(2)} USD` : `S/ ${monto.toFixed(2)} PEN`
         },
         {
           label: `Tasa de Cambio Aplicada (${modoLabel})`,
@@ -75,16 +87,20 @@ export const calculadoraDolaresASolesCalculator: CalculatorConfig = {
           formatted: `S/ ${tasaUtilizada.toFixed(3)} PEN`
         },
         {
-          label: 'Resultado en Soles Peruanos (PEN)',
+          label: isUsdToPen ? 'Resultado en Soles Peruanos (PEN)' : 'Resultado en Dólares Estadounidenses (USD)',
           value: resultado,
-          formatted: `S/ ${resultado.toFixed(2)} PEN`,
+          formatted: isUsdToPen ? `S/ ${resultado.toFixed(2)} PEN` : `US$ ${resultado.toFixed(2)} USD`,
           isMain: true
         }
       ],
       steps: [
         {
-          description: `Se multiplica el monto en dólares ($USD ${monto.toFixed(2)}) por la tasa de cambio seleccionada (${modoLabel}: S/ ${tasaUtilizada.toFixed(3)}) para obtener los soles peruanos correspondientes.`,
-          mathFormula: `PEN = USD \\times Tasa = $${monto.toFixed(2)} \\times S/\\ ${tasaUtilizada.toFixed(3)} = S/\\ ${resultado.toFixed(2)}`
+          description: isUsdToPen
+            ? `Conversión de USD a PEN multiplicando el monto en dólares por la tasa de cambio.`
+            : `Conversión de PEN a USD dividiendo el monto en soles entre la tasa de cambio.`,
+          mathFormula: isUsdToPen
+            ? `PEN = USD \\times Tasa = $${monto.toFixed(2)} \\times ${tasaUtilizada.toFixed(3)} = S/ ${resultado.toFixed(2)}`
+            : `USD = \\frac{PEN}{Tasa} = \\frac{S/ ${monto.toFixed(2)}}{${tasaUtilizada.toFixed(3)}} = $${resultado.toFixed(2)}`
         }
       ]
     };

@@ -260,19 +260,18 @@ if (solventarCalc) {
   failedTests++;
 }
 
-// 19. Test Dólares a Soles & Soles a Dólares
+// 19. Test Dólares a Soles (Bidireccional Consolidado)
 const dolaresSolesCalc = calculators.find(c => c.id === 'calculo-dolares-a-soles');
-const solesDolaresCalc = calculators.find(c => c.id === 'calculo-soles-a-dolares');
-if (dolaresSolesCalc && solesDolaresCalc) {
-  const res1 = dolaresSolesCalc.calculate({ monto: 200, modo_tasa: 'personalizado', tasa_custom: 3.80 });
+if (dolaresSolesCalc) {
+  const res1 = dolaresSolesCalc.calculate({ monto: 200, direccion: 'usd_to_pen', modo_tasa: 'personalizado', tasa_custom: 3.80 });
   const total1 = res1.results.find(r => r.isMain)?.value;
   assert(total1 === 760, 'Dólares a Soles: 200 USD a tasa 3.80 son S/ 760');
 
-  const res2 = solesDolaresCalc.calculate({ monto: 760, modo_tasa: 'personalizado', tasa_custom: 3.80 });
+  const res2 = dolaresSolesCalc.calculate({ monto: 760, direccion: 'pen_to_usd', modo_tasa: 'personalizado', tasa_custom: 3.80 });
   const total2 = res2.results.find(r => r.isMain)?.value;
   assert(total2 === 200, 'Soles a Dólares: S/ 760 a tasa 3.80 son $200 USD');
 } else {
-  console.error('No se encontraron las calculadoras de Dólares/Soles.');
+  console.error('No se encontró la calculadora de Dólares a Soles.');
   failedTests++;
 }
 
@@ -280,7 +279,7 @@ if (dolaresSolesCalc && solesDolaresCalc) {
 const rucCalc = calculators.find(c => c.id === 'consulta-ruc-sunat');
 if (rucCalc) {
   const resValid = rucCalc.calculate({ ruc_input: '20100047218' });
-  const isValid = resValid.results.find(r => r.label === 'Estructura RUC')?.value;
+  const isValid = resValid.results.find(r => r.isMain)?.value;
   assert(isValid === 1, 'Consulta RUC: Validó correctamente el checksum oficial de SUNAT para RUC 20100047218');
 } else {
   console.error('No se encontró la calculadora de Consulta RUC.');
@@ -298,7 +297,7 @@ if (uitCalc) {
   failedTests++;
 }
 
-// 22. Test Dólar Hoy en Perú
+// 22. Test Dólar Hoy en Perú (Consolidado)
 const dolarHoyCalc = calculators.find(c => c.id === 'dolar-hoy-peru');
 if (dolarHoyCalc) {
   const res = dolarHoyCalc.calculate({ monto_dolar: 500, tasa_mercado: 3.75 });
@@ -306,17 +305,6 @@ if (dolarHoyCalc) {
   assert(totalSoles === 1875, 'Dólar Hoy: $500 USD a tasa 3.75 equivalen a S/ 1,875 PEN');
 } else {
   console.error('No se encontró la calculadora de Dólar Hoy.');
-  failedTests++;
-}
-
-// 23. Test Precio del Dólar en Perú
-const precioDolarCalc = calculators.find(c => c.id === 'precio-del-dolar-en-peru');
-if (precioDolarCalc) {
-  const res = precioDolarCalc.calculate({ monto_precio: 100 });
-  const total = res.results.find(r => r.isMain)?.value;
-  assert(total === 375, 'Precio del Dólar: $100 USD a tasa 3.75 son S/ 375 PEN');
-} else {
-  console.error('No se encontró la calculadora de Precio del Dólar.');
   failedTests++;
 }
 

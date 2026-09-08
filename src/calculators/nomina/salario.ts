@@ -15,7 +15,7 @@ const MONTHLY_ISR_BRACKETS = [
   { limitInferior: 375975.62, cuotaFija: 117911.48, tasa: 35.00 }
 ];
 
-const UMA_2024 = 108.57;
+const UMA_2026 = 113.14;
 
 // Function to calculate vacation days based on years of service (LFT México)
 function getVacationDays(years: number): number {
@@ -49,7 +49,7 @@ function calculateNetFromGross(gross: number, years: number = 1) {
   // - Gastos médicos pensionados: 0.375% sobre SBC
   // - Invalidez y Vida: 0.625% sobre SBC
   // - Cesantía y Vejez: 1.125% sobre SBC
-  const excedenteBase = Math.max(0, sbc - (3 * UMA_2024));
+  const excedenteBase = Math.max(0, sbc - (3 * UMA_2026));
   const imssDaily = (sbc * (0.0025 + 0.00375 + 0.00625 + 0.01125)) + (excedenteBase * 0.004);
   const imssDeduction = imssDaily * 30.4;
 
@@ -265,7 +265,90 @@ export const salaryCalculator: CalculatorConfig = {
         description: 'Tarifas del impuesto sobre la renta aplicables a retenciones sobre salarios y asimilados.'
       }
     ],
+    relatedCalculators: [
+      'nomina/calculadora-aguinaldo',
+      'nomina/calculadora-finiquito-liquidacion',
+      'sat/calculadora-isr-pf'
+    ],
     lastUpdated: 'Actualizado para el ejercicio fiscal 2026',
     disclaimer: 'Esta calculadora es una herramienta de simulación de percepciones laborales basada en las disposiciones de la LFT, LISR y LSS. Las deducciones oficiales definitivas se reflejan en el CFDI de nómina timbrado por tu empleador.'
+  },
+  translations: {
+    en: {
+      title: 'Gross & Net Salary Calculator Mexico',
+      shortDescription: 'Calculate net take-home pay from gross salary or reverse-calculate the gross wage needed for your target net salary in Mexico.',
+      category: 'Payroll & Labor',
+      inputs: [
+        {
+          id: 'monto',
+          label: 'Salary Amount ($)',
+          placeholder: 'Enter amount in pesos'
+        },
+        {
+          id: 'tipo_calculo',
+          label: 'Calculation Direction',
+          options: [
+            { label: 'Gross to Net (Calculate deductions)', value: 'bruto_a_neto' },
+            { label: 'Net to Gross (Reverse calculation)', value: 'neto_a_bruto' }
+          ]
+        },
+        {
+          id: 'antiguedad',
+          label: 'Years of Seniority (For IMSS integration factor)',
+          options: Array.from({ length: 15 }, (_, i) => ({ label: `${i + 1} year${i > 0 ? 's' : ''}`, value: i + 1 }))
+        }
+      ],
+      content: {
+        whatItDoes: 'Calculates the bidirectional conversion between Gross and Net Salary in Mexico, breaking down monthly personal income tax withholding (Art. 96 LISR) and statutory employee social security quotas (IMSS) calculated from the Integrated Wage Base (SBC).',
+        whoShouldUse: [
+          'Salaried employees auditing payroll deductions on their official CFDI paystubs',
+          'Job candidates negotiating net vs. gross compensation packages in Mexico',
+          'Human resources managers and payroll administrators preparing employment offers',
+          'Employers estimating the true net take-home pay delivered to staff'
+        ],
+        howItWorks: 'In Gross-to-Net mode, computes the integration factor with statutory benefits (15 days Christmas bonus and vacation law) to determine the SBC, calculates IMSS employee quotas, and applies progressive monthly income tax rates. In Net-to-Gross mode, utilizes binary search convergence to solve for the exact gross salary.',
+        explanation: 'Salary in Mexico is defined by two key concepts: Gross Salary (contractual total compensation before statutory deductions) and Net Salary (liquid pay transferred into the employee bank account). Employers are legally mandated to act as tax withholding agents for income tax (ISR) and social security contributions (IMSS).',
+        formula: '1. Integration Factor = 1 + (Bonus Days / 365) + (Vacation Days * Vacation Bonus % / 365)\n2. SBC = Daily Salary * Integration Factor (Capped at 25 UMAs)\n3. IMSS Employee Quotas = Money Benefits + Pensioner Healthcare + 3-UMA Excess + Disability & Life + Retirement & Severance\n4. ISR Withholding = Art. 96 LISR Monthly Tax Brackets applied to Gross Pay\n5. Net Salary = Gross Salary - ISR Withholding - IMSS Quota\n6. Reverse mode: Solved via binary search numerical convergence.',
+        example: 'Gross Monthly Salary: $25,000.00 MXN (1 year seniority, statutory minimum benefits):\n• Base Daily Salary: $833.33 MXN\n• Integration Factor (12 vacation days, 25% bonus, 15 days Christmas bonus): 1.0493\n• Integrated Daily Wage (SBC): $874.42 MXN\n• IMSS Employee Quota (approx. 2.775% effective): $685.20 MXN\n• ISR Tax Withholding (Monthly Art. 96 schedule): $3,672.00 MXN\n• Total Payroll Deductions: $4,357.20 MXN\n• Net Take-Home Salary: $25,000.00 - $4,357.20 = $20,642.80 MXN',
+        legislation: 'Federal Labor Law (LFT), Articles 82-89 (Wages); Income Tax Law (LISR), Article 96 (Salary Withholdings); Social Security Law (LSS), Articles 27, 28 (25 UMA Cap), 106, 147, and 168 (Coverage Branches & Quotas).',
+        tips: [
+          'Always verify whether an employment offer quotes "Gross Monthly" or "Net Monthly Free" to avoid unexpected 15% to 25% income discrepancies.',
+          'Cross-reference your SBC printed on paystubs against your IMSS Quoted Weeks certificate to ensure your employer has registered your true full earnings.'
+        ],
+        assumptions: [
+          'Applies statutory minimum benefits (15 days aguinaldo, 25% vacation bonus under Vacaciones Dignas).',
+          'Does not include active Infonavit or Fonacot personal loan deductions.',
+          'Applies to the standard national geographical wage zone.'
+        ],
+        limitations: [
+          'Does not account for customized collective bargaining union perks without individual parameter entry.',
+          'Does not calculate Employment Subsidy if wages exceed eligibility limits.'
+        ],
+        faqs: [
+          {
+            question: 'What is the Base Salary of Contribution (SBC) and why is it higher than daily base pay?',
+            answer: 'SBC is your daily wage registered with the IMSS. It is higher than your base pay because it incorporates the statutory integration factor, prorating daily portions of your annual 15-day Christmas bonus and vacation bonus.'
+          },
+          {
+            question: 'What is the statutory cap on IMSS contributions?',
+            answer: 'Under Article 28 of the Social Security Law, contributions are capped at 25 times the official daily UMA value. Any earnings exceeding this cap are exempt from additional IMSS quotas.'
+          }
+        ],
+        sources: [
+          {
+            name: 'IMSS — Mexican Social Security Institute',
+            url: 'https://www.imss.gob.mx',
+            description: 'Official statutory table of social security branch contributions.'
+          },
+          {
+            name: 'SAT — Mexican Tax Administration Service',
+            url: 'https://www.sat.gob.mx',
+            description: 'Official monthly progressive withholding tax schedule for wage earners.'
+          }
+        ],
+        lastUpdated: 'Verified for Fiscal Year 2026',
+        disclaimer: 'This calculator is an educational simulation tool based on the LFT, LISR, and LSS. Official final deductions are reflected on the CFDI paystub stamped by your employer.'
+      }
+    }
   }
 };

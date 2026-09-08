@@ -26,21 +26,53 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(newPathname, request.url), 301);
   }
 
-  // 2.0 Currency consolidation 301 redirects (eliminating duplicate & thin keyword variants)
-  const currencyRedirectMap: Record<string, string> = {
+  // 2.0 Consolidated 301 Permanent Redirects (Peru URLs, currency consolidation, and canonical aliases)
+  const permanentRedirectMap: Record<string, string> = {
+    // Old Peru URLs previously under /calculadoras/tipo-de-cambio/*
+    '/calculadoras/tipo-de-cambio/consulta-ruc-sunat': '/calculadoras/peru/consulta-ruc-sunat',
+    '/calculadoras/tipo-de-cambio/calculadora-igv-peru': '/calculadoras/peru/calculadora-igv-peru',
+    '/calculadoras/tipo-de-cambio/calculadora-cts-peru': '/calculadoras/peru/calculadora-cts-peru',
+    '/calculadoras/tipo-de-cambio/calculadora-gratificacion-peru': '/calculadoras/peru/calculadora-gratificacion-peru',
+    '/calculadoras/tipo-de-cambio/calculadora-quinta-categoria-peru': '/calculadoras/peru/calculadora-quinta-categoria-peru',
+    '/calculadoras/tipo-de-cambio/tipo-de-cambio-sunat': '/calculadoras/peru/tipo-de-cambio-sunat',
+    '/calculadoras/tipo-de-cambio/tablas-e-indicadores-sunat': '/calculadoras/peru/tablas-e-indicadores-sunat',
+    '/calculadoras/tipo-de-cambio/tipo-de-cambio-para-solventar-obligaciones': '/calculadoras/peru/tipo-de-cambio-para-solventar-obligaciones',
+    '/calculadoras/tipo-de-cambio/dolar-hoy': '/dolar-hoy',
+    '/calculadoras/tipo-de-cambio/precio-del-dolar-en-peru': '/dolar-hoy',
+    '/calculadoras/tipo-de-cambio/calculadora-dolares-a-soles': '/dolares-a-soles',
+    '/calculadoras/tipo-de-cambio/calculadora-soles-a-dolares': '/dolares-a-soles',
+    '/calculadoras/tipo-de-cambio/soles-a-dolares': '/dolares-a-soles',
+
+    // Standalone Peru routes consolidated into /calculadoras/peru/*
+    '/consulta-ruc-sunat': '/calculadoras/peru/consulta-ruc-sunat',
+    '/calculadora-igv-peru': '/calculadoras/peru/calculadora-igv-peru',
+    '/calculadora-cts-peru': '/calculadoras/peru/calculadora-cts-peru',
+    '/calculadora-gratificacion-peru': '/calculadoras/peru/calculadora-gratificacion-peru',
+    '/calculadora-quinta-categoria-peru': '/calculadoras/peru/calculadora-quinta-categoria-peru',
+    '/tipo-de-cambio-sunat': '/calculadoras/peru/tipo-de-cambio-sunat',
+    '/tablas-e-indicadores-sunat': '/calculadoras/peru/tablas-e-indicadores-sunat',
+    '/tipo-de-cambio-para-solventar-obligaciones': '/calculadoras/peru/tipo-de-cambio-para-solventar-obligaciones',
+
+    // Currency consolidation (eliminating duplicate & thin keyword variants)
     '/precio-del-dolar-en-peru': '/dolar-hoy',
     '/calculadora-dolares-a-soles': '/dolares-a-soles',
     '/soles-a-dolares': '/dolares-a-soles',
     '/calculadora-soles-a-dolares': '/dolares-a-soles',
     '/calculadoras/peru/precio-del-dolar-en-peru': '/dolar-hoy',
+    '/calculadoras/peru/dolar-hoy': '/dolar-hoy',
     '/calculadoras/peru/calculadora-dolares-a-soles': '/dolares-a-soles',
     '/calculadoras/peru/soles-a-dolares': '/dolares-a-soles',
     '/calculadoras/peru/calculadora-soles-a-dolares': '/dolares-a-soles',
+
+    // Core Mexican calculator slug aliases (avoiding 404s and chains)
+    '/calculadoras/sat/calculadora-isr': '/calculadoras/sat/calculadora-isr-pf',
+    '/calculadoras/nomina/calculadora-salario-neto': '/calculadoras/nomina/calculadora-salario-neto-bruto',
+    '/calculadoras/nomina/calculadora-finiquito': '/calculadoras/nomina/calculadora-finiquito-liquidacion',
   };
 
   const normalizedPath = pathname.replace(/\/$/, '') || '/';
-  if (currencyRedirectMap[normalizedPath]) {
-    return NextResponse.redirect(new URL(currencyRedirectMap[normalizedPath], request.url), 301);
+  if (permanentRedirectMap[normalizedPath]) {
+    return NextResponse.redirect(new URL(permanentRedirectMap[normalizedPath], request.url), 301);
   }
 
   // 2.1 If requesting an /en/ URL for a Spanish-only route, 301 redirect to canonical Spanish route

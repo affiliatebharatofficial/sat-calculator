@@ -19,8 +19,11 @@ export const SPANISH_ONLY_ROUTES = [
 ];
 
 export function isSpanishOnlyRoute(route: string): boolean {
-  const clean = route.replace(/^\/en/, '').replace(/^\//, '').split('/')[0];
-  return SPANISH_ONLY_ROUTES.includes(clean);
+  const clean = route.replace(/^\/en/, '').replace(/^\//, '');
+  const firstSegment = clean.split('/')[0];
+  if (SPANISH_ONLY_ROUTES.includes(firstSegment)) return true;
+  if (clean.startsWith('calculadoras/peru')) return true;
+  return false;
 }
 
 export function getSeoAlternates(route: string, lang: string) {
@@ -31,8 +34,7 @@ export function getSeoAlternates(route: string, lang: string) {
   const esUrl = `${baseDomain}${esPath}`;
   const enUrl = `${baseDomain}/en${esPath}`;
 
-  const cleanSlug = esPath.replace(/^\//, '').split('/')[0];
-  const isSpanishOnly = SPANISH_ONLY_ROUTES.includes(cleanSlug);
+  const isSpanishOnly = isSpanishOnlyRoute(esPath);
 
   // If the route only exists in Spanish, canonical must ALWAYS point to the primary Spanish URL,
   // and there should be no en-US alternate to prevent Google reporting duplicate canonical issues.

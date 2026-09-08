@@ -1,5 +1,5 @@
 import React from 'react';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { calculators, getCalculatorBySlug, getCalculatorsByCategory } from '../../../../../calculators';
 import { CalculatorConfig } from '../../../../../types/calculator';
 import CalculatorEngine from '../../../../../components/CalculatorEngine';
@@ -52,7 +52,8 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   const calculator = getLocalizedConfig(baseCalculator, lang);
-  const seoAlternates = getSeoAlternates(`calculadoras/${resolvedParams.category}/${resolvedParams.slug}`, lang);
+  const canonicalCategory = baseCalculator.categorySlug || resolvedParams.category;
+  const seoAlternates = getSeoAlternates(`calculadoras/${canonicalCategory}/${resolvedParams.slug}`, lang);
 
   return {
     title: calculator.seo.metaTitle,
@@ -81,8 +82,17 @@ export default async function CalculatorPage({ params }: PageProps) {
     notFound();
   }
 
+  // Canonical Category Enforcement (301 Permanent Redirect)
+  // If the category in the URL does not match the calculator's true canonical category,
+  // permanently redirect to eliminate duplicate URLs (e.g. /calculadoras/tipo-de-cambio/ -> /calculadoras/peru/)
+  if (baseCalculator.categorySlug && resolvedParams.category !== baseCalculator.categorySlug) {
+    const langPrefix = lang === 'en' ? '/en' : '';
+    permanentRedirect(`${langPrefix}/calculadoras/${baseCalculator.categorySlug}/${baseCalculator.slug}`);
+  }
+
   const calculator = getLocalizedConfig(baseCalculator, lang);
-  const currentUrl = `https://www.calculadorasat.org/${lang === 'en' ? 'en/' : ''}calculadoras/${resolvedParams.category}/${resolvedParams.slug}`;
+  const canonicalCategory = baseCalculator.categorySlug || resolvedParams.category;
+  const currentUrl = `https://www.calculadorasat.org/${lang === 'en' ? 'en/' : ''}calculadoras/${canonicalCategory}/${resolvedParams.slug}`;
 
   let relatedCalculators: CalculatorConfig[] = [];
   if (calculator.content?.relatedCalculators && calculator.content.relatedCalculators.length > 0) {

@@ -69,14 +69,14 @@ export default function Home({ params }: { params: Promise<{ lang: string }> }) 
       title: isEn ? 'Personal Income Tax (ISR)' : 'Calculadora de ISR Personas Físicas',
       desc: isEn ? 'Progressive Art. 96 & 152 LISR tables for salaried and business income.' : 'Calcula el impuesto a retener según las tarifas del Art. 96 y 152 de la LISR.',
       badge: isEn ? 'Income Tax • Art. 96 LISR' : 'Tarifas Art. 96 y 152 LISR',
-      href: `${langPrefix}/calculadoras/sat/calculadora-isr`,
+      href: `${langPrefix}/calculadoras/sat/calculadora-isr-pf`,
       icon: '🏛️',
     },
     {
       title: isEn ? 'Net vs. Gross Salary Calculator' : 'Calculadora de Salario Neto vs. Bruto',
       desc: isEn ? 'Accurate itemization of employee IMSS quota and ISR tax withholdings.' : 'Desglose exacto de retención de ISR y cuota obrera del IMSS sobre tu sueldo.',
       badge: isEn ? 'Payroll • IMSS & ISR' : 'Nómina • Retenciones IMSS e ISR',
-      href: `${langPrefix}/calculadoras/nomina/calculadora-salario-neto`,
+      href: `${langPrefix}/calculadoras/nomina/calculadora-salario-neto-bruto`,
       icon: '💵',
     },
     {
@@ -104,7 +104,7 @@ export default function Home({ params }: { params: Promise<{ lang: string }> }) 
       title: isEn ? 'Severance & Settlement (Finiquito)' : 'Calculadora de Finiquito y Liquidación',
       desc: isEn ? 'Constitutional 90 days, 20 days per year, and seniority premium under LFT.' : 'Simula indemnización constitucional, 20 días por año y prima de antigüedad.',
       badge: isEn ? 'Labor Law • Art. 48 & 50 LFT' : 'Art. 47, 48 y 50 LFT',
-      href: `${langPrefix}/calculadoras/nomina/calculadora-finiquito`,
+      href: `${langPrefix}/calculadoras/nomina/calculadora-finiquito-liquidacion`,
       icon: '⚖️',
     },
     {
@@ -123,48 +123,48 @@ export default function Home({ params }: { params: Promise<{ lang: string }> }) 
     },
   ], [isEn, langPrefix]);
 
-  // Segregated Peru Tools Suite
+  // Segregated Peru Tools Suite (Canonical /calculadoras/peru/* routes)
   const peruTools = useMemo(() => [
     {
       title: isEn ? 'Peru IGV Calculator (18%)' : 'Calculadora de IGV Perú (18%)',
       desc: isEn ? 'Break down or add 18% (16% IGV + 2% IPM) for SUNAT electronic receipts.' : 'Agrega o desglosa el 18% del Impuesto General a las Ventas para comprobantes SUNAT.',
       badge: 'D.S. N° 055-99-EF • 18%',
-      href: `${langPrefix}/calculadora-igv-peru`,
+      href: `${langPrefix}/calculadoras/peru/calculadora-igv-peru`,
       icon: '🇵🇪',
     },
     {
       title: isEn ? 'Official SUNAT Exchange Rate' : 'Tipo de Cambio SUNAT',
       desc: isEn ? 'Official daily USD/PEN rate published by SUNAT/SBS for accounting and taxes.' : 'Cotización tributaria oficial de compra y venta aplicable a facturación y PDT.',
       badge: isEn ? 'Official SBS/SUNAT Rate' : 'Cotización Oficial SBS / SUNAT',
-      href: `${langPrefix}/tipo-de-cambio-sunat`,
+      href: `${langPrefix}/calculadoras/peru/tipo-de-cambio-sunat`,
       icon: '💱',
     },
     {
       title: isEn ? 'Peru CTS Calculator' : 'Calculadora de CTS Perú',
       desc: isEn ? 'Statutory severance reserve deposit for May and November periods.' : 'Compensación por Tiempo de Servicios con la sexta parte de la gratificación computable.',
       badge: 'D.S. N° 001-97-TR',
-      href: `${langPrefix}/calculadora-cts-peru`,
+      href: `${langPrefix}/calculadoras/peru/calculadora-cts-peru`,
       icon: '🏦',
     },
     {
       title: isEn ? 'Peru Gratification Calculator' : 'Calculadora de Gratificación',
       desc: isEn ? 'July & December bonuses plus 9% EsSalud or 6.75% EPS extraordinary bonus.' : 'Fiestas Patrias y Navidad con Bonificación Extraordinaria de EsSalud (9%) o EPS.',
       badge: 'Ley N° 27735 & Ley N° 30334',
-      href: `${langPrefix}/calculadora-gratificacion-peru`,
+      href: `${langPrefix}/calculadoras/peru/calculadora-gratificacion-peru`,
       icon: '🎁',
     },
     {
       title: isEn ? '5th Category Income Tax' : 'Renta de 5ta Categoría 2026',
       desc: isEn ? 'Progressive brackets (8% to 30%) with automatic 7 UIT deduction (S/ 5,350).' : 'Retención de planilla dependiente con deducción de 7 UIT (UIT 2026: S/ 5,350).',
       badge: 'D.S. N° 179-2004-EF • 7 UIT',
-      href: `${langPrefix}/calculadora-quinta-categoria-peru`,
+      href: `${langPrefix}/calculadoras/peru/calculadora-quinta-categoria-peru`,
       icon: '📑',
     },
     {
       title: isEn ? 'SUNAT RUC Number Validator' : 'Validador de RUC SUNAT',
       desc: isEn ? '11-digit Modulo 11 check digit verification and link to official SUNAT lookup.' : 'Comprueba la sintaxis de 11 dígitos y el dígito verificador Módulo 11.',
       badge: isEn ? 'Modulo 11 Algorithm' : 'Algoritmo Módulo 11 SUNAT',
-      href: `${langPrefix}/consulta-ruc-sunat`,
+      href: `${langPrefix}/calculadoras/peru/consulta-ruc-sunat`,
       icon: '🔍',
     },
   ], [isEn, langPrefix]);
@@ -220,10 +220,10 @@ export default function Home({ params }: { params: Promise<{ lang: string }> }) 
             {/* Quick Access Badges */}
             <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs font-bold">
               <span className="text-blue-200/80 mr-1">{isEn ? 'Frequent Tools:' : 'Accesos Directos:'}</span>
-              <Link href={`${langPrefix}/calculadoras/nomina/calculadora-salario-neto`} className="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white transition border border-white/15">
+              <Link href={`${langPrefix}/calculadoras/nomina/calculadora-salario-neto-bruto`} className="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white transition border border-white/15">
                 Salario Neto
               </Link>
-              <Link href={`${langPrefix}/calculadoras/sat/calculadora-isr`} className="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white transition border border-white/15">
+              <Link href={`${langPrefix}/calculadoras/sat/calculadora-isr-pf`} className="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white transition border border-white/15">
                 Calculadora ISR
               </Link>
               <Link href={`${langPrefix}/calculadoras/sat/calculadora-iva`} className="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white transition border border-white/15">

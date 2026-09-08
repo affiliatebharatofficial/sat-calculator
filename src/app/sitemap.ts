@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const domain = 'https://www.calculadorasat.org';
   const currentDate = new Date();
 
-  // 1. Static & Cluster routes
+  // 1. Static & Cluster routes (Only canonical, non-redirected paths)
   const staticPaths = [
     '',
     'about',
@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'developer',
     'privacy',
     'terms',
+    'disclaimer',
     'calendario-fiscal',
     'blog',
     'llms.txt',
@@ -22,17 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'widgets',
     'semanas-cotizadas-imss',
     'dolar-hoy',
-    'tipo-de-cambio',
-    'tipo-de-cambio-sunat',
-    'tipo-de-cambio-para-solventar-obligaciones',
     'dolares-a-soles',
-    'consulta-ruc-sunat',
-    'tablas-e-indicadores-sunat',
-    'calculadora-igv-peru',
-    'calculadora-quinta-categoria-peru',
-    'calculadora-gratificacion-peru',
-    'calculadora-cts-peru',
-    'calculadora-comisiones-tarjeta-dolares',
+    'tipo-de-cambio',
   ];
 
   const staticEntries = staticPaths.map((path) => {
@@ -41,8 +33,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     return {
       url: `${domain}${segment}`,
       lastModified: currentDate,
-      changeFrequency: (path === '' || path === 'tipo-de-cambio-sunat') ? ('daily' as const) : ('weekly' as const),
-      priority: path === '' ? 1.0 : (path.includes('tipo-de-cambio-sunat') ? 0.9 : 0.8),
+      changeFrequency: path === '' ? ('daily' as const) : ('weekly' as const),
+      priority: path === '' ? 1.0 : (path === 'dolar-hoy' ? 0.9 : 0.8),
       alternates: isSpanishOnly
         ? {
             languages: {
