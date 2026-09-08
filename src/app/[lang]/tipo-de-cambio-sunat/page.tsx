@@ -202,8 +202,34 @@ export default async function SunatPage({ params }: PageProps) {
           lang={lang} 
         />
 
+        {/* Transparencia Cambiaria Oficial SUNAT: 4-part mandatory disclosures */}
+        <section className="mt-8 bg-amber-50/70 dark:bg-slate-900/80 border border-amber-200/80 dark:border-slate-800 rounded-3xl p-6 sm:p-8">
+          <div className="flex items-center gap-2 mb-4 text-amber-950 dark:text-amber-200 font-bold text-base">
+            <span>🏛️</span>
+            <h2>Transparencia del Tipo de Cambio Oficial SUNAT</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-600 dark:text-slate-350 leading-relaxed">
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-amber-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">1. Fuente de Datos:</strong>
+              Cotizaciones oficiales publicadas por la Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT), basadas en los registros de la SBS.
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-amber-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">2. Frecuencia y Vigencia:</strong>
+              La SUNAT publica diariamente la cotización de cierre. De acuerdo con la Regla 1 del Reglamento de la Ley del Impuesto a la Renta, dicha cotización es la legalmente aplicable a las operaciones del día siguiente.
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-amber-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">3. Limitaciones y Ámbito Legal:</strong>
+              Esta tasa es de uso exclusivo y obligatorio para fines tributarios, contables, emisión de comprobantes de pago electrónicos y declaraciones juradas mensuales (PDT/SIRE). No opera como casa de cambio comercial.
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-amber-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">4. Diferencia con Bancos y Mercado Libre:</strong>
+              El tipo de cambio SUNAT NO es el precio al que los bancos o casas de cambio te compran o venden dólares en efectivo. Para transacciones de cambio de dinero físico en tiempo real, consulta la cotización de mercado en <Link href="/dolar-hoy" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Dólar Hoy</Link>.
+            </div>
+          </div>
+        </section>
+
         {/* Detailed 500+ Words SEO Article & Regulation Guide */}
-        <article className="mt-12 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <article className="mt-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed">
           <section className="space-y-4">
             <h2 className="text-2xl font-black text-slate-950 dark:text-white tracking-tight">
               ¿Qué es el Tipo de Cambio SUNAT y Cómo se Aplica en la Contabilidad en Perú?
@@ -334,28 +360,28 @@ export default async function SunatPage({ params }: PageProps) {
             </Link>
 
             <Link 
-              href="/calculadora-dolares-a-soles" 
+              href="/dolares-a-soles" 
               className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 hover:shadow-md transition bg-slate-50/50 dark:bg-slate-950/50 group"
             >
               <span className="text-2xl mb-2 block">💵</span>
               <h3 className="font-bold text-slate-900 dark:text-white text-sm group-hover:text-blue-600 transition">
-                Calculadora Dólares a Soles (USD → PEN)
+                Dólares a Soles (USD ↔ PEN)
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                Convierte dólares a soles con tasa SUNAT oficial o cotización personalizada.
+                Conversor bidireccional instantáneo con tasa SUNAT oficial o personalizada.
               </p>
             </Link>
 
             <Link 
-              href="/calculadora-soles-a-dolares" 
+              href="/dolar-hoy" 
               className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 hover:shadow-md transition bg-slate-50/50 dark:bg-slate-950/50 group"
             >
-              <span className="text-2xl mb-2 block">💰</span>
+              <span className="text-2xl mb-2 block">📈</span>
               <h3 className="font-bold text-slate-900 dark:text-white text-sm group-hover:text-blue-600 transition">
-                Calculadora Soles a Dólares (PEN → USD)
+                Dólar Hoy en Perú
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                Convierte soles a dólares estadounidenses de manera rápida e intuitiva.
+                Cotización de compra y venta del mercado interbancario en tiempo real.
               </p>
             </Link>
 

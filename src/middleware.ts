@@ -26,6 +26,23 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(newPathname, request.url), 301);
   }
 
+  // 2.0 Currency consolidation 301 redirects (eliminating duplicate & thin keyword variants)
+  const currencyRedirectMap: Record<string, string> = {
+    '/precio-del-dolar-en-peru': '/dolar-hoy',
+    '/calculadora-dolares-a-soles': '/dolares-a-soles',
+    '/soles-a-dolares': '/dolares-a-soles',
+    '/calculadora-soles-a-dolares': '/dolares-a-soles',
+    '/calculadoras/peru/precio-del-dolar-en-peru': '/dolar-hoy',
+    '/calculadoras/peru/calculadora-dolares-a-soles': '/dolares-a-soles',
+    '/calculadoras/peru/soles-a-dolares': '/dolares-a-soles',
+    '/calculadoras/peru/calculadora-soles-a-dolares': '/dolares-a-soles',
+  };
+
+  const normalizedPath = pathname.replace(/\/$/, '') || '/';
+  if (currencyRedirectMap[normalizedPath]) {
+    return NextResponse.redirect(new URL(currencyRedirectMap[normalizedPath], request.url), 301);
+  }
+
   // 2.1 If requesting an /en/ URL for a Spanish-only route, 301 redirect to canonical Spanish route
   if (pathname.startsWith('/en/')) {
     const pathWithoutEn = pathname.replace(/^\/en\//, '');

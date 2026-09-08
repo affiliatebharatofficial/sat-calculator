@@ -5,7 +5,7 @@ import LanguageSelector from '@/components/LanguageSelector';
 import ThemeToggle from '@/components/ThemeToggle';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import DolaresASolesClient from '../calculadora-dolares-a-soles/DolaresASolesClient';
+import DolaresASolesClient from './DolaresASolesClient';
 import { getSunatExchangeRate } from '@/lib/sunat-exchange-rate';
 
 interface PageProps {
@@ -21,19 +21,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('dolares-a-soles', lang);
 
   return {
-    title: 'Dólares a Soles: Calculadora USD a PEN',
-    description: 'Convierte dólares a soles peruanos en tiempo real usando la cotización del mercado, el tipo de cambio SUNAT oficial o una tasa personalizada.',
+    title: 'Dólares a Soles y Soles a Dólares: Convertidor USD ↔ PEN',
+    description: 'Convierte dólares a soles y soles a dólares con nuestro conversor bidireccional instantáneo. Elige entre tipo de cambio SUNAT oficial, mercado o tasa personalizada.',
     keywords: [
-      'dólar a soles',
       'dólares a soles',
-      'dolares a soles',
-      'dólar a soles peruanos',
-      'USD a PEN'
+      'soles a dólares',
+      'convertir dólares a soles',
+      'convertir soles a dólares',
+      'calculadora dólares a soles',
+      'calculadora soles a dólares',
+      'USD a PEN',
+      'PEN a USD',
+      'tipo de cambio dólar sol'
     ],
     alternates: seoAlternates,
     openGraph: {
-      title: 'Dólares a Soles: Calculadora USD a PEN',
-      description: 'Convierte dólares a soles peruanos en tiempo real usando la cotización del mercado, el tipo de cambio SUNAT oficial o una tasa personalizada.',
+      title: 'Dólares a Soles y Soles a Dólares: Convertidor USD ↔ PEN',
+      description: 'Convierte dólares a soles y soles a dólares con nuestro conversor bidireccional instantáneo. Tipo de cambio SUNAT oficial o personalizado.',
       url: seoAlternates.canonical,
       siteName: 'Calculadora SAT',
       locale: 'es_PE',
@@ -95,20 +99,46 @@ export default async function DolaresASolesPage({ params }: PageProps) {
 
         <div className="text-center max-w-3xl mx-auto mb-10">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800 dark:bg-blue-950/60 dark:text-blue-300 mb-4 border border-blue-200 dark:border-blue-800">
-            💵 Conversor USD → PEN
+            💵 Conversor Bidireccional USD ↔ PEN
           </span>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
-            Dólares a Soles: Calculadora USD a PEN
+            Dólares a Soles y Soles a Dólares
           </h1>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-350 mt-3 font-medium leading-relaxed">
-            Convierte dólares estadounidenses a soles peruanos eligiendo entre el tipo de cambio del mercado, la cotización SUNAT oficial o una tasa personalizada.
+            Calculadora y conversor bidireccional instantáneo entre dólares estadounidenses y soles peruanos. Elige entre tipo de cambio SUNAT oficial o cotización personalizada de tu banco.
           </p>
         </div>
 
         <DolaresASolesClient initialRate={initialRate} />
 
+        {/* Transparencia Cambiaria: 4-part mandatory disclosures */}
+        <section className="mt-8 bg-blue-50/70 dark:bg-slate-900/80 border border-blue-200/80 dark:border-slate-800 rounded-3xl p-6 sm:p-8">
+          <div className="flex items-center gap-2 mb-4 text-blue-950 dark:text-blue-200 font-bold text-base">
+            <span>ℹ️</span>
+            <h2>Transparencia y Condiciones del Tipo de Cambio</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-600 dark:text-slate-350 leading-relaxed">
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-blue-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">1. Fuente de Datos:</strong>
+              Cotizaciones oficiales publicadas por la Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) y la Superintendencia de Banca, Seguros y AFP (SBS).
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-blue-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">2. Frecuencia de Actualización:</strong>
+              Las tasas de SUNAT se actualizan automáticamente cada día hábil bancario por la mañana. Las tasas de referencia del mercado se sincronizan periódicamente.
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-blue-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">3. Limitaciones del Simulador:</strong>
+              Esta herramienta ofrece conversiones matemáticas de referencia. No constituye una casa de cambio ni ejecuta órdenes de compra/venta de divisas.
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-blue-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">4. Tasa Referencial vs. Bancos:</strong>
+              Las entidades bancarias comerciales (BCP, BBVA, Interbank, Scotiabank) y casas de cambio aplican un margen de intermediación comercial (*spread*), por lo que el tipo de cambio al cambiar dinero físico o en ventanilla diferirá de la tasa interbancaria o SUNAT.
+            </div>
+          </div>
+        </section>
+
         {/* Detailed 500+ Words SEO Content & Guide Section */}
-        <article className="mt-12 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <article className="mt-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed">
           <section className="space-y-4">
             <h2 className="text-2xl font-black text-slate-950 dark:text-white tracking-tight">
               ¿Cómo Convertir Dólares a Soles (USD a PEN) en Perú de Forma Correcta?
@@ -215,19 +245,11 @@ export default async function DolaresASolesPage({ params }: PageProps) {
               🌐 Red Completa de Calculadoras y Cotizaciones en Perú
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm font-semibold">
-              <Link href="/soles-a-dolares" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">💰</span>
-                <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Soles a Dólares</div>
-                  <div className="text-xs text-slate-500 font-normal">Calculadora interactiva PEN → USD</div>
-                </div>
-              </Link>
-
               <Link href="/dolar-hoy" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
                 <span className="text-2xl">📈</span>
                 <div>
                   <div className="text-slate-900 dark:text-white font-bold">Dólar Hoy en Perú</div>
-                  <div className="text-xs text-slate-500 font-normal">Cotización interbancaria en vivo</div>
+                  <div className="text-xs text-slate-500 font-normal">Cotización interbancaria en tiempo real</div>
                 </div>
               </Link>
 
@@ -235,23 +257,7 @@ export default async function DolaresASolesPage({ params }: PageProps) {
                 <span className="text-2xl">🇵🇪</span>
                 <div>
                   <div className="text-slate-900 dark:text-white font-bold">Tipo de Cambio SUNAT</div>
-                  <div className="text-xs text-slate-500 font-normal">Cotización oficial del día</div>
-                </div>
-              </Link>
-
-              <Link href="/precio-del-dolar-en-peru" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">📊</span>
-                <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Precio del Dólar en Perú</div>
-                  <div className="text-xs text-slate-500 font-normal">Análisis económico y cotización</div>
-                </div>
-              </Link>
-
-              <Link href="/tipo-de-cambio" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">💱</span>
-                <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Tipo de Cambio General</div>
-                  <div className="text-xs text-slate-500 font-normal">Guía cambiaria integral</div>
+                  <div className="text-xs text-slate-500 font-normal">Cotización oficial contable y tributaria</div>
                 </div>
               </Link>
 
@@ -259,7 +265,31 @@ export default async function DolaresASolesPage({ params }: PageProps) {
                 <span className="text-2xl">🏛️</span>
                 <div>
                   <div className="text-slate-900 dark:text-white font-bold">Solventar Obligaciones</div>
-                  <div className="text-xs text-slate-500 font-normal">Referencia legal de pago de deudas</div>
+                  <div className="text-xs text-slate-500 font-normal">Pago legal de deudas y contratos</div>
+                </div>
+              </Link>
+
+              <Link href="/calculadora-comisiones-tarjeta-dolares" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">💳</span>
+                <div>
+                  <div className="text-slate-900 dark:text-white font-bold">Comisiones Tarjeta en Dólares</div>
+                  <div className="text-xs text-slate-500 font-normal">Calcula recargos forex bancarios</div>
+                </div>
+              </Link>
+
+              <Link href="/calculadoras/peru" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">🇵🇪</span>
+                <div>
+                  <div className="text-slate-900 dark:text-white font-bold">Herramientas Perú</div>
+                  <div className="text-xs text-slate-500 font-normal">CTS, Gratificación, IGV y Renta 5ta</div>
+                </div>
+              </Link>
+
+              <Link href="/tipo-de-cambio" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">🇲🇽</span>
+                <div>
+                  <div className="text-slate-900 dark:text-white font-bold">Tipo de Cambio México (SAT/DOF)</div>
+                  <div className="text-xs text-slate-500 font-normal">Dólar a pesos mexicanos Banxico FIX</div>
                 </div>
               </Link>
             </div>

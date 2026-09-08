@@ -5,16 +5,14 @@ import LanguageSelector from '@/components/LanguageSelector';
 import ThemeToggle from '@/components/ThemeToggle';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import TipoCambioGeneralClient from './TipoCambioGeneralClient';
-import { getMarketExchangeRate } from '@/lib/exchange-rates/market-rate';
-import { getSunatExchangeRate } from '@/lib/sunat-exchange-rate';
+import TipoCambioMexicoClient from './TipoCambioMexicoClient';
+import { getSeoAlternates } from '@/lib/seo';
 
 interface PageProps {
   params: Promise<{
     lang: string;
   }>;
 }
-import { getSeoAlternates } from '@/lib/seo';
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
@@ -22,44 +20,51 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('tipo-de-cambio', lang);
 
   return {
-    title: 'Tipo de Cambio Hoy en Perú: Dólar, Soles y USD/PEN',
-    description: 'Aprende qué es el tipo de cambio, diferencia entre precio de compra y venta, tasa del mercado vs SUNAT y cómo calcular conversiones cambiarias.',
+    title: 'Tipo de Cambio Oficial SAT y Banxico: Dólar a Pesos (USD/MXN)',
+    description: 'Calcula la conversión de dólares a pesos mexicanos (USD a MXN) según el tipo de cambio oficial del SAT, Banxico FIX y el Diario Oficial de la Federación (DOF).',
     keywords: [
-      'tipo de cambio',
-      'tipo de cambio hoy',
-      'tipo de cambio dolar',
-      'tasa de cambio',
-      'tipo de cambio peru',
-      'tipo de cambio del dólar',
-      'tipo de cambio dolar peru'
+      'tipo de cambio sat',
+      'tipo de cambio banxico',
+      'tipo de cambio dof',
+      'dolar a pesos mexicanos',
+      'convertir dolares a pesos',
+      'usd to mxn',
+      'tipo de cambio oficial mexico',
+      'dolar fix banxico',
+      'tipo de cambio para impuestos sat'
     ],
     alternates: seoAlternates,
     openGraph: {
-      title: 'Tipo de Cambio Hoy en Perú: Dólar, Soles y USD/PEN',
-      description: 'Aprende qué es el tipo de cambio, diferencia entre precio de compra y venta, tasa del mercado vs SUNAT y cómo calcular conversiones cambiarias.',
+      title: 'Tipo de Cambio Oficial SAT y Banxico: Dólar a Pesos (USD/MXN)',
+      description: 'Calcula la conversión de dólares a pesos mexicanos (USD a MXN) según el tipo de cambio oficial del SAT, Banxico FIX y el Diario Oficial de la Federación (DOF).',
       url: seoAlternates.canonical,
       siteName: 'Calculadora SAT',
-      locale: 'es_PE',
+      locale: 'es_MX',
       type: 'website',
     },
   };
 }
 
-export default async function TipoCambioGeneralPage({ params }: PageProps) {
+export default async function TipoCambioPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
   const pageUrl = 'https://www.calculadorasat.org/tipo-de-cambio';
 
-  const marketRate = await getMarketExchangeRate();
-  const sunatRate = await getSunatExchangeRate();
-
   const webAppSchema = {
     '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${pageUrl}#webpage`,
+    '@type': 'WebApplication',
+    '@id': `${pageUrl}#webapp`,
     url: pageUrl,
-    name: 'Guía del Tipo de Cambio en Perú',
-    description: 'Aprende qué es el tipo de cambio, diferencia entre precio de compra y venta, tasa del mercado vs SUNAT y cómo calcular conversiones.',
+    name: 'Calculadora de Tipo de Cambio Oficial SAT y Banxico (USD a MXN)',
+    applicationCategory: 'FinancialApplication',
+    operatingSystem: 'All',
+    browserRequirements: 'Requires JavaScript. Requires HTML5.',
+    description: 'Calcula y convierte dólares estadounidenses a pesos mexicanos bajo las reglas del SAT, Banco de México (FIX) y el Código Fiscal de la Federación.',
+    offers: {
+      '@type': 'Offer',
+      price: '0.00',
+      priceCurrency: 'MXN',
+    },
   };
 
   const faqSchema = {
@@ -69,18 +74,26 @@ export default async function TipoCambioGeneralPage({ params }: PageProps) {
     mainEntity: [
       {
         '@type': 'Question',
-        name: '¿Qué es el tipo de cambio?',
+        name: '¿Qué tipo de cambio se utiliza para pagar impuestos ante el SAT?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'El tipo de cambio es la relación de proporción que existe entre el valor de dos divisas (por ejemplo, cuántos soles peruanos equivalen a un dólar estadounidense).'
+          text: 'Conforme al Artículo 20 del Código Fiscal de la Federación (CFF), se debe utilizar el tipo de cambio FIX determinado por el Banco de México y publicado en el Diario Oficial de la Federación (DOF) el día hábil bancario inmediato anterior al que se causen las contribuciones.'
         }
       },
       {
         '@type': 'Question',
-        name: '¿Cuál es la diferencia entre el tipo de cambio SUNAT y el tipo de cambio del mercado?',
+        name: '¿Qué es el tipo de cambio FIX del Banco de México?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'El tipo de cambio del mercado fluctuará en tiempo real en bancos y casas de cambio. El tipo de cambio SUNAT es publicado formalmente una vez al día para liquidación contable y fiscal.'
+          text: 'El tipo de cambio FIX es determinado por el Banco de México los días hábiles bancarios con base en un promedio ponderado de cotizaciones del mercado interbancario de divisas al mayoreo. Se publica en el DOF al día hábil siguiente.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cómo se facturan operaciones en dólares en el CFDI 4.0?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'En el CFDI 4.0 se debe registrar el atributo Moneda="USD" y el atributo TipoCambio con el valor oficial pactado o publicado por el Banco de México conforme a la guía de llenado del SAT.'
         }
       }
     ]
@@ -92,7 +105,7 @@ export default async function TipoCambioGeneralPage({ params }: PageProps) {
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.calculadorasat.org' },
-      { '@type': 'ListItem', position: 2, name: 'Tipo de Cambio', item: pageUrl }
+      { '@type': 'ListItem', position: 2, name: 'Tipo de Cambio SAT', item: pageUrl }
     ]
   };
 
@@ -105,121 +118,107 @@ export default async function TipoCambioGeneralPage({ params }: PageProps) {
       <Header lang={lang} />
 
       <main className="max-w-6xl mx-auto px-4 py-8">
-        <nav className="flex text-sm text-slate-500 dark:text-slate-400 mb-6">
-          <Link href={lang === 'en' ? '/en' : '/'} className="hover:text-blue-600 transition-colors">Inicio</Link>
+        <nav className="flex text-sm text-slate-500 dark:text-slate-400 mb-6" aria-label="Breadcrumb">
+          <Link href={lang === 'en' ? '/en' : '/'} className="hover:text-blue-600 transition-colors">
+            {lang === 'en' ? 'Home' : 'Inicio'}
+          </Link>
           <span className="mx-2">/</span>
-          <span className="text-slate-800 dark:text-slate-200 font-semibold">Tipo de Cambio</span>
+          <span className="text-slate-800 dark:text-slate-200 font-semibold">Tipo de Cambio Oficial SAT</span>
         </nav>
 
+        {/* Hero Section */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800 dark:bg-blue-950/60 dark:text-blue-300 mb-4 border border-blue-200 dark:border-blue-800">
-            🌐 Guía de Divisas y Monedas
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 mb-4 border border-emerald-200 dark:border-emerald-800">
+            🇲🇽 México • Referencia Oficial SAT / Banxico
           </span>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
-            Tipo de Cambio Hoy en Perú
+            Tipo de Cambio Oficial SAT y Banxico
           </h1>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-350 mt-3 font-medium leading-relaxed">
-            Aprende qué es el tipo de cambio, cómo funciona la cotización de compra y venta y las diferencias entre el mercado interbancario y el tipo de cambio SUNAT.
+            Convertidor oficial de Dólares a Pesos Mexicanos (USD a MXN) según las disposiciones del Código Fiscal de la Federación (Art. 20 CFF) y el Diario Oficial de la Federación (DOF).
           </p>
         </div>
 
-        <TipoCambioGeneralClient marketRate={marketRate} sunatRate={sunatRate} />
+        {/* Interactive Client Calculator */}
+        <TipoCambioMexicoClient />
 
-        {/* Detailed 500+ Words SEO Content & Comprehensive Guide Section */}
-        <article className="mt-12 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed">
+        {/* Transparencia Cambiaria: 4-part mandatory disclosures */}
+        <section className="mt-8 bg-blue-50/70 dark:bg-slate-900/80 border border-blue-200/80 dark:border-slate-800 rounded-3xl p-6 sm:p-8">
+          <div className="flex items-center gap-2 mb-4 text-blue-950 dark:text-blue-200 font-bold text-base">
+            <span>ℹ️</span>
+            <h2>Transparencia del Tipo de Cambio Oficial en México</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-600 dark:text-slate-350 leading-relaxed">
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-blue-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">1. Fuente de Datos:</strong>
+              Cotizaciones del Banco de México (Banxico) bajo el mecanismo FIX y publicaciones oficiales del Diario Oficial de la Federación (DOF).
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-blue-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">2. Frecuencia y Publicación:</strong>
+              Banxico determina la tasa FIX a las 12:00 horas de cada día hábil bancario. Conforme al Art. 20 del CFF, dicha cotización surte efecto fiscal el día hábil siguiente.
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-blue-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">3. Limitaciones:</strong>
+              Esta herramienta es un simulador matemático de referencia fiscal y contable. No sustituye la consulta directa del DOF ni opera como intermediario financiero.
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-blue-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">4. Tasa Oficial FIX vs. Ventanilla Bancaria:</strong>
+              El tipo de cambio FIX es el parámetro legal del gobierno para el pago de contribuciones y obligaciones. Las ventanillas bancarias comerciales (BBVA, Banorte, Santander, etc.) manejan cotizaciones libres con márgenes propios de compra y venta.
+            </div>
+          </div>
+        </section>
+
+        {/* Detailed Educational Guide */}
+        <article className="mt-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed">
           <section className="space-y-4">
             <h2 className="text-2xl font-black text-slate-950 dark:text-white tracking-tight">
-              ¿Qué es el Tipo de Cambio y Cómo Funciona en el Perú?
+              Marco Legal del Tipo de Cambio para Efectos Fiscales en México
             </h2>
             <p>
-              El <strong>tipo de cambio</strong> es el precio de una moneda expresado en términos de otra. En el caso del Perú, la paridad cambiaria de mayor relevancia económica y financiera es el par <strong>USD/PEN</strong>, que representa la cantidad de <strong>soles peruanos</strong> requeridos para comprar un <strong>dólar estadounidense</strong>.
+              En México, el manejo de transacciones en moneda extranjera está rigurosamente reglamentado por el <strong>Código Fiscal de la Federación (CFF)</strong> y la <strong>Ley Monetaria de los Estados Unidos Mexicanos</strong>.
             </p>
             <p>
-              En el territorio peruano rige un esquema cambiario de <strong>flotación administrada</strong> impulsado por el Banco Central de Reserva del Perú (BCRP). Bajo este sistema, el valor del dólar se determina por la oferta y la demanda del mercado libre, aunque el BCRP interviene de forma oportuna para mitigar volatilidades extremas y asegurar la estabilidad macroeconómica nacional.
+              Cuando un contribuyente (persona física o moral) recibe ingresos, realiza importaciones, deduce gastos o contrae obligaciones pactadas en moneda extranjera (como dólares estadounidenses), la contabilidad electrónica y las declaraciones de impuestos deben convertirse obligatoriamente a moneda nacional (pesos mexicanos).
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-xl font-extrabold text-slate-950 dark:text-white tracking-tight">
-              Diferencia Fundamental: Tipo de Cambio Compra vs. Venta
+              Regla del Artículo 20 del Código Fiscal de la Federación (CFF)
             </h2>
-            <p>
-              Cualquier entidad que opera en el mercado cambiaría (bancos comerciales, casas de cambio digitales y cambistas) publica dos precios diferentes:
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
-                <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2 flex items-center gap-2">
-                  <span>🟢</span> Tipo de Cambio Compra (Bid)
-                </h3>
-                <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                  Es la cotización a la cual la entidad financiera te compra tus dólares. Si tienes dólares en efectivo o en tu cuenta y deseas cambiarlos a soles, la entidad aplicará el precio de compra. Para convertir dólares a soles, utiliza nuestra herramienta <Link href="/dolares-a-soles" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Dólares a Soles</Link>.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
-                <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2 flex items-center gap-2">
-                  <span>🔴</span> Tipo de Cambio Venta (Ask)
-                </h3>
-                <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                  Es la cotización a la cual la entidad financiera te vende los dólares. Si tienes soles y deseas adquirir dólares americanos, la entidad aplicará el precio de venta. Para calcular esta conversión, usa nuestro simulador <Link href="/soles-a-dolares" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Soles a Dólares</Link>.
-                </p>
-              </div>
+            <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm space-y-3">
+              <p className="italic text-slate-600 dark:text-slate-400 font-serif">
+                "Para determinar las contribuciones y sus accesorios se considerará el tipo de cambio a que se haya adquirido la moneda extranjera de que se trate y no habiendo adquisición, se estará al tipo de cambio que el Banco de México publique en el Diario Oficial de la Federación el día anterior a aquél en que se causen las contribuciones."
+              </p>
+              <p className="text-xs text-slate-500 font-semibold">
+                — Artículo 20, Párrafo Tercero, Código Fiscal de la Federación.
+              </p>
             </div>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="text-xl font-extrabold text-slate-950 dark:text-white tracking-tight">
-              Factores Macroeconómicos que Influyen en el Precio del Dólar en Perú
-            </h2>
-            <p>
-              El precio del dólar en el Perú se ve afectado por factores internacionales y locales:
+            <p className="text-sm">
+              Esto significa que para cualquier cálculo de impuestos ante el SAT (como retenciones de ISR o acreditamiento de IVA de facturas en dólares), debes tomar la cotización publicada en el DOF del día hábil inmediato anterior.
             </p>
-            <ul className="list-disc pl-5 space-y-2 text-sm">
-              <li>
-                <strong>Precio Internacional del Cobre y Minería:</strong> El cobre es el principal producto de exportación del Perú. Precios elevados del cobre generan un mayor flujo de divisas (dólares) al país, fortaleciendo el Sol peruano.
-              </li>
-              <li>
-                <strong>Decisiones de la Reserva Federal (Fed) de EE.UU.:</strong> El incremento de las tasas de interés por parte de la Fed atrae capitales globales hacia activos denominados en dólares, elevando la cotización del billete verde a nivel mundial.
-              </li>
-              <li>
-                <strong>Intervención Cambiaria del BCRP:</strong> El BCRP interviene vendiendo dólares en el mercado spot o emitiendo certificados de depósito reajustables (CDBCRP) para amortiguar picos repentinos de alza o caída del dólar.
-              </li>
-              <li>
-                <strong>Obligaciones Tributarias ante la SUNAT:</strong> En fechas de vencimiento de impuestos ante la <Link href="/tipo-de-cambio-sunat" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">SUNAT</Link>, las empresas demandan mayores montos en Soles para cumplir con sus declaraciones, influyendo temporalmente en la liquidez cambiaria.
-              </li>
-            </ul>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-xl font-extrabold text-slate-950 dark:text-white tracking-tight">
-              Preguntas Frecuentes sobre el Tipo de Cambio en Perú
+              Preguntas Frecuentes sobre el Tipo de Cambio en México
             </h2>
             <div className="space-y-4 text-sm">
               <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
                 <h3 className="font-bold text-slate-900 dark:text-white mb-1">
-                  ¿Por qué el Tipo de Cambio SUNAT difiere del Mercado Interbancario?
+                  ¿Qué tasa de cambio debo usar en una factura electrónica (CFDI) emitida en dólares?
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400 text-xs">
-                  El mercado interbancario fluctúa en tiempo real según las negociaciones de los bancos. El <Link href="/tipo-de-cambio-sunat" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Tipo de Cambio SUNAT</Link> es una tasa oficial fijada diariamente para fines exclusivamente tributarios y contables.
+                  En el CFDI 4.0 debes especificar el tipo de cambio oficial del día de emisión conforme al catálogo de monedas del SAT o la tasa pactada entre las partes al momento de la operación.
                 </p>
               </div>
 
               <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
                 <h3 className="font-bold text-slate-900 dark:text-white mb-1">
-                  ¿Dónde puedo ver la cotización del dólar en vivo hoy?
+                  ¿Cómo afecta la fluctuación cambiaria en la declaración anual?
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400 text-xs">
-                  Puedes consultar los valores en vivo de compra, venta y variación del mercado en nuestra página especializada de <Link href="/dolar-hoy" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Dólar Hoy en Perú</Link>.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-bold text-slate-900 dark:text-white mb-1">
-                  ¿Qué tasa se aplica para el pago de deudas y deudas contractuales?
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400 text-xs">
-                  Para la liquidación formal de deudas en moneda extranjera según el Código Civil Peruano, se debe consultar el <Link href="/tipo-de-cambio-para-solventar-obligaciones" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Tipo de Cambio para Solventar Obligaciones</Link>.
+                  Las personas morales y personas físicas con actividad empresarial deben registrar la utilidad o pérdida cambiaria al cierre del ejercicio fiscal como un ingreso acumulable o deducción autorizada respectivamente.
                 </p>
               </div>
             </div>
@@ -227,60 +226,59 @@ export default async function TipoCambioGeneralPage({ params }: PageProps) {
 
           <section className="pt-4 border-t border-slate-200 dark:border-slate-800">
             <h2 className="text-xl font-extrabold text-slate-950 dark:text-white mb-6">
-              🌐 Directorio de Herramientas y Calculadoras Cambiarias en Perú
+              🌐 Herramientas Fiscales y Financieras Relacionadas
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm font-semibold">
+              <Link href="/calculadoras/sat/iva" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">🇲🇽</span>
+                <div>
+                  <div className="text-slate-900 dark:text-white font-bold">Calculadora de IVA (SAT)</div>
+                  <div className="text-xs text-slate-500 font-normal">Desglose al 16% y tasa fronteriza 8%</div>
+                </div>
+              </Link>
+
+              <Link href="/calculadoras/nomina/salario-neto-mexico" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">💼</span>
+                <div>
+                  <div className="text-slate-900 dark:text-white font-bold">Salario Neto México</div>
+                  <div className="text-xs text-slate-500 font-normal">Cálculo de retenciones ISR e IMSS</div>
+                </div>
+              </Link>
+
+              <Link href="/calculadoras/sat/resico" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">📑</span>
+                <div>
+                  <div className="text-slate-900 dark:text-white font-bold">Calculadora RESICO</div>
+                  <div className="text-xs text-slate-500 font-normal">Tasas reducidas del 1% al 2.5%</div>
+                </div>
+              </Link>
+
               <Link href="/dolar-hoy" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">📈</span>
-                <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Dólar Hoy en Perú</div>
-                  <div className="text-xs text-slate-500 font-normal">Cotización interbancaria en vivo</div>
-                </div>
-              </Link>
-
-              <Link href="/precio-del-dolar-en-peru" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">📊</span>
-                <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Precio del Dólar en Perú</div>
-                  <div className="text-xs text-slate-500 font-normal">Análisis macroeconómico</div>
-                </div>
-              </Link>
-
-              <Link href="/tipo-de-cambio-sunat" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
                 <span className="text-2xl">🇵🇪</span>
                 <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Tipo de Cambio SUNAT</div>
-                  <div className="text-xs text-slate-500 font-normal">Cotización oficial del día</div>
+                  <div className="text-slate-900 dark:text-white font-bold">Dólar Hoy en Perú</div>
+                  <div className="text-xs text-slate-500 font-normal">Cotización interbancaria en tiempo real</div>
                 </div>
               </Link>
 
               <Link href="/dolares-a-soles" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">💵</span>
+                <span className="text-2xl">💱</span>
                 <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Dólares a Soles</div>
-                  <div className="text-xs text-slate-500 font-normal">Conversor USD → PEN</div>
+                  <div className="text-slate-900 dark:text-white font-bold">Dólares a Soles (USD ↔ PEN)</div>
+                  <div className="text-xs text-slate-500 font-normal">Conversor bidireccional instantáneo</div>
                 </div>
               </Link>
 
-              <Link href="/soles-a-dolares" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">💰</span>
-                <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Soles a Dólares</div>
-                  <div className="text-xs text-slate-500 font-normal">Conversor PEN → USD</div>
-                </div>
-              </Link>
-
-              <Link href="/tipo-de-cambio-para-solventar-obligaciones" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+              <Link href="/tipo-de-cambio-sunat" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
                 <span className="text-2xl">🏛️</span>
                 <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Solventar Obligaciones</div>
-                  <div className="text-xs text-slate-500 font-normal">Tasa para cancelación de deudas</div>
+                  <div className="text-slate-900 dark:text-white font-bold">Tipo de Cambio SUNAT</div>
+                  <div className="text-xs text-slate-500 font-normal">Cotización tributaria oficial de Perú</div>
                 </div>
               </Link>
             </div>
           </section>
         </article>
-
       </main>
 
       <Footer lang={lang} />

@@ -11,13 +11,9 @@ export const SPANISH_ONLY_ROUTES = [
   'formatos',
   'semanas-cotizadas-imss',
   'dolar-hoy',
-  'precio-del-dolar-en-peru',
   'tipo-de-cambio',
   'tipo-de-cambio-sunat',
   'dolares-a-soles',
-  'soles-a-dolares',
-  'calculadora-dolares-a-soles',
-  'calculadora-soles-a-dolares',
   'calendario-fiscal',
   'blog',
 ];

@@ -129,8 +129,34 @@ export default async function ComisionesTarjetaPage({ params }: PageProps) {
 
         <ComisionesTarjetaClient defaultRate={marketRate.sellRate} />
 
+        {/* Transparencia Cambiaria: 4-part mandatory disclosures */}
+        <section className="mt-8 bg-violet-50/70 dark:bg-slate-900/80 border border-violet-200/80 dark:border-slate-800 rounded-3xl p-6 sm:p-8">
+          <div className="flex items-center gap-2 mb-4 text-violet-950 dark:text-violet-200 font-bold text-base">
+            <span>💳</span>
+            <h2>Transparencia de Comisiones y Tipo de Cambio Bancario</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-600 dark:text-slate-350 leading-relaxed">
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-violet-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">1. Fuente de Datos:</strong>
+              Cotizaciones de referencia interbancarias y parámetros estándar reportados por entidades financieras reguladas por la SBS / Condusef.
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-violet-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">2. Frecuencia de Actualización:</strong>
+              La cotización base de mercado se actualiza periódicamente durante días hábiles.
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-violet-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">3. Limitaciones:</strong>
+              Simulador educativo. Las comisiones por conversión y tipos de cambio finales dependen del contrato del emisor de tu tarjeta (Visa, Mastercard, Amex o banco emisor).
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-violet-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">4. Diferencia con la Tasa Oficial:</strong>
+              Los emisores de tarjetas aplican tanto un recargo sobre el tipo de cambio venta como una comisión porcentual por operación internacional, resultando en un costo superior al tipo de cambio referencial.
+            </div>
+          </div>
+        </section>
+
         {/* 500+ Words SEO Article */}
-        <article className="mt-12 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <article className="mt-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed">
           <section className="space-y-4">
             <h2 className="text-2xl font-black text-slate-950 dark:text-white tracking-tight">
               ¿Cómo Cobran los Bancos por Compras en Dólares con Tarjeta?
@@ -171,21 +197,28 @@ export default async function ComisionesTarjetaPage({ params }: PageProps) {
                 <span className="text-2xl">📈</span>
                 <div>
                   <div className="text-slate-900 dark:text-white font-bold">Dólar Hoy en Perú</div>
-                  <div className="text-xs text-slate-500 font-normal">Cotización en vivo</div>
+                  <div className="text-xs text-slate-500 font-normal">Cotización en tiempo real</div>
                 </div>
               </Link>
               <Link href="/dolares-a-soles" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
                 <span className="text-2xl">💵</span>
                 <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Dólares a Soles</div>
-                  <div className="text-xs text-slate-500 font-normal">Conversor USD → PEN</div>
+                  <div className="text-slate-900 dark:text-white font-bold">Dólares a Soles (USD ↔ PEN)</div>
+                  <div className="text-xs text-slate-500 font-normal">Conversor bidireccional</div>
                 </div>
               </Link>
-              <Link href="/soles-a-dolares" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">💰</span>
+              <Link href="/tipo-de-cambio-sunat" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">🇵🇪</span>
                 <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Soles a Dólares</div>
-                  <div className="text-xs text-slate-500 font-normal">Conversor PEN → USD</div>
+                  <div className="text-slate-900 dark:text-white font-bold">Tipo de Cambio SUNAT</div>
+                  <div className="text-xs text-slate-500 font-normal">Tasa oficial tributaria</div>
+                </div>
+              </Link>
+              <Link href="/tipo-de-cambio" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">🇲🇽</span>
+                <div>
+                  <div className="text-slate-900 dark:text-white font-bold">Tipo de Cambio México (SAT/DOF)</div>
+                  <div className="text-xs text-slate-500 font-normal">Banxico FIX oficial</div>
                 </div>
               </Link>
             </div>

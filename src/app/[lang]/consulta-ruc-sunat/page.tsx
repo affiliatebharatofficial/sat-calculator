@@ -198,11 +198,11 @@ export default async function ConsultaRucPage({ params }: PageProps) {
                 <div className="text-xs text-slate-500 font-normal">UIT e indicadores oficiales</div>
               </div>
             </Link>
-            <Link href="/calculadora-dolares-a-soles" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+            <Link href="/dolares-a-soles" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
               <span className="text-2xl">💵</span>
               <div>
-                <div className="text-slate-900 dark:text-white font-bold">Dólares a Soles</div>
-                <div className="text-xs text-slate-500 font-normal">Convertidor USD a PEN</div>
+                <div className="text-slate-900 dark:text-white font-bold">Dólares a Soles (USD ↔ PEN)</div>
+                <div className="text-xs text-slate-500 font-normal">Convertidor bidireccional</div>
               </div>
             </Link>
           </div>

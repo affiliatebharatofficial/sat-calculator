@@ -2,21 +2,22 @@ import { CalculatorConfig } from '../../types/calculator';
 
 export const calculadoraDolaresASolesCalculator: CalculatorConfig = {
   id: 'calculo-dolares-a-soles',
-  title: 'Calculadora Dólares a Soles',
-  shortDescription: 'Convierte dólares estadounidenses (USD) a soles peruanos (PEN) usando el tipo de cambio SUNAT o una tasa personalizada.',
+  title: 'Dólares a Soles y Soles a Dólares',
+  shortDescription: 'Convierte montos bidireccionalmente entre dólares (USD) y soles peruanos (PEN) con cotización SUNAT o personalizada.',
   category: 'Herramientas Perú',
   categorySlug: 'peru',
-  slug: 'calculadora-dolares-a-soles',
+  slug: 'dolares-a-soles',
   seo: {
-    metaTitle: 'Calculadora Dólares a Soles: USD a PEN',
-    metaDescription: 'Convierte dólares a soles peruanos fácilmente usando el tipo de cambio disponible o un valor personalizado.',
+    metaTitle: 'Dólares a Soles y Soles a Dólares: Convertidor USD ↔ PEN',
+    metaDescription: 'Convierte dólares a soles y soles a dólares con nuestro conversor bidireccional instantáneo con tasas de la SUNAT.',
     keywords: [
-      'convertir dólares a soles',
       'dólares a soles',
+      'soles a dólares',
+      'convertir dólares a soles',
+      'convertir soles a dólares',
       'calculadora dólares a soles',
       'USD a PEN',
-      'dólar a sol peruano',
-      'tipo de cambio dólar Perú'
+      'PEN a USD'
     ],
     schemaType: 'Calculator'
   },

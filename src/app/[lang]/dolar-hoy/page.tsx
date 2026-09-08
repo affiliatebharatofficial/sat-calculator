@@ -147,8 +147,34 @@ export default async function DolarHoyPage({ params }: PageProps) {
         {/* Main Interactive Client Component (Live Market Rate + Separate SUNAT Card + Converter) */}
         <DolarHoyClient marketRate={marketRate} sunatRate={sunatRate} />
 
+        {/* Transparencia Cambiaria: 4-part mandatory disclosures */}
+        <section className="mt-8 bg-blue-50/70 dark:bg-slate-900/80 border border-blue-200/80 dark:border-slate-800 rounded-3xl p-6 sm:p-8">
+          <div className="flex items-center gap-2 mb-4 text-blue-950 dark:text-blue-200 font-bold text-base">
+            <span>ℹ️</span>
+            <h2>Transparencia del Tipo de Cambio en Tiempo Real</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-600 dark:text-slate-350 leading-relaxed">
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-blue-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">1. Fuente de Datos:</strong>
+              Cotizaciones de mercado cambiario interbancario provistas en tiempo real e información oficial de la Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) y SBS.
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-blue-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">2. Frecuencia de Actualización:</strong>
+              Monitoreo continuo durante las horas de negociación del mercado interbancario de Lima (lunes a viernes de 9:00 a.m. a 1:30 p.m. PET). La tasa SUNAT se actualiza una vez al día hábil.
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-blue-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">3. Limitaciones:</strong>
+              La cotización presentada es de carácter informativo e ilustrativo del mercado interbancario mayorista. Las plataformas de cambio privadas o entidades financieras fijan libremente sus propias tasas operativas.
+            </div>
+            <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-blue-100 dark:border-slate-850">
+              <strong className="text-slate-900 dark:text-white block mb-1">4. Tasa Referencial vs. Bancos y Casas de Cambio:</strong>
+              Existe un diferencial (*spread*) entre el precio de compra y venta. Los bancos comerciales (BCP, BBVA, Interbank) manejan márgenes más amplios (aprox. 1% a 2.5%), mientras que las casas de cambio físicas (mercado paralelo u Ocoña) y fintechs ofrecen spreads más reducidos.
+            </div>
+          </div>
+        </section>
+
         {/* Informational SEO Content Section (500+ Words) */}
-        <article className="mt-16 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <article className="mt-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed">
           <section className="space-y-4">
             <h2 className="text-2xl font-black text-slate-950 dark:text-white tracking-tight">
               Dólar Hoy en Perú: Cotización en Tiempo Real y Análisis del Mercado
@@ -217,7 +243,7 @@ export default async function DolarHoyPage({ params }: PageProps) {
                   ¿Cómo convertir de Dólares a Soles o viceversa?
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400 text-xs">
-                  Usa nuestros conversores dedicados <Link href="/dolares-a-soles" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Dólares a Soles</Link> y <Link href="/soles-a-dolares" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Soles a Dólares</Link> para obtener la cifra exacta en tiempo real.
+                  Usa nuestro conversor bidireccional <Link href="/dolares-a-soles" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Dólares a Soles y Soles a Dólares</Link> para obtener la cifra exacta en tiempo real con opción a tasa SUNAT o personalizada.
                 </p>
               </div>
 
@@ -237,19 +263,11 @@ export default async function DolarHoyPage({ params }: PageProps) {
               🌐 Red Completa de Calculadoras de Divisas en Perú
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm font-semibold">
-              <Link href="/precio-del-dolar-en-peru" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">📊</span>
+              <Link href="/dolares-a-soles" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">💵</span>
                 <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Precio del Dólar en Perú</div>
-                  <div className="text-xs text-slate-500 font-normal">Análisis y factores del dólar</div>
-                </div>
-              </Link>
-
-              <Link href="/tipo-de-cambio" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">🌐</span>
-                <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Tipo de Cambio General</div>
-                  <div className="text-xs text-slate-500 font-normal">Guía conceptual de divisas</div>
+                  <div className="text-slate-900 dark:text-white font-bold">Dólares a Soles (USD ↔ PEN)</div>
+                  <div className="text-xs text-slate-500 font-normal">Conversor bidireccional instantáneo</div>
                 </div>
               </Link>
 
@@ -257,23 +275,7 @@ export default async function DolarHoyPage({ params }: PageProps) {
                 <span className="text-2xl">🇵🇪</span>
                 <div>
                   <div className="text-slate-900 dark:text-white font-bold">Tipo de Cambio SUNAT</div>
-                  <div className="text-xs text-slate-500 font-normal">Tasa tributaria oficial</div>
-                </div>
-              </Link>
-
-              <Link href="/dolares-a-soles" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">💵</span>
-                <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Dólares a Soles</div>
-                  <div className="text-xs text-slate-500 font-normal">Calculadora USD → PEN</div>
-                </div>
-              </Link>
-
-              <Link href="/soles-a-dolares" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
-                <span className="text-2xl">💰</span>
-                <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Soles a Dólares</div>
-                  <div className="text-xs text-slate-500 font-normal">Calculadora PEN → USD</div>
+                  <div className="text-xs text-slate-500 font-normal">Tasa tributaria y contable oficial</div>
                 </div>
               </Link>
 
@@ -281,7 +283,31 @@ export default async function DolarHoyPage({ params }: PageProps) {
                 <span className="text-2xl">⚖️</span>
                 <div>
                   <div className="text-slate-900 dark:text-white font-bold">Solventar Obligaciones</div>
-                  <div className="text-xs text-slate-500 font-normal">Conversión legal de tributos</div>
+                  <div className="text-xs text-slate-500 font-normal">Conversión legal de deudas en dólares</div>
+                </div>
+              </Link>
+
+              <Link href="/calculadora-comisiones-tarjeta-dolares" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">💳</span>
+                <div>
+                  <div className="text-slate-900 dark:text-white font-bold">Comisiones Tarjeta en Dólares</div>
+                  <div className="text-xs text-slate-500 font-normal">Calcula recargos forex bancarios</div>
+                </div>
+              </Link>
+
+              <Link href="/calculadoras/peru" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">🇵🇪</span>
+                <div>
+                  <div className="text-slate-900 dark:text-white font-bold">Herramientas Perú</div>
+                  <div className="text-xs text-slate-500 font-normal">CTS, Gratificación, IGV y Renta 5ta</div>
+                </div>
+              </Link>
+
+              <Link href="/tipo-de-cambio" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+                <span className="text-2xl">🇲🇽</span>
+                <div>
+                  <div className="text-slate-900 dark:text-white font-bold">Tipo de Cambio México (SAT/DOF)</div>
+                  <div className="text-xs text-slate-500 font-normal">Dólar a pesos mexicanos Banxico FIX</div>
                 </div>
               </Link>
             </div>

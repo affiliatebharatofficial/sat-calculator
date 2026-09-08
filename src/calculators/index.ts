@@ -25,11 +25,9 @@ import { recargosCalculator } from './sat/recargos';
 import { tipoCambioSunatCalculator } from './conversiones/tipo-de-cambio-sunat';
 import { tipoCambioSolventarObligacionesCalculator } from './conversiones/tipo-de-cambio-para-solventar-obligaciones';
 import { calculadoraDolaresASolesCalculator } from './conversiones/calculadora-dolares-a-soles';
-import { calculadoraSolesADolaresCalculator } from './conversiones/calculadora-soles-a-dolares';
 import { consultaRucSunatCalculator } from './conversiones/consulta-ruc-sunat';
 import { tablasEIndicadoresSunatCalculator } from './conversiones/tablas-e-indicadores-sunat';
 import { dolarHoyCalculator } from './conversiones/dolar-hoy';
-import { precioDelDolarEnPeruCalculator } from './conversiones/precio-del-dolar-en-peru';
 import { semanasCotizadasImssCalculator } from './nomina/semanas-cotizadas-imss';
 import { pagoTarjetaCreditoCalculator } from './finanzas-personales/pago-tarjeta-credito';
 import { igvPeruCalculator } from './conversiones/igv-peru';
@@ -66,11 +64,9 @@ export const calculators: CalculatorConfig[] = [
   tipoCambioSunatCalculator,
   tipoCambioSolventarObligacionesCalculator,
   calculadoraDolaresASolesCalculator,
-  calculadoraSolesADolaresCalculator,
   consultaRucSunatCalculator,
   tablasEIndicadoresSunatCalculator,
   dolarHoyCalculator,
-  precioDelDolarEnPeruCalculator,
   igvPeruCalculator,
   depreciacionCalculator,
   aforeCalculator,
