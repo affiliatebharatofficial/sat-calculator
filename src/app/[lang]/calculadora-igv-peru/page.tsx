@@ -223,6 +223,29 @@ export default async function IgvPeruPage({ params }: PageProps) {
             </div>
           </section>
 
+          {/* Legal Basis & Statutory References */}
+          <section className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
+            <h3 className="text-base font-bold text-slate-950 dark:text-white flex items-center gap-2">
+              <span>⚖️</span> Base Legal y Normativa del IGV en Perú
+            </h3>
+            <ul className="list-disc pl-5 text-xs text-slate-600 dark:text-slate-400 space-y-1">
+              <li><strong>Decreto Supremo N° 055-99-EF:</strong> Texto Único Ordenado de la Ley del Impuesto General a las Ventas e Impuesto Selectivo al Consumo (TUO Ley del IGV).</li>
+              <li><strong>Decreto Legislativo N° 776 (Ley de Tributación Municipal):</strong> Asignación del 2% correspondiente al Impuesto de Promoción Municipal (IPM).</li>
+              <li><strong>Resolución de Superintendencia N° 007-99/SUNAT:</strong> Reglamento de Comprobantes de Pago sobre desagregación obligatoria de tributos en facturas electrónicas.</li>
+            </ul>
+          </section>
+
+          {/* Disclaimer Box */}
+          <div className="p-4 bg-amber-50 dark:bg-amber-955/40 border border-amber-200 dark:border-amber-800/60 rounded-2xl text-xs text-amber-900 dark:text-amber-200 leading-relaxed">
+            <p className="font-bold mb-1">⚠️ Aviso Legal e Informativo:</p>
+            <p>
+              Esta calculadora es un simulador aritmético independiente para fines didácticos y de verificación comercial. <strong>NO está afiliada, autorizada ni avalada formalmente por la SUNAT ni el Ministerio de Economía y Finanzas (MEF).</strong> Para la determinación oficial de tus obligaciones tributarias mensuales y el uso del crédito fiscal, consulta los lineamientos formales en el portal oficial de la SUNAT o acude a un profesional contable titulado.
+            </p>
+            <p className="mt-2 text-[11px] text-amber-800 dark:text-amber-300 font-semibold">
+              Última revisión técnica de tasas: Febrero 2026.
+            </p>
+          </div>
+
           <section className="pt-4 border-t border-slate-200 dark:border-slate-800">
             <h2 className="text-xl font-extrabold text-slate-950 dark:text-white mb-6">
               🌐 Red de Herramientas Tributarias y Financieras de Perú

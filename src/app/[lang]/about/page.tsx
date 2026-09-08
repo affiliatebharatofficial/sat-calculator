@@ -99,9 +99,46 @@ export default async function AboutPage({ params }: PageProps) {
 
               <hr className="border-slate-200 dark:border-slate-800 my-6" />
 
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Our Team</h2>
+              <hr className="border-slate-200 dark:border-slate-800 my-6" />
+
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Methodology for Rate Maintenance & Formula Updates</h2>
               <p>
-                We are a multidisciplinary team composed of accounting advisors, software developers, and regional tax researchers. We combine technical expertise with a deep understanding of Mexican and Latin American fiscal frameworks to build practical, educational solutions.
+                To maintain mathematical accuracy, our tools are continuously aligned with publicly published statutes and official government gazettes:
+              </p>
+              <div className="space-y-4 mt-2">
+                <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2">
+                  <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+                    <span>🇲🇽</span> Mexican Regulatory Monitoring
+                  </h3>
+                  <ul className="list-disc pl-5 text-xs space-y-1 text-slate-600 dark:text-slate-400">
+                    <li><strong>Diario Oficial de la Federación (DOF):</strong> We monitor published decrees, the annual Resolución Miscelánea Fiscal (RMF), and Annex 8 tables for progressive Income Tax (ISR Art. 96 and 152).</li>
+                    <li><strong>INEGI (UMA):</strong> The Unidad de Medida y Actualización (UMA) is verified every January upon release and updated effective February 1st.</li>
+                    <li><strong>CONASAMI:</strong> General minimum wage and Northern Border Free Zone (ZLFN) values are audited every January.</li>
+                    <li><strong>IMSS & LSS:</strong> Worker-employer contribution tiers, disability insurance brackets, and 25-UMA maximum contribution caps are audited according to the Ley del Seguro Social.</li>
+                    <li><strong>LFT (Labor Law):</strong> Calculations for severance, seniority premiums, and statutory holidays adhere strictly to the Ley Federal del Trabajo.</li>
+                  </ul>
+                </div>
+
+                <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2">
+                  <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+                    <span>🇵🇪</span> Peruvian Regulatory Monitoring
+                  </h3>
+                  <ul className="list-disc pl-5 text-xs space-y-1 text-slate-600 dark:text-slate-400">
+                    <li><strong>Diario Oficial El Peruano & MEF:</strong> Annual Unidad Impositiva Tributaria (UIT) values are updated immediately upon enactment.</li>
+                    <li><strong>SUNAT (Quinta Categoría & IGV):</strong> Progressive withholding brackets (8% to 30%), 7-UIT automatic deductions, and the 18% IGV rate (16% + 2% IPM) are programmed according to D.S. N° 179-2004-EF and D.S. N° 055-99-EF.</li>
+                    <li><strong>MTPE (Labor Benefits):</strong> Formulas for CTS (D.S. N° 001-97-TR) and statutory bonuses/Gratificaciones (Ley N° 27735 & Ley N° 30334) reflect exact legal vesting rules.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <hr className="border-slate-200 dark:border-slate-800 my-6" />
+
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Our Team & Transparency Commitment</h2>
+              <p>
+                We are an independent team of software developers and financial calculation researchers passionate about building fast, accessible web utilities.
+              </p>
+              <p>
+                We do not claim to be a licensed accounting firm or a government agency. We do not invent fictitious professional credentials, fictitious expert panels, or pseudo-governmental endorsements. Our tools are public mathematical implementations of the laws cited above. If you notice any formula discrepancy or legislative change, we encourage you to contact us at <a href="mailto:hello@calculadorasat.org" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">hello@calculadorasat.org</a>.
               </p>
             </div>
           </div>
@@ -163,7 +200,7 @@ export default async function AboutPage({ params }: PageProps) {
             <div className="p-4 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl text-xs text-amber-900 dark:text-amber-200">
               <p className="font-semibold mb-1">⚠️ Aviso Legal Relevante:</p>
               <p>
-                Calculadora SAT es un sitio web de divulgación e información tecnológica independiente. <strong>NO está afiliado, patrocinado, avalado ni vinculado formalmente</strong> con el Servicio de Administración Tributaria (SAT) de México, ni con la Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) de Perú, ni con ninguna entidad pública. Todas las herramientas son simuladores matemáticos orientativos y no sustituyen la asesoría profesional de un contador público titulado o un abogado laboralista.
+                Calculadora SAT es un sitio web de divulgación e información tecnológica independiente. <strong>NO está afiliado, patrocinado, avalado ni vinculado formalmente</strong> con el Servicio de Administración Tributaria (SAT) de México, ni con el Instituto Mexicano del Seguro Social (IMSS), ni con la Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) de Perú, ni con ninguna entidad pública. Todas las herramientas son simuladores matemáticos orientativos y no sustituyen la asesoría profesional de un contador público titulado o un abogado laboralista.
               </p>
             </div>
 
@@ -196,9 +233,44 @@ export default async function AboutPage({ params }: PageProps) {
 
             <hr className="border-slate-200 dark:border-slate-800 my-6" />
 
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Nuestro Equipo</h2>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Metodología de Mantenimiento y Actualización de Tablas</h2>
             <p>
-              Somos un equipo multidisciplinario compuesto por asesores contables, desarrolladores de software y especialistas en tributación regional. Combinamos experiencia técnica con un conocimiento riguroso de la legislación para diseñar soluciones didácticas útiles para el día a día.
+              Para asegurar la exactitud de los cálculos, mantenemos un seguimiento riguroso de las publicaciones normativas emitidas por los organismos oficiales:
+            </p>
+            <div className="space-y-4 mt-2">
+              <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2">
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+                  <span>🇲🇽</span> Monitoreo Normativo en México
+                </h3>
+                <ul className="list-disc pl-5 text-xs space-y-1 text-slate-600 dark:text-slate-400">
+                  <li><strong>Diario Oficial de la Federación (DOF):</strong> Monitoreamos decretos, reformas fiscales y los anexos de la Resolución Miscelánea Fiscal (RMF) para actualizar las tablas de retención de ISR (Art. 96 y 152 LISR).</li>
+                  <li><strong>INEGI (UMA):</strong> El valor diario, mensual y anual de la Unidad de Medida y Actualización (UMA) se actualiza de inmediato tras su publicación en enero con entrada en vigor el 1 de febrero.</li>
+                  <li><strong>CONASAMI:</strong> Los salarios mínimos generales y de la Zona Libre de la Frontera Norte (ZLFN) se auditan al inicio de cada año fiscal.</li>
+                  <li><strong>IMSS y Ley del Seguro Social:</strong> Las cuotas de cesantía, vejez, enfermedad y maternidad, así como el tope de 25 UMAs, se mantienen al día conforme a la legislación social vigente.</li>
+                  <li><strong>Ley Federal del Trabajo (LFT):</strong> Regulaciones sobre aguinaldo, prima de antigüedad, finiquitos y la reforma de Vacaciones Dignas están incorporadas estrictamente en los algoritmos.</li>
+                </ul>
+              </div>
+
+              <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2">
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+                  <span>🇵🇪</span> Monitoreo Normativo en Perú
+                </h3>
+                <ul className="list-disc pl-5 text-xs space-y-1 text-slate-600 dark:text-slate-400">
+                  <li><strong>Diario Oficial El Peruano y MEF:</strong> El valor de la Unidad Impositiva Tributaria (UIT) se actualiza anualmente tras el Decreto Supremo correspondiente.</li>
+                  <li><strong>SUNAT (Renta 5ta e IGV):</strong> La escala acumulativa (8% al 30%), la deducción inafecta de 7 UIT y la tasa del 18% de IGV (16% + 2% IPM) se aplican según el D.S. N° 179-2004-EF y el D.S. N° 055-99-EF.</li>
+                  <li><strong>MTPE y Legislación Laboral:</strong> Las fórmulas de CTS (D.S. N° 001-97-TR) y Gratificaciones con Bonificación Extraordinaria (Ley N° 27735 y Ley N° 30334) calculan los devengados semestrales según los criterios oficiales del Ministerio de Trabajo.</li>
+                </ul>
+              </div>
+            </div>
+
+            <hr className="border-slate-200 dark:border-slate-800 my-6" />
+
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Nuestro Equipo y Compromiso de Transparencia</h2>
+            <p>
+              Somos un equipo independiente de desarrolladores de software e investigadores interesados en el cálculo tributario y la ingeniería de software financiero.
+            </p>
+            <p>
+              No somos un despacho contable colegiado ni una entidad gubernamental; no inventamos credenciales profesionales falsas, títulos no verificables ni comités de expertos ficticios. Nuestra labor consiste en estudiar la normativa legal pública, traducirla en algoritmos matemáticos abiertos y ofrecer simuladores claros y rápidos. Si detectas cualquier discrepancia en alguna fórmula o tabla, te invitamos a escribirnos directamente a <a href="mailto:hello@calculadorasat.org" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">hello@calculadorasat.org</a>.
             </p>
           </div>
         </div>

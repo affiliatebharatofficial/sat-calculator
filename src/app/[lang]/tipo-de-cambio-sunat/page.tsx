@@ -226,6 +226,9 @@ export default async function SunatPage({ params }: PageProps) {
               El tipo de cambio SUNAT NO es el precio al que los bancos o casas de cambio te compran o venden dólares en efectivo. Para transacciones de cambio de dinero físico en tiempo real, consulta la cotización de mercado en <Link href="/dolar-hoy" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Dólar Hoy</Link>.
             </div>
           </div>
+          <div className="mt-4 pt-3 border-t border-amber-200/60 dark:border-slate-800 text-[11px] text-amber-900 dark:text-amber-300 leading-relaxed">
+            ⚠️ <strong>Aviso de No Afiliación e Información:</strong> Calculadora SAT es una herramienta independiente y NO está afiliada, autorizada ni respaldada formalmente por la SUNAT ni por la SBS. Las cotizaciones se compilan con fines referenciales y contables. Última sincronización de algoritmos: Febrero 2026.
+          </div>
         </section>
 
         {/* Detailed 500+ Words SEO Article & Regulation Guide */}

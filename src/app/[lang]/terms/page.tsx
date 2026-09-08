@@ -65,17 +65,17 @@ export default async function TermsPage({ params }: PageProps) {
 
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">2. Disclaimer (Informational Purposes)</h2>
               <div className="p-4 bg-amber-50 dark:bg-amber-955/20 border border-amber-200 dark:border-amber-900/50 text-amber-800 dark:text-amber-300 rounded-xl leading-relaxed">
-                ⚠️ <strong>IMPORTANT:</strong> The calculators and tools provided on this platform are solely for informational and educational simulation purposes. **They do not constitute, under any scenario, formal tax, accounting, legal, or financial advice.** We recommend verifying results with a certified public accountant before making tax payments to the SAT or making decisions about employee terminations.
+                ⚠️ <strong>IMPORTANT:</strong> The calculators and tools provided on this platform are solely for informational and educational simulation purposes. **They do not constitute, under any scenario, formal tax, accounting, legal, or financial advice.** We recommend verifying results with a certified public accountant before making tax payments to the SAT/SUNAT or making decisions about employee terminations. For full terms, please read our dedicated <Link href="/en/disclaimer" className="underline font-bold">Legal Disclaimer</Link>.
               </div>
 
-              <h2 className="text-lg font-bold text-slate-900 dark:text-white">3. Accuracy of Information and SAT Law</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">3. Non-Affiliation and Regulatory Accuracy</h2>
               <p>
-                We do our best to keep progressive ISR rates, IMSS quotas, UMA values, and LFT regulations fully updated to the current reforms in Mexico. However, we are not responsible for possible inconsistencies resulting from late legislative updates or minor rounding differences.
+                Calculadora SAT is an independent portal and is NOT affiliated with, sponsored by, or endorsed by SAT (Mexico), IMSS (Mexico), SUNAT (Peru), or MTPE (Peru). We do our best to keep progressive ISR rates, IMSS quotas, UMA/UIT values, and labor regulations fully updated to the current statutory reforms. However, we are not responsible for possible inconsistencies resulting from late legislative gazette publications or rounding differences.
               </p>
 
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">4. Limitation of Liability</h2>
               <p>
-                In no event shall Calculadora SAT, its administrators, partners, or developers be liable for financial losses, surcharges, fines, or tax discrepancies resulting from SAT audits after using the information on this site.
+                In no event shall Calculadora SAT, its administrators, partners, or developers be liable for financial losses, surcharges, fines, or tax discrepancies resulting from tax audits or labor disputes after using the information on this site.
               </p>
 
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">5. Contact</h2>
@@ -143,17 +143,17 @@ export default async function TermsPage({ params }: PageProps) {
 
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">2. Exclusión de Responsabilidad (Fines Informativos)</h2>
             <div className="p-4 bg-amber-50 dark:bg-amber-955/20 border border-amber-200 dark:border-amber-900/50 text-amber-800 dark:text-amber-300 rounded-xl leading-relaxed">
-              ⚠️ <strong>IMPORTANTE:</strong> Las calculadoras y herramientas proporcionadas en esta plataforma son exclusivamente de carácter informativo y con fines de simulación didáctica. **No constituyen bajo ningún escenario asesoría fiscal, contable, legal o financiera formal.** Le recomendamos verificar los resultados con un contador público certificado antes de realizar pagos de declaraciones al SAT o tomar decisiones sobre bajas laborales.
+              ⚠️ <strong>IMPORTANTE:</strong> Las calculadoras y herramientas proporcionadas en esta plataforma son exclusivamente de carácter informativo y con fines de simulación didáctica. **No constituyen bajo ningún escenario asesoría fiscal, contable, laboral ni legal vinculante.** Le recomendamos verificar los resultados con un contador público colegiado o abogado antes de realizar pagos de declaraciones o tomar decisiones laborales. Para conocer todos los alcances, consulta nuestro <Link href="/disclaimer" className="underline font-bold">Aviso Legal y Deslinde de Responsabilidad</Link>.
             </div>
 
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white">3. Exactitud de la Información y Ley del SAT</h2>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">3. Declaración de No Afiliación y Exactitud Normativa</h2>
             <p>
-              Hacemos todo lo posible para mantener las tarifas progresivas del ISR, cuotas del IMSS, valores de la UMA y regulaciones de la LFT totalmente actualizadas a las reformas vigentes en México. No obstante, no nos hacemos responsables de posibles inconsistencias resultantes de actualizaciones legislativas tardías o redondeos menores.
+              Calculadora SAT es un sitio web independiente. NO está afiliado, patrocinado, avalado ni vinculado formalmente con el Servicio de Administración Tributaria (SAT) de México, ni con el Instituto Mexicano del Seguro Social (IMSS), ni con la Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) de Perú, ni con el Ministerio de Trabajo y Promoción del Empleo (MTPE). Hacemos todo lo posible para mantener las tarifas progresivas del ISR, cuotas del IMSS, valores de la UMA/UIT y regulaciones laborales actualizadas a las reformas vigentes. No obstante, no nos hacemos responsables de posibles inconsistencias resultantes de actualizaciones legislativas tardías o redondeos menores.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">4. Limitación de Responsabilidad</h2>
             <p>
-              En ningún caso Calculadora SAT, sus administradores, socios o desarrolladores serán responsables por pérdidas financieras, recargos, multas o discrepancias fiscales derivadas de auditorías del SAT tras utilizar la información de este sitio.
+              En ningún caso Calculadora SAT, sus administradores, socios o desarrolladores serán responsables por pérdidas financieras, recargos, multas o discrepancias fiscales derivadas de actos administrativos o auditorías tras utilizar la información de este sitio.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">5. Contacto</h2>

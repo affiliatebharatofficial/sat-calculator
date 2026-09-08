@@ -178,11 +178,24 @@ export default async function SemanasCotizadasPage({ params }: PageProps) {
             <h2 className="text-xl font-extrabold text-slate-950 dark:text-white tracking-tight">
               ¿Cómo Obtener tu Constancia Oficial de Semanas Cotizadas en Línea?
             </h2>
+            <p className="text-xs text-slate-600 dark:text-slate-400">
+              Para tramitar tu historial laboral oficial con validez legal ante el Seguro Social:
+            </p>
             <ol className="list-decimal pl-5 space-y-2 text-sm">
-              <li>Ingresa al portal oficial de Servicios Digitales del IMSS (<code>imss.gob.pe</code> / <code>imss.gob.mx</code>).</li>
-              <li>Ten a la mano tu <strong>CURP</strong>, tu <strong>Número de Seguro Social (NSS)</strong> y un correo electrónico personal.</li>
-              <li>Solicita el trámite "Constancia de Semanas Cotizadas en el IMSS".</li>
-              <li>Recibirás un documento PDF oficial con el desglose histórico de cada patrón registrado y el total acumulado.</li>
+              <li>
+                Ingresa al portal oficial de Servicios Digitales del IMSS:{' '}
+                <a
+                  href="https://serviciosdigitales.imss.gob.mx/semanascotizadas-web/externas/asignacionNSS"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 dark:text-blue-400 font-bold hover:underline inline-flex items-center gap-1"
+                >
+                  Portal Oficial IMSS Digital ↗
+                </a>
+              </li>
+              <li>Ten a la mano tu <strong>CURP</strong>, tu <strong>Número de Seguridad Social (NSS)</strong> y un correo electrónico personal.</li>
+              <li>Selecciona el trámite <strong>"Constancia de Semanas Cotizadas en el IMSS"</strong>.</li>
+              <li>Recibirás un documento oficial en PDF con el desglose histórico de cada patrón registrado y el total acumulado sin costo alguno.</li>
             </ol>
           </section>
 
@@ -210,6 +223,29 @@ export default async function SemanasCotizadasPage({ params }: PageProps) {
               </div>
             </div>
           </section>
+
+          {/* Legal Basis & Statutory Sources */}
+          <section className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
+            <h3 className="text-base font-bold text-slate-950 dark:text-white flex items-center gap-2">
+              <span>⚖️</span> Fundamento Legal y Fuentes Normativas
+            </h3>
+            <ul className="list-disc pl-5 text-xs text-slate-600 dark:text-slate-400 space-y-1">
+              <li><strong>Ley del Seguro Social de 1973:</strong> Artículos 167 a 171 (Cuantía básica e incrementos anuales de pensión por vejez y cesantía).</li>
+              <li><strong>Ley del Seguro Social de 1997:</strong> Artículos 157 a 164 (Régimen de cuentas individuales AFORE y reformas de semanas mínimas de cotización).</li>
+              <li><strong>Ley de los Sistemas de Ahorro para el Retiro (CONSAR):</strong> Reglas sobre retiros parciales por desempleo y reintegro de semanas cotizadas.</li>
+            </ul>
+          </section>
+
+          {/* Official Disclaimer */}
+          <div className="p-4 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-2xl text-xs text-amber-900 dark:text-amber-200 leading-relaxed">
+            <p className="font-bold mb-1">⚠️ Deslinde de Responsabilidad e Información Oficial:</p>
+            <p>
+              Esta calculadora es un simulador matemático independiente con fines educativos y de planeación financiera. <strong>NO está afiliada, autorizada ni patrocinada por el Instituto Mexicano del Seguro Social (IMSS).</strong> Los resultados son estimaciones basadas en la legislación citada y no constituyen una resolución ni garantía de pensión formal. Para obtener tu historial legal vinculante, consulta la <a href="https://www.imss.gob.mx" target="_blank" rel="noopener noreferrer" className="font-bold underline">página oficial del IMSS</a> o tramita tu Constancia Digital de Semanas Cotizadas.
+            </p>
+            <p className="mt-2 text-[11px] text-amber-800 dark:text-amber-300 font-semibold">
+              Última revisión técnica de parámetros y tablas: Febrero 2026.
+            </p>
+          </div>
 
           <section className="pt-4 border-t border-slate-200 dark:border-slate-800">
             <h2 className="text-xl font-extrabold text-slate-950 dark:text-white mb-6">

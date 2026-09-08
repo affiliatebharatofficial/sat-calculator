@@ -218,6 +218,29 @@ export default async function QuintaCategoriaPage({ params }: PageProps) {
             </ul>
           </section>
 
+          {/* Legal Basis & Statutory References */}
+          <section className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
+            <h3 className="text-base font-bold text-slate-950 dark:text-white flex items-center gap-2">
+              <span>⚖️</span> Base Legal y Normativa de Renta de 5ta Categoría en Perú
+            </h3>
+            <ul className="list-disc pl-5 text-xs text-slate-600 dark:text-slate-400 space-y-1">
+              <li><strong>Decreto Supremo N° 179-2004-EF (TUO Ley Impuesto a la Renta):</strong> Art. 34 (Rentas del trabajo en relación de dependencia), Art. 46 (Deducción fija de 7 UIT y adicional de 3 UIT) y Art. 53 (Escala progresiva acumulativa del 8% al 30%).</li>
+              <li><strong>Decreto Supremo N° 122-94-EF:</strong> Reglamento del Impuesto a la Renta sobre procedimiento de retenciones mensuales aplicadas por el empleador.</li>
+              <li><strong>Decreto Supremo MEF:</strong> Valor oficial de la Unidad Impositiva Tributaria (UIT 2026 fijada en S/ 5,350 PEN).</li>
+            </ul>
+          </section>
+
+          {/* Disclaimer Box */}
+          <div className="p-4 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-2xl text-xs text-amber-900 dark:text-amber-200 leading-relaxed">
+            <p className="font-bold mb-1">⚠️ Aviso Legal e Informativo:</p>
+            <p>
+              Esta calculadora es un simulador matemático independiente con fines didácticos y de planificación tributaria para trabajadores dependientes. <strong>NO está vinculada, patrocinada ni respaldada oficialmente por la SUNAT ni el Ministerio de Economía y Finanzas (MEF).</strong> El impuesto definitivo se determina en la declaración anual de operaciones y en las liquidaciones mensuales practicadas por el agente de retención.
+            </p>
+            <p className="mt-2 text-[11px] text-amber-800 dark:text-amber-300 font-semibold">
+              Última revisión técnica de parámetros y UIT: Febrero 2026.
+            </p>
+          </div>
+
           <section className="pt-4 border-t border-slate-200 dark:border-slate-800">
             <h2 className="text-xl font-extrabold text-slate-950 dark:text-white mb-6">
               🌐 Red de Herramientas de Planilla y Divisas en Perú

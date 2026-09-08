@@ -156,6 +156,29 @@ export default async function CtsPage({ params }: PageProps) {
             </p>
           </section>
 
+          {/* Legal Basis & Statutory References */}
+          <section className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
+            <h3 className="text-base font-bold text-slate-950 dark:text-white flex items-center gap-2">
+              <span>⚖️</span> Base Legal y Normativa de la CTS en Perú
+            </h3>
+            <ul className="list-disc pl-5 text-xs text-slate-600 dark:text-slate-400 space-y-1">
+              <li><strong>Decreto Supremo N° 001-97-TR:</strong> Texto Único Ordenado de la Ley de Compensación por Tiempo de Servicios.</li>
+              <li><strong>Decreto Supremo N° 004-97-TR:</strong> Reglamento de la Ley de CTS (cálculo de remuneración computable e incorporación de la sexta parte de la gratificación).</li>
+              <li><strong>Normativa SUNAFIL / MTPE:</strong> Criterios inspectivos sobre plazos improrrogables de depósito (hasta el 15 de mayo y 15 de noviembre).</li>
+            </ul>
+          </section>
+
+          {/* Disclaimer Box */}
+          <div className="p-4 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-2xl text-xs text-amber-900 dark:text-amber-200 leading-relaxed">
+            <p className="font-bold mb-1">⚠️ Aviso Legal e Informativo:</p>
+            <p>
+              Esta calculadora es un simulador pedagógico independiente desarrollado para trabajadores y empleadores del régimen laboral común privado en Perú. <strong>NO está afiliada, autorizada ni patrocinada por el Ministerio de Trabajo y Promoción del Empleo (MTPE), SUNAT ni SUNAFIL.</strong> Los resultados son referenciales y no sustituyen la liquidación formal practicada por el área de recursos humanos de tu empleador.
+            </p>
+            <p className="mt-2 text-[11px] text-amber-800 dark:text-amber-300 font-semibold">
+              Última revisión técnica de parámetros: Febrero 2026.
+            </p>
+          </div>
+
           <section className="pt-4 border-t border-slate-200 dark:border-slate-800">
             <h2 className="text-xl font-extrabold text-slate-950 dark:text-white mb-6">
               🌐 Red de Herramientas de Planilla en Perú

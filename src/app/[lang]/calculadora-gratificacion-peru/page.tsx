@@ -173,6 +173,29 @@ export default async function GratificacionPage({ params }: PageProps) {
             </div>
           </section>
 
+          {/* Legal Basis & Statutory References */}
+          <section className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
+            <h3 className="text-base font-bold text-slate-950 dark:text-white flex items-center gap-2">
+              <span>⚖️</span> Base Legal y Normativa de Gratificaciones en Perú
+            </h3>
+            <ul className="list-disc pl-5 text-xs text-slate-600 dark:text-slate-400 space-y-1">
+              <li><strong>Ley N° 27735:</strong> Regula el otorgamiento de gratificaciones de Fiestas Patrias y Navidad en el sector privado.</li>
+              <li><strong>Decreto Supremo N° 005-2002-TR:</strong> Reglamento sobre cómputo de meses completos y remuneración computable regular.</li>
+              <li><strong>Ley N° 30334:</strong> Inafectación permanente de aportes previsionales (AFP/ONP) y asignación de la Bonificación Extraordinaria (9% EsSalud o 6.75% EPS).</li>
+            </ul>
+          </section>
+
+          {/* Disclaimer Box */}
+          <div className="p-4 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-2xl text-xs text-amber-900 dark:text-amber-200 leading-relaxed">
+            <p className="font-bold mb-1">⚠️ Aviso Legal e Informativo:</p>
+            <p>
+              Esta calculadora es una herramienta de simulación pedagógica independiente. <strong>NO está vinculada, avalada ni patrocinada por el Ministerio de Trabajo y Promoción del Empleo (MTPE), EsSalud ni SUNAT.</strong> Las cifras calculadas tienen propósito estimativo. El pago final debe ser liquidado oficialmente por el departamento de nómina o contabilidad de la empresa empleadora.
+            </p>
+            <p className="mt-2 text-[11px] text-amber-800 dark:text-amber-300 font-semibold">
+              Última revisión técnica de normativas: Febrero 2026.
+            </p>
+          </div>
+
           <section className="pt-4 border-t border-slate-200 dark:border-slate-800">
             <h2 className="text-xl font-extrabold text-slate-950 dark:text-white mb-6">
               🌐 Red de Herramientas Laborales en Perú

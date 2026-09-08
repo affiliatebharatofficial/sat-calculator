@@ -224,6 +224,29 @@ export default async function TipoCambioPage({ params }: PageProps) {
             </div>
           </section>
 
+          {/* Legal Basis & Statutory References */}
+          <section className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
+            <h3 className="text-base font-bold text-slate-950 dark:text-white flex items-center gap-2">
+              <span>⚖️</span> Marco Legal y Fuentes Normativas (México)
+            </h3>
+            <ul className="list-disc pl-5 text-xs text-slate-600 dark:text-slate-400 space-y-1">
+              <li><strong>Código Fiscal de la Federación (CFF):</strong> Artículo 20 (Determinación y solventación de contribuciones en moneda extranjera según cotizaciones Banxico / DOF).</li>
+              <li><strong>Banco de México (Banxico):</strong> Metodología de determinación del tipo de cambio FIX interbancario de 48 horas.</li>
+              <li><strong>Diario Oficial de la Federación (DOF):</strong> Publicación diaria oficial del tipo de cambio para solventar obligaciones denominadas en dólares.</li>
+            </ul>
+          </section>
+
+          {/* Disclaimer Box */}
+          <div className="p-4 bg-amber-50 dark:bg-amber-955/40 border border-amber-200 dark:border-amber-800/60 rounded-2xl text-xs text-amber-900 dark:text-amber-200 leading-relaxed">
+            <p className="font-bold mb-1">⚠️ Aviso Legal e Informativo:</p>
+            <p>
+              Esta calculadora es un simulador de conversión y consulta cambiaria independiente. <strong>NO está afiliada, autorizada ni respaldada oficialmente por el SAT, el Banco de México (Banxico) ni la Secretaría de Hacienda y Crédito Público (SHCP).</strong> Los datos tienen fines orientativos para planeación financiera y facturación.
+            </p>
+            <p className="mt-2 text-[11px] text-amber-800 dark:text-amber-300 font-semibold">
+              Última revisión técnica de normativas y algoritmos: Febrero 2026.
+            </p>
+          </div>
+
           <section className="pt-4 border-t border-slate-200 dark:border-slate-800">
             <h2 className="text-xl font-extrabold text-slate-950 dark:text-white mb-6">
               🌐 Herramientas Fiscales y Financieras Relacionadas

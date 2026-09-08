@@ -50,6 +50,9 @@ export default function Footer({ lang = 'es' }: FooterProps) {
           <Link href={`${langPrefix}/terms`} className="hover:text-slate-900 dark:hover:text-white transition truncate">
             {isEn ? 'Terms & Conditions' : 'Términos y Condiciones'}
           </Link>
+          <Link href={`${langPrefix}/disclaimer`} className="hover:text-slate-900 dark:hover:text-white transition truncate">
+            {isEn ? 'Legal Disclaimer' : 'Aviso Legal'}
+          </Link>
           <Link href={`${langPrefix}/about`} className="hover:text-slate-900 dark:hover:text-white transition truncate">
             {isEn ? 'About Us' : 'Acerca de'}
           </Link>
