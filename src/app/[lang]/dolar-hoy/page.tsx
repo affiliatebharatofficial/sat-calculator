@@ -210,7 +210,7 @@ export default async function DolarHoyPage({ params }: PageProps) {
                   <span>🏛️</span> Tipo de Cambio SUNAT Oficial
                 </h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Publicado diariamente por la SUNAT en las primeras horas de la mañana. Sirve como referencia estandarizada y obligatoria para la contabilidad, emisión de facturas electrónicas y declaración tributaria. Consulta los datos históricos en <Link href="/tipo-de-cambio-sunat" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Tipo de Cambio SUNAT</Link>.
+                  Publicado diariamente por la SUNAT en las primeras horas de la mañana. Sirve como referencia estandarizada y obligatoria para la contabilidad, emisión de facturas electrónicas y declaración tributaria. Consulta los datos históricos en <Link href="/calculadoras/peru/tipo-de-cambio-sunat" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Tipo de Cambio SUNAT</Link>.
                 </p>
               </div>
             </div>
@@ -271,7 +271,7 @@ export default async function DolarHoyPage({ params }: PageProps) {
                 </div>
               </Link>
 
-              <Link href="/tipo-de-cambio-sunat" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+              <Link href="/calculadoras/peru/tipo-de-cambio-sunat" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
                 <span className="text-2xl">🇵🇪</span>
                 <div>
                   <div className="text-slate-900 dark:text-white font-bold">Tipo de Cambio SUNAT</div>
@@ -279,7 +279,7 @@ export default async function DolarHoyPage({ params }: PageProps) {
                 </div>
               </Link>
 
-              <Link href="/tipo-de-cambio-para-solventar-obligaciones" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+              <Link href="/calculadoras/peru/tipo-de-cambio-para-solventar-obligaciones" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
                 <span className="text-2xl">⚖️</span>
                 <div>
                   <div className="text-slate-900 dark:text-white font-bold">Solventar Obligaciones</div>

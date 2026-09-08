@@ -1,17 +1,15 @@
-import { redirect } from 'next/navigation';
-import type { Metadata } from 'next';
+import { permanentRedirect } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: 'Redirigiendo a Dólares a Soles...',
-  robots: {
-    index: false,
-    follow: true,
-  },
-  alternates: {
-    canonical: 'https://www.calculadorasat.org/dolares-a-soles',
-  },
-};
+interface PageProps {
+  params: Promise<{
+    lang: string;
+  }>;
+}
 
-export default async function CalculadoraSolesADolaresPage() {
-  redirect('/dolares-a-soles');
+export async function generateMetadata({ params }: PageProps) {
+  permanentRedirect('/dolares-a-soles');
+}
+
+export default async function CalculadoraSolesDolaresPage({ params }: PageProps) {
+  permanentRedirect('/dolares-a-soles');
 }

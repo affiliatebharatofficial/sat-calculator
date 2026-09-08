@@ -1,17 +1,15 @@
-import { redirect } from 'next/navigation';
-import type { Metadata } from 'next';
+import { permanentRedirect } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: 'Redirigiendo a Dólar Hoy...',
-  robots: {
-    index: false,
-    follow: true,
-  },
-  alternates: {
-    canonical: 'https://www.calculadorasat.org/dolar-hoy',
-  },
-};
+interface PageProps {
+  params: Promise<{
+    lang: string;
+  }>;
+}
 
-export default async function PrecioDolarPeruPage() {
-  redirect('/dolar-hoy');
+export async function generateMetadata({ params }: PageProps) {
+  permanentRedirect('/dolar-hoy');
+}
+
+export default async function PrecioDolarPeruPage({ params }: PageProps) {
+  permanentRedirect('/dolar-hoy');
 }

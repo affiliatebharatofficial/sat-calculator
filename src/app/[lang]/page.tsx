@@ -161,7 +161,7 @@ export default function Home({ params }: { params: Promise<{ lang: string }> }) 
       icon: '📑',
     },
     {
-      title: isEn ? 'SUNAT RUC Number Validator' : 'Validador de RUC SUNAT',
+      title: isEn ? 'RUC Validator Peru' : 'Validador de RUC',
       desc: isEn ? '11-digit Modulo 11 check digit verification and link to official SUNAT lookup.' : 'Comprueba la sintaxis de 11 dígitos y el dígito verificador Módulo 11.',
       badge: isEn ? 'Modulo 11 Algorithm' : 'Algoritmo Módulo 11 SUNAT',
       href: `${langPrefix}/calculadoras/peru/consulta-ruc-sunat`,

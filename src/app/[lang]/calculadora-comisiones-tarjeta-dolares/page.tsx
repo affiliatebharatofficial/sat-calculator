@@ -207,7 +207,7 @@ export default async function ComisionesTarjetaPage({ params }: PageProps) {
                   <div className="text-xs text-slate-500 font-normal">Conversor bidireccional</div>
                 </div>
               </Link>
-              <Link href="/tipo-de-cambio-sunat" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
+              <Link href="/calculadoras/peru/tipo-de-cambio-sunat" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
                 <span className="text-2xl">🇵🇪</span>
                 <div>
                   <div className="text-slate-900 dark:text-white font-bold">Tipo de Cambio SUNAT</div>

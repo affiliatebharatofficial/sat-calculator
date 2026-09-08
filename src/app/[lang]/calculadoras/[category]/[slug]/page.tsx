@@ -51,6 +51,12 @@ export async function generateMetadata({ params }: PageProps) {
     };
   }
 
+  // If accessed with wrong category (e.g. /calculadoras/tipo-de-cambio/consulta-ruc-sunat), permanently redirect
+  if (baseCalculator.categorySlug && resolvedParams.category !== baseCalculator.categorySlug) {
+    const langPrefix = lang === 'en' ? '/en' : '';
+    permanentRedirect(`${langPrefix}/calculadoras/${baseCalculator.categorySlug}/${baseCalculator.slug}`);
+  }
+
   const calculator = getLocalizedConfig(baseCalculator, lang);
   const canonicalCategory = baseCalculator.categorySlug || resolvedParams.category;
   const seoAlternates = getSeoAlternates(`calculadoras/${canonicalCategory}/${resolvedParams.slug}`, lang);

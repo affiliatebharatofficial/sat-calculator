@@ -49,21 +49,21 @@ export function validateRucChecksum(ruc: string): { isValid: boolean; message: s
 
 export const consultaRucSunatCalculator: CalculatorConfig = {
   id: 'consulta-ruc-sunat',
-  title: 'Validador de RUC SUNAT (Estructura y Dígito de Control)',
-  shortDescription: 'Valida la estructura de 11 dígitos y el algoritmo Módulo 11 del dígito verificador de un RUC peruano. No consulta la base de datos de SUNAT.',
+  title: 'Validador de RUC',
+  shortDescription: 'Valida la estructura de 11 dígitos, prefijo tributario y algoritmo Módulo 11 del dígito verificador de un RUC peruano. No consulta la base de datos de SUNAT.',
   category: 'Herramientas Perú',
   categorySlug: 'peru',
   slug: 'consulta-ruc-sunat',
   seo: {
-    metaTitle: 'Validador de RUC SUNAT: Verificar Estructura y Dígito Verificador',
-    metaDescription: 'Comprueba el algoritmo Módulo 11 y formato de 11 dígitos de un RUC en Perú. Identifica prefijos y accede al padrón oficial de SUNAT para consultar razón social y estado.',
+    metaTitle: 'Validador de RUC: Verificar Estructura y Dígito de Control SUNAT',
+    metaDescription: 'Comprueba el algoritmo Módulo 11 y formato de 11 dígitos de un RUC en Perú. Validador de estructura técnica con enlace directo a la consulta oficial de SUNAT.',
     keywords: [
+      'validador de ruc',
       'validador ruc sunat',
       'verificar ruc sunat',
       'digito verificador ruc peru',
       'algoritmo modulo 11 ruc',
-      'estructura ruc peru',
-      'consulta ruc sunat'
+      'estructura ruc peru'
     ],
     schemaType: 'Calculator'
   },
@@ -183,5 +183,16 @@ export const consultaRucSunatCalculator: CalculatorConfig = {
     ],
     lastUpdated: 'Actualizado para el ejercicio fiscal 2026',
     disclaimer: 'Esta herramienta es un validador sintáctico independiente y no está afiliada, autorizada ni asociada con la SUNAT, el Ministerio de Economía y Finanzas (MEF) ni el Gobierno del Perú. Para consultas oficiales y vinculantes del padrón tributario, recurre siempre a e-consultaruc.sunat.gob.pe.'
+  },
+  translations: {
+    en: {
+      title: 'RUC Validator Peru (SUNAT Check Digit)',
+      shortDescription: 'Technical syntax and Modulo 11 check digit validator for 11-digit Peru RUC tax IDs. Does not access SUNAT taxpayer records.',
+      category: 'Peru Tools',
+      seo: {
+        metaTitle: 'RUC Validator Peru: Check 11-Digit Format and SUNAT Check Digit',
+        metaDescription: 'Validate the Modulo 11 check digit algorithm and structure of Peruvian RUC numbers. Access the official SUNAT registry link for active taxpayer status.'
+      }
+    }
   }
 };

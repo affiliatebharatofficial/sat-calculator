@@ -112,7 +112,7 @@ export default function DolarHoyClient({ marketRate, sunatRate }: Props) {
 
           <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 flex justify-between items-center">
             <div>Fecha: <strong>{sunatRate.fecha}</strong></div>
-            <a href="/tipo-de-cambio-sunat" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">
+            <a href="/calculadoras/peru/tipo-de-cambio-sunat" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">
               Ver detalle SUNAT →
             </a>
           </div>
