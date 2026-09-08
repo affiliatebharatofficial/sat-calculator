@@ -73,12 +73,6 @@ export default function Header({ lang = 'es', activePath }: HeaderProps) {
           >
             🇵🇪 {isEn ? 'Peru Tools' : 'Herramientas Perú'}
           </Link>
-          <Link
-            href={`${langPrefix}/blog`}
-            className="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60"
-          >
-            ✍️ Blog
-          </Link>
         </nav>
       </div>
     </header>

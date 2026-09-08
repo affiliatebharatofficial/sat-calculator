@@ -1,185 +1,148 @@
-'use client';
-
-import React, { useState, useEffect, use } from 'react';
+import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import LanguageSelector from '../../../components/LanguageSelector';
-import ThemeToggle from '../../../components/ThemeToggle';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import esDict from '../../../dictionaries/es.json';
-import enDict from '../../../dictionaries/en.json';
-import { Post } from '../../../types/blog';
+import { getPublishedPosts } from '@/lib/blog';
+import { getSeoAlternates } from '@/lib/seo';
 
-export default function BlogListPage({ params }: { params: Promise<{ lang: string }> }) {
-  const resolvedParams = use(params);
+interface PageProps {
+  params: Promise<{ lang: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
-  const dict = lang === 'en' ? enDict : esDict;
+  const seoAlternates = getSeoAlternates('blog', lang);
 
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const title = lang === 'en' 
+    ? 'Fiscal & Tax Blog | Calculadora SAT' 
+    : 'Blog Fiscal y Financiero | Calculadora SAT';
+  const description = lang === 'en'
+    ? 'Practical guides, SAT tax regulations, personal deductions, and financial calculation tutorials in Mexico.'
+    : 'Guías prácticas, normatividad fiscal del SAT, deducciones personales y tutoriales de finanzas en México.';
 
-  useEffect(() => {
-    async function fetchPosts() {
-      try {
-        const res = await fetch(`/api/posts?lang=${lang}`);
-        if (res.ok) {
-          const data = await res.json();
-          setPosts(data);
-        }
-      } catch (err) {
-        console.error('Error fetching blog posts:', err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchPosts();
-  }, [lang]);
+  return {
+    title,
+    description,
+    alternates: seoAlternates,
+    openGraph: {
+      title,
+      description,
+      url: seoAlternates.canonical,
+      siteName: 'Calculadora SAT',
+      locale: lang === 'en' ? 'en_US' : 'es_MX',
+      type: 'website',
+    },
+  };
+}
 
-  // Extract unique categories from posts
-  const categories = React.useMemo(() => {
-    const cats = posts.map(p => p.category);
-    return ['all', ...Array.from(new Set(cats))];
-  }, [posts]);
+export default async function BlogListPage({ params }: PageProps) {
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
+  const isEn = lang === 'en';
+  const langPrefix = isEn ? '/en' : '';
+  const posts = getPublishedPosts(lang);
 
-  // Filter posts
-  const filteredPosts = React.useMemo(() => {
-    return posts.filter(post => {
-      const matchesSearch = 
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      const matchesCategory = 
-        selectedCategory === 'all' || 
-        post.category.toLowerCase() === selectedCategory.toLowerCase();
-      
-      return matchesSearch && matchesCategory;
-    });
-  }, [posts, searchQuery, selectedCategory]);
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: isEn ? 'Home' : 'Inicio', item: `https://www.calculadorasat.org${langPrefix || ''}` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.calculadorasat.org/blog' }
+    ]
+  };
 
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-900 dark:text-slate-100 font-sans flex flex-col transition-colors duration-250">
-      
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+
       <Header lang={lang} />
 
       {/* Hero Banner Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 sm:py-24 relative overflow-hidden">
+      <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-14 sm:py-20 relative overflow-hidden">
         <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-white/5 blur-3xl"></div>
         <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-indigo-500/10 blur-3xl"></div>
         
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <span className="inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-extrabold bg-white/15 text-blue-100 uppercase tracking-widest mb-4">
-            {lang === 'en' ? 'News & Guidance' : 'Noticias y Orientación Fiscal'}
+            {isEn ? 'Editorial Guidance' : 'Orientación y Análisis Tributario'}
           </span>
-          <h1 className="text-4xl sm:text-5xl font-black tracking-tight leading-none mb-4">
-            {lang === 'en' ? 'Fiscal & Financial Blog' : 'Blog Fiscal y Financiero'}
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-none mb-4">
+            {isEn ? 'Fiscal & Financial Blog' : 'Blog Fiscal y Financiero'}
           </h1>
-          <p className="text-sm sm:text-base text-blue-100/90 max-w-xl mx-auto font-medium">
-            {lang === 'en' 
-              ? 'Stay informed with the latest SAT updates, tax tips, and financial calculations tutorials in Mexico.' 
-              : 'Mantente informado con los últimos cambios del SAT, consejos fiscales y tutoriales de finanzas en México.'}
+          <p className="text-sm sm:text-base text-blue-100/90 max-w-2xl mx-auto font-medium leading-relaxed">
+            {isEn 
+              ? 'Authoritative articles, official SAT updates, and step-by-step guides on personal finance and taxes in Mexico.' 
+              : 'Artículos respaldados en la legislación mexicana, disposiciones del SAT y guías prácticas sobre deducciones, nómina e impuestos.'}
           </p>
         </div>
       </section>
 
-      {/* Search and Filters Container */}
+      {/* Main Content Area - Server Rendered Static HTML */}
       <main className="max-w-6xl mx-auto px-4 py-12 flex-grow w-full">
-        <div className="flex flex-col md:flex-row gap-5 items-center justify-between mb-10">
-          {/* Search bar */}
-          <div className="relative w-full md:max-w-md">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={lang === 'en' ? 'Search articles...' : 'Buscar artículos...'}
-              className="w-full px-5 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-semibold shadow-sm"
-            />
-            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
-              🔍
-            </span>
-          </div>
-
-          {/* Category pills */}
-          {categories.length > 2 && (
-            <div className="flex flex-wrap gap-2 w-full md:w-auto overflow-x-auto pb-1">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold uppercase transition duration-150 whitespace-nowrap shadow-sm border ${
-                    selectedCategory.toLowerCase() === cat.toLowerCase()
-                      ? 'bg-blue-600 border-blue-600 text-white'
-                      : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-350 hover:bg-slate-100 dark:hover:bg-slate-850'
-                  }`}
-                >
-                  {cat === 'all' ? (lang === 'en' ? 'All' : 'Todos') : cat}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Loading and Results Display */}
-        {loading ? (
-          <div className="py-24 text-center text-slate-500 flex flex-col items-center justify-center gap-3">
-            <div className="w-12 h-12 border-4 border-blue-500/25 border-t-blue-600 rounded-full animate-spin"></div>
-            <span className="text-sm font-semibold">{lang === 'en' ? 'Loading posts...' : 'Cargando artículos...'}</span>
-          </div>
-        ) : filteredPosts.length > 0 ? (
-          /* Cards Grid */
+        {posts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.map((post) => (
+            {posts.map((post) => (
               <article
                 key={post.id}
                 className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden hover:shadow-xl hover:-translate-y-1 hover:border-blue-500/40 dark:hover:border-blue-400/40 transition-all duration-300 flex flex-col justify-between"
               >
                 <div className="p-6 sm:p-7">
                   <div className="flex items-center justify-between gap-2 mb-4 text-xs font-extrabold">
-                    <span className="px-2.5 py-0.5 rounded uppercase tracking-wider bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400">
+                    <span className="px-2.5 py-0.5 rounded uppercase tracking-wider bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400 font-bold">
                       {post.category}
                     </span>
                     <span className="text-slate-400 dark:text-slate-500">
-                      📅 {new Date(post.date).toLocaleDateString(lang === 'en' ? 'en-US' : 'es-MX')}
+                      📅 {new Date(post.date).toLocaleDateString(isEn ? 'en-US' : 'es-MX')}
                     </span>
                   </div>
                   
                   <h2 className="text-xl font-extrabold text-slate-950 dark:text-white leading-snug hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                    <Link href={`${lang === 'en' ? '/en' : ''}/blog/${post.slug}`}>
+                    <Link href={`${langPrefix}/blog/${post.slug}`}>
                       {post.title}
                     </Link>
                   </h2>
                   
-                  <p className="text-slate-550 dark:text-slate-400 text-sm mt-3.5 leading-relaxed line-clamp-3 font-medium">
+                  <p className="text-slate-600 dark:text-slate-400 text-sm mt-3.5 leading-relaxed line-clamp-3 font-medium">
                     {post.excerpt}
                   </p>
                 </div>
 
                 <div className="px-6 py-4 bg-slate-50/50 dark:bg-slate-950/20 border-t border-slate-100 dark:border-slate-850 flex items-center justify-between text-xs">
-                  <span className="font-bold text-slate-500 dark:text-slate-450">
+                  <span className="font-bold text-slate-500 dark:text-slate-400">
                     ✍️ {post.author}
                   </span>
                   <Link 
-                    href={`${lang === 'en' ? '/en' : ''}/blog/${post.slug}`}
+                    href={`${langPrefix}/blog/${post.slug}`}
                     className="font-extrabold text-blue-600 dark:text-blue-400 flex items-center gap-1 hover:underline"
                   >
-                    {lang === 'en' ? 'Read More ➔' : 'Leer Más ➔'}
+                    {isEn ? 'Read Guide ➔' : 'Leer Guía ➔'}
                   </Link>
                 </div>
               </article>
             ))}
           </div>
         ) : (
-          <div className="text-center py-24 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8">
-            <span className="text-4xl block mb-3">📭</span>
-            <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200">
-              {lang === 'en' ? 'No articles found' : 'No se encontraron artículos'}
+          <div className="text-center py-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 max-w-2xl mx-auto shadow-sm space-y-4">
+            <span className="text-4xl block">📚</span>
+            <h3 className="text-xl font-black text-slate-900 dark:text-white">
+              {isEn ? 'Editorial Guides in Preparation' : 'Guías Editoriales en Preparación'}
             </h3>
-            <p className="text-slate-500 text-sm mt-1">
-              {lang === 'en' 
-                ? 'Try adjusting your search query or category filters.' 
-                : 'Intenta ajustar tus criterios de búsqueda o filtros de categorías.'}
+            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+              {isEn 
+                ? 'Our tax specialists are currently drafting verified educational articles and regulatory breakdowns. In the meantime, you can perform exact simulations using our suite of calculators.' 
+                : 'Nuestro comité editorial está redactando nuevas guías tributarias con fundamento legal actualizado. Mientras tanto, puedes realizar proyecciones exactas con nuestras calculadoras.'}
             </p>
+            <div className="pt-2">
+              <Link
+                href={langPrefix || '/'}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition"
+              >
+                <span>{isEn ? 'Explore Financial Calculators' : 'Explorar Calculadoras Fiscales'}</span>
+                <span>➔</span>
+              </Link>
+            </div>
           </div>
         )}
       </main>

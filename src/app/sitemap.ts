@@ -100,16 +100,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const publishedPosts = (posts as any[]).filter(p => p.status === 'published');
   const blogEntries = publishedPosts.map((post) => {
     const segment = `/blog/${post.slug}`;
+    const languages = post.lang === 'es'
+      ? {
+          es: `${domain}${segment}`,
+          'x-default': `${domain}${segment}`,
+        }
+      : {
+          es: `${domain}${segment}`,
+          en: `${domain}/en${segment}`,
+        };
+
     return {
       url: `${domain}${segment}`,
       lastModified: new Date(post.date || currentDate),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
       alternates: {
-        languages: {
-          es: `${domain}${segment}`,
-          en: `${domain}/en${segment}`,
-        },
+        languages,
       },
     };
   });
