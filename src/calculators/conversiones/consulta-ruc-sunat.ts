@@ -49,20 +49,21 @@ export function validateRucChecksum(ruc: string): { isValid: boolean; message: s
 
 export const consultaRucSunatCalculator: CalculatorConfig = {
   id: 'consulta-ruc-sunat',
-  title: 'Consulta RUC SUNAT',
-  shortDescription: 'Verifica la validez y estructura matemática de un número de RUC en Perú y aprende cómo consultar el padrón oficial de la SUNAT.',
+  title: 'Validador de RUC SUNAT (Estructura y Dígito de Control)',
+  shortDescription: 'Valida la estructura de 11 dígitos y el algoritmo Módulo 11 del dígito verificador de un RUC peruano. No consulta la base de datos de SUNAT.',
   category: 'Herramientas Perú',
   categorySlug: 'peru',
   slug: 'consulta-ruc-sunat',
   seo: {
-    metaTitle: 'Consulta RUC SUNAT: Cómo Consultar un RUC',
-    metaDescription: 'Aprende cómo consultar un RUC en SUNAT, qué información puedes verificar y dónde realizar la consulta oficial.',
+    metaTitle: 'Validador de RUC SUNAT: Verificar Estructura y Dígito Verificador',
+    metaDescription: 'Comprueba el algoritmo Módulo 11 y formato de 11 dígitos de un RUC en Perú. Identifica prefijos y accede al padrón oficial de SUNAT para consultar razón social y estado.',
     keywords: [
-      'consulta ruc sunat',
-      'sunat ruc',
-      'ruc sunat',
-      'consultar ruc',
-      'validar ruc Perú'
+      'validador ruc sunat',
+      'verificar ruc sunat',
+      'digito verificador ruc peru',
+      'algoritmo modulo 11 ruc',
+      'estructura ruc peru',
+      'consulta ruc sunat'
     ],
     schemaType: 'Calculator'
   },
@@ -87,54 +88,59 @@ export const consultaRucSunatCalculator: CalculatorConfig = {
           formatted: rucStr || '---'
         },
         {
-          label: 'Estructura RUC',
+          label: 'Estructura Matemática y Dígito Verificador',
           value: val.isValid ? 1 : 0,
-          formatted: val.isValid ? 'VÁLIDA' : 'INVÁLIDA'
+          formatted: val.isValid ? 'VÁLIDO' : 'INVÁLIDO',
+          isMain: true
         },
         {
-          label: 'Tipo de Contribuyente Estimado',
+          label: 'Tipo de Contribuyente según Prefijo',
           value: val.isValid ? 1 : 0,
-          formatted: val.type || 'No identificado',
-          isMain: true
+          formatted: val.type || 'No identificado'
         }
       ],
       steps: [
         {
           description: val.message,
           mathFormula: `RUC = ${rucStr} \\rightarrow Modulo\\ 11 = ${val.isValid ? 'VÁLIDO' : 'ERROR'}`
+        },
+        {
+          description: 'Aviso importante: Este validador no consulta la base de datos de SUNAT ni verifica si el contribuyente está ACTIVO o HABIDO.',
+          mathFormula: '\\text{Base de datos oficial} \\rightarrow \\text{Exclusivo portal SUNAT e-Consulta}'
         }
       ]
     };
   },
   content: {
-    explanation: 'El Registro Único de Contribuyentes (RUC) es el número de identificación de 11 dígitos asignado por la SUNAT a todas las personas físicas y jurídicas que realizan actividades económicas en Perú. Esta herramienta permite verificar la validez de la estructura numérica según el algoritmo oficial.',
-    formula: 'Algoritmo de Validación RUC (Módulo 11):\nPonderación de dígitos = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2]\nDígito verificador = 11 - (Suma % 11)',
-    example: 'Para un RUC que inicia con 20 (Empresa): 20100047218. Se aplican los pesos de ponderación y se valida que el 11.° dígito coincida exactamente con el residuo del cálculo.',
-    legislation: 'Decreto Legislativo N.º 943 (Ley del Registro Único de Contribuyentes de Perú) y resoluciones de la SUNAT.',
+    explanation: 'Esta herramienta es un validador matemático que verifica si una clave de RUC cumple con el estándar de 11 dígitos y el algoritmo oficial de ponderación Módulo 11 utilizado por la SUNAT en Perú. No realiza consultas directas a los servidores de SUNAT ni expone datos tributarios privados.',
+    formula: 'Algoritmo de Validación RUC (Módulo 11 de SUNAT):\nPonderación de dígitos = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2]\nSuma = \\sum (dígito_i \\times peso_i)\nResiduo = Suma % 11\nDígito Verificador esperado = 11 - Residuo (si es 10 = 0; si es 11 = 1)',
+    example: 'Para el RUC 20100047218 (Persona Jurídica): Se multiplican los primeros 10 dígitos por los coeficientes [5,4,3,2,7,6,5,4,3,2], se suman los productos y se calcula el residuo respecto a 11. El resultado coincide exactamente con el 11.° dígito (8), confirmando su validez matemática.',
+    legislation: 'Decreto Legislativo N.º 943 (Ley del Registro Único de Contribuyentes) y Resoluciones de Superintendencia de la SUNAT.',
     faqs: [
       {
-        question: '¿Qué es el RUC?',
-        answer: 'Es el código de 11 dígitos que identifica a un contribuyente ante la SUNAT en Perú para efectos de emisión de facturas, pago de tributos y trámites administrativos.'
+        question: '¿Esta herramienta consulta en vivo el padrón de contribuyentes de SUNAT?',
+        answer: 'No. Esta herramienta realiza una validación matemática local del formato y del dígito de control (Módulo 11). No se conecta a los servidores de SUNAT ni puede certificar si el RUC está activo, de baja o habido.'
       },
       {
-        question: '¿Cómo consultar el estado oficial de un RUC en SUNAT?',
-        answer: 'Puedes realizar la consulta gratuita en el portal oficial de la SUNAT (e-consulta RUC en sunat.gob.pe) ingresando el número de RUC, DNI o la razón social.'
+        question: '¿Dónde puedo consultar la razón social y el estado Activo/Habido de un RUC?',
+        answer: 'Para obtener la información oficial completa (Razón Social, domicilio fiscal, estado ACTIVO/BAJA y condición HABIDO/NO HABIDO), debes utilizar la plataforma oficial gratuita e-Consulta RUC de la SUNAT (e-consultaruc.sunat.gob.pe).'
       },
       {
-        question: '¿Qué información pública se verifica al consultar un RUC?',
-        answer: 'Se puede verificar la razón social, condición del contribuyente (Habido / No Habido), estado (Activo / En baja), régimen tributario y domicilio fiscal.'
+        question: '¿Qué significan los dos primeros dígitos de un RUC en Perú?',
+        answer: 'El prefijo 10 corresponde a Personas Naturales con DNI (los 8 dígitos centrales son el DNI del titular). Los prefijos 15 y 17 corresponden a Personas Naturales extranjeras. El prefijo 20 identifica a Personas Jurídicas (empresas, sociedades y entidades).'
       },
       {
-        question: '¿Cuáles son los prefijos de RUC en Perú?',
-        answer: 'Prefijo 10: Persona Natural con DNI. Prefijos 15/17: Persona Natural extranjera. Prefijo 20: Personas Jurídicas (Empresas y Sociedades).'
+        question: '¿Por qué un RUC con estructura válida puede ser rechazado por SUNAT?',
+        answer: 'Un número de RUC puede tener un dígito verificador matemáticamente correcto pero no haber sido emitido nunca por la SUNAT, o encontrarse en condición de NO HABIDO, BAJA DEFINITIVA o SUSPENSIÓN TEMPORAL.'
       }
     ],
     tips: [
-      'Antes de realizar compras o emitir pagos a un proveedor en Perú, verifica que su RUC figure en estado ACTIVO y condición HABIDO en el portal oficial de la SUNAT.',
-      'Nota: Esta plataforma es una guía informativa y validador de estructura. Para obtener la constancia oficial emitida por SUNAT, ingresa directamente a su sistema e-consulta.'
+      'Antes de aceptar una factura o hacer un pago comercial, verifica siempre en el portal e-Consulta oficial de SUNAT que el proveedor figure en estado ACTIVO y condición HABIDO.',
+      'Si necesitas automatizar la validación de sintaxis en tus sistemas contables antes de emitir comprobantes, el algoritmo Módulo 11 permite descartar números mal digitados de forma instantánea.'
     ],
     errors: [
-      'Aceptar comprobantes de pago de contribuyentes que se encuentren en condición de NO HABIDO o RUC Dado de Baja.'
+      'Asumir que un RUC matemáticamente válido garantiza que la empresa existe o que está autorizada para emitir comprobantes de pago.',
+      'Aceptar comprobantes con crédito fiscal emitidos por contribuyentes que figuren como NO HABIDOS en la base oficial de SUNAT.'
     ]
   }
 };

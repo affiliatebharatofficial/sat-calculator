@@ -147,8 +147,8 @@ export default async function TablasIndicadoresPage({ params }: PageProps) {
             <Link href="/consulta-ruc-sunat" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
               <span className="text-2xl">🔍</span>
               <div>
-                <div className="text-slate-900 dark:text-white font-bold">Consulta RUC SUNAT</div>
-                <div className="text-xs text-slate-500 font-normal">Verificador y guía RUC</div>
+                <div className="text-slate-900 dark:text-white font-bold">Validador de RUC SUNAT</div>
+                <div className="text-xs text-slate-500 font-normal">Estructura y dígito Módulo 11</div>
               </div>
             </Link>
           </div>

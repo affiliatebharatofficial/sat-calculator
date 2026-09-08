@@ -214,10 +214,10 @@ export default async function IgvPeruPage({ params }: PageProps) {
 
               <div>
                 <h3 className="font-bold text-slate-900 dark:text-white mb-1">
-                  ¿Cómo consultar la validez de un RUC antes de emitir factura?
+                  ¿Cómo validar un RUC antes de emitir factura con IGV?
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400 text-xs">
-                  Puedes utilizar nuestra herramienta de <Link href="/consulta-ruc-sunat" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Consulta RUC SUNAT</Link> para verificar el estado habido y activo de tu cliente.
+                  Puedes comprobar la sintaxis de 11 dígitos y dígito de control con nuestro <Link href="/consulta-ruc-sunat" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">Validador de RUC SUNAT</Link>. Para verificar que la empresa esté en condición de <strong>Habido</strong> y <strong>Activo</strong>, debes consultar el padrón oficial en el portal e-Consulta de la SUNAT.
                 </p>
               </div>
             </div>
@@ -245,8 +245,8 @@ export default async function IgvPeruPage({ params }: PageProps) {
               <Link href="/consulta-ruc-sunat" className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex items-center gap-3">
                 <span className="text-2xl">🔍</span>
                 <div>
-                  <div className="text-slate-900 dark:text-white font-bold">Consulta RUC SUNAT</div>
-                  <div className="text-xs text-slate-500 font-normal">Validador oficial de RUC</div>
+                  <div className="text-slate-900 dark:text-white font-bold">Validador de RUC SUNAT</div>
+                  <div className="text-xs text-slate-500 font-normal">Estructura y dígito Módulo 11</div>
                 </div>
               </Link>
             </div>

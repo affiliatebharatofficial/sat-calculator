@@ -79,7 +79,7 @@ const categoryTranslations: Record<string, Record<string, { name: string; desc: 
     },
     'peru': {
       name: 'Herramientas Perú (SUNAT)',
-      desc: 'Calculadoras laborales, tributarias y cambiarias para Perú: IGV (18%), CTS, Gratificaciones, Renta 5ta Categoría, Consulta RUC y Tipo de Cambio SUNAT.',
+      desc: 'Calculadoras laborales, tributarias y cambiarias para Perú: IGV (18%), CTS, Gratificaciones, Renta 5ta Categoría, Validador RUC y Tipo de Cambio SUNAT.',
       icon: '🇵🇪'
     }
   },
@@ -146,7 +146,7 @@ const categoryTranslations: Record<string, Record<string, { name: string; desc: 
     },
     'peru': {
       name: 'Peru Tools (SUNAT)',
-      desc: 'Labor, tax, and currency calculators for Peru: IGV (18% VAT), CTS, Gratifications, 5th Category Tax, RUC queries, and official SUNAT exchange rates.',
+      desc: 'Labor, tax, and currency calculators for Peru: IGV (18% VAT), CTS, Gratifications, 5th Category Tax, RUC validator, and official SUNAT exchange rates.',
       icon: '🇵🇪'
     }
   }

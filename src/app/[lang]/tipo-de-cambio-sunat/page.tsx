@@ -391,10 +391,10 @@ export default async function SunatPage({ params }: PageProps) {
             >
               <span className="text-2xl mb-2 block">🔍</span>
               <h3 className="font-bold text-slate-900 dark:text-white text-sm group-hover:text-blue-600 transition">
-                Consulta RUC SUNAT
+                Validador de RUC SUNAT
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                Verificador numérico de RUC y guía de consulta en el padrón oficial de SUNAT.
+                Comprobador de 11 dígitos y dígito verificador Módulo 11 oficial de SUNAT.
               </p>
             </Link>
 
