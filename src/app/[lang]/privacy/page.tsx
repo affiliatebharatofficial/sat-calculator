@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -7,6 +8,51 @@ interface PageProps {
   params: Promise<{
     lang: string;
   }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const isEn = lang === 'en';
+
+  const title = isEn ? 'Privacy Policy' : 'Política de Privacidad y Protección de Datos';
+  const description = isEn
+    ? 'Learn how CalculadoraSAT protects your privacy, uses cookies, and handles information under minimal data collection principles.'
+    : 'Conoce nuestra política de privacidad, uso de cookies y cómo protegemos tus datos bajo el principio de mínima recolección en CalculadoraSAT.';
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: isEn ? 'https://www.calculadorasat.org/en/privacy' : 'https://www.calculadorasat.org/privacy',
+      languages: {
+        es: 'https://www.calculadorasat.org/privacy',
+        en: 'https://www.calculadorasat.org/en/privacy',
+        'x-default': 'https://www.calculadorasat.org/privacy',
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: isEn ? 'https://www.calculadorasat.org/en/privacy' : 'https://www.calculadorasat.org/privacy',
+      siteName: 'CalculadoraSAT',
+      images: [
+        {
+          url: 'https://www.calculadorasat.org/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      locale: isEn ? 'en_US' : 'es_MX',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://www.calculadorasat.org/og-image.png'],
+    },
+  };
 }
 
 export default async function PrivacyPage({ params }: PageProps) {

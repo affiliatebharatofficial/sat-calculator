@@ -390,6 +390,15 @@ export default function CalculatorEngine({ slug, lang = 'es' }: CalculatorEngine
               onClick={toggleFavorite}
               className="text-2xl text-slate-400 hover:text-yellow-500 transition duration-200"
               title={isFavorite ? 'Quitar de Favoritos' : 'Agregar a Favoritos'}
+              aria-label={
+                isFavorite
+                  ? lang === 'en'
+                    ? 'Remove from favorites'
+                    : 'Quitar de favoritos'
+                  : lang === 'en'
+                  ? 'Add to favorites'
+                  : 'Guardar en favoritos'
+              }
             >
               {isFavorite ? '⭐' : '☆'}
             </button>
@@ -536,6 +545,11 @@ export default function CalculatorEngine({ slug, lang = 'es' }: CalculatorEngine
                         onClick={(e) => deleteHistoryEntry(entry.id, e)}
                         className="text-slate-400 hover:text-red-500 p-1 opacity-0 group-hover:opacity-100 transition duration-200"
                         title={lang === 'en' ? 'Delete entry' : 'Eliminar registro'}
+                        aria-label={
+                          lang === 'en'
+                            ? `Delete calculation for ${entry.name}`
+                            : `Eliminar cálculo de ${entry.name}`
+                        }
                       >
                         ✕
                       </button>
@@ -565,6 +579,7 @@ export default function CalculatorEngine({ slug, lang = 'es' }: CalculatorEngine
                 <button
                   onClick={copyToClipboard}
                   className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-semibold rounded-lg bg-white/10 hover:bg-white/20 text-white transition duration-200"
+                  aria-label={copied ? dict.btn_copied : dict.btn_copy}
                 >
                   <i className={`bi ${copied ? 'bi-check-lg text-emerald-300' : 'bi-clipboard'} mr-2`}></i>
                   {copied ? dict.btn_copied : dict.btn_copy}
@@ -572,24 +587,28 @@ export default function CalculatorEngine({ slug, lang = 'es' }: CalculatorEngine
                 <button
                   onClick={generateShareLink}
                   className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-semibold rounded-lg bg-white/10 hover:bg-white/20 text-white transition duration-200"
+                  aria-label={dict.btn_share}
                 >
                   <i className="bi bi-share mr-2"></i>{dict.btn_share}
                 </button>
                 <button
                   onClick={() => setShowSaveModal(true)}
                   className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-semibold rounded-lg bg-white/10 hover:bg-white/20 text-white transition duration-200"
+                  aria-label={dict.btn_save}
                 >
                   <i className="bi bi-bookmark-plus mr-2"></i>{dict.btn_save}
                 </button>
                 <button
                   onClick={exportToCSV}
                   className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-semibold rounded-lg bg-white/10 hover:bg-white/20 text-white transition duration-200"
+                  aria-label={dict.btn_excel}
                 >
                   <i className="bi bi-file-earmark-excel mr-2"></i>{dict.btn_excel}
                 </button>
                 <button
                   onClick={handlePrint}
                   className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-semibold rounded-lg bg-white/10 hover:bg-white/20 text-white transition duration-200"
+                  aria-label={dict.btn_print}
                 >
                   <i className="bi bi-printer mr-2"></i>{dict.btn_print}
                 </button>
@@ -662,6 +681,8 @@ export default function CalculatorEngine({ slug, lang = 'es' }: CalculatorEngine
                 <button
                   onClick={() => setShowSteps(!showSteps)}
                   className="flex justify-between items-center w-full px-6 py-4 bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-850 transition duration-200 font-semibold text-slate-850 dark:text-white"
+                  aria-expanded={showSteps}
+                  aria-label={dict.steps_title}
                 >
                   <span className="flex items-center">
                     <i className="bi bi-info-square-fill text-blue-600 mr-2"></i> {dict.steps_title}

@@ -29,19 +29,19 @@ export default function Footer({ lang = 'es' }: FooterProps) {
 
         {/* Navigation Links Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-row md:flex-wrap gap-y-3 gap-x-6 justify-center md:justify-start text-xs font-semibold text-slate-600 dark:text-slate-400 pt-4 border-t border-slate-200 dark:border-slate-800">
-          <Link href={`${langPrefix}/calendario-fiscal`} className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-blue-600 dark:text-blue-400 truncate">
+          <Link href="/calendario-fiscal" className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-blue-600 dark:text-blue-400 truncate">
             {isEn ? 'Fiscal Calendar' : 'Calendario Fiscal'}
           </Link>
-          <Link href={`${langPrefix}/blog`} className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-blue-600 dark:text-blue-400 truncate">
+          <Link href="/blog" className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-blue-600 dark:text-blue-400 truncate">
             Blog
           </Link>
           <Link href={`${langPrefix}/developer`} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition font-bold text-indigo-600 dark:text-indigo-400 truncate">
             {isEn ? 'API Developers' : 'API Desarrollo'}
           </Link>
-          <Link href={`${langPrefix}/formatos`} className="hover:text-blue-600 dark:hover:text-blue-400 transition truncate">
+          <Link href="/formatos" className="hover:text-blue-600 dark:hover:text-blue-400 transition truncate">
             {isEn ? 'HR Formats' : 'Formatos RH'}
           </Link>
-          <Link href={`${langPrefix}/widgets`} className="hover:text-blue-600 dark:hover:text-blue-400 transition truncate">
+          <Link href="/widgets" className="hover:text-blue-600 dark:hover:text-blue-400 transition truncate">
             Widgets
           </Link>
           <Link href={`${langPrefix}/privacy`} className="hover:text-slate-900 dark:hover:text-white transition truncate">

@@ -1,26 +1,65 @@
-'use client';
-
-import React, { useState, use } from 'react';
-import Link from 'next/link';
+import React from 'react';
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ContactForm from '@/components/ContactForm';
 
-export default function ContactPage({ params }: { params: Promise<{ lang: string }> }) {
-  const resolvedParams = use(params);
-  const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const isEn = lang === 'en';
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: lang === 'en' ? 'General Inquiry' : 'Consulta General',
-    message: ''
-  });
-  const [submitted, setSubmitted] = useState(false);
+  const title = isEn ? 'Contact Us & Support' : 'Contacto y Soporte Fiscal';
+  const description = isEn
+    ? 'Get in touch with the CalculadoraSAT team for inquiries, support, suggestions, or feedback regarding tax and payroll calculators.'
+    : 'Ponte en contacto con el equipo de CalculadoraSAT para dudas, soporte o sugerencias sobre nuestras herramientas fiscales y laborales.';
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: isEn ? 'https://www.calculadorasat.org/en/contact' : 'https://www.calculadorasat.org/contact',
+      languages: {
+        es: 'https://www.calculadorasat.org/contact',
+        en: 'https://www.calculadorasat.org/en/contact',
+        'x-default': 'https://www.calculadorasat.org/contact',
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: isEn ? 'https://www.calculadorasat.org/en/contact' : 'https://www.calculadorasat.org/contact',
+      siteName: 'CalculadoraSAT',
+      images: [
+        {
+          url: 'https://www.calculadorasat.org/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      locale: isEn ? 'en_US' : 'es_MX',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://www.calculadorasat.org/og-image.png'],
+    },
   };
+}
+
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
 
   if (lang === 'en') {
     return (
@@ -77,93 +116,7 @@ export default function ContactPage({ params }: { params: Promise<{ lang: string
                 <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
                   ✉️ Send a Message
                 </h2>
-
-                {submitted ? (
-                  <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/50 p-6 rounded-xl text-center space-y-3">
-                    <span className="text-3xl block">🎉</span>
-                    <h3 className="font-bold text-emerald-800 dark:text-emerald-300">Message Sent Successfully!</h3>
-                    <p className="text-sm text-emerald-700 dark:text-emerald-400">
-                      Thank you for your message. We will get in touch with you shortly at the email address provided.
-                    </p>
-                    <button
-                      onClick={() => setSubmitted(false)}
-                      className="mt-2 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
-                    >
-                      Send another message
-                    </button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div>
-                      <label htmlFor="name" className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="e.g. John Doe"
-                        className="w-full px-4 py-3 border border-slate-250 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="email" className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                        Email Address
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="e.g. your-email@example.com"
-                        className="w-full px-4 py-3 border border-slate-250 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="subject" className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                        Subject
-                      </label>
-                      <select
-                        id="subject"
-                        value={formData.subject}
-                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="w-full px-4 py-3 border border-slate-250 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      >
-                        <option value="General Inquiry">General Inquiry</option>
-                        <option value="Calculator Suggestion">Calculator Suggestion / Improvement</option>
-                        <option value="Report a Bug">Report a Calculation Bug</option>
-                        <option value="Commercial Contact">Commercial Contact / Advertising</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                        Message
-                      </label>
-                      <textarea
-                        id="message"
-                        required
-                        rows={5}
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        placeholder="Type your query or detailed comment here..."
-                        className="w-full px-4 py-3 border border-slate-250 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      ></textarea>
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-sm shadow-md transition duration-200 hover:scale-[1.01] active:scale-[0.99]"
-                    >
-                      Send Message 🚀
-                    </button>
-                  </form>
-                )}
+                <ContactForm lang={lang} />
               </div>
             </div>
           </main>
@@ -228,93 +181,7 @@ export default function ContactPage({ params }: { params: Promise<{ lang: string
               <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
                 ✉️ Enviar un Mensaje
               </h2>
-
-              {submitted ? (
-                <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/50 p-6 rounded-xl text-center space-y-3">
-                  <span className="text-3xl block">🎉</span>
-                  <h3 className="font-bold text-emerald-800 dark:text-emerald-300">¡Mensaje Enviado con Éxito!</h3>
-                  <p className="text-sm text-emerald-700 dark:text-emerald-400">
-                    Agradecemos tu mensaje. Nos pondremos en contacto contigo a la brevedad en el correo indicado.
-                  </p>
-                  <button
-                    onClick={() => setSubmitted(false)}
-                    className="mt-2 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
-                  >
-                    Enviar otro mensaje
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div>
-                    <label htmlFor="name" className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                      Nombre Completo
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Ej: Juan Pérez"
-                      className="w-full px-4 py-3 border border-slate-250 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                      Correo Electrónico
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="Ej: tu-correo@ejemplo.com"
-                      className="w-full px-4 py-3 border border-slate-250 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="subject" className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                      Asunto
-                    </label>
-                    <select
-                      id="subject"
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-3 border border-slate-250 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      <option value="Consulta General">Consulta General</option>
-                      <option value="Sugerencia de Calculadora">Sugerencia de Calculadora / Mejora</option>
-                      <option value="Reportar un Fallo">Reportar un Fallo en Cálculo</option>
-                      <option value="Contacto Comercial">Contacto Comercial / Publicidad</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                      Mensaje
-                    </label>
-                    <textarea
-                      id="message"
-                      required
-                      rows={5}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Escribe aquí tu consulta o comentario detallado..."
-                      className="w-full px-4 py-3 border border-slate-250 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    ></textarea>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-sm shadow-md transition duration-200 hover:scale-[1.01] active:scale-[0.99]"
-                  >
-                    Enviar Mensaje 🚀
-                  </button>
-                </form>
-              )}
+              <ContactForm lang={lang} />
             </div>
           </div>
         </main>

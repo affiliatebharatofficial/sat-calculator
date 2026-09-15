@@ -7,6 +7,9 @@ interface RichSnippetsProps {
 }
 
 export default function RichSnippets({ config, url }: RichSnippetsProps) {
+  const baseUrl = 'https://www.calculadorasat.org';
+  const hasFaqs = Boolean(config.content?.faqs && config.content.faqs.length > 0);
+
   // WebApplication / SoftwareApplication (Calculator) Schema
   const webAppSchema = {
     '@context': 'https://schema.org',
@@ -25,20 +28,22 @@ export default function RichSnippets({ config, url }: RichSnippetsProps) {
     },
   };
 
-  // FAQ Page Schema
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    '@id': `${url}#faq`,
-    mainEntity: config.content.faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  };
+  // FAQ Page Schema (only render if there are valid FAQs)
+  const faqSchema = hasFaqs
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        '@id': `${url}#faq`,
+        mainEntity: config.content.faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer,
+          },
+        })),
+      }
+    : null;
 
   // Breadcrumb List Schema
   const breadcrumbSchema = {
@@ -50,13 +55,13 @@ export default function RichSnippets({ config, url }: RichSnippetsProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Inicio',
-        item: typeof window !== 'undefined' ? window.location.origin : 'https://www.calculadorasat.org',
+        item: baseUrl,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: config.category,
-        item: `${typeof window !== 'undefined' ? window.location.origin : 'https://www.calculadorasat.org'}/${config.categorySlug}`,
+        item: `${baseUrl}/calculadoras/${config.categorySlug}`,
       },
       {
         '@type': 'ListItem',
@@ -73,10 +78,12 @@ export default function RichSnippets({ config, url }: RichSnippetsProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}

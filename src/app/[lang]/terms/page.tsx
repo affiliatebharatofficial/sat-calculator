@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -7,6 +8,51 @@ interface PageProps {
   params: Promise<{
     lang: string;
   }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const isEn = lang === 'en';
+
+  const title = isEn ? 'Terms and Conditions of Use' : 'Términos y Condiciones de Uso';
+  const description = isEn
+    ? 'Read the Terms and Conditions of Use governing the tax tools, payroll calculators, and educational content on CalculadoraSAT.'
+    : 'Consulta los Términos y Condiciones de Uso que rigen el acceso a las calculadoras fiscales, simuladores laborales y contenidos de CalculadoraSAT.';
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: isEn ? 'https://www.calculadorasat.org/en/terms' : 'https://www.calculadorasat.org/terms',
+      languages: {
+        es: 'https://www.calculadorasat.org/terms',
+        en: 'https://www.calculadorasat.org/en/terms',
+        'x-default': 'https://www.calculadorasat.org/terms',
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: isEn ? 'https://www.calculadorasat.org/en/terms' : 'https://www.calculadorasat.org/terms',
+      siteName: 'CalculadoraSAT',
+      images: [
+        {
+          url: 'https://www.calculadorasat.org/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      locale: isEn ? 'en_US' : 'es_MX',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://www.calculadorasat.org/og-image.png'],
+    },
+  };
 }
 
 export default async function TermsPage({ params }: PageProps) {
