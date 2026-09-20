@@ -64,17 +64,16 @@ export default async function Home({ params }: PageProps) {
   const isEn = lang === 'en';
   const langPrefix = isEn ? '/en' : '';
 
-  const localizedCalculators = calculators.map((calc) => {
-    if (isEn && calc.translations?.en) {
-      const trans = calc.translations.en;
-      return {
-        ...calc,
-        title: trans.title || calc.title,
-        shortDescription: trans.shortDescription || calc.shortDescription,
-        category: trans.category || calc.category,
-      };
-    }
-    return calc;
+  const searchableCalculators = calculators.map((calc) => {
+    const trans = isEn ? calc.translations?.en : null;
+    return {
+      id: calc.id,
+      title: trans?.title || calc.title,
+      shortDescription: trans?.shortDescription || calc.shortDescription,
+      category: trans?.category || calc.category,
+      categorySlug: calc.categorySlug,
+      slug: calc.slug,
+    };
   });
 
   // Curated High-Traffic Mexico Core Calculators
@@ -261,7 +260,7 @@ export default async function Home({ params }: PageProps) {
           </p>
 
           {/* Interactive Client Search & Dashboard */}
-          <HomeInteractive lang={lang} allCalculators={localizedCalculators} />
+          <HomeInteractive lang={lang} allCalculators={searchableCalculators} />
         </div>
       </section>
 
