@@ -101,14 +101,8 @@ export default async function RootLayout({
     >
       <head>
         <meta name="google-site-verification" content="rRetDb7bEgDlPVqH4e0hWvIB__PrqNCSr2FYbfXsZMM" />
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <SEOHreflang />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9602707669345879"
-          crossOrigin="anonymous"
-        ></script>
         <script
           type="text/javascript"
           async
