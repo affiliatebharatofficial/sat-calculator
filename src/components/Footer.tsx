@@ -83,13 +83,22 @@ export default function Footer({ lang = 'es' }: FooterProps) {
 
         {/* Navigation Links Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-row md:flex-wrap gap-y-3 gap-x-6 justify-center md:justify-start text-xs font-semibold text-slate-600 dark:text-slate-400 pt-6 mt-6 border-t border-slate-200 dark:border-slate-800">
-          <Link href="/calendario-fiscal" className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-blue-600 dark:text-blue-400 truncate">
+          <Link href={`${langPrefix}/metodologia`} className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-blue-600 dark:text-blue-400 truncate">
+            {isEn ? '🔬 Methodology' : '🔬 Metodología'}
+          </Link>
+          <Link href={`${langPrefix}/fuentes`} className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-blue-600 dark:text-blue-400 truncate">
+            {isEn ? '🏛️ Official Sources' : '🏛️ Fuentes Oficiales'}
+          </Link>
+          <Link href={`${langPrefix}/actualizaciones`} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition font-bold text-indigo-600 dark:text-indigo-400 truncate">
+            {isEn ? '🔄 Updates Log' : '🔄 Actualizaciones'}
+          </Link>
+          <Link href="/calendario-fiscal" className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-slate-700 dark:text-slate-300 truncate">
             {isEn ? 'Fiscal Calendar' : 'Calendario Fiscal'}
           </Link>
-          <Link href={`${langPrefix}/blog`} className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-blue-600 dark:text-blue-400 truncate">
+          <Link href={`${langPrefix}/blog`} className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-slate-700 dark:text-slate-300 truncate">
             Blog
           </Link>
-          <Link href={`${langPrefix}/developer`} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition font-bold text-indigo-600 dark:text-indigo-400 truncate">
+          <Link href={`${langPrefix}/developer`} className="hover:text-slate-600 dark:text-slate-400 transition truncate">
             {isEn ? 'API Developers' : 'API Desarrollo'}
           </Link>
           <Link href="/formatos" className="hover:text-blue-600 dark:hover:text-blue-400 transition truncate">

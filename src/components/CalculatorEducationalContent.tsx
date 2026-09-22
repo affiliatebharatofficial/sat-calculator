@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { CalculatorConfig } from '@/types/calculator';
+import OfficialSourcesSection from './OfficialSourcesSection';
+import CalculatorUpdateHistory from './CalculatorUpdateHistory';
 
 interface CalculatorEducationalContentProps {
   config: CalculatorConfig;
@@ -473,7 +475,20 @@ export default function CalculatorEducationalContent({
         );
       })()}
 
-      {/* 13. Editorial Review, Attribution & Error Reporting (E-E-A-T Card) */}
+      {/* 13. Official Regulatory Framework & Sources */}
+      <OfficialSourcesSection
+        calculatorSlug={config.slug}
+        categorySlug={config.categorySlug}
+        lang={lang}
+      />
+
+      {/* 14. Audit Trail & Change History */}
+      <CalculatorUpdateHistory
+        calculatorSlug={config.slug}
+        lang={lang}
+      />
+
+      {/* 15. Editorial Review, Attribution & Error Reporting (E-E-A-T Card) */}
       <section
         id="supervision-tecnica"
         className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm"
@@ -500,16 +515,24 @@ export default function CalculatorEducationalContent({
               </p>
             </div>
           </div>
-          <div className="inline-flex items-center gap-1.5 text-xs text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 px-3 py-1.5 rounded-full font-bold">
-            <span>✓</span>
-            <span>{isEn ? 'Verified with official 2026 DOF/SAT tables' : 'Verificado con tablas y DOF 2026'}</span>
+          <div className="flex flex-wrap items-center gap-2">
+            <Link
+              href={isEn ? '/en/metodologia' : '/metodologia'}
+              className="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline font-bold px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60"
+            >
+              <span>🔬 {isEn ? 'Our Methodology' : 'Nuestra Metodología'}</span>
+            </Link>
+            <div className="inline-flex items-center gap-1.5 text-xs text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 px-3 py-1.5 rounded-full font-bold">
+              <span>✓</span>
+              <span>{isEn ? 'Verified with official 2026 DOF/SAT tables' : 'Verificado con tablas y DOF 2026'}</span>
+            </div>
           </div>
         </div>
 
         <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-400">
           <p className="max-w-2xl leading-relaxed">
             {isEn
-              ? 'Our calculation engines are audited against official publications of the Mexican DOF and LISR/LFT. Notice any regulatory change or numerical discrepancy? Help us maintain 100% precision.'
+              ? 'Our calculation engines are audited against official publications of the Mexican DOF and LISR/LFT. Notice any regulatory change or numerical discrepancy? Help us maintain continuous precision.'
               : 'Nuestras calculadoras se auditan contra las publicaciones oficiales del DOF, LISR y LFT de México. ¿Detectaste una reforma legal, cambio de tarifas o ajuste por inflación? Ayúdanos a mantener la máxima precisión.'}
           </p>
           <a

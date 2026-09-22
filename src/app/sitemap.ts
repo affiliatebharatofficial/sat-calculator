@@ -17,6 +17,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'disclaimer',
     'calendario-fiscal',
     'blog',
+    'metodologia',
+    'fuentes',
+    'actualizaciones',
     'formatos',
     'widgets',
     'tipo-de-cambio',
@@ -26,7 +29,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const segment = path ? `/${path}` : '';
     const isSpanishOnly = SPANISH_ONLY_ROUTES.includes(path);
     const isHomepage = path === '';
-    const isCoreTool = path === 'tipo-de-cambio' || path === 'calendario-fiscal' || path === 'blog';
+    const isCoreTool = [
+      'tipo-de-cambio',
+      'calendario-fiscal',
+      'blog',
+      'metodologia',
+      'fuentes',
+      'actualizaciones',
+    ].includes(path);
     
     return {
       url: `${domain}${segment}`,
