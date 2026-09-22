@@ -4,8 +4,8 @@ export const hipotecarioCalculator: CalculatorConfig = {
   id: 'calculo-hipotecario',
   title: 'Calculadora de Crédito Hipotecario',
   shortDescription: 'Calcula tu mensualidad fija para comprar casa usando amortización francesa, desglosando capital, intereses y seguro.',
-  category: 'Hipotecas',
-  categorySlug: 'hipotecas',
+  category: 'Finanzas Personales',
+  categorySlug: 'finanzas-personales',
   slug: 'calculadora-credito-hipotecario',
   seo: {
     metaTitle: 'Calculadora de Crédito Hipotecario 2026 - Amortización y Mensualidad',

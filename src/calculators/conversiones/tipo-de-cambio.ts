@@ -4,8 +4,8 @@ export const tipoCambioCalculator: CalculatorConfig = {
   id: 'calculo-tipo-de-cambio',
   title: 'Convertidor de Tipo de Cambio',
   shortDescription: 'Convierte montos entre dólares estadounidenses (USD) y pesos mexicanos (MXN) usando la tasa de cambio actual.',
-  category: 'Tipo de Cambio',
-  categorySlug: 'tipo-de-cambio',
+  category: 'Finanzas Personales',
+  categorySlug: 'finanzas-personales',
   slug: 'calculadora-tipo-de-cambio',
   seo: {
     metaTitle: 'Calculadora de Tipo de Cambio 2026 - Convertidor USD a MXN',

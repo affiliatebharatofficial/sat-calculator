@@ -46,6 +46,45 @@ function renderMarkdownLinks(text?: string) {
   return parts.length > 0 ? parts : text;
 }
 
+function getRelatedBlogGuides(config: CalculatorConfig, isEn: boolean) {
+  const slug = config.slug || '';
+  const cat = config.categorySlug || '';
+  const langPrefix = isEn ? '/en' : '';
+  const guides: { title: string; desc: string; href: string; tag: string; icon: string }[] = [];
+
+  if (cat === 'sat' || cat === 'resico' || slug.includes('isr') || slug.includes('uma') || slug.includes('afore')) {
+    guides.push({
+      title: isEn ? 'Personal Tax Deductions SAT 2026: Limits and Requirements' : 'Deducciones Personales SAT 2026: Guía Completa, Límites en UMA y Requisitos',
+      desc: isEn ? 'Learn about eligible tax deductions under Article 151 of Mexican LISR and annual UMA caps.' : 'Conoce qué gastos acepta el SAT como deducciones personales conforme al Art. 151 de la LISR y topes en UMA.',
+      href: `${langPrefix}/blog/deducciones-personales-sat-2026-guia-y-limites`,
+      tag: isEn ? 'SAT Guide' : 'Guía Fiscal SAT',
+      icon: '📘'
+    });
+  }
+
+  if (cat === 'resico' || cat === 'negocios' || slug.includes('resico') || slug.includes('iva') || slug.includes('isr-pm') || slug.includes('punto-equilibrio')) {
+    guides.push({
+      title: isEn ? 'RESICO vs. General Business Regime: Which is better in Mexico?' : 'RESICO vs Actividad Empresarial: ¿Cuál te conviene más en 2026?',
+      desc: isEn ? 'Compare effective tax rates, deductible business expenses, and break-even points in Mexico.' : 'Compara tasas efectivas, impacto de gastos deducibles, punto de equilibrio y restricciones de accionistas.',
+      href: `${langPrefix}/blog/resico-vs-actividad-empresarial-cual-conviene-2026`,
+      tag: isEn ? 'Tax Comparison' : 'Comparativa Tributaria',
+      icon: '🌱'
+    });
+  }
+
+  if (cat === 'nomina' || slug.includes('finiquito') || slug.includes('salario') || slug.includes('aguinaldo') || slug.includes('vacaciones') || slug.includes('ptu') || slug.includes('semanas') || slug.includes('horas-extra')) {
+    guides.push({
+      title: isEn ? 'What to do if statutory severance is withheld in Mexico: Step-by-step' : 'Qué hacer si no te pagan el finiquito de ley en México: Guía paso a paso',
+      desc: isEn ? 'Legal deadlines under the Federal Labor Law (LFT) to claim severance, PROFEDET and Conciliation Centers.' : 'Conoce los plazos legales de la LFT para recibir tu finiquito o liquidación y cómo acudir a PROFEDET.',
+      href: `${langPrefix}/blog/que-hacer-si-no-te-pagan-finiquito-de-ley-mexico`,
+      tag: isEn ? 'Labor Law' : 'Derecho Laboral LFT',
+      icon: '💼'
+    });
+  }
+
+  return guides;
+}
+
 export default function CalculatorEducationalContent({
   config,
   lang,
@@ -379,6 +418,109 @@ export default function CalculatorEducationalContent({
           </div>
         </section>
       )}
+
+      {/* 12. Related Editorial Blog Guides Section */}
+      {(() => {
+        const guides = getRelatedBlogGuides(config, isEn);
+        if (guides.length === 0) return null;
+        return (
+          <section
+            id="guias-relacionadas"
+            className="scroll-mt-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-6"
+          >
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 mb-3 border border-amber-200 dark:border-amber-800">
+                <i className="bi bi-journal-text"></i>
+                {isEn ? 'Editorial Analyses & Step-by-Step Guides' : 'Artículos y Guías Editoriales Relacionadas'}
+              </div>
+              <h2 className="text-2xl font-black text-slate-950 dark:text-white tracking-tight flex items-center gap-2">
+                <span>📚</span>
+                {isEn ? 'Recommended In-Depth Guides' : 'Guías Explicativas Recomendadas'}
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
+                {isEn
+                  ? 'Complement your calculation with legal background, statutory exceptions, and procedures.'
+                  : 'Profundiza en el marco legal, casos prácticos y trámites asociados a esta herramienta.'}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+              {guides.map((g, idx) => (
+                <Link
+                  key={idx}
+                  href={g.href}
+                  className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-400 transition bg-slate-50 dark:bg-slate-950 flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="flex items-center justify-between text-xs font-bold mb-2">
+                      <span className="text-blue-600 dark:text-blue-400">{g.tag}</span>
+                      <span className="text-slate-400">{g.icon}</span>
+                    </div>
+                    <h3 className="font-bold text-slate-900 dark:text-white text-base group-hover:text-blue-600 transition-colors">
+                      {g.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+                      {g.desc}
+                    </p>
+                  </div>
+                  <span className="text-xs font-bold text-blue-600 dark:text-blue-400 mt-4 flex items-center gap-1">
+                    {isEn ? 'Read article ➔' : 'Leer artículo completo ➔'}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        );
+      })()}
+
+      {/* 13. Editorial Review, Attribution & Error Reporting (E-E-A-T Card) */}
+      <section
+        id="supervision-tecnica"
+        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm"
+      >
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-5 border-b border-slate-200 dark:border-slate-800">
+          <div className="flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-2xl bg-blue-600 text-white flex items-center justify-center font-black text-base shadow-sm">
+              FK
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span>{isEn ? 'Technical Supervision & Computational Modeling' : 'Supervisión Técnica y Modelado Numérico'}</span>
+              </h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                <span className="font-semibold text-slate-700 dark:text-slate-300">FkDigitalMedia</span> • {isEn ? 'Developer & Architect: ' : 'Dirección: '}
+                <a
+                  href="https://www.linkedin.com/in/firoz-khan-1153358a/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
+                >
+                  Firoz Khan (LinkedIn)
+                </a>
+              </p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1.5 text-xs text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 px-3 py-1.5 rounded-full font-bold">
+            <span>✓</span>
+            <span>{isEn ? 'Verified with official 2026 DOF/SAT tables' : 'Verificado con tablas y DOF 2026'}</span>
+          </div>
+        </div>
+
+        <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-400">
+          <p className="max-w-2xl leading-relaxed">
+            {isEn
+              ? 'Our calculation engines are audited against official publications of the Mexican DOF and LISR/LFT. Notice any regulatory change or numerical discrepancy? Help us maintain 100% precision.'
+              : 'Nuestras calculadoras se auditan contra las publicaciones oficiales del DOF, LISR y LFT de México. ¿Detectaste una reforma legal, cambio de tarifas o ajuste por inflación? Ayúdanos a mantener la máxima precisión.'}
+          </p>
+          <a
+            href={`mailto:hello@calculadorasat.org?subject=${encodeURIComponent(`Observación sobre ${config.title}`)}&body=${encodeURIComponent(`Hola equipo de Calculadora SAT,\n\nHe detectado la siguiente observación en la herramienta "${config.title}" (URL: /calculadoras/${config.categorySlug}/${config.slug}):\n\n[Describe aquí la sugerencia o valor a ajustar]\n\nSaludos.`)}`}
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold shrink-0 transition"
+          >
+            <span>✉️</span>
+            <span>{isEn ? 'Report an Observation' : 'Reportar una Observación'}</span>
+          </a>
+        </div>
+      </section>
 
       {/* 14. Official Informational Disclaimer */}
       <section

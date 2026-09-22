@@ -394,6 +394,95 @@ const nextConfig: NextConfig = {
         destination: '/calculadoras/resico/comparador-resico-actividad-empresarial',
         permanent: true,
       },
+
+      // 6. Category Consolidation (Eliminating 1-tool thin category archives)
+      {
+        source: '/calculadoras/hipotecas',
+        destination: '/calculadoras/finanzas-personales',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/prestamos',
+        destination: '/calculadoras/finanzas-personales',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/interes-compuesto',
+        destination: '/calculadoras/finanzas-personales',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/inversiones',
+        destination: '/calculadoras/finanzas-personales',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/contabilidad',
+        destination: '/calculadoras/negocios',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/conversiones',
+        destination: '/calculadoras/sat',
+        permanent: true,
+      },
+
+      // 7. Individual calculator relocations to consolidated hubs
+      {
+        source: '/calculadora-comisiones-tarjeta-dolares',
+        destination: '/calculadoras/finanzas-personales/calculadora-comisiones-tarjeta-dolares',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/conversiones/calculadora-uma',
+        destination: '/calculadoras/sat/calculadora-conversor-uma',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/conversiones/calculadora-conversor-uma',
+        destination: '/calculadoras/sat/calculadora-conversor-uma',
+        permanent: true,
+      },
+      {
+        source: '/calculadora-uma',
+        destination: '/calculadoras/sat/calculadora-conversor-uma',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/contabilidad/calculadora-depreciacion-activos',
+        destination: '/calculadoras/negocios/calculadora-depreciacion-activos',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/inversiones/calculadora-cetes-directo',
+        destination: '/calculadoras/finanzas-personales/calculadora-cetes-directo',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/creditos/calculadora-credito-hipotecario',
+        destination: '/calculadoras/finanzas-personales/calculadora-credito-hipotecario',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/hipotecas/calculadora-credito-hipotecario',
+        destination: '/calculadoras/finanzas-personales/calculadora-credito-hipotecario',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/creditos/calculadora-prestamo-personal',
+        destination: '/calculadoras/finanzas-personales/calculadora-prestamo-personal',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/prestamos/calculadora-prestamo-personal',
+        destination: '/calculadoras/finanzas-personales/calculadora-prestamo-personal',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/interes-compuesto/calculadora-interes-compuesto',
+        destination: '/calculadoras/finanzas-personales/calculadora-interes-compuesto',
+        permanent: true,
+      },
     ];
   },
 };

@@ -4,13 +4,13 @@ export const depreciacionCalculator: CalculatorConfig = {
   id: 'calculo-depreciacion-activos',
   title: 'Calculadora de Depreciación de Activos',
   shortDescription: 'Calcula la depreciación anual, mensual y acumulada de tus activos fijos de acuerdo con los porcentajes de la Ley del ISR del SAT.',
-  category: 'Contabilidad',
-  categorySlug: 'contabilidad',
+  category: 'Negocios',
+  categorySlug: 'negocios',
   slug: 'calculadora-depreciacion-activos',
   seo: {
-    metaTitle: 'Calculadora de Depreciación Fiscal de Activos SAT - Ley del ISR',
-    metaDescription: 'Simula la depreciación fiscal de tus activos en línea recta. Conoce las tasas autorizadas por el SAT para cómputo, mobiliario, vehículos y maquinaria.',
-    keywords: ['depreciacion de activos fijos', 'depreciacion fiscal sat', 'porcentajes depreciacion lisr', 'monto original de la inversion moi', 'depreciacion linea recta mexico'],
+    metaTitle: 'Calculadora de Depreciación Fiscal de Activos SAT 2026 - Ley del ISR',
+    metaDescription: 'Calcula la depreciación fiscal en línea recta de tus activos fijos conforme al Artículo 34 y 35 de la Ley del ISR. Tasas del SAT para cómputo, autos y mobiliario.',
+    keywords: ['depreciacion de activos fijos', 'depreciacion fiscal sat', 'porcentajes depreciacion lisr', 'articulo 34 lisr', 'monto original de la inversion moi', 'depreciacion linea recta mexico'],
     schemaType: 'Calculator'
   },
   inputs: [
@@ -49,53 +49,57 @@ export const depreciacionCalculator: CalculatorConfig = {
     const tipoActivo = inputs.tipo_activo;
     const meses = Math.min(12, Math.max(0, parseInt(inputs.meses_uso) || 0));
 
-    let tasa = 0.10;
+    // Official LISR depreciation rates
+    const rates: Record<string, number> = {
+      'computadoras': 0.30,
+      'mobiliario': 0.10,
+      'vehiculos': 0.25,
+      'maquinaria': 0.10,
+      'construcciones': 0.05
+    };
+
+    const rate = rates[tipoActivo] || 0.10;
     let descripcionActivo = 'Maquinaria y Equipo';
 
     switch (tipoActivo) {
       case 'computadoras':
-        tasa = 0.30;
         descripcionActivo = 'Equipo de Cómputo';
         break;
       case 'mobiliario':
-        tasa = 0.10;
         descripcionActivo = 'Mobiliario y Equipo de Oficina';
         break;
       case 'vehiculos':
-        tasa = 0.25;
         descripcionActivo = 'Vehículos';
         break;
       case 'maquinaria':
-        tasa = 0.10;
         descripcionActivo = 'Maquinaria y Equipo General';
         break;
       case 'construcciones':
-        tasa = 0.05;
         descripcionActivo = 'Edificios y Construcciones';
         break;
     }
 
-    const depreciacionAnual = moi * tasa;
+    const depreciacionAnual = moi * rate;
     const depreciacionMensual = depreciacionAnual / 12;
     const depreciacionProporcional = depreciacionMensual * meses;
     const valorLibros = Math.max(0, moi - depreciacionProporcional);
 
     const steps = [
       {
-        description: `Se identifica la tasa de depreciación anual del SAT aplicable para ${descripcionActivo}: ${(tasa * 100).toFixed(0)}%.`,
-        mathFormula: `Tasa\\ Anual = ${(tasa * 100).toFixed(0)}\\%`
+        description: `Se identifica la tasa anual máxima autorizada por la Ley del ISR para este tipo de bien: ${(rate * 100).toFixed(0)}% anual.`,
+        mathFormula: `Tasa\\ Anual = ${(rate * 100).toFixed(0)}\\%`
       },
       {
-        description: `Se calcula la depreciación anual multiplicando el Monto Original de la Inversión (MOI) por la tasa de depreciación.`,
-        mathFormula: `Depreciaci\\acute{o}n\\ Anual = MOI \\times Tasa = $${moi.toFixed(2)} \\times ${tasa.toFixed(2)} = $${depreciacionAnual.toFixed(2)}`
+        description: `Se calcula la depreciación anual completa multiplicando el Monto Original de la Inversión (MOI) por la tasa oficial.`,
+        mathFormula: `Depreciaci\\acute{o}n\\ Anual = MOI \\times Tasa = $${moi.toFixed(2)} \\times ${(rate * 100).toFixed(0)}\\% = $${depreciacionAnual.toFixed(2)}`
       },
       {
-        description: `Se determina la depreciación mensual dividiendo el monto anual entre 12 meses del año.`,
-        mathFormula: `Depreciaci\\acute{o}n\\ Mensual = \\frac{Depreciaci\\acute{o}n\\ Anual}{12} = \\frac{$${depreciacionAnual.toFixed(2)}}{12} = $${depreciacionMensual.toFixed(2)}`
+        description: `Se calcula la cuota mensual dividiendo la depreciación anual entre 12 meses.`,
+        mathFormula: `Depreciaci\\acute{o}n\\ Mensual = \\frac{$${depreciacionAnual.toFixed(2)}}{12} = $${depreciacionMensual.toFixed(2)}`
       },
       {
-        description: `Se calcula la depreciación proporcional para el ejercicio según los meses de uso indicados (${meses} meses).`,
-        mathFormula: `Depreciaci\\acute{o}n\\ Proporcional = Depreciaci\\acute{o}n\\ Mensual \\times Meses = $${depreciacionMensual.toFixed(2)} \\times ${meses} = $${depreciacionProporcional.toFixed(2)}`
+        description: `Se determina la deducción proporcional del ejercicio multiplicando la cuota mensual por los ${meses} meses de uso reportados.`,
+        mathFormula: `Depreciaci\\acute{o}n\\ Proporcional = $${depreciacionMensual.toFixed(2)} \\times ${meses} = $${depreciacionProporcional.toFixed(2)}`
       },
       {
         description: `Se obtiene el Valor en Libros residual restando la depreciación proporcional acumulada del MOI.`,
@@ -122,31 +126,58 @@ export const depreciacionCalculator: CalculatorConfig = {
     };
   },
   content: {
-    explanation: 'La depreciación fiscal de activos consiste en recuperar, mediante la aplicación de porcentajes máximos autorizados por la Ley del ISR, el costo de las inversiones en activos fijos adquiridos por las personas físicas y morales en sus actividades empresariales o profesionales. El método adoptado por el SAT en México es el de Línea Recta (depreciación lineal constante).',
-    formula: 'Fórmula de Depreciación Lineal:\nDepreciación Anual = MOI * Tasa de Depreciación Anual\nDepreciación Proporcional = (Depreciación Anual / 12) * Meses Utilizados en el Año',
-    example: 'Si compras equipo de cómputo (computadora portátil) con un costo de $25,000 pesos (MOI) y lo utilizas los 12 meses del ejercicio fiscal:\nTasa máxima SAT para cómputo = 30% anual\nDepreciación anual = $25,000 * 0.30 = $7,500 pesos.\nDepreciación mensual = $7,500 / 12 = $625 pesos mensuales.',
-    legislation: 'Artículos 33, 34, 35 y 36 de la Ley del Impuesto sobre la Renta (LISR) en México, que establecen las reglas de amortización de activos intangibles y depreciación de activos fijos tangibles.',
+    whatItDoes: 'Esta calculadora determina la deducción fiscal anual y mensual de inversiones en activos fijos (equipo de cómputo, mobiliario de oficina, maquinaria, vehículos de transporte y construcciones) utilizando el método oficial de línea recta y los porcentajes máximos autorizados por el Servicio de Administración Tributaria (SAT) en México.',
+    whoShouldUse: [
+      'Contadores públicos, auxiliares contables y directores de finanzas administrando el catálogo de activos fijos de personas morales o personas físicas con actividad empresarial.',
+      'Emprendedores y profesionistas independientes que adquirieron computadoras, mobiliario o maquinaria y necesitan conocer cuánto deducir cada mes para disminuir su pago provisional de ISR.',
+      'Dueños de negocios evaluando la compra de automóviles utilitarios sujetos a los topes fiscales del Artículo 36 de la LISR.'
+    ],
+    explanation: 'La depreciación fiscal en México es el mecanismo legal mediante el cual un contribuyente recupera el costo de adquisición de sus activos fijos a lo largo de su vida útil estimada. A diferencia de un gasto operativo corriente (como la compra de papelería o el pago de internet, que se deduce al 100% en el mes en que se paga), los activos fijos no se deducen en una sola exhibición porque conservan valor y prestan servicio durante varios ejercicios fiscales.\n\nEl SAT establece en la Ley del ISR el método de Línea Recta, aplicando un porcentaje fijo anual constante sobre el Monto Original de la Inversión (MOI), prorrateado por los meses completos de uso en el año calendario.',
+    formula: '1. Depreciaci\\acute{o}n\\ Anual\\ Base:\nD_{anual} = MOI \\times Tasa\\ Anual\\ LISR\n\n2. Depreciaci\\acute{o}n\\ Mensual:\nD_{mensual} = \\frac{D_{anual}}{12}\n\n3. Deducci\\acute{o}n\\ Proporcional\\ del\\ Ejercicio:\nD_{ejercicio} = D_{mensual} \\times Meses\\ de\\ Uso\n\n4. Valor\\ en\\ Libros\\ Residual:\nVL = MOI - D_{ejercicio}',
+    example: 'Caso práctico: Compra de equipo de cómputo.\n- Bien adquirido: Servidor y laptops para oficina.\n- Fecha de adquisición y puesta en uso: 1 de mayo (8 meses de uso en el ejercicio fiscal).\n- Monto Original de la Inversión (MOI): $60,000 MXN sin IVA.\n- Tasa LISR Art. 35: 30% anual (vida útil fiscal = 3 años y 4 meses).\n\nDesglose de cálculo:\n1. Depreciación anual total: $60,000 x 30% = $18,000 MXN al año.\n2. Depreciación mensual: $18,000 / 12 = $1,500 MXN al mes.\n3. Deducción proporcional del primer año (8 meses): $1,500 x 8 = $12,000 MXN.\n4. Valor en libros al 31 de diciembre: $60,000 - $12,000 = $48,000 MXN.\n\nEn la declaración anual del ejercicio, el contribuyente restará $12,000 MXN de sus ingresos acumulables por concepto de deducción de inversiones.',
+    legislation: 'Artículos 31, 32, 33, 34, 35 y 36 de la Ley del Impuesto Sobre la Renta (LISR); Norma de Información Financiera NIF C-6 (Propiedades, Planta y Equipo); Código Fiscal de la Federación (CFF).',
     faqs: [
       {
-        question: '¿Qué es el Monto Original de la Inversión (MOI)?',
-        answer: 'El MOI comprende el precio del bien, los impuestos pagados por su adquisición o importación (excepto el IVA acreditable), los derechos, fletes, acarreos, seguros y comisiones pagadas con motivo de la compra.'
+        question: '¿Qué conceptos integran el Monto Original de la Inversión (MOI)?',
+        answer: 'De conformidad con el Artículo 31 de la LISR, el MOI comprende el precio neto del bien, los impuestos pagados con motivo de su adquisición o importación (con excepción del IVA que se acredite), los gastos de flete, seguros, transportación, comisiones mercantiles, honorarios aduanales y los costos de instalación o acondicionamiento necesarios para poner el bien en condiciones de operación.'
       },
       {
-        question: '¿A partir de cuándo se empieza a depreciar un activo?',
-        answer: 'De acuerdo al Artículo 31 de la Ley del ISR, el contribuyente puede elegir comenzar a depreciar a partir del ejercicio en que se inicie la utilización del bien, o bien, a partir del ejercicio siguiente.'
+        question: '¿A partir de qué fecha se debe comenzar a depreciar un activo ante el SAT?',
+        answer: 'El Artículo 31 de la LISR otorga al contribuyente la opción de comenzar a deducir las inversiones a partir del ejercicio en que se inicie la utilización del bien, o bien, a partir del ejercicio inmediato siguiente. Una vez elegida la opción, no puede variarse para ese activo.'
       },
       {
-        question: '¿Qué pasa si vendo el activo antes de terminar su vida útil fiscal?',
-        answer: 'Debes calcular la utilidad o pérdida en venta de activo fijo, restando del valor de venta el saldo pendiente de depreciar (valor en libros) actualizado por inflación. La ganancia generada acumula para impuestos.'
+        question: '¿Cuál es el tope legal de deducibilidad para automóviles en 2026?',
+        answer: 'El Artículo 36, fracción II de la LISR establece que las inversiones en automóviles solo son deducibles hasta por un monto de $175,000 MXN para vehículos impulsados por motor de combustión interna. Para vehículos cuya propulsión sea a través de baterías eléctricas recargables o híbridos, el tope legal se eleva a $250,000 MXN. Si el vehículo supera dicho costo, la proporción excedente es no deducible para efectos de ISR y su IVA no es acreditable.'
+      },
+      {
+        question: '¿Se debe actualizar la depreciación fiscal por inflación?',
+        answer: 'Sí. Para la declaración anual, el Artículo 31 de la LISR permite multiplicar el monto de la depreciación proporcional por el Factor de Actualización, el cual resulta de dividir el Índice Nacional de Precios al Consumidor (INPC) del último mes de la primera mitad del ejercicio de uso entre el INPC del mes de adquisición del bien.'
       }
     ],
     tips: [
-      'Recuerda actualizar los montos de la depreciación por efectos de inflación. La ley permite multiplicar el importe de la depreciación por el factor de actualización del período desde el mes de adquisición hasta el último mes de la primera mitad del ejercicio de uso.',
-      'Lleva un control de inventarios físico relacionado con el registro de depreciación para evitar sanciones en auditorías del SAT.'
+      'Conserva las pólizas de seguro, facturas de flete y gastos de importación junto con el CFDI de adquisición, ya que forman parte legítima del MOI y aumentan la base deducible de tu activo.',
+      'Lleva un archivo o expediente digital de activos fijos con fotografía, número de serie y resguardo asignado a cada colaborador para respaldar la materialidad del activo ante revisiones del SAT.'
     ],
     errors: [
-      'Deducir el 100% de la compra de una computadora en el mes de adquisición. Fiscalmente debe depreciarse a la tasa del 30% anual salvo que seas RESICO de Personas Morales y califiques para deducción inmediata temporal.',
-      'Ignorar los límites de deducibilidad en vehículos. Comprar un auto de $500,000 pesos de combustión interna no te permite deducir vía depreciación el costo total, sino únicamente hasta los $175,000 pesos de tope de ley.'
+      'Deducir el 100% de la compra de una computadora o mobiliario en una sola exhibición como si fuera un gasto de papelería. El SAT rechaza esta práctica en auditorías electrónicas y reclasifica el gasto a activo fijo con recargos y multas.',
+      'Olvidar dar de baja activos obsoletos o inservibles. Si un activo se destruye o deja de ser útil para generar ingresos, la LISR permite deducir el saldo pendiente de depreciar en el ejercicio en que ocurra la baja.'
+    ],
+    sources: [
+      {
+        name: 'SAT — Ley del Impuesto Sobre la Renta (LISR)',
+        url: 'https://www.sat.gob.mx',
+        description: 'Capítulo II, Sección II: De las Inversiones y Porcentajes Máximos Autorizados.'
+      },
+      {
+        name: 'Cámara de Diputados — Legislación Federal Vigente',
+        url: 'https://www.diputados.gob.mx/LeyesBiblio/',
+        description: 'Texto íntegro oficial de la Ley del ISR y Código Fiscal de la Federación.'
+      }
+    ],
+    relatedCalculators: [
+      'negocios/calculadora-punto-equilibrio',
+      'sat/calculadora-iva',
+      'sat/calculadora-isr-pm'
     ]
   }
 };

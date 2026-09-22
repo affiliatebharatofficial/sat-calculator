@@ -24,6 +24,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
+    robots: {
+      index: false,
+      follow: true,
+    },
     alternates: {
       canonical: isEn ? 'https://www.calculadorasat.org/en/developer' : 'https://www.calculadorasat.org/developer',
       languages: {

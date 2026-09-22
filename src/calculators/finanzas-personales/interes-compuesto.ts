@@ -4,13 +4,13 @@ export const compoundInterestCalculator: CalculatorConfig = {
   id: 'calculo-interes-compuesto',
   title: 'Calculadora de Interés Compuesto',
   shortDescription: 'Visualiza el crecimiento de tus ahorros e inversiones a largo plazo aplicando interés compuesto y aportaciones mensuales.',
-  category: 'Interés Compuesto',
-  categorySlug: 'interes-compuesto',
+  category: 'Finanzas Personales',
+  categorySlug: 'finanzas-personales',
   slug: 'calculadora-interes-compuesto',
   seo: {
-    metaTitle: 'Calculadora de Interés Compuesto 2026 - Ahorro e Inversión',
-    metaDescription: 'Simula el crecimiento de tu capital financiero. Calcula las ganancias reinvirtiendo rendimientos con aportaciones periódicas mensuales.',
-    keywords: ['calculadora interes compuesto', 'interes compuesto ahorro', 'crecimiento de capital', 'planificacion retiro', 'simulador de inversion'],
+    metaTitle: 'Calculadora de Interés Compuesto 2026 - Ahorro, Inversión y Retiro',
+    metaDescription: 'Simula el crecimiento de tu capital con interés compuesto y aportaciones mensuales en México. Conoce la Regla del 72, rendimiento real y proyección a largo plazo.',
+    keywords: ['calculadora interes compuesto', 'interes compuesto ahorro', 'regla del 72 finanzas', 'crecimiento de capital', 'planificacion retiro mexico', 'simulador de inversion'],
     schemaType: 'Calculator'
   },
   inputs: [
@@ -92,27 +92,59 @@ export const compoundInterestCalculator: CalculatorConfig = {
     };
   },
   content: {
-    explanation: 'El interés compuesto representa la acumulación de rendimientos generados sobre un capital inicial, donde las ganancias o intereses generados se suman periódicamente al saldo principal. Esto significa que en el siguiente periodo, los nuevos intereses se calculan sobre la suma total anterior (los intereses a su vez ganan intereses). Albert Einstein lo catalogó como la "octava maravilla del mundo".',
-    formula: 'A = P * (1 + r/n)^(n*t) + PMT * [ ((1 + r/n)^(n*t) - 1) / (r/n) ]\nDonde:\nA = Saldo final acumulado\nP = Capital inicial\nr = Tasa anual\nn = Frecuencia de capitalización (mensual = 12)\nt = Años\nPMT = Depósito recurrente mensual',
-    example: 'Inicias con $10,000 pesos, aportas $1,000 pesos al mes al 10.00% anual durante 10 años:\nTu capital invertido directo es de $130,000 pesos.\nGracias al interés compuesto, generas $74,845 pesos adicionales en puros intereses.\nEl saldo total acumulado disponible al final de los 10 años es de $204,845 pesos.',
-    legislation: 'Código de Comercio en México (que valida la legalidad de la reinversión y capitalización de intereses en el sector bursátil y comercial).',
+    whatItDoes: 'Esta calculadora simula la evolución patrimonial de una inversión o fondo de ahorro a lo largo del tiempo bajo el modelo de interés compuesto con aportaciones periódicas recurrentes. Permite proyectar con exactitud matemática cuánto dinero habrás aportado de tu bolsillo versus cuánto dinero provendrá directamente de los intereses reinvertidos que generaron más intereses.',
+    whoShouldUse: [
+      'Ahorradores e inversionistas particulares que planean su fondo de retiro o compra de vivienda a mediano y largo plazo.',
+      'Personas que invierten en pagarés bancarios, fondos de deuda o CETES con opción de reinversión automática al vencimiento.',
+      'Profesionistas y asalariados interesados en comparar el crecimiento geométrico frente al ahorro tradicional en cuenta corriente sin rendimientos.',
+      'Padres de familia diseñando fondos de educación universitaria para sus hijos.'
+    ],
+    explanation: 'El interés compuesto representa la reinversión sistemática de los rendimientos generados sobre un capital inicial. En cada ciclo de capitalización (por ejemplo, cada mes), los intereses causados no se retiran, sino que se integran al saldo principal. En el siguiente ciclo, los nuevos intereses se calculan sobre esta base mayor. Este mecanismo transforma el crecimiento lineal en una curva exponencial (efecto "bola de nieve").',
+    formula: 'A = P \\times \\left(1 + \\frac{r}{n}\\right)^{n \\times t} + PMT \\times \\left[ \\frac{\\left(1 + \\frac{r}{n}\\right)^{n \\times t} - 1}{\\frac{r}{n}} \\right]\n\nDonde:\n- A = Saldo final total acumulado.\n- P = Capital inicial invertido.\n- PMT = Aportación mensual recurrente.\n- r = Tasa de interés anual nominal en decimales (ej. 10% = 0.10).\n- n = Frecuencia de capitalización al año (mensual = 12).\n- t = Plazo total proyectado en años.',
+    example: 'Caso práctico a 10 años:\n1. Capital inicial: $10,000 MXN.\n2. Aportación mensual: $1,000 MXN.\n3. Tasa de interés anual estimada: 10.00% fija anual (capitalizable mensualmente a 0.8333% mensual).\n\nResultados numéricos:\n- Aportaciones totales del usuario: $10,000 iniciales + (120 meses x $1,000) = $130,000 MXN.\n- Intereses generados y reinvertidos: $74,845.14 MXN.\n- Saldo final disponible: $204,845.14 MXN.\n\nEn este escenario, más del 36% del capital final acumulado corresponde a ganancias generadas sin que el usuario haya tenido que desembolsarlo directamente.',
+    legislation: 'Código de Comercio de México (Artículo 363, que reconoce la validez del anatocismo o capitalización de intereses mediante estipulación contractual expresa); Ley de los Sistemas de Ahorro para el Retiro (SAR); Disposiciones regulatorias de la Comisión Nacional Bancaria y de Valores (CNBV).',
     faqs: [
       {
-        question: '¿Cuál es la diferencia con el interés simple?',
-        answer: 'En el interés simple, las ganancias se retiran al final de cada periodo y el capital inicial se mantiene fijo; el interés recibido es siempre el mismo. En el interés compuesto, las ganancias se quedan adentro de la cuenta para incrementar la base sobre la que se calcula el nuevo interés.'
+        question: '¿Qué es la "Regla del 72" y cómo se relaciona con el interés compuesto?',
+        answer: 'La Regla del 72 es una fórmula matemática abreviada para estimar en cuántos años se duplicará una inversión a interés compuesto sin aportaciones adicionales. Basta con dividir 72 entre la tasa de interés anual estimada. Por ejemplo, a una tasa del 9% anual, tu dinero tardará aproximadamente 8 años (72 / 9 = 8) en duplicarse.'
       },
       {
-        question: '¿Qué instrumentos en México dan interés compuesto?',
-        answer: 'Las cuentas bancarias con pagarés renovables con interés capitalizable, los fondos de inversión automatizados, el Afore (aportaciones voluntarias) y los Certificados de la Tesorería (CETES) si activas la reinversión automática al vencimiento.'
+        question: '¿Cuál es la diferencia fundamental con el interés simple?',
+        answer: 'En el interés simple, los rendimientos devengados se pagan o se retiran al finalizar cada periodo, de modo que el capital sobre el cual se calcula el interés permanece inalterado y las ganancias crecen de forma lineal. En el interés compuesto, los intereses se suman al saldo principal, generando un crecimiento exponencial.'
+      },
+      {
+        question: '¿Qué instrumentos financieros en México aplican interés compuesto?',
+        answer: 'En México puedes aprovechar el interés compuesto en cuentas de ahorro a plazo con renovación automática de capital más intereses, pagarés bancarios con capitalización periódica, aportaciones voluntarias en AFORE, Sociedades Financieras Populares (SOFIPOS) con pago de intereses reinvertibles y plataformas gubernamentales como CETES Directo activando la instrucción de reinversión automática.'
+      },
+      {
+        question: '¿Debo pagar impuestos sobre los intereses generados en México?',
+        answer: 'Sí. Conforme a los Artículos 54 y 135 de la Ley del Impuesto Sobre la Renta (LISR), las instituciones del sistema financiero mexicano efectúan una retención provisional sobre el capital invertido (tasa fijada anualmente en la Ley de Ingresos de la Federación). En tu declaración anual de personas físicas, se calcula el impuesto definitivo sobre el interés real (ganancia obtenida por encima de la inflación anual).'
       }
     ],
     tips: [
-      'Empieza a ahorrar lo antes posible. El factor más importante en el interés compuesto no es la cantidad de dinero, sino el TIEMPO de maduración.',
-      'Mantén constancia en tus aportaciones adicionales; incluso montos pequeños mensuales multiplican significativamente el valor final de tu portafolio debido al efecto bola de nieve.'
+      'El factor más determinante del interés compuesto no es el capital inicial, sino el tiempo. Empezar 5 años antes puede significar una diferencia de decenas de miles de pesos al retiro.',
+      'Revisa que tu cuenta o instrumento financiero tenga configurada la opción de reinversión automática al vencimiento; de lo contrario, las ganancias quedan líquidas en cuenta corriente y no se capitalizan.'
     ],
     errors: [
-      'Retirar las ganancias para gastarlas. Si retiras los intereses ganados en cada mes, detienes el efecto compuesto y tu dinero crecerá únicamente de forma lineal (simple).',
-      'No considerar el impacto de la inflación. Para conocer el crecimiento real de tus ahorros, debes restar la tasa de inflación a la tasa de interés nominal obtenida.'
+      'Retirar anticipadamente los intereses mensuales para gasto corriente, lo cual interrumpe de inmediato la curva exponencial de crecimiento.',
+      'Olvidar el efecto de la inflación: una tasa nominal del 10% con una inflación anual del 4.5% genera un rendimiento real aproximado del 5.5% anual.'
+    ],
+    sources: [
+      {
+        name: 'Banco de México (Banxico) — Tasas de Referencia e Indicadores',
+        url: 'https://www.banxico.org.mx',
+        description: 'Tasa objetivo y rendimientos de deuda soberana en México.'
+      },
+      {
+        name: 'CONDUSEF — Simulador y Educación Financiera',
+        url: 'https://www.condusef.gob.mx',
+        description: 'Guías de ahorro formal, inversión a plazo y cálculo de valor futuro.'
+      }
+    ],
+    relatedCalculators: [
+      'finanzas-personales/calculadora-cetes-directo',
+      'finanzas-personales/calculadora-afore',
+      'finanzas-personales/calculadora-regla-50-30-20'
     ]
   }
 };

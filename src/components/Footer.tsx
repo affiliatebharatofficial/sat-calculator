@@ -27,12 +27,66 @@ export default function Footer({ lang = 'es' }: FooterProps) {
           </div>
         </div>
 
+        {/* International Tools & Official Government Sources Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-slate-200 dark:border-slate-800 text-xs">
+          <div>
+            <h4 className="font-extrabold text-slate-800 dark:text-slate-200 mb-2.5">
+              {isEn ? 'Official Regulatory Resources (Mexico)' : 'Fuentes Oficiales y Normatividad (México)'}
+            </h4>
+            <ul className="space-y-1.5 text-slate-500 dark:text-slate-400">
+              <li>
+                <a href="https://www.sat.gob.mx" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition">
+                  🏛️ SAT México (Servicio de Administración Tributaria) ↗
+                </a>
+              </li>
+              <li>
+                <a href="https://www.dof.gob.mx" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition">
+                  📜 DOF (Diario Oficial de la Federación) ↗
+                </a>
+              </li>
+              <li>
+                <a href="https://www.gob.mx/profedet" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition">
+                  ⚖️ PROFEDET (Defensa del Trabajo y Asesoría Gratuita) ↗
+                </a>
+              </li>
+              <li>
+                <a href="https://www.inegi.org.mx" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition">
+                  📊 INEGI (Valores oficiales de la UMA y UDIS) ↗
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-extrabold text-slate-800 dark:text-slate-200 mb-2.5">
+              {isEn ? 'International & Global Tools' : 'Herramientas Internacionales y Divisas'}
+            </h4>
+            <ul className="space-y-1.5 text-slate-500 dark:text-slate-400">
+              <li>
+                <Link href="/calculadoras/peru" className="hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
+                  🇵🇪 {isEn ? 'Peru Tax & Labor Calculators (SUNAT, IGV, CTS, 5ta)' : 'Calculadoras Perú (SUNAT, IGV, CTS, Renta 5ta)'}
+                </Link>
+              </li>
+              <li>
+                <Link href="/tipo-de-cambio" className="hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
+                  💱 {isEn ? 'Universal Currency & Exchange Rate Converter' : 'Conversor Universal de Tipo de Cambio'}
+                </Link>
+              </li>
+              <li>
+                <Link href={`${langPrefix}/calculadoras/negocios`} className="hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
+                  📊 {isEn ? 'Business & Cost Accounting Calculators' : 'Calculadoras de Costos y Negocios (Punto de Equilibrio, Depreciación)'}
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
         {/* Navigation Links Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-row md:flex-wrap gap-y-3 gap-x-6 justify-center md:justify-start text-xs font-semibold text-slate-600 dark:text-slate-400 pt-4 border-t border-slate-200 dark:border-slate-800">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-row md:flex-wrap gap-y-3 gap-x-6 justify-center md:justify-start text-xs font-semibold text-slate-600 dark:text-slate-400 pt-6 mt-6 border-t border-slate-200 dark:border-slate-800">
           <Link href="/calendario-fiscal" className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-blue-600 dark:text-blue-400 truncate">
             {isEn ? 'Fiscal Calendar' : 'Calendario Fiscal'}
           </Link>
-          <Link href="/blog" className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-blue-600 dark:text-blue-400 truncate">
+          <Link href={`${langPrefix}/blog`} className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-blue-600 dark:text-blue-400 truncate">
             Blog
           </Link>
           <Link href={`${langPrefix}/developer`} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition font-bold text-indigo-600 dark:text-indigo-400 truncate">

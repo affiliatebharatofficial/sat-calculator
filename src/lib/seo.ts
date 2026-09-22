@@ -15,7 +15,6 @@ export const SPANISH_ONLY_ROUTES = [
   'tipo-de-cambio-sunat',
   'dolares-a-soles',
   'calendario-fiscal',
-  'blog',
 ];
 
 export function isSpanishOnlyRoute(route: string): boolean {

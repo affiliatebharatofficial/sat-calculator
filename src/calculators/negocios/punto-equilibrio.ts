@@ -85,27 +85,59 @@ export const breakEvenCalculator: CalculatorConfig = {
     };
   },
   content: {
-    explanation: 'El punto de equilibrio (break-even point) es el volumen de ventas en el que los ingresos totales de una empresa igualan exactamente a sus costos totales (fijos y variables). En este nivel de operación, el negocio no tiene pérdidas pero tampoco reporta utilidades. Conocer este dato es crucial para definir metas de ventas semanales/mensuales y establecer correctamente el precio de los productos.',
-    formula: 'Unidades de Equilibrio = Costos Fijos Totales / ( Precio de Venta - Costo Variable )\n\nVentas de Equilibrio = Unidades de Equilibrio * Precio de Venta',
-    example: 'Tienes costos fijos mensuales de $20,000 pesos. Vendes pasteles a $150 pesos cada uno, y su costo variable de insumos/empaque es de $70 pesos por pastel:\nMargen Unitario = $150 - $70 = $80 pesos por pastel.\nUnidades de Equilibrio = $20,000 / $80 = 250 pasteles en el mes.\nVentas totales requeridas = 250 * $150 = $37,500 pesos mensuales.',
-    legislation: 'Normas de Información Financiera (NIF) en México sobre contabilidad administrativa y de costos.',
+    whatItDoes: 'Esta calculadora determina el umbral operativo exacto (Punto de Equilibrio o Break-Even Point) en el que los ingresos totales de una empresa o profesionista independiente igualan con precisión la suma de sus costos fijos y variables. Identifica tanto el volumen de unidades físicas a producir y vender como el importe monetario en pesos requerido para no tener pérdidas ni ganancias en el periodo.',
+    whoShouldUse: [
+      'Emprendedores y fundadores de startups en México evaluando la viabilidad comercial y el margen mínimo antes de lanzar un producto.',
+      'Propietarios de micro y pequeñas empresas (PyMEs) fijando metas mensuales de ventas para sus equipos comerciales.',
+      'Profesionistas y consultores independientes que necesitan determinar su tarifa por hora o por proyecto para cubrir su infraestructura y gastos de oficina.',
+      'Comerciantes y restaurantes que desean medir el impacto de un aumento en la renta o en los insumos sobre su volumen mínimo de operación.'
+    ],
+    explanation: 'El punto de equilibrio es el cimiento de la contabilidad de costos y la planeación financiera estratégica. Todo negocio incurre en dos naturalezas de gasto: los Costos Fijos (aquellos que se deben pagar forzosamente cada mes, venda o no la empresa, como la renta del local, software, sueldos fijos y servicios básicos) y los Costos Variables (aquellos que se generan directamente por cada producto elaborado o servicio entregado, como materia prima, empaque, comisiones de venta y fletes).\n\nCada venta genera un Margen de Contribución Unitario (Precio menos Costo Variable). Este margen es el remanente en efectivo que "contribuye" a ir amortizando la montaña de costos fijos mensuales. En el momento en que la suma de márgenes de contribución de todas las ventas del mes iguala los costos fijos, el negocio alcanza su punto de equilibrio.',
+    formula: '1. Margen\\ de\\ Contribuci\\acute{o}n\\ Unitario\\ (MCU):\nMCU = P - CVU\n\n2. Raz\\acute{o}n\\ del\\ Margen\\ de\\ Contribuci\\acute{o}n\\ (RMC):\nRMC = \\frac{MCU}{P} = \\frac{P - CVU}{P}\n\n3. Punto\\ de\\ Equilibrio\\ en\\ Unidades\\ (PE_u):\nPE_u = \\frac{CF}{MCU} = \\frac{Costos\\ Fijos\\ Totales}{Precio\\ -\\ Costo\\ Variable\\ Unitario}\n\n4. Punto\\ de\\ Equilibrio\\ en\\ Pesos\\ (PE_\\$):\nPE_\\$ = PE_u \\times P = \\frac{CF}{RMC}',
+    example: 'Caso práctico: Una cafetería de especialidad en la Ciudad de México.\n- Costos fijos mensuales: $30,000 MXN (renta de local $18,000, nómina fija de barista $9,000, luz comercial e internet $3,000).\n- Precio promedio por bebida: $75.00 MXN.\n- Costo variable unitario: $25.00 MXN (granos de café de especialidad, leche entera/vegetal, vaso biodegradable, tapa y servilleta).\n\nCálculo paso a paso:\n1. Margen de contribución unitario: $75.00 - $25.00 = $50.00 MXN por bebida vendida.\n2. Razón del margen: $50.00 / $75.00 = 66.67%.\n3. Unidades de equilibrio: $30,000 / $50.00 = 600 bebidas en el mes (promedio de 20 bebidas al día).\n4. Ventas monetarias de equilibrio: 600 x $75.00 = $45,000 MXN en facturación mensual.\n\nInterpretación: Al vender la bebida número 600 del mes, la cafetería ha pagado exactamente todos sus compromisos y saldos. A partir de la bebida 601, cada taza vendida genera $50.00 MXN de utilidad neta directa antes de impuestos.',
+    legislation: 'Normas de Información Financiera (NIF) en México, en especial la NIF C-4 (Inventarios y Determinación del Costo de Ventas) y NIF A-2 (Postulados Básicos de Consistencia y Asociación de Costos y Gastos con Ingresos); Código de Comercio de México (Artículo 33, obligación de llevar contabilidad analítica que permita conocer la situación financiera real del negocio).',
     faqs: [
       {
-        question: '¿Qué diferencia hay entre Costos Fijos y Costos Variables?',
-        answer: 'Los costos fijos se pagan independientemente de si vendes o no (renta, nóminas fijas, seguros). Los costos variables aumentan o disminuyen de manera directamente proporcional al nivel de producción y ventas (materias primas, envíos, comisiones de pasarela de pago).'
+        question: '¿Qué sucede si mi costo variable unitario es mayor que mi precio de venta?',
+        answer: 'Tu negocio operará con un margen de contribución negativo. Esto significa que por cada producto vendido, en lugar de aportar para cubrir la renta o la nómina, generas una pérdida directa adicional en efectivo. Bajo este escenario es matemáticamente imposible alcanzar el punto de equilibrio; debes subir el precio de inmediato o renegociar con proveedores para reducir el costo de insumos.'
       },
       {
-        question: '¿Qué pasa si mi costo variable es mayor que mi precio de venta?',
-        answer: 'Tu negocio tendrá un margen negativo. Esto significa que por cada unidad vendida incurres en pérdidas adicionales directas; bajo este escenario, es imposible alcanzar el punto de equilibrio y debes replantear de inmediato tu precio o reducir costos de insumos.'
+        question: '¿Cómo calculo el punto de equilibrio si tengo múltiples productos con diferentes precios y costos?',
+        answer: 'Cuando vendes un catálogo variado de productos (por ejemplo, una tienda de ropa o una ferretería), se calcula el "Punto de Equilibrio Multiproyecto" utilizando el Margen de Contribución Ponderado. Se asigna un porcentaje de participación a cada producto en la mezcla de ventas total y se divide el costo fijo global entre dicho margen promedio ponderado.'
+      },
+      {
+        question: '¿Alcanzar el punto de equilibrio significa que mi negocio tiene éxito?',
+        answer: 'No. El punto de equilibrio representa únicamente la supervivencia: ganar $0.00 pesos netos. La meta financiera de cualquier empresa con fines de lucro debe incluir una "utilidad deseada". Para calcular las ventas necesarias con ganancia objetivo, simplemente sumas la utilidad pretendida a los costos fijos en el numerador de la fórmula: Ventas = (Costos Fijos + Utilidad Deseada) / Margen.'
+      },
+      {
+        question: '¿Por qué la depreciación contable se considera dentro de los costos fijos?',
+        answer: 'Porque el desgaste de la maquinaria, mobiliario o equipo de transporte de tu negocio ocurre con el paso del tiempo independientemente del nivel de producción. Si no incluyes la depreciación en tus costos fijos, estarás subsidiando precios con el desgaste paulatino de tus activos fijos sin generar la reserva de capital necesaria para reponerlos en el futuro.'
       }
     ],
     tips: [
-      'Monitorea periódicamente tu punto de equilibrio, ya que la inflación en proveedores puede aumentar tus costos variables y empujar hacia arriba tu meta de ventas.',
-      'Utiliza la calculadora para simular escenarios: ¿cómo baja tu meta de unidades si aumentas el precio de venta un 10%?'
+      'Revisa tus costos variables al menos trimestralmente; los incrementos inflacionarios en insumos elevan silenciosamente tu punto de equilibrio sin que te des cuenta.',
+      'Analiza la posibilidad de "variabilizar" costos fijos cuando estás empezando (por ejemplo, comisiones sobre ventas en lugar de sueldos fijos elevados o renta en esquemas de porcentaje) para reducir el umbral de riesgo de tu negocio.'
     ],
     errors: [
-      'Clasificar erróneamente los gastos. Confundir un costo que varía mes con mes (como el recibo de electricidad comercial) con un costo variable unitario. El costo variable unitario es exclusivamente el que va atado físicamente a la fabricación o entrega de cada venta.',
-      'Suponer que alcanzar el punto de equilibrio es el éxito total del negocio. Recuerda que quedar en equilibrio significa ganar $0.00 pesos netos. La meta comercial siempre debe ser superior al break-even.'
+      'Confundir un gasto semivariable (como la energía eléctrica que tiene una cuota fija de contrato más consumo por kilowatt) con un costo 100% variable unitario.',
+      'Fijar precios calculando un porcentaje arbitrario sobre el costo sin calcular primero el volumen de equilibrio para saber si tu mercado local realmente puede absorber esa cantidad de unidades.'
+    ],
+    sources: [
+      {
+        name: 'Secretaría de Economía de México — Guía para la Planeación Financiera de PyMEs',
+        url: 'https://www.gob.mx/se',
+        description: 'Metodología oficial para determinación de costos y fijación de precios en microempresas.'
+      },
+      {
+        name: 'Instituto Mexicano de Contadores Públicos (IMCP) — Normas de Información Financiera',
+        url: 'https://imcp.org.mx',
+        description: 'Postulados contables de costos fijos, inventarios y márgenes de operación en México.'
+      }
+    ],
+    relatedCalculators: [
+      'negocios/calculadora-depreciacion-activos',
+      'sat/calculadora-iva',
+      'sat/calculadora-isr-pm'
     ]
   }
 };

@@ -115,6 +115,27 @@ export function middleware(request: NextRequest) {
     '/semanas-cotizadas-imss': '/calculadoras/nomina/calculadora-semanas-cotizadas-imss',
     '/resico-vs-actividad-empresarial': '/calculadoras/resico/comparador-resico-actividad-empresarial',
     '/comparador-resico-actividad-empresarial': '/calculadoras/resico/comparador-resico-actividad-empresarial',
+
+    // Category Consolidation (Eliminating 1-tool thin category archives)
+    '/calculadoras/hipotecas': '/calculadoras/finanzas-personales',
+    '/calculadoras/prestamos': '/calculadoras/finanzas-personales',
+    '/calculadoras/interes-compuesto': '/calculadoras/finanzas-personales',
+    '/calculadoras/inversiones': '/calculadoras/finanzas-personales',
+    '/calculadoras/contabilidad': '/calculadoras/negocios',
+    '/calculadoras/conversiones': '/calculadoras/sat',
+
+    // Individual calculator relocations to consolidated hubs
+    '/calculadora-comisiones-tarjeta-dolares': '/calculadoras/finanzas-personales/calculadora-comisiones-tarjeta-dolares',
+    '/calculadoras/conversiones/calculadora-uma': '/calculadoras/sat/calculadora-conversor-uma',
+    '/calculadoras/conversiones/calculadora-conversor-uma': '/calculadoras/sat/calculadora-conversor-uma',
+    '/calculadora-uma': '/calculadoras/sat/calculadora-conversor-uma',
+    '/calculadoras/contabilidad/calculadora-depreciacion-activos': '/calculadoras/negocios/calculadora-depreciacion-activos',
+    '/calculadoras/inversiones/calculadora-cetes-directo': '/calculadoras/finanzas-personales/calculadora-cetes-directo',
+    '/calculadoras/creditos/calculadora-credito-hipotecario': '/calculadoras/finanzas-personales/calculadora-credito-hipotecario',
+    '/calculadoras/hipotecas/calculadora-credito-hipotecario': '/calculadoras/finanzas-personales/calculadora-credito-hipotecario',
+    '/calculadoras/creditos/calculadora-prestamo-personal': '/calculadoras/finanzas-personales/calculadora-prestamo-personal',
+    '/calculadoras/prestamos/calculadora-prestamo-personal': '/calculadoras/finanzas-personales/calculadora-prestamo-personal',
+    '/calculadoras/interes-compuesto/calculadora-interes-compuesto': '/calculadoras/finanzas-personales/calculadora-interes-compuesto',
   };
 
   const normalizedPath = pathname.replace(/\/$/, '') || '/';
@@ -147,7 +168,6 @@ export function middleware(request: NextRequest) {
       'calculadora-dolares-a-soles',
       'calculadora-soles-a-dolares',
       'calendario-fiscal',
-      'blog',
     ];
     if (spanishOnlyList.includes(firstSegment)) {
       return NextResponse.redirect(new URL(`/${pathWithoutEn}`, request.url), 301);

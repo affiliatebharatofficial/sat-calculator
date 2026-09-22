@@ -1,5 +1,5 @@
 import React from 'react';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import Link from 'next/link';
 import { getCalculatorsByCategory } from '../../../../calculators';
 import dynamic from 'next/dynamic';
@@ -15,67 +15,42 @@ interface PageProps {
   }>;
 }
 
+const LEGACY_CATEGORY_REDIRECTS: Record<string, string> = {
+  'hipotecas': 'finanzas-personales',
+  'prestamos': 'finanzas-personales',
+  'interes-compuesto': 'finanzas-personales',
+  'inversiones': 'finanzas-personales',
+  'contabilidad': 'negocios',
+  'conversiones': 'sat',
+  'tipo-de-cambio': 'finanzas-personales',
+};
+
 const categoryTranslations: Record<string, Record<string, { name: string; desc: string; icon: string }>> = {
   'es': {
     'sat': {
-      name: 'Impuestos Federales',
-      desc: 'Calcula tus obligaciones fiscales ante el SAT como el IVA, ISR personas físicas y corporativo.',
+      name: 'Impuestos Federales SAT',
+      desc: 'Calcula tus obligaciones fiscales ante el SAT como el IVA (16% u 8%), ISR Personas Físicas y Morales, valores oficiales de la UMA, recargos y actualizaciones.',
       icon: '🏛️'
     },
     'resico': {
-      name: 'RESICO',
-      desc: 'Simuladores y comparadores para el Régimen Simplificado de Confianza del SAT.',
+      name: 'RESICO (Régimen Simplificado)',
+      desc: 'Simuladores y comparadores para el Régimen Simplificado de Confianza del SAT con tasas mínimas del 1% al 2.5% para personas físicas.',
       icon: '🌱'
     },
     'nomina': {
-      name: 'Nómina y LFT',
-      desc: 'Calcula salarios netos, aguinaldo, vacaciones, finiquitos, utilidades y otras prestaciones de la Ley Federal del Trabajo.',
+      name: 'Nómina y Ley Federal del Trabajo',
+      desc: 'Calcula salarios netos, aguinaldo, vacaciones dignas, finiquito, liquidación de 3 meses, utilidades (PTU), cuotas obreras IMSS y horas extra conforme a la LFT.',
       icon: '💼'
     },
     'finanzas-personales': {
-      name: 'Finanzas Personales',
-      desc: 'Herramientas de planificación financiera personal y organización de presupuestos como la regla 50/30/20.',
+      name: 'Finanzas Personales, Créditos e Inversiones',
+      desc: 'Herramientas de planeación patrimonial, inversiones en CETES, Afore, créditos hipotecarios, préstamos personales, interés compuesto, amortización de tarjetas y regla 50/30/20.',
       icon: '🪙'
     },
-    'hipotecas': {
-      name: 'Hipotecas',
-      desc: 'Simula mensualidades y tablas de amortización para créditos hipotecarios y compra de casas.',
-      icon: '🏠'
-    },
-    'prestamos': {
-      name: 'Préstamos',
-      desc: 'Calcula los pagos fijos y el costo de intereses para préstamos personales y créditos de nómina.',
-      icon: '💸'
-    },
-    'inversiones': {
-      name: 'Inversiones',
-      desc: 'Proyecta el rendimiento de tus inversiones en CETES y otros instrumentos financieros.',
-      icon: '📈'
-    },
-    'interes-compuesto': {
-      name: 'Interés Compuesto',
-      desc: 'Simula el crecimiento exponencial de tu dinero reinvirtiendo ganancias a mediano y largo plazo.',
-      icon: '🔄'
-    },
-    'tipo-de-cambio': {
-      name: 'Tipo de Cambio',
-      desc: 'Convertidor oficial y de mercado entre dólares estadounidenses (USD) y pesos mexicanos (MXN).',
-      icon: '💱'
-    },
     'negocios': {
-      name: 'Negocios',
-      desc: 'Herramientas financieras para emprendedores como cálculo del punto de equilibrio y rentabilidad.',
+      name: 'Negocios y Contabilidad',
+      desc: 'Herramientas financieras y contables para emprendedores y PyMEs: cálculo del punto de equilibrio (break-even) y depreciación fiscal de activos conforme a la Ley del ISR.',
       icon: '🏢'
-    },
-    'contabilidad': {
-      name: 'Contabilidad',
-      desc: 'Calculadoras contables para administración de activos, depreciaciones y registro financiero corporativo.',
-      icon: '📊'
-    },
-    'conversiones': {
-      name: 'Conversiones',
-      desc: 'Herramientas útiles de conversión económica como unidades de referencia oficiales UMA.',
-      icon: '⚖️'
     },
     'peru': {
       name: 'Herramientas Perú (SUNAT)',
@@ -85,64 +60,29 @@ const categoryTranslations: Record<string, Record<string, { name: string; desc: 
   },
   'en': {
     'sat': {
-      name: 'Federal Taxes',
-      desc: 'Calculate your tax obligations with the SAT such as VAT (IVA), personal and corporate ISR.',
+      name: 'Federal Taxes (SAT Mexico)',
+      desc: 'Calculate tax obligations with the Mexican SAT such as VAT (IVA 16% or 8%), personal and corporate income tax (ISR), official UMA values, and surcharges.',
       icon: '🏛️'
     },
     'resico': {
-      name: 'RESICO',
-      desc: 'Simulators and comparisons for the Simplified Trust Regime (RESICO) of the SAT.',
+      name: 'RESICO (Simplified Trust Regime)',
+      desc: 'Simulators and comparisons for the Simplified Trust Regime (RESICO) of the SAT with effective tax rates from 1% to 2.5%.',
       icon: '🌱'
     },
     'nomina': {
-      name: 'Payroll & LFT',
-      desc: 'Calculate net salaries, Christmas bonus (Aguinaldo), vacations, severance pay (Finiquito), profit sharing (PTU), and other benefits of the Federal Labor Law.',
+      name: 'Payroll & Federal Labor Law (LFT)',
+      desc: 'Calculate net salaries, statutory Christmas bonuses (Aguinaldo), vacation pay, severance pay (Finiquito), profit sharing (PTU), and IMSS contributions.',
       icon: '💼'
     },
     'finanzas-personales': {
-      name: 'Personal Finance',
-      desc: 'Tools for personal financial planning and budget organization like the 50/30/20 rule.',
+      name: 'Personal Finance, Credit & Investments',
+      desc: 'Financial planning tools: CETES government bonds, Afore retirement projections, mortgages, personal loans, compound interest, and credit card payoff.',
       icon: '🪙'
     },
-    'hipotecas': {
-      name: 'Mortgages',
-      desc: 'Simulate monthly payments and amortization schedules for mortgage loans and home purchases.',
-      icon: '🏠'
-    },
-    'prestamos': {
-      name: 'Loans',
-      desc: 'Calculate fixed payments and interest costs for personal loans and payroll credits.',
-      icon: '💸'
-    },
-    'inversiones': {
-      name: 'Investments',
-      desc: 'Project the return on your investments in CETES and other financial instruments.',
-      icon: '📈'
-    },
-    'interes-compuesto': {
-      name: 'Compound Interest',
-      desc: 'Simulate the exponential growth of your money by reinvesting earnings in the medium and long term.',
-      icon: '🔄'
-    },
-    'tipo-de-cambio': {
-      name: 'Exchange Rate',
-      desc: 'Official and market converter between United States Dollars (USD) and Mexican Pesos (MXN).',
-      icon: '💱'
-    },
     'negocios': {
-      name: 'Business',
-      desc: 'Financial tools for entrepreneurs such as break-even point and profitability calculations.',
+      name: 'Business & Accounting',
+      desc: 'Financial and accounting tools for entrepreneurs and SMEs: break-even point analysis and straight-line tax depreciation under Mexican LISR.',
       icon: '🏢'
-    },
-    'contabilidad': {
-      name: 'Accounting',
-      desc: 'Accounting calculators for asset management, depreciation, and corporate financial records.',
-      icon: '📊'
-    },
-    'conversiones': {
-      name: 'Conversions',
-      desc: 'Useful economic conversion tools such as official UMA reference units.',
-      icon: '⚖️'
     },
     'peru': {
       name: 'Peru Tools (SUNAT)',
@@ -157,6 +97,14 @@ import { getSeoAlternates } from '@/lib/seo';
 export async function generateMetadata({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
+
+  // 301 Permanent Redirect for consolidated legacy categories
+  const targetCategory = LEGACY_CATEGORY_REDIRECTS[resolvedParams.category];
+  if (targetCategory) {
+    const langPrefix = lang === 'en' ? '/en' : '';
+    permanentRedirect(`${langPrefix}/calculadoras/${targetCategory}`);
+  }
+
   const categoryInfo = categoryTranslations[lang]?.[resolvedParams.category] || categoryTranslations['es'][resolvedParams.category];
 
   if (!categoryInfo) {
@@ -186,6 +134,13 @@ export default async function CategoryPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
   const categorySlug = resolvedParams.category;
+
+  // 301 Permanent Redirect for consolidated legacy categories
+  const targetCategory = LEGACY_CATEGORY_REDIRECTS[categorySlug];
+  if (targetCategory) {
+    const langPrefix = lang === 'en' ? '/en' : '';
+    permanentRedirect(`${langPrefix}/calculadoras/${targetCategory}`);
+  }
   
   const categoryInfo = categoryTranslations[lang]?.[categorySlug] || categoryTranslations['es'][categorySlug];
 

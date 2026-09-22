@@ -4,8 +4,8 @@ export const prestamoCalculator: CalculatorConfig = {
   id: 'calculo-prestamo-personal',
   title: 'Calculadora de Préstamos Personales',
   shortDescription: 'Calcula tus pagos periódicos (mensuales, quincenales o semanales) y el total de intereses de un préstamo personal.',
-  category: 'Préstamos',
-  categorySlug: 'prestamos',
+  category: 'Finanzas Personales',
+  categorySlug: 'finanzas-personales',
   slug: 'calculadora-prestamo-personal',
   seo: {
     metaTitle: 'Calculadora de Préstamos Personales 2026 - Tabla de Amortización',

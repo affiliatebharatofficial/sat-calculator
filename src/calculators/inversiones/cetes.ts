@@ -4,8 +4,8 @@ export const cetesCalculator: CalculatorConfig = {
   id: 'calculo-cetes',
   title: 'Calculadora de Rendimiento en CETES',
   shortDescription: 'Calcula las ganancias estimadas de invertir en Certificados de la Tesorería de la Federación (CETES) con tasas reales del Banco de México.',
-  category: 'Inversiones',
-  categorySlug: 'inversiones',
+  category: 'Finanzas Personales',
+  categorySlug: 'finanzas-personales',
   slug: 'calculadora-cetes-directo',
   seo: {
     metaTitle: 'Calculadora de CETES Directo 2026 - Rendimiento Neto e ISR',

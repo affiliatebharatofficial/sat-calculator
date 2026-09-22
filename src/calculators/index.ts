@@ -86,6 +86,8 @@ const slugAliases: Record<string, string> = {
   'calculadora-prima-vacacional': 'calculadora-vacaciones-prima',
   'calculadora-ptu': 'calculadora-ptu-reparto-utilidades',
   'resico-vs-actividad-empresarial': 'comparador-resico-actividad-empresarial',
+  'calculadora-uma': 'calculadora-conversor-uma',
+  'calculadora-depreciacion': 'calculadora-depreciacion-activos',
 };
 
 export function getCalculatorBySlug(slug: string): CalculatorConfig | undefined {
