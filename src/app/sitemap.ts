@@ -80,6 +80,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'tablas-e-indicadores-sunat',
     'tipo-de-cambio-para-solventar-obligaciones',
     'calculadora-dolares-a-soles',
+    'calculadora-soles-a-dolares',
+    'precio-del-dolar-en-peru',
+    'calculadora-tipo-de-cambio',
   ];
 
   const canonicalCalculators = calculators.filter(

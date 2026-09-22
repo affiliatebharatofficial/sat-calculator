@@ -1,4 +1,5 @@
 import { calculators } from '../src/calculators';
+import { tipoCambioCalculator } from '../src/calculators/conversiones/tipo-de-cambio';
 
 console.log('🧪 Iniciando Pruebas Unitarias de Fórmulas Fiscales...\n');
 
@@ -153,7 +154,7 @@ if (prestamoCalc) {
 }
 
 // 11. Test Tipo de Cambio
-const tipoCambioCalc = calculators.find(c => c.id === 'calculo-tipo-de-cambio');
+const tipoCambioCalc = tipoCambioCalculator;
 if (tipoCambioCalc) {
   const res = tipoCambioCalc.calculate({ monto: 100, direccion: 'usd_to_mxn', tipo_cambio: 18.50 });
   const total = res.results.find(r => r.label === 'Resultado Neto en MXN')?.value;
@@ -249,33 +250,7 @@ if (sunatCalc) {
   failedTests++;
 }
 
-// 18. Test Solventar Obligaciones
-const solventarCalc = calculators.find(c => c.id === 'calculo-tipo-cambio-solventar-obligaciones');
-if (solventarCalc) {
-  const res = solventarCalc.calculate({ monto: 1000, moneda_origen: 'USD', tipo_operacion: 'pago', tipo_cambio: 3.75 });
-  const total = res.results.find(r => r.isMain)?.value;
-  assert(total === 3750, 'Solventar Obligaciones: $1000 USD a 3.75 equivalen a S/ 3750 PEN');
-} else {
-  console.error('No se encontró la calculadora de Solventar Obligaciones.');
-  failedTests++;
-}
-
-// 19. Test Dólares a Soles (Bidireccional Consolidado)
-const dolaresSolesCalc = calculators.find(c => c.id === 'calculo-dolares-a-soles');
-if (dolaresSolesCalc) {
-  const res1 = dolaresSolesCalc.calculate({ monto: 200, direccion: 'usd_to_pen', modo_tasa: 'personalizado', tasa_custom: 3.80 });
-  const total1 = res1.results.find(r => r.isMain)?.value;
-  assert(total1 === 760, 'Dólares a Soles: 200 USD a tasa 3.80 son S/ 760');
-
-  const res2 = dolaresSolesCalc.calculate({ monto: 760, direccion: 'pen_to_usd', modo_tasa: 'personalizado', tasa_custom: 3.80 });
-  const total2 = res2.results.find(r => r.isMain)?.value;
-  assert(total2 === 200, 'Soles a Dólares: S/ 760 a tasa 3.80 son $200 USD');
-} else {
-  console.error('No se encontró la calculadora de Dólares a Soles.');
-  failedTests++;
-}
-
-// 20. Test Consulta RUC Checksum Validation
+// 18. Test Consulta RUC Checksum Validation
 const rucCalc = calculators.find(c => c.id === 'consulta-ruc-sunat');
 if (rucCalc) {
   const resValid = rucCalc.calculate({ ruc_input: '20100047218' });
@@ -283,28 +258,6 @@ if (rucCalc) {
   assert(isValid === 1, 'Consulta RUC: Validó correctamente el checksum oficial de SUNAT para RUC 20100047218');
 } else {
   console.error('No se encontró la calculadora de Consulta RUC.');
-  failedTests++;
-}
-
-// 21. Test Tablas e Indicadores SUNAT (UIT)
-const uitCalc = calculators.find(c => c.id === 'tablas-e-indicadores-sunat');
-if (uitCalc) {
-  const resUit = uitCalc.calculate({ cantidad_uit: 7, ano_uit: '2026' });
-  const totalSoles = resUit.results.find(r => r.isMain)?.value;
-  assert(totalSoles === 37450, 'Tablas e Indicadores: 7 UIT 2026 equivalen a S/ 37,450 (1 UIT = S/ 5,350)');
-} else {
-  console.error('No se encontró la calculadora de Tablas e Indicadores SUNAT.');
-  failedTests++;
-}
-
-// 22. Test Dólar Hoy en Perú (Consolidado)
-const dolarHoyCalc = calculators.find(c => c.id === 'dolar-hoy-peru');
-if (dolarHoyCalc) {
-  const res = dolarHoyCalc.calculate({ monto_dolar: 500, tasa_mercado: 3.75 });
-  const totalSoles = res.results.find(r => r.isMain)?.value;
-  assert(totalSoles === 1875, 'Dólar Hoy: $500 USD a tasa 3.75 equivalen a S/ 1,875 PEN');
-} else {
-  console.error('No se encontró la calculadora de Dólar Hoy.');
   failedTests++;
 }
 

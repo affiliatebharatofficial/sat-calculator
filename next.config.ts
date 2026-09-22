@@ -183,6 +183,21 @@ const nextConfig: NextConfig = {
         destination: '/tipo-de-cambio',
         permanent: true,
       },
+      {
+        source: '/calculadoras/finanzas-personales/calculadora-tipo-de-cambio',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/calculadora-tipo-de-cambio',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
+      {
+        source: '/calculadoras/conversiones/calculadora-tipo-de-cambio',
+        destination: '/tipo-de-cambio',
+        permanent: true,
+      },
 
       // 3.1 Nine Currency routes under /calculadoras/divisas/* (consolidated into universal /tipo-de-cambio)
       {

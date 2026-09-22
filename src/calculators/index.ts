@@ -16,18 +16,13 @@ import { rule503020Calculator } from './finanzas-personales/regla-50-30-20';
 import { breakEvenCalculator } from './negocios/punto-equilibrio';
 import { umaCalculator } from './conversiones/uma';
 import { prestamoCalculator } from './creditos/prestamo';
-import { tipoCambioCalculator } from './conversiones/tipo-de-cambio';
 import { depreciacionCalculator } from './contabilidad/depreciacion';
 import { aforeCalculator } from './finanzas-personales/afore';
 import { horasExtraCalculator } from './nomina/horas-extra';
 import { conversionImpuestosCalculator } from './sat/conversion-impuestos';
 import { recargosCalculator } from './sat/recargos';
 import { tipoCambioSunatCalculator } from './conversiones/tipo-de-cambio-sunat';
-import { tipoCambioSolventarObligacionesCalculator } from './conversiones/tipo-de-cambio-para-solventar-obligaciones';
-import { calculadoraDolaresASolesCalculator } from './conversiones/calculadora-dolares-a-soles';
 import { consultaRucSunatCalculator } from './conversiones/consulta-ruc-sunat';
-import { tablasEIndicadoresSunatCalculator } from './conversiones/tablas-e-indicadores-sunat';
-import { dolarHoyCalculator } from './conversiones/dolar-hoy';
 import { semanasCotizadasImssCalculator } from './nomina/semanas-cotizadas-imss';
 import { pagoTarjetaCreditoCalculator } from './finanzas-personales/pago-tarjeta-credito';
 import { igvPeruCalculator } from './conversiones/igv-peru';
@@ -60,13 +55,8 @@ export const calculators: CalculatorConfig[] = [
   breakEvenCalculator,
   umaCalculator,
   prestamoCalculator,
-  tipoCambioCalculator,
   tipoCambioSunatCalculator,
-  tipoCambioSolventarObligacionesCalculator,
-  calculadoraDolaresASolesCalculator,
   consultaRucSunatCalculator,
-  tablasEIndicadoresSunatCalculator,
-  dolarHoyCalculator,
   igvPeruCalculator,
   depreciacionCalculator,
   aforeCalculator,
@@ -88,6 +78,8 @@ const slugAliases: Record<string, string> = {
   'resico-vs-actividad-empresarial': 'comparador-resico-actividad-empresarial',
   'calculadora-uma': 'calculadora-conversor-uma',
   'calculadora-depreciacion': 'calculadora-depreciacion-activos',
+  'tipo-de-cambio-para-solventar-obligaciones': 'tipo-de-cambio-sunat',
+  'tablas-e-indicadores-sunat': 'tipo-de-cambio-sunat',
 };
 
 export function getCalculatorBySlug(slug: string): CalculatorConfig | undefined {

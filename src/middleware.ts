@@ -68,6 +68,9 @@ export function middleware(request: NextRequest) {
     '/calculadoras/peru/calculadora-dolares-a-soles': '/tipo-de-cambio',
     '/calculadoras/peru/soles-a-dolares': '/tipo-de-cambio',
     '/calculadoras/peru/calculadora-soles-a-dolares': '/tipo-de-cambio',
+    '/calculadoras/finanzas-personales/calculadora-tipo-de-cambio': '/tipo-de-cambio',
+    '/calculadora-tipo-de-cambio': '/tipo-de-cambio',
+    '/calculadoras/conversiones/calculadora-tipo-de-cambio': '/tipo-de-cambio',
 
     // 9 Currency routes under /calculadoras/divisas/* (consolidated into universal /tipo-de-cambio)
     '/calculadoras/divisas/dolar-hoy-mexico': '/tipo-de-cambio',
