@@ -132,10 +132,29 @@ export const prestamoCalculator: CalculatorConfig = {
     };
   },
   content: {
+    whatItDoes: 'Calcula con precisión la cuota periódica (mensual, quincenal o semanal), el desglose de amortización e intereses totales de un crédito o préstamo personal bajo el sistema de amortización francés con tasa fija.',
+    whoShouldUse: [
+      'Personas que planean solicitar un préstamo personal, de nómina o de liquidez en bancos o fintechs mexicanas',
+      'Prestatarios que desean comparar diferentes plazos y frecuencias de pago para ajustar su presupuesto mensual',
+      'Usuarios que buscan conocer el costo real en intereses antes de firmar un contrato crediticio',
+      'Personas que evalúan consolidar deudas mediante un crédito con menor tasa'
+    ],
+    howItWorks: 'Ajusta la tasa nominal anual a la frecuencia seleccionada (12 meses, 24 quincenas o 52 semanas) y calcula el número total de pagos. Posteriormente aplica la fórmula matemática de amortización francesa para obtener una cuota periódica constante donde el pago a capital aumenta progresivamente mientras que el cargo por interés decrece en cada periodo.',
     explanation: 'Un préstamo personal amortizable mediante el sistema francés mantiene pagos fijos durante todo el plazo, donde al inicio la mayor parte del pago cubre intereses y una menor parte abona a capital. A medida que avanza el plazo, la proporción se invierte (se paga más a capital y menos de interés). Es el esquema más utilizado por bancos y microfinancieras en México.',
     formula: 'Fórmula de Amortización Francesa:\nPMT = (P * r * (1 + r)^n) / ((1 + r)^n - 1)\n\nDonde:\nPMT = Pago periódico fijo\nP = Monto del préstamo principal\nr = Tasa de interés del período\nn = Número total de pagos',
     example: 'Si solicitas un préstamo de $20,000 pesos a un plazo de 12 meses con una tasa de interés del 28% anual con pagos mensuales:\nr = 0.28 / 12 = 0.023333 mensual\nn = 12 pagos mensuales\nEl pago mensual fijo será de $1,927.42 pesos.\nEl total pagado al final de los 12 meses será de $23,129.07 pesos, con un costo total de intereses de $3,129.07 pesos.',
     legislation: 'Ley de Transparencia y Ordenamiento de los Servicios Financieros, y lineamientos del Banco de México para el cálculo del Costo Anual Total (CAT) aplicable en contratos de adhesión de crédito.',
+    assumptions: [
+      'Tasa de interés anual fija durante toda la vigencia del préstamo.',
+      'Todos los pagos se realizan puntualmente en las fechas de corte acordadas sin incurrir en intereses moratorios.',
+      'No se incluyen comisiones adicionales por apertura ni seguros vinculados (que deben verificarse en la carátula del contrato).',
+      'La amortización sigue la convención estándar del sistema financiero mexicano.'
+    ],
+    limitations: [
+      'No calcula el Costo Anual Total (CAT) personalizado si la institución incluye seguros de vida/desempleo obligatorios o cuotas de manejo.',
+      'No modela créditos con tasa variable vinculada a la TIIE.',
+      'No simula pagos extraordinarios a capital o cancelaciones anticipadas.'
+    ],
     faqs: [
       {
         question: '¿Qué es la amortización francesa?',
@@ -158,7 +177,31 @@ export const prestamoCalculator: CalculatorConfig = {
     errors: [
       'Considerar que los pagos siempre serán iguales sin leer los cargos adicionales como comisiones de cobranza o seguros de vida obligatorios.',
       'Suponer que una tasa del 28% anual en pago semanal es equivalente a una tasa del 28% con pago mensual sin ajustar el número de períodos.'
-    ]
+    ],
+    relatedCalculators: [
+      'creditos/calculadora-credito-hipotecario',
+      'finanzas-personales/calculadora-pago-tarjeta-credito',
+      'finanzas-personales/calculadora-interes-compuesto'
+    ],
+    sources: [
+      {
+        name: 'CONDUSEF — Simulador de Crédito Personal y de Nómina',
+        url: 'https://phpapps.condusef.gob.mx/condusef_personalnomina/',
+        description: 'Herramienta oficial de comparación de tasas y comisiones de créditos personales y de nómina en México.'
+      },
+      {
+        name: 'Banco de México — Calculadora del Costo Anual Total (CAT)',
+        url: 'https://www.banxico.org.mx/CAT/',
+        description: 'Metodología oficial de cálculo y lineamientos regulatorios para operaciones de crédito.'
+      },
+      {
+        name: 'Cámara de Diputados — Ley de Transparencia y Ordenamiento de los Servicios Financieros',
+        url: 'https://www.diputados.gob.mx',
+        description: 'Marco normativo federal para contratos de adhesión, tasas de interés y derechos de los usuarios.'
+      }
+    ],
+    lastUpdated: 'Actualizado para el ejercicio financiero 2026',
+    disclaimer: 'Esta calculadora financiera ofrece proyecciones aritméticas con fines educativos y de simulación presupuestaria. Las condiciones contractuales definitivas, comisiones de apertura y primas de seguro dependen de la evaluación crediticia que realice cada entidad bancaria o financiera supervisada por la CNBV y CONDUSEF.'
   },
   translations: {
     en: {
@@ -197,10 +240,29 @@ export const prestamoCalculator: CalculatorConfig = {
         }
       ],
       content: {
+        whatItDoes: 'Calculates the periodic payment (monthly, bi-weekly, or weekly), amortization breakdown, and total interest cost for a personal loan or cash credit under the French fixed-rate amortization system.',
+        whoShouldUse: [
+          'Borrowers evaluating personal, payroll, or cash loans from Mexican banks or fintech lenders',
+          'Consumers comparing loan terms and payment frequencies to align installments with their cash flow',
+          'Users calculating true borrowing costs and cumulative interest before signing credit agreements',
+          'Individuals exploring debt consolidation options at lower interest rates'
+        ],
+        howItWorks: 'Converts the nominal annual rate to the chosen payment frequency (12 monthly, 24 bi-weekly, or 52 weekly periods) and determines total installment counts. It then applies the standard French amortization formula to compute a fixed recurring payment where principal repayment steadily rises as periodic interest decreases.',
         explanation: 'A personal loan amortized using the French system maintains fixed payments throughout the term, where at the beginning the largest part of the payment covers interest and a smaller part goes to principal. As the term progresses, the proportion is reversed (more is paid to principal and less to interest). It is the most widely used scheme by banks and microfinance institutions in Mexico.',
         formula: 'French Amortization Formula:\nPMT = (P * r * (1 + r)^n) / ((1 + r)^n - 1)\n\nWhere:\nPMT = Fixed periodic payment\nP = Principal loan amount\nr = Interest rate of the period\nn = Total number of payments',
         example: 'If you request a loan of $20,000 pesos for a term of 12 months with an interest rate of 28% per year with monthly payments:\nr = 0.28 / 12 = 0.023333 monthly\nn = 12 monthly payments\nThe fixed monthly payment will be $1,927.42 pesos.\nThe total paid at the end of the 12 months will be $23,129.07 pesos, with a total interest cost of $3,129.07 pesos.',
         legislation: 'Law of Transparency and Ordering of Financial Services, and Banco de México guidelines for the calculation of the Total Annual Cost (CAT) applicable in credit adhesion contracts.',
+        assumptions: [
+          'Fixed annual interest rate remains constant throughout the loan term.',
+          'All installments are paid on time without late payment charges or penalty interest.',
+          'Excludes origination fees, appraisal costs, or mandatory insurance premiums.',
+          'Compounding intervals follow standard Mexican financial market conventions.'
+        ],
+        limitations: [
+          'Does not compute a comprehensive CAT if the lender mandates recurring insurance premiums or administrative fees.',
+          'Does not support variable-rate loans tied to benchmark rates like TIIE.',
+          'Does not model unscheduled lump-sum principal prepayments or early debt cancellations.'
+        ],
         faqs: [
           {
             question: 'What is French amortization?',
@@ -223,7 +285,31 @@ export const prestamoCalculator: CalculatorConfig = {
         errors: [
           'Assuming payments will always be equal without reading additional charges such as collection fees or mandatory life insurance.',
           'Assuming that an annual rate of 28% in weekly payment is equivalent to a rate of 28% with monthly payment without adjusting the number of periods.'
-        ]
+        ],
+        relatedCalculators: [
+          'creditos/calculadora-credito-hipotecario',
+          'finanzas-personales/calculadora-pago-tarjeta-credito',
+          'finanzas-personales/calculadora-interes-compuesto'
+        ],
+        sources: [
+          {
+            name: 'CONDUSEF — Personal and Payroll Loan Simulator',
+            url: 'https://phpapps.condusef.gob.mx/condusef_personalnomina/',
+            description: 'Official comparison tool for loan interest rates and fees in Mexico.'
+          },
+          {
+            name: 'Banco de México — Total Annual Cost (CAT) Calculator',
+            url: 'https://www.banxico.org.mx/CAT/',
+            description: 'Official regulatory methodology for consumer credit cost metrics.'
+          },
+          {
+            name: 'Chamber of Deputies — Law of Transparency and Ordering of Financial Services',
+            url: 'https://www.diputados.gob.mx',
+            description: 'Federal legal framework for adhesion contracts, disclosure, and borrower protections.'
+          }
+        ],
+        lastUpdated: 'Updated for financial year 2026',
+        disclaimer: 'This financial calculator provides arithmetic projections for educational and budgeting purposes. Definitive contractual conditions, origination fees, and insurance premiums are subject to underwriting approval by financial institutions regulated by CNBV and CONDUSEF.'
       }
     }
   }

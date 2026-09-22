@@ -103,16 +103,15 @@ export default function CalculatorEducationalContent({
 
   return (
     <article className="mt-12 space-y-12 text-slate-800 dark:text-slate-200">
-      {/* 1. Main Guide & Educational Section */}
+      {/* 6. How the Calculation Works & What It Does */}
       <section
-        id="guia-explicacion"
-        className="scroll-mt-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8"
+        id="como-funciona"
+        className="scroll-mt-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-6"
       >
-        {/* Header Metadata Pill */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-5">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
-            <i className="bi bi-book-half"></i>
-            {isEn ? 'Authoritative Guide & Methodology' : 'Guía Educativa y Metodología Oficial'}
+            <i className="bi bi-gear-wide-connected"></i>
+            {isEn ? 'Calculation Breakdown & Methodology' : 'Funcionamiento y Metodología de Cálculo'}
           </div>
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-3 py-1 rounded-full">
             <i className="bi bi-calendar-check text-emerald-500"></i>
@@ -120,173 +119,182 @@ export default function CalculatorEducationalContent({
           </div>
         </div>
 
-        {/* 1. What This Calculator Does */}
         <div>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-white tracking-tight">
-            {isEn ? `What does the ${config.title} do?` : `¿Qué hace la ${config.title}?`}
+            {isEn ? `How the ${config.title} works` : `Cómo funciona la ${config.title} paso a paso`}
           </h2>
           <p className="mt-3 text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed whitespace-pre-line">
-            {renderMarkdownLinks(content.whatItDoes || content.explanation)}
+            {renderMarkdownLinks(content.howItWorks || content.whatItDoes || content.explanation)}
           </p>
         </div>
 
-        {/* 2. Who Should Use It */}
-        {content.whoShouldUse && content.whoShouldUse.length > 0 && (
-          <div className="bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
-            <h3 className="text-lg font-bold text-slate-950 dark:text-white mb-3 flex items-center">
-              <i className="bi bi-people-fill text-blue-600 mr-2"></i>
-              {isEn ? 'Who should use this calculator?' : '¿A quién va dirigida esta herramienta?'}
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-              {content.whoShouldUse.map((target, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start gap-2.5 p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300"
-                >
-                  <span className="text-blue-500 font-bold">✓</span>
-                  <span>{renderMarkdownLinks(target)}</span>
-                </div>
-              ))}
-            </div>
+        {content.howToInterpret && (
+          <div className="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/40 rounded-2xl p-5 text-sm text-emerald-950 dark:text-emerald-200 leading-relaxed font-medium">
+            <strong className="block mb-1 font-bold text-emerald-800 dark:text-emerald-300">
+              💡 {isEn ? 'Result Interpretation:' : 'Interpretación de los Resultados:'}
+            </strong>
+            {renderMarkdownLinks(content.howToInterpret)}
           </div>
         )}
+      </section>
 
-        {/* 3. How the Calculation Works */}
-        {content.howItWorks && (
-          <div>
-            <h3 className="text-xl font-extrabold text-slate-950 dark:text-white mb-3 flex items-center">
-              <i className="bi bi-gear-wide-connected text-indigo-500 mr-2"></i>
-              {isEn ? 'How the calculation works' : 'Cómo funciona el cálculo paso a paso'}
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed whitespace-pre-line">
-              {renderMarkdownLinks(content.howItWorks)}
+      {/* 7. Formula / Methodology & 8. Worked Numerical Example */}
+      <section
+        id="formula-y-ejemplo"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+      >
+        {/* 7. Formula / Methodology */}
+        {content.formula && (
+          <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2">
+                <i className="bi bi-calculator"></i>
+                {isEn ? 'Step 7: Formal Model' : 'Paso 7: Modelo Formal'}
+              </div>
+              <h3 className="text-xl font-black text-slate-950 dark:text-white mb-3">
+                {isEn ? 'Formula & Calculation Methodology' : 'Fórmula y Metodología de Cálculo'}
+              </h3>
+              <pre className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 font-mono text-xs text-slate-800 dark:text-slate-200 whitespace-pre-wrap leading-relaxed overflow-x-auto">
+                {content.formula}
+              </pre>
+            </div>
+            <p className="text-xs text-slate-500 dark:text-slate-400 italic">
+              {isEn
+                ? 'Mathematical logic implemented strictly according to current Mexican statutory tax and labor brackets.'
+                : 'Metodología aritmética aplicada conforme a las tarifas, disposiciones y tablas vigentes publicadas en el DOF.'}
             </p>
           </div>
         )}
 
-        {/* 4 & 6. Formula and Realistic Worked Example Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {content.formula && (
-            <div className="bg-slate-50 dark:bg-slate-950 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
-              <div>
-                <h3 className="text-lg font-bold text-slate-950 dark:text-white mb-3 flex items-center">
-                  <i className="bi bi-file-code-fill text-indigo-500 mr-2"></i>
-                  {isEn ? 'Formula & Calculation Methodology' : 'Fórmula y Metodología de Cálculo'}
-                </h3>
-                <pre className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 font-mono text-xs text-slate-800 dark:text-slate-200 whitespace-pre-wrap leading-relaxed overflow-x-auto">
-                  {content.formula}
-                </pre>
+        {/* 8. Worked Numerical Example */}
+        {content.example && (
+          <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-2">
+                <i className="bi bi-lightbulb-fill"></i>
+                {isEn ? 'Step 8: Real Figures' : 'Paso 8: Cifras Reales'}
               </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-3 italic">
-                {isEn
-                  ? 'Mathematical methodology applied according to statutory tax tables and arithmetic logic.'
-                  : 'Metodología aritmética aplicada de acuerdo a las disposiciones y tarifas vigentes.'}
-              </p>
+              <h3 className="text-xl font-black text-slate-950 dark:text-white mb-3">
+                {isEn ? 'Worked Numerical Example' : 'Ejemplo Práctico con Números Reales'}
+              </h3>
+              <div className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-sm text-slate-700 dark:text-slate-300 whitespace-pre-line leading-relaxed">
+                {renderMarkdownLinks(content.example)}
+              </div>
             </div>
-          )}
-
-          {content.example && (
-            <div className="bg-slate-50 dark:bg-slate-950 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
-              <div>
-                <h3 className="text-lg font-bold text-slate-950 dark:text-white mb-3 flex items-center">
-                  <i className="bi bi-lightbulb-fill text-yellow-500 mr-2"></i>
-                  {isEn ? 'Realistic Worked Example' : 'Ejemplo Práctico con Números Reales'}
-                </h3>
-                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-sm text-slate-700 dark:text-slate-300 whitespace-pre-line leading-relaxed">
-                  {renderMarkdownLinks(content.example)}
-                </div>
-              </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-3 italic">
-                {isEn
-                  ? 'Step-by-step numerical breakdown illustrating the exact calculation flow.'
-                  : 'Desglose numérico ilustrativo que refleja el flujo exacto de la operación.'}
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* 7. Result Interpretation & Best Practices */}
-        {(content.howToInterpret || (content.tips && content.tips.length > 0)) && (
-          <div className="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/40 rounded-2xl p-6">
-            <h3 className="text-lg font-bold text-emerald-900 dark:text-emerald-300 mb-3 flex items-center">
-              <i className="bi bi-bookmark-check-fill text-emerald-600 mr-2"></i>
-              {isEn ? 'How to Understand & Interpret the Result' : 'Cómo Interpretar el Resultado y Buenas Prácticas'}
-            </h3>
-            {content.howToInterpret && (
-              <p className="text-sm text-emerald-950 dark:text-emerald-200 leading-relaxed mb-4 whitespace-pre-line font-medium">
-                {renderMarkdownLinks(content.howToInterpret)}
-              </p>
-            )}
-            {content.tips && content.tips.length > 0 && (
-              <ul className="space-y-2.5 text-sm text-emerald-950 dark:text-emerald-200 leading-relaxed">
-                {content.tips.map((tip, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="text-emerald-600 dark:text-emerald-400 mr-2 font-bold">•</span>
-                    <span>{renderMarkdownLinks(tip)}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        )}
-
-        {/* 8. Assumptions & 9. Limitations Grid */}
-        {(content.assumptions?.length || content.limitations?.length || content.errors?.length) && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* 8. Assumptions */}
-            {content.assumptions && content.assumptions.length > 0 && (
-              <div className="bg-blue-50/60 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/40 rounded-2xl p-6">
-                <h3 className="text-lg font-bold text-blue-950 dark:text-blue-200 mb-3 flex items-center">
-                  <i className="bi bi-check-circle-fill text-blue-600 mr-2"></i>
-                  {isEn ? 'Underlying Assumptions' : 'Supuestos del Cálculo'}
-                </h3>
-                <ul className="space-y-2 text-xs sm:text-sm text-blue-900 dark:text-blue-300 leading-relaxed">
-                  {content.assumptions.map((item, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <span className="text-blue-500 mr-2 font-bold">•</span>
-                      <span>{renderMarkdownLinks(item)}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* 9. Limitations & Common Pitfalls */}
-            {((content.limitations && content.limitations.length > 0) ||
-              (content.errors && content.errors.length > 0)) && (
-              <div className="bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 rounded-2xl p-6">
-                <h3 className="text-lg font-bold text-amber-900 dark:text-amber-300 mb-3 flex items-center">
-                  <i className="bi bi-exclamation-octagon-fill text-amber-600 mr-2"></i>
-                  {isEn ? 'Limitations & Pitfalls to Avoid' : 'Limitaciones y Errores Frecuentes a Evitar'}
-                </h3>
-                <ul className="space-y-2 text-xs sm:text-sm text-amber-950 dark:text-amber-200 leading-relaxed">
-                  {(content.limitations || content.errors || []).map((error, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="text-amber-600 dark:text-amber-400 mr-2 font-bold">•</span>
-                      <span>{renderMarkdownLinks(error)}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* 5. Legal & Regulatory Basis */}
-        {content.legislation && (
-          <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
-            <h3 className="text-base font-bold text-slate-950 dark:text-white mb-2 flex items-center">
-              <i className="bi bi-briefcase-fill text-blue-500 mr-2"></i>
-              {isEn ? 'Applicable Legal & Regulatory Basis' : 'Fundamento Legal y Normativa Aplicable'}
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400 text-sm italic leading-relaxed">
-              {renderMarkdownLinks(content.legislation)}
+            <p className="text-xs text-slate-500 dark:text-slate-400 italic">
+              {isEn
+                ? 'Step-by-step numerical breakdown illustrating the exact calculation flow with realistic Mexican figures.'
+                : 'Desglose numérico paso a paso que ilustra la operación con cifras reales en pesos mexicanos.'}
             </p>
           </div>
         )}
       </section>
 
-      {/* 10. Frequently Asked Questions Section (3-6 FAQs) */}
+      {/* 9. Who Should Use This Calculator */}
+      {content.whoShouldUse && content.whoShouldUse.length > 0 && (
+        <section
+          id="a-quien-va-dirigido"
+          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4"
+        >
+          <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+            <i className="bi bi-people-fill"></i>
+            {isEn ? 'Step 9: Intended Audience' : 'Paso 9: Destinatarios del Cálculo'}
+          </div>
+          <h3 className="text-xl font-black text-slate-950 dark:text-white">
+            {isEn ? `Who should use the ${config.title}?` : `¿A quién va dirigida la ${config.title}?`}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            {content.whoShouldUse.map((target, idx) => (
+              <div
+                key={idx}
+                className="flex items-start gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300"
+              >
+                <span className="text-blue-600 dark:text-blue-400 font-bold text-base">✓</span>
+                <span>{renderMarkdownLinks(target)}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 10. Important Assumptions & 11. Limitations */}
+      {(content.assumptions?.length || content.limitations?.length || content.errors?.length) && (
+        <section
+          id="supuestos-y-limitaciones"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+        >
+          {/* 10. Important Assumptions */}
+          {content.assumptions && content.assumptions.length > 0 && (
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+                <i className="bi bi-check-circle-fill"></i>
+                {isEn ? 'Step 10: Assumptions' : 'Paso 10: Supuestos del Modelo'}
+              </div>
+              <h3 className="text-xl font-black text-slate-950 dark:text-white">
+                {isEn ? 'Important Assumptions' : 'Supuestos Importantes del Cálculo'}
+              </h3>
+              <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                {content.assumptions.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5">
+                    <span className="text-blue-500 font-bold">•</span>
+                    <span>{renderMarkdownLinks(item)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* 11. Limitations & Common Pitfalls */}
+          {((content.limitations && content.limitations.length > 0) ||
+            (content.errors && content.errors.length > 0)) && (
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">
+                <i className="bi bi-exclamation-octagon-fill"></i>
+                {isEn ? 'Step 11: Boundaries' : 'Paso 11: Límites y Errores'}
+              </div>
+              <h3 className="text-xl font-black text-slate-950 dark:text-white">
+                {isEn ? 'Limitations & Pitfalls to Avoid' : 'Limitaciones y Errores a Evitar'}
+              </h3>
+              <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                {(content.limitations || content.errors || []).map((error, index) => (
+                  <li key={index} className="flex items-start gap-2.5">
+                    <span className="text-amber-600 dark:text-amber-400 font-bold">•</span>
+                    <span>{renderMarkdownLinks(error)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* 12. Legal / Tax Basis */}
+      {content.legislation && (
+        <section
+          id="fundamento-legal"
+          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-3"
+        >
+          <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+            <i className="bi bi-briefcase-fill"></i>
+            {isEn ? 'Step 12: Statutory Basis' : 'Paso 12: Fundamento Jurídico'}
+          </div>
+          <h3 className="text-xl font-black text-slate-950 dark:text-white">
+            {isEn ? 'Applicable Legal & Tax Basis' : 'Fundamento Legal y Normativa Positiva'}
+          </h3>
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+            {renderMarkdownLinks(content.legislation)}
+          </div>
+        </section>
+      )}
+
+      {/* 13. Official Sources (Reusable Component & Custom Sources) */}
+      <OfficialSourcesSection
+        calculatorSlug={config.slug}
+        categorySlug={config.categorySlug}
+        lang={lang}
+      />
+
+      {/* 14. Frequently Asked Questions */}
       {content.faqs && content.faqs.length > 0 && (
         <section
           id="preguntas-frecuentes"
@@ -295,7 +303,7 @@ export default function CalculatorEducationalContent({
           <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 mb-3 border border-indigo-200 dark:border-indigo-800">
               <i className="bi bi-question-circle-fill"></i>
-              {isEn ? 'Frequently Asked Questions' : 'Preguntas Frecuentes'}
+              {isEn ? 'Step 14: Practical FAQs' : 'Paso 14: Preguntas Frecuentes'}
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-white tracking-tight">
               {isEn
@@ -304,7 +312,7 @@ export default function CalculatorEducationalContent({
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-sm mt-2">
               {isEn
-                ? 'Clear, legally grounded answers to practical inquiries and procedures.'
+                ? 'Actionable, legally grounded answers to practical calculation inquiries.'
                 : 'Respuestas directas con sustento técnico y legal a las dudas operativas más comunes.'}
             </p>
           </div>
@@ -334,51 +342,17 @@ export default function CalculatorEducationalContent({
         </section>
       )}
 
-      {/* 12. Data & Source References */}
-      {content.sources && content.sources.length > 0 && (
-        <section
-          id="fuentes-oficiales"
-          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4"
-        >
-          <h3 className="text-base font-bold text-slate-950 dark:text-white flex items-center gap-2">
-            <i className="bi bi-link-45deg text-blue-600 text-lg"></i>
-            {isEn ? 'Official Sources & Data References' : 'Fuentes Oficiales y Referencias Normativas'}
-          </h3>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600 dark:text-slate-400">
-            {content.sources.map((src, idx) => (
-              <li
-                key={idx}
-                className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800"
-              >
-                <div className="font-bold text-slate-900 dark:text-white mb-1">
-                  {src.url ? (
-                    <a
-                      href={src.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
-                    >
-                      <span>{src.name}</span>
-                      <i className="bi bi-box-arrow-up-right text-[10px]"></i>
-                    </a>
-                  ) : (
-                    src.name
-                  )}
-                </div>
-                {src.description && <p className="leading-normal">{src.description}</p>}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {/* 11. Related Tools Section */}
+      {/* 15. Related Calculators & Blog Guides */}
       {relatedCalculators.length > 0 && (
         <section
           id="herramientas-relacionadas"
           className="scroll-mt-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-6"
         >
           <div>
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-2">
+              <i className="bi bi-grid-fill"></i>
+              {isEn ? 'Step 15: Cross-Calculators' : 'Paso 15: Herramientas Complementarias'}
+            </div>
             <h2 className="text-2xl font-black text-slate-950 dark:text-white tracking-tight flex items-center gap-2">
               <span>🌐</span>
               {isEn ? 'Related Calculators & Tools' : 'Calculadoras y Herramientas Relacionadas'}
@@ -418,134 +392,109 @@ export default function CalculatorEducationalContent({
               </Link>
             ))}
           </div>
+
+          {/* Contextual Blog Guides */}
+          {(() => {
+            const guides = getRelatedBlogGuides(config, isEn);
+            if (guides.length === 0) return null;
+            return (
+              <div className="pt-6 border-t border-slate-100 dark:border-slate-800 space-y-4">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span>📚</span>
+                  {isEn ? 'Recommended Companion Reading' : 'Guías Explicativas Recomendadas'}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {guides.map((g, idx) => (
+                    <Link
+                      key={idx}
+                      href={g.href}
+                      className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition bg-slate-50 dark:bg-slate-950 flex flex-col justify-between group"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between text-xs font-bold mb-1.5">
+                          <span className="text-blue-600 dark:text-blue-400">{g.tag}</span>
+                          <span className="text-slate-400">{g.icon}</span>
+                        </div>
+                        <h4 className="font-bold text-slate-900 dark:text-white text-sm group-hover:text-blue-600 transition-colors">
+                          {g.title}
+                        </h4>
+                        <p className="text-xs text-slate-600 dark:text-slate-400 mt-1.5 line-clamp-2">
+                          {g.desc}
+                        </p>
+                      </div>
+                      <span className="text-xs font-bold text-blue-600 dark:text-blue-400 mt-3 flex items-center gap-1">
+                        {isEn ? 'Read article ➔' : 'Leer artículo completo ➔'}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
         </section>
       )}
 
-      {/* 12. Related Editorial Blog Guides Section */}
-      {(() => {
-        const guides = getRelatedBlogGuides(config, isEn);
-        if (guides.length === 0) return null;
-        return (
-          <section
-            id="guias-relacionadas"
-            className="scroll-mt-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-6"
-          >
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 mb-3 border border-amber-200 dark:border-amber-800">
-                <i className="bi bi-journal-text"></i>
-                {isEn ? 'Editorial Analyses & Step-by-Step Guides' : 'Artículos y Guías Editoriales Relacionadas'}
-              </div>
-              <h2 className="text-2xl font-black text-slate-950 dark:text-white tracking-tight flex items-center gap-2">
-                <span>📚</span>
-                {isEn ? 'Recommended In-Depth Guides' : 'Guías Explicativas Recomendadas'}
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
-                {isEn
-                  ? 'Complement your calculation with legal background, statutory exceptions, and procedures.'
-                  : 'Profundiza en el marco legal, casos prácticos y trámites asociados a esta herramienta.'}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-              {guides.map((g, idx) => (
-                <Link
-                  key={idx}
-                  href={g.href}
-                  className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-400 transition bg-slate-50 dark:bg-slate-950 flex flex-col justify-between group"
-                >
-                  <div>
-                    <div className="flex items-center justify-between text-xs font-bold mb-2">
-                      <span className="text-blue-600 dark:text-blue-400">{g.tag}</span>
-                      <span className="text-slate-400">{g.icon}</span>
-                    </div>
-                    <h3 className="font-bold text-slate-900 dark:text-white text-base group-hover:text-blue-600 transition-colors">
-                      {g.title}
-                    </h3>
-                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
-                      {g.desc}
-                    </p>
-                  </div>
-                  <span className="text-xs font-bold text-blue-600 dark:text-blue-400 mt-4 flex items-center gap-1">
-                    {isEn ? 'Read article ➔' : 'Leer artículo completo ➔'}
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </section>
-        );
-      })()}
-
-      {/* 13. Official Regulatory Framework & Sources */}
-      <OfficialSourcesSection
-        calculatorSlug={config.slug}
-        categorySlug={config.categorySlug}
-        lang={lang}
-      />
-
-      {/* 14. Audit Trail & Change History */}
-      <CalculatorUpdateHistory
-        calculatorSlug={config.slug}
-        lang={lang}
-      />
-
-      {/* 15. Editorial Review, Attribution & Error Reporting (E-E-A-T Card) */}
+      {/* 16. Report a Calculation Error (Dedicated Accessible Card) */}
       <section
-        id="supervision-tecnica"
-        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm"
+        id="reportar-error"
+        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4"
       >
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-5 border-b border-slate-200 dark:border-slate-800">
-          <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-2xl bg-blue-600 text-white flex items-center justify-center font-black text-base shadow-sm">
-              FK
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
+          <div>
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-1">
+              <i className="bi bi-shield-check"></i>
+              {isEn ? 'Step 16: Feedback & Quality Assurance' : 'Paso 16: Control de Calidad y Reporte'}
             </div>
-            <div>
-              <h4 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span>{isEn ? 'Technical Supervision & Computational Modeling' : 'Supervisión Técnica y Modelado Numérico'}</span>
-              </h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                <span className="font-semibold text-slate-700 dark:text-slate-300">FkDigitalMedia</span> • {isEn ? 'Developer & Architect: ' : 'Dirección: '}
-                <a
-                  href="https://www.linkedin.com/in/firoz-khan-1153358a/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
-                >
-                  Firoz Khan (LinkedIn)
-                </a>
-              </p>
-            </div>
+            <h3 className="text-xl font-black text-slate-900 dark:text-white">
+              {isEn ? 'Report a Calculation Error or Observation' : 'Reportar una Observación o Discrepancia Numérica'}
+            </h3>
           </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <Link
-              href={isEn ? '/en/metodologia' : '/metodologia'}
-              className="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline font-bold px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60"
-            >
-              <span>🔬 {isEn ? 'Our Methodology' : 'Nuestra Metodología'}</span>
-            </Link>
-            <div className="inline-flex items-center gap-1.5 text-xs text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 px-3 py-1.5 rounded-full font-bold">
-              <span>✓</span>
-              <span>{isEn ? 'Verified with official 2026 DOF/SAT tables' : 'Verificado con tablas y DOF 2026'}</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-400">
-          <p className="max-w-2xl leading-relaxed">
-            {isEn
-              ? 'Our calculation engines are audited against official publications of the Mexican DOF and LISR/LFT. Notice any regulatory change or numerical discrepancy? Help us maintain continuous precision.'
-              : 'Nuestras calculadoras se auditan contra las publicaciones oficiales del DOF, LISR y LFT de México. ¿Detectaste una reforma legal, cambio de tarifas o ajuste por inflación? Ayúdanos a mantener la máxima precisión.'}
-          </p>
           <a
-            href={`mailto:hello@calculadorasat.org?subject=${encodeURIComponent(`Observación sobre ${config.title}`)}&body=${encodeURIComponent(`Hola equipo de Calculadora SAT,\n\nHe detectado la siguiente observación en la herramienta "${config.title}" (URL: /calculadoras/${config.categorySlug}/${config.slug}):\n\n[Describe aquí la sugerencia o valor a ajustar]\n\nSaludos.`)}`}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold shrink-0 transition"
+            href={`mailto:hello@calculadorasat.org?subject=${encodeURIComponent(`Observación técnica sobre ${config.title}`)}&body=${encodeURIComponent(`Hola equipo de Calculadora SAT,\n\nHe detectado la siguiente observación en la herramienta "${config.title}" (URL: /calculadoras/${config.categorySlug}/${config.slug}):\n\n- Valor o parámetro observado:\n- Fundamento o ley de referencia:\n- Corrección sugerida:\n\nSaludos.`)}`}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition shrink-0"
           >
             <span>✉️</span>
-            <span>{isEn ? 'Report an Observation' : 'Reportar una Observación'}</span>
+            <span>{isEn ? 'Send Report (Email)' : 'Enviar Reporte al Equipo Técnico'}</span>
           </a>
+        </div>
+
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          {isEn
+            ? 'We continuously audit our calculation engines against official DOF publications and statutory tax amendments. If you detect a numerical discrepancy, a recent rate change, or an edge-case bug, please submit your observation. All reports are investigated within 48 business hours.'
+            : 'Auditamos permanentemente nuestros algoritmos contra publicaciones del DOF y reformas fiscales. Si detectas alguna discrepancia en el redondeo, una tarifa recién actualizada o un caso límite no contemplado, compártenos tu reporte. Nuestro equipo técnico revisa y responde en un plazo máximo de 48 horas hábiles.'}
+        </p>
+
+        {/* Technical Supervision Attribution */}
+        <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-slate-700 dark:text-slate-300">FkDigitalMedia</span> • {isEn ? 'Supervision: ' : 'Supervisión Técnica: '}
+            <a
+              href="https://www.linkedin.com/in/firoz-khan-1153358a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
+            >
+              Firoz Khan (LinkedIn)
+            </a>
+          </div>
+          <Link
+            href={isEn ? '/en/metodologia' : '/metodologia'}
+            className="text-blue-600 dark:text-blue-400 hover:underline font-bold"
+          >
+            🔬 {isEn ? 'Read our validation methodology' : 'Consultar metodología de validación'} ➔
+          </Link>
         </div>
       </section>
 
-      {/* 14. Official Informational Disclaimer */}
+      {/* 17. Last Reviewed / Updated Information */}
+      <section id="historial-revision">
+        <CalculatorUpdateHistory
+          calculatorSlug={config.slug}
+          lang={lang}
+        />
+      </section>
+
+      {/* 18. Official Informational Disclaimer */}
       <section
         id="aviso-legal"
         className="bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
@@ -554,14 +503,14 @@ export default function CalculatorEducationalContent({
           <i className="bi bi-shield-check text-base text-slate-400 mt-0.5"></i>
           <div>
             <strong className="text-slate-700 dark:text-slate-300 font-semibold block mb-1">
-              {isEn ? 'Legal & Informational Disclaimer' : 'Aviso Legal e Informativo'}
+              {isEn ? 'Step 18: Legal & Informational Disclaimer' : 'Paso 18: Aviso Legal e Informativo'}
             </strong>
             <p>
               {content.disclaimer
                 ? renderMarkdownLinks(content.disclaimer)
                 : isEn
                 ? 'This calculator is a simulation tool designed for informative and educational purposes under current statutory provisions. It does not constitute formal accounting, legal, or fiscal advice. For official tax returns or binding procedures, consult an authorized public accountant or refer to the official regulations.'
-                : 'Esta calculadora es una herramienta de simulación informativa y didáctica basada en la legislación y disposiciones vigentes. Los resultados no constituyen asesoría contable, fiscal o legal vinculante. Para declaraciones formales o gestiones oficiales, consulta a un profesional contable calificado o acude a los canales oficiales.'}
+                : 'Esta calculadora es una herramienta de simulación informativa y didáctica basada en la legislación y disposiciones vigentes. Los resultados no constituyen asesoría contable, fiscal o legal vinculante. Para declaraciones formales o gestiones oficiales, consulta a un profesional contable calificado o acude a los canales oficiales del SAT.'}
             </p>
           </div>
         </div>
