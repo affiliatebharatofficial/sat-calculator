@@ -168,6 +168,7 @@ export function middleware(request: NextRequest) {
       'calculadora-dolares-a-soles',
       'calculadora-soles-a-dolares',
       'calendario-fiscal',
+      'peru',
     ];
     if (spanishOnlyList.includes(firstSegment)) {
       return NextResponse.redirect(new URL(`/${pathWithoutEn}`, request.url), 301);

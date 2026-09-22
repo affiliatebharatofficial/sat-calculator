@@ -15,13 +15,14 @@ export const SPANISH_ONLY_ROUTES = [
   'tipo-de-cambio-sunat',
   'dolares-a-soles',
   'calendario-fiscal',
+  'peru',
 ];
 
 export function isSpanishOnlyRoute(route: string): boolean {
   const clean = route.replace(/^\/en/, '').replace(/^\//, '');
   const firstSegment = clean.split('/')[0];
   if (SPANISH_ONLY_ROUTES.includes(firstSegment)) return true;
-  if (clean.startsWith('calculadoras/peru')) return true;
+  if (clean.startsWith('calculadoras/peru') || clean.startsWith('peru')) return true;
   return false;
 }
 

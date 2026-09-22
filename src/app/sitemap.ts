@@ -24,16 +24,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'formatos',
     'widgets',
     'tipo-de-cambio',
+    'calculadoras',
+    'guias',
+    'peru',
+    'peru/calculadoras',
+    'peru/guias',
+    'peru/blog',
   ];
 
   const staticEntries = staticPaths.map((path) => {
     const segment = path ? `/${path}` : '';
-    const isSpanishOnly = SPANISH_ONLY_ROUTES.includes(path);
+    const isSpanishOnly = SPANISH_ONLY_ROUTES.includes(path) || path.startsWith('peru');
     const isHomepage = path === '';
     const isCoreTool = [
       'tipo-de-cambio',
       'calendario-fiscal',
       'blog',
+      'calculadoras',
+      'guias',
+      'peru',
+      'peru/calculadoras',
+      'peru/guias',
+      'peru/blog',
       'metodologia',
       'fuentes',
       'actualizaciones',

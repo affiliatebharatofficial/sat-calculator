@@ -393,10 +393,10 @@ export default async function Home({ params }: PageProps) {
                 </div>
               </div>
               <Link
-                href="/calculadoras/peru"
+                href="/peru"
                 className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-sm transition whitespace-nowrap self-start sm:self-auto"
               >
-                {isEn ? 'View all Peru tools ➔' : 'Ver suite completa Perú ➔'}
+                {isEn ? 'Enter Peru Portal ➔' : 'Ir al Portal Perú ➔'}
               </Link>
             </div>
 

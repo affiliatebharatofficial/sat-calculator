@@ -30,8 +30,9 @@ export default function Footer({ lang = 'es' }: FooterProps) {
         {/* International Tools & Official Government Sources Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-slate-200 dark:border-slate-800 text-xs">
           <div>
-            <h4 className="font-extrabold text-slate-800 dark:text-slate-200 mb-2.5">
-              {isEn ? 'Official Regulatory Resources (Mexico)' : 'Fuentes Oficiales y Normatividad (México)'}
+            <h4 className="font-extrabold text-slate-800 dark:text-slate-200 mb-2.5 flex items-center gap-1.5">
+              <span>🇲🇽</span>
+              <span>{isEn ? 'Official Regulatory Resources (Mexico - Primary)' : 'Normatividad y Fuentes Oficiales (México - Principal)'}</span>
             </h4>
             <ul className="space-y-1.5 text-slate-500 dark:text-slate-400">
               <li>
@@ -58,23 +59,29 @@ export default function Footer({ lang = 'es' }: FooterProps) {
           </div>
 
           <div>
-            <h4 className="font-extrabold text-slate-800 dark:text-slate-200 mb-2.5">
-              {isEn ? 'International & Global Tools' : 'Herramientas Internacionales y Divisas'}
+            <h4 className="font-extrabold text-slate-800 dark:text-slate-200 mb-2.5 flex items-center gap-1.5">
+              <span>🇵🇪</span>
+              <span>{isEn ? 'Official Regulatory Resources & Portal (Peru)' : 'Portal Regional y Fuentes Oficiales (Perú)'}</span>
             </h4>
             <ul className="space-y-1.5 text-slate-500 dark:text-slate-400">
               <li>
-                <Link href="/calculadoras/peru" className="hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
-                  🇵🇪 {isEn ? 'Peru Tax & Labor Calculators (SUNAT, IGV, CTS, 5ta)' : 'Calculadoras Perú (SUNAT, IGV, CTS, Renta 5ta)'}
+                <Link href="/peru" className="hover:text-red-600 dark:hover:text-red-400 transition font-bold text-red-600 dark:text-red-400">
+                  🇵🇪 {isEn ? 'Portal Perú (SUNAT, Labor Law & Exchange Rates)' : 'Portal Perú (SUNAT, Legislación Laboral y Divisas)'}
                 </Link>
+              </li>
+              <li>
+                <a href="https://www.sunat.gob.pe" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition">
+                  🏛️ SUNAT (Superintendencia Nacional de Aduanas y de Administración Tributaria) ↗
+                </a>
+              </li>
+              <li>
+                <a href="https://www.sbs.gob.pe" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition">
+                  📊 SBS Perú (Superintendencia de Banca, Seguros y AFP) ↗
+                </a>
               </li>
               <li>
                 <Link href="/tipo-de-cambio" className="hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                   💱 {isEn ? 'Universal Currency & Exchange Rate Converter' : 'Conversor Universal de Tipo de Cambio'}
-                </Link>
-              </li>
-              <li>
-                <Link href={`${langPrefix}/calculadoras/negocios`} className="hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
-                  📊 {isEn ? 'Business & Cost Accounting Calculators' : 'Calculadoras de Costos y Negocios (Punto de Equilibrio, Depreciación)'}
                 </Link>
               </li>
             </ul>
@@ -83,6 +90,12 @@ export default function Footer({ lang = 'es' }: FooterProps) {
 
         {/* Navigation Links Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-row md:flex-wrap gap-y-3 gap-x-6 justify-center md:justify-start text-xs font-semibold text-slate-600 dark:text-slate-400 pt-6 mt-6 border-t border-slate-200 dark:border-slate-800">
+          <Link href={`${langPrefix}/calculadoras`} className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-slate-700 dark:text-slate-300 truncate">
+            {isEn ? '🧮 All Calculators' : '🧮 Todas las Calculadoras'}
+          </Link>
+          <Link href={`${langPrefix}/guias`} className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-slate-700 dark:text-slate-300 truncate">
+            {isEn ? '📚 Guides' : '📚 Guías'}
+          </Link>
           <Link href={`${langPrefix}/metodologia`} className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-blue-600 dark:text-blue-400 truncate">
             {isEn ? '🔬 Methodology' : '🔬 Metodología'}
           </Link>
