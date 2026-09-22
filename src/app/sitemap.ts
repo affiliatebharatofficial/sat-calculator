@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'metodologia',
     'fuentes',
     'actualizaciones',
+    'reportar-error',
     'formatos',
     'widgets',
     'tipo-de-cambio',
@@ -36,6 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       'metodologia',
       'fuentes',
       'actualizaciones',
+      'reportar-error',
     ].includes(path);
     
     return {

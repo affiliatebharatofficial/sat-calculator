@@ -17,12 +17,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('about', lang);
 
   return {
-    title: lang === 'en'
-      ? 'About Us | Calculadora SAT & FkDigitalMedia'
-      : 'Acerca de Nosotros | Calculadora SAT y FkDigitalMedia',
-    description: lang === 'en'
-      ? 'Learn about Calculadora SAT, an independent digital initiative operated by FkDigitalMedia and created by Firoz Khan to provide transparent financial and tax calculators in Mexico and Peru.'
-      : 'Conoce Calculadora SAT, una iniciativa digital independiente operada por FkDigitalMedia y creada por Firoz Khan para ofrecer herramientas y calculadoras financieras y fiscales transparentes en México y Perú.',
+    title:
+      lang === 'en'
+        ? 'About Us & Editorial Transparency | Calculadora SAT'
+        : 'Acerca de Nosotros y Transparencia Editorial | Calculadora SAT',
+    description:
+      lang === 'en'
+        ? 'Learn who operates Calculadora SAT, our editorial responsibility, calculator development methodology, primary source verification, and error correction process.'
+        : 'Conoce quién opera Calculadora SAT, nuestra responsabilidad editorial, metodología de desarrollo de herramientas, verificación de fuentes primarias y protocolo de corrección de errores.',
     alternates: seoAlternates,
   };
 }
@@ -30,160 +32,283 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function AboutPage({ params }: PageProps) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang === 'en' ? 'en' : 'es';
+  const isEn = lang === 'en';
 
-  if (lang === 'en') {
+  if (isEn) {
     return (
       <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-800 dark:text-slate-200 font-sans flex flex-col justify-between">
         <Header lang={lang} />
 
-        <main className="max-w-3xl mx-auto px-4 py-12 flex-grow">
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-2xl p-8 shadow-sm">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-3xl">👥</span>
-              <h1 className="text-3xl font-extrabold text-slate-950 dark:text-white">
-                About Us
+        <main className="max-w-4xl mx-auto px-4 py-12 flex-grow w-full">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-3xl p-6 sm:p-10 shadow-sm space-y-10">
+            {/* Header / Intro */}
+            <div className="border-b border-slate-200 dark:border-slate-800 pb-6">
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-2">
+                <span>🛡️</span>
+                <span>Editorial Transparency & Operational Trust</span>
+              </div>
+              <h1 className="text-3xl sm:text-4xl font-black text-slate-950 dark:text-white tracking-tight">
+                About Calculadora SAT
               </h1>
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-350 mt-3 leading-relaxed">
+                Truthful, transparent information regarding who operates this project, how our calculators are built and maintained, and our verified source methodology.
+              </p>
             </div>
 
-            <div className="space-y-6 text-sm leading-relaxed text-slate-600 dark:text-slate-350">
-              <p className="text-lg text-slate-700 dark:text-slate-300 font-medium">
-                Calculadora SAT is an independent online calculation platform operated and maintained by <strong className="text-slate-900 dark:text-white">FkDigitalMedia</strong>, with a primary focus on Mexico&apos;s tax, labor, and payroll systems (SAT, LISR, LIVA, LFT, and IMSS).
+            {/* 1. About Calculadora SAT */}
+            <section className="space-y-3">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                  1
+                </span>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                  About Calculadora SAT
+                </h2>
+              </div>
+              <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+                Calculadora SAT is an independent online computational platform dedicated to providing open, accessible, and mathematically audited financial, payroll, and tax calculators. Our primary specialization centers on Mexico&apos;s legal framework—specifically the Income Tax Law (LISR), Value Added Tax Law (LIVA), Federal Labor Law (LFT), Social Security Law (LSS), and official SAT regulations.
               </p>
-
-              <p>
-                The purpose of this website is to provide practical online calculators and explanatory resources designed to make complex fiscal, payroll, and personal finance calculations easier to understand. In a regulatory environment where tax laws and labor provisions evolve constantly, our platform allows employees, freelancers, small businesses, and accountants to simulate tax withholdings, social security contributions, VAT breakdowns, and severance pay without needing to navigate through intricate legal texts.
+              <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+                Our mission is to democratize access to financial clarity. We enable wage earners, independent contractors, small businesses, and human resources personnel to simulate complex withholdings, severance payouts, vacation premiums, and progressive tax rates without having to navigate dense administrative gazettes.
               </p>
-
-              <p>
-                Each calculator is built with transparency in mind: where applicable, our tools clearly display the underlying mathematical methodology, step-by-step calculation formulas, realistic examples, citations of official legal statutes, and explicit operational limitations.
+              <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+                To serve cross-border and remote professionals operating between Latin American economies, we also maintain a strictly partitioned module of <strong>Peru Tools</strong> covering Peruvian labor statutes (CTS, Gratificaciones, Renta de 5ta Categoría) and SUNAT reference metrics. Both jurisdictions are kept completely separate to prevent normative confusion.
               </p>
+            </section>
 
-              <hr className="border-slate-200 dark:border-slate-800 my-6" />
-
-              {/* Creator & Digital Initiative Section */}
-              <section className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-2xl">👤</span>
-                  <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-                    The Person and Initiative Behind Calculadora SAT
-                  </h2>
-                </div>
-
-                <div className="space-y-3 text-slate-600 dark:text-slate-350">
-                  <p>
-                    <strong className="text-slate-900 dark:text-white">Firoz Khan</strong> is the person responsible for the development, technical architecture, and ongoing management of Calculadora SAT.
-                  </p>
-                  <p>
-                    Calculadora SAT is developed and maintained as part of <strong className="text-slate-900 dark:text-white">FkDigitalMedia</strong>, the digital initiative behind the creation, deployment, and content maintenance of this web platform.
-                  </p>
-                  <p>
-                    We believe in open transparency and accountability for digital tools. Users and professionals interested in learning more about Firoz Khan, his background, or getting in touch can view his official professional profile on LinkedIn:
-                  </p>
-                  <div className="pt-2">
-                    <a
-                      href="https://www.linkedin.com/in/firoz-khan-1153358a/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-[#0A66C2] hover:bg-[#004182] text-white text-xs font-semibold rounded-lg transition-colors shadow-sm"
-                    >
-                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                      </svg>
-                      <span>Connect with Firoz Khan on LinkedIn</span>
-                    </a>
-                  </div>
-                </div>
-              </section>
-
-              <hr className="border-slate-200 dark:border-slate-800 my-6" />
-
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Why Mexico and Peru?</h2>
-              <p>
-                Mexico represents our core specialization and original purpose. However, with the rise of remote work, cross-border contracting, and digital trade across Latin America, many professionals and businesses operate between Mexico and Peru.
-              </p>
-              <p>
-                To serve these users without compromising accuracy or creating normative confusion, we established a separate section of dedicated <strong className="text-slate-800 dark:text-slate-100">Peru Tools</strong>. This section provides tailored calculators for Peruvian labor mandates (CTS, Gratificaciones de Ley, Renta de 5ta Categoría) and tax references (SUNAT, IGV 18%, USD/PEN exchange rates). Both jurisdictions are kept strictly separate so users can easily identify country-specific resources without ambiguity.
-              </p>
-
-              <hr className="border-slate-200 dark:border-slate-800 my-6" />
-
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Independent Portal & Non-Affiliation Notice</h2>
-              <div className="p-4 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl text-xs text-amber-900 dark:text-amber-200">
-                <p className="font-semibold mb-1">⚠️ Important Legal Notice:</p>
+            {/* 2. Who Operates the Project */}
+            <section className="space-y-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-2xl p-6">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                  2
+                </span>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                  Who Operates the Project
+                </h2>
+              </div>
+              <div className="space-y-3 text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
                 <p>
-                  Calculadora SAT is an independent educational portal. It is <strong>NOT affiliated with, authorized, endorsed, or sponsored by</strong> the Servicio de Administración Tributaria (SAT) of Mexico, the Instituto Mexicano del Seguro Social (IMSS), the Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) of Peru, the Ministerio de Trabajo y Promoción del Empleo (MTPE), nor any other government agency or public institution. All calculations are mathematical estimates intended for simulation, planning, and informational purposes only, and do not constitute binding tax, legal, or financial advice.
+                  Calculadora SAT is operated and maintained by <strong className="text-slate-900 dark:text-white">FkDigitalMedia</strong>, an independent digital media and web engineering initiative.
                 </p>
-              </div>
-
-              <hr className="border-slate-200 dark:border-slate-800 my-6" />
-
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Our Mission</h2>
-              <p>
-                Democratize access to reliable, robust, and updated fiscal calculation tools in accordance with applicable legal frameworks (LISR, LIVA, LFT, IMSS in Mexico; SUNAT and Peruvian Labor Decrees in Peru), empowering taxpayers and employees to plan their finances and audit their payroll stubs.
-              </p>
-
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Our Core Values</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
-                <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
-                  <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">🎯 Precision</h3>
-                  <p className="text-xs text-slate-400">We mathematically audit our rates against official publications from the Mexican DOF and Peruvian SUNAT/El Peruano.</p>
-                </div>
-                <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
-                  <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">⚡ Speed</h3>
-                  <p className="text-xs text-slate-400">We develop a fast-loading SPA architecture with instant processing directly in your browser.</p>
-                </div>
-                <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
-                  <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">🔒 Total Privacy</h3>
-                  <p className="text-xs text-slate-400">Your financial data is processed on-device and is never stored in external databases.</p>
-                </div>
-                <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
-                  <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">💡 Accessibility</h3>
-                  <p className="text-xs text-slate-400">We design clean UIs that break down complex arithmetic and legal deductions step-by-step.</p>
+                <p>
+                  <strong className="text-slate-900 dark:text-white">Firoz Khan</strong> is the creator, technical architect, and person responsible for the development, mathematical algorithms, and ongoing maintenance of Calculadora SAT.
+                </p>
+                <p>
+                  We operate with complete personal and corporate honesty: <strong>we do not invent fictitious advisory boards, fake accounting firms, or simulated expert committees</strong>. Technical architecture, computational formulas, and software deployment are managed directly by Firoz Khan under FkDigitalMedia.
+                </p>
+                <div className="pt-1">
+                  <a
+                    href="https://www.linkedin.com/in/firoz-khan-1153358a/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#0A66C2] hover:bg-[#004182] text-white text-xs font-semibold rounded-xl transition shadow-sm"
+                  >
+                    <span>Connect with Firoz Khan on LinkedIn ↗</span>
+                  </a>
                 </div>
               </div>
+            </section>
 
-              <hr className="border-slate-200 dark:border-slate-800 my-6" />
-
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Methodology for Rate Maintenance & Formula Updates</h2>
-              <p>
-                To maintain mathematical accuracy, our tools are continuously aligned with publicly published statutes and official government gazettes:
+            {/* 3. Editorial Responsibility */}
+            <section className="space-y-3">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                  3
+                </span>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                  Editorial Responsibility
+                </h2>
+              </div>
+              <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+                All educational guides, statutory summaries, mathematical formulas, and numerical examples published across CalculadoraSAT.org are reviewed under the direct editorial responsibility of <strong>FkDigitalMedia</strong> and <strong>Firoz Khan</strong>.
               </p>
-              <div className="space-y-4 mt-2">
-                <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl space-y-2">
-                  <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
-                    <span>🇲🇽</span> Mexican Regulatory Monitoring
-                  </h3>
-                  <ul className="list-disc pl-5 text-xs space-y-1 text-slate-600 dark:text-slate-400">
-                    <li><strong>Diario Oficial de la Federación (DOF):</strong> We monitor published decrees, the annual Resolución Miscelánea Fiscal (RMF), and Annex 8 tables for progressive Income Tax (ISR Art. 96 and 152).</li>
-                    <li><strong>INEGI (UMA):</strong> The Unidad de Medida y Actualización (UMA) is verified every January upon release and updated effective February 1st.</li>
-                    <li><strong>CONASAMI:</strong> General minimum wage and Northern Border Free Zone (ZLFN) values are audited every January.</li>
-                    <li><strong>IMSS & LSS:</strong> Worker-employer contribution tiers, disability insurance brackets, and 25-UMA maximum contribution caps are audited according to the Ley del Seguro Social.</li>
-                    <li><strong>LFT (Labor Law):</strong> Calculations for severance, seniority premiums, and statutory holidays adhere strictly to the Ley Federal del Trabajo.</li>
-                  </ul>
-                </div>
+              <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+                Our editorial policy requires that every article, worked example, and limitation statement be directly supported by enacted Mexican statutes (LISR, LFT, CFF, DOF decrees) or Peruvian supreme decrees. We do not publish automated or unverified AI filler content; each piece is crafted to provide standalone, actionable value to taxpayers.
+              </p>
+            </section>
 
-                <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl space-y-2">
-                  <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
-                    <span>🇵🇪</span> Peruvian Regulatory Monitoring
-                  </h3>
-                  <ul className="list-disc pl-5 text-xs space-y-1 text-slate-600 dark:text-slate-400">
-                    <li><strong>Diario Oficial El Peruano & MEF:</strong> Annual Unidad Impositiva Tributaria (UIT) values are updated immediately upon enactment.</li>
-                    <li><strong>SUNAT (Quinta Categoría & IGV):</strong> Progressive withholding brackets (8% to 30%), 7-UIT automatic deductions, and the 18% IGV rate (16% + 2% IPM) are programmed according to D.S. N° 179-2004-EF and D.S. N° 055-99-EF.</li>
-                    <li><strong>MTPE (Labor Benefits):</strong> Formulas for CTS (D.S. N° 001-97-TR) and statutory bonuses/Gratificaciones (Ley N° 27735 & Ley N° 30334) reflect exact legal vesting rules.</li>
-                  </ul>
+            {/* 4. Calculator Development Methodology */}
+            <section className="space-y-3">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                  4
+                </span>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                  Calculator Development Methodology
+                </h2>
+              </div>
+              <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+                Every calculation engine on our website undergoes a rigorous 4-stage engineering lifecycle:
+              </p>
+              <ol className="list-decimal pl-5 text-xs sm:text-sm space-y-2 text-slate-600 dark:text-slate-350">
+                <li>
+                  <strong className="text-slate-800 dark:text-slate-200">Statutory Mapping:</strong> Identifying the precise governing legal articles (e.g. Art. 96 LISR progressive brackets, Art. 87 LFT mandatory aguinaldo, Art. 76 LFT Vacaciones Dignas).
+                </li>
+                <li>
+                  <strong className="text-slate-800 dark:text-slate-200">Parameter Extraction:</strong> Ingesting official economic benchmarks directly from federal authorities (INEGI for UMA, CONASAMI for minimum wage, SAT for RMF tax tables).
+                </li>
+                <li>
+                  <strong className="text-slate-800 dark:text-slate-200">Deterministic Modeling:</strong> Translating legal text into pure, transparent TypeScript functions running entirely on-device without opaque external API dependencies.
+                </li>
+                <li>
+                  <strong className="text-slate-800 dark:text-slate-200">Dual Verification:</strong> Cross-checking outputs against official SAT / PROFEDET published case studies and maintaining an automated regression unit testing suite of 51 automated tests (`npm run test:unit`).
+                </li>
+              </ol>
+              <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold pt-1">
+                <Link href="/en/metodologia" className="hover:underline">
+                  🔬 Read our complete technical development methodology ➔
+                </Link>
+              </p>
+            </section>
+
+            {/* 5. Source Verification Process */}
+            <section className="space-y-3">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                  5
+                </span>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                  Source Verification Process
+                </h2>
+              </div>
+              <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+                We operate under a strict <strong>primary-source only policy</strong>. We do not source tax brackets or labor formulas from secondary blogs, forums, or third-party aggregators.
+              </p>
+              <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+                Our algorithms are grounded exclusively in official government repositories: the Diario Oficial de la Federación (DOF), Cámara de Diputados, INEGI, CONASAMI, Banco de México, IMSS, and SUNAT/El Peruano. Each citation includes document titles, publication dates, and direct links to genuine `.gob.mx` or `.gob.pe` domains.
+              </p>
+              <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold pt-1">
+                <Link href="/en/fuentes" className="hover:underline">
+                  🏛️ Explore our directory of 13 verified official sources ➔
+                </Link>
+              </p>
+            </section>
+
+            {/* 6. Update / Review Process */}
+            <section className="space-y-3">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                  6
+                </span>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                  Update and Review Process
+                </h2>
+              </div>
+              <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+                Calculators are monitored through two distinct review mechanisms:
+              </p>
+              <ul className="list-disc pl-5 text-xs sm:text-sm space-y-1.5 text-slate-600 dark:text-slate-350">
+                <li>
+                  <strong className="text-slate-800 dark:text-slate-200">Scheduled Annual Audits:</strong> In December and January, we monitor CONASAMI minimum wage updates, the annual Tax Miscellaneous Resolution (RMF) Annex 8 ISR tables, and INEGI&apos;s annual UMA announcement (effective February 1st).
+                </li>
+                <li>
+                  <strong className="text-slate-800 dark:text-slate-200">Event-Driven Reviews:</strong> Triggered immediately upon the enactment of extraordinary legislative reforms (e.g. labor decree amendments or tax tariff adjustments).
+                </li>
+              </ul>
+              <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+                Every review, formula patch, or parameter update is publicly logged in our site-wide audit changelog.
+              </p>
+              <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold pt-1">
+                <Link href="/en/actualizaciones" className="hover:underline">
+                  🔄 View the public audit and parameter changelog ➔
+                </Link>
+              </p>
+            </section>
+
+            {/* 7. Error Correction Process */}
+            <section className="space-y-3 bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200/80 dark:border-amber-800/40 rounded-2xl p-6">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-8 rounded-xl bg-amber-200 dark:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-black text-sm flex items-center justify-center">
+                  7
+                </span>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                  Error Correction Process
+                </h2>
+              </div>
+              <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+                We maintain an open, transparent feedback mechanism for users, certified accountants, and software testers. When a numerical discrepancy or edge-case bug is reported:
+              </p>
+              <ol className="list-decimal pl-5 text-xs sm:text-sm space-y-1.5 text-slate-600 dark:text-slate-350">
+                <li>
+                  <strong className="text-slate-800 dark:text-slate-200">Report Intake:</strong> The observation is registered via our 6-field error workflow or via direct email.
+                </li>
+                <li>
+                  <strong className="text-slate-800 dark:text-slate-200">Statutory Audit:</strong> We cross-reference the report against the enacted DOF publication or primary legal text.
+                </li>
+                <li>
+                  <strong className="text-slate-800 dark:text-slate-200">Engineering Patch:</strong> The TypeScript engine is updated and validated against unit test suites.
+                </li>
+                <li>
+                  <strong className="text-slate-800 dark:text-slate-200">Deployment:</strong> The patch is deployed within 48 business hours and recorded in the public changelog.
+                </li>
+              </ol>
+              <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold pt-1">
+                <Link href="/en/reportar-error" className="hover:underline">
+                  ⚠️ Access the Report an Error workflow ➔
+                </Link>
+              </p>
+            </section>
+
+            {/* 8. Contact Information */}
+            <section className="space-y-3">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                  8
+                </span>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                  Contact Information
+                </h2>
+              </div>
+              <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+                Users, developers, and media inquiries may contact our technical and editorial team directly:
+              </p>
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm space-y-2">
+                <div>
+                  <strong className="text-slate-900 dark:text-white">Official Inquiry Email:</strong>{' '}
+                  <a href="mailto:hello@calculadorasat.org" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+                    hello@calculadorasat.org
+                  </a>
+                </div>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">Attention Hours:</strong> Monday to Friday from 9:00 AM to 6:00 PM (Mexico Central Time / UTC-6)
+                </div>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">Contact Form:</strong>{' '}
+                  <Link href="/en/contact" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    Web contact form available here
+                  </Link>
                 </div>
               </div>
+            </section>
 
-              <hr className="border-slate-200 dark:border-slate-800 my-6" />
+            {/* 9. Independence Statement */}
+            <section className="space-y-3">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                  9
+                </span>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                  Independence Statement
+                </h2>
+              </div>
+              <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+                Calculadora SAT is an entirely independent, privately operated technological initiative. We receive zero government funding, subsidies, or political patronage. Our editorial stance is objective and guided strictly by mathematical logic and statutory fidelity. We do not favor commercial lenders, payroll software vendors, or partisan interests.
+              </p>
+            </section>
 
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Transparency Commitment & Contact</h2>
-              <p>
-                Calculadora SAT operates with an explicit commitment to transparency and truthfulness. We do not claim to be a licensed public accounting firm, a law practice, or a government agency. We do not invent fictitious professional qualifications, certifications, corporate titles, or fabricated advisory committees.
+            {/* 10. Government Affiliation Disclaimer */}
+            <section className="space-y-3 p-5 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-xs text-amber-900 dark:text-amber-200">
+              <div className="flex items-center gap-2 font-bold text-sm">
+                <span>⚠️</span>
+                <span>10. Official Government Non-Affiliation Disclaimer</span>
+              </div>
+              <p className="leading-relaxed">
+                Calculadora SAT is an independent educational and technological portal. It is <strong>NOT affiliated with, sponsored by, endorsed by, or associated with</strong> the Servicio de Administración Tributaria (SAT) of Mexico, the Instituto Mexicano del Seguro Social (IMSS), the Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) of Peru, the Ministerio de Trabajo y Promoción del Empleo (MTPE), nor any other federal, state, or municipal government agency.
               </p>
-              <p>
-                Our work consists of reviewing publicly enacted statutes, transforming their formulas into open computational algorithms, and offering accessible web calculators. If you discover any formula discrepancy, recent regulatory change, or have feedback, please write directly to <a href="mailto:hello@calculadorasat.org" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">hello@calculadorasat.org</a>.
+              <p className="leading-relaxed">
+                All results produced by our calculators are mathematical simulations designed for educational, informational, and budgeting purposes. They do not constitute formal, binding legal or tax advice. For formal filings, audited financial statements, or administrative appeals, consult a licensed Certified Public Accountant (CPA) or refer to the official government portals (`sat.gob.mx`, `imss.gob.mx`, `sunat.gob.pe`).
               </p>
-            </div>
+            </section>
           </div>
         </main>
 
@@ -192,158 +317,281 @@ export default async function AboutPage({ params }: PageProps) {
     );
   }
 
+  // Spanish Version
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-800 dark:text-slate-200 font-sans flex flex-col justify-between">
       <Header lang={lang} />
 
-      <main className="max-w-3xl mx-auto px-4 py-12 flex-grow">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-2xl p-8 shadow-sm">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-3xl">👥</span>
-            <h1 className="text-3xl font-extrabold text-slate-950 dark:text-white">
-              Acerca de Nosotros
+      <main className="max-w-4xl mx-auto px-4 py-12 flex-grow w-full">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-3xl p-6 sm:p-10 shadow-sm space-y-10">
+          {/* Encabezado Principal */}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-6">
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-2">
+              <span>🛡️</span>
+              <span>Transparencia Editorial y Confianza Operativa</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-black text-slate-950 dark:text-white tracking-tight">
+              Acerca de Calculadora SAT
             </h1>
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-350 mt-3 leading-relaxed">
+              Estructura transparente y verídica sobre quién opera este proyecto, cómo se diseñan nuestras herramientas y cómo validamos cada cálculo contra la legislación vigente.
+            </p>
           </div>
 
-          <div className="space-y-6 text-sm leading-relaxed text-slate-600 dark:text-slate-350">
-            <p className="text-lg text-slate-700 dark:text-slate-300 font-medium">
-              Calculadora SAT es una plataforma digital independiente de cálculo financiero y tributario operada y mantenida por <strong className="text-slate-900 dark:text-white">FkDigitalMedia</strong>, cuyo eje principal es la normativa fiscal, laboral y de nómina en México (SAT, LISR, LIVA, LFT e IMSS).
+          {/* 1. Acerca de Calculadora SAT */}
+          <section className="space-y-3">
+            <div className="flex items-center gap-2.5">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                1
+              </span>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                Acerca de Calculadora SAT
+              </h2>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+              Calculadora SAT es una plataforma tecnológica independiente especializada en el desarrollo de herramientas de cálculo fiscal, laboral y de finanzas personales. Su enfoque primario radica en el marco normativo de México, abarcando la Ley del Impuesto sobre la Renta (LISR), la Ley del Impuesto al Valor Agregado (LIVA), la Ley Federal del Trabajo (LFT), la Ley del Seguro Social (LSS) y las resoluciones administrativas emitidas por el SAT.
             </p>
-
-            <p>
-              El propósito de este sitio web es ofrecer calculadoras en línea prácticas y recursos explicativos diseñados para facilitar la comprensión de cálculos fiscales, laborales y de finanzas personales que suelen ser complejos. En un entorno donde las regulaciones tributarias y las disposiciones de seguridad social cambian con frecuencia, nuestra plataforma permite a trabajadores asalariados, profesionales independientes, emprendedores y contadores simular retenciones de ISR, cuotas obrero-patronales del IMSS, desgloses de IVA y liquidaciones laborales de forma inmediata y sin necesidad de descifrar tratados legales extensos.
+            <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+              Nuestra misión es democratizar la comprensión de cálculos tributarios y laborales que comúnmente resultan complejos para la ciudadanía. Permitimos a trabajadores asalariados, profesionistas por honorarios, emprendedores en RESICO y departamentos de recursos humanos simular retenciones de ISR, cuotas del IMSS, liquidaciones de finiquito y vacaciones de manera inmediata, transparente y privada.
             </p>
-
-            <p>
-              Cada herramienta está diseñada bajo un principio de máxima transparencia metodológica: siempre que resulta aplicable, se incluye la metodología empleada, el desglose matemático paso a paso, ejemplos realistas, referencias a las fuentes legales oficiales correspondientes y las limitaciones de alcance del cálculo.
+            <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+              Para atender a la creciente comunidad de profesionistas que colaboran de manera remota entre economías de habla hispana, contamos además con una sección delimitada de <strong>Herramientas de Perú</strong>, orientada a beneficios laborales peruanos (CTS, Gratificaciones de ley, Renta de 5ta Categoría) y referencias tributarias de SUNAT. Ambos módulos están estrictamente separados para evitar cualquier confusión normativa.
             </p>
+          </section>
 
-            <hr className="border-slate-200 dark:border-slate-800 my-6" />
-
-            {/* Sección de Identidad: Responsable y Marca Digital */}
-            <section className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-2xl p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-2xl">👤</span>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-                  La Persona e Iniciativa Detrás de Calculadora SAT
-                </h2>
-              </div>
-
-              <div className="space-y-3 text-slate-600 dark:text-slate-350">
-                <p>
-                  <strong className="text-slate-900 dark:text-white">Firoz Khan</strong> es la persona responsable del desarrollo, arquitectura técnica y gestión de Calculadora SAT.
-                </p>
-                <p>
-                  Calculadora SAT se desarrolla y mantiene como parte de <strong className="text-slate-900 dark:text-white">FkDigitalMedia</strong>, la iniciativa digital detrás de la creación, publicación y soporte continuo de este sitio web.
-                </p>
-                <p>
-                  Creemos firmemente en la transparencia y en ofrecer una identidad verificable para los usuarios de nuestras herramientas. Si deseas conocer más sobre la trayectoria de Firoz Khan o conectar profesionalmente con él, puedes consultar su perfil oficial en LinkedIn:
-                </p>
-                <div className="pt-2">
-                  <a
-                    href="https://www.linkedin.com/in/firoz-khan-1153358a/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#0A66C2] hover:bg-[#004182] text-white text-xs font-semibold rounded-lg transition-colors shadow-sm"
-                  >
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                    <span>Ver perfil de Firoz Khan en LinkedIn</span>
-                  </a>
-                </div>
-              </div>
-            </section>
-
-            <hr className="border-slate-200 dark:border-slate-800 my-6" />
-
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">¿Por qué herramientas de México y Perú?</h2>
-            <p>
-              México constituye el núcleo fundamental y el motivo original de ser de esta plataforma. No obstante, con la expansión del trabajo remoto, la contratación transfronteriza y el comercio digital entre países hispanohablantes, un número significativo de usuarios opera entre México y Perú.
-            </p>
-            <p>
-              Para dar respuesta a estas necesidades sin mezclar ni distorsionar las normas de cada país, creamos una sección independiente dedicada a las <strong className="text-slate-800 dark:text-slate-100">Herramientas de Perú</strong>. En ella se agrupan calculadoras específicas de la legislación laboral peruana (CTS, Gratificaciones de ley, Renta de 5ta Categoría) y tributaria (SUNAT, IGV 18%, tipo de cambio Soles/Dólares). Ambos ecosistemas permanecen estrictamente separados para que cualquier usuario identifique con claridad los recursos aplicables a su jurisdicción.
-            </p>
-
-            <hr className="border-slate-200 dark:border-slate-800 my-6" />
-
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Portal Independiente y Deslinde de Responsabilidad</h2>
-            <div className="p-4 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl text-xs text-amber-900 dark:text-amber-200">
-              <p className="font-semibold mb-1">⚠️ Aviso Legal Relevante:</p>
+          {/* 2. Quién opera el proyecto */}
+          <section className="space-y-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-2xl p-6">
+            <div className="flex items-center gap-2.5">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                2
+              </span>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                Quién Opera el Proyecto
+              </h2>
+            </div>
+            <div className="space-y-3 text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
               <p>
-                Calculadora SAT es un sitio web de divulgación tecnológica e información cuantitativa independiente. <strong>NO está afiliado, patrocinado, avalado ni vinculado formalmente</strong> con el Servicio de Administración Tributaria (SAT) de México, ni con el Instituto Mexicano del Seguro Social (IMSS), ni con la Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) de Perú, ni con el Ministerio de Trabajo y Promoción del Empleo (MTPE), ni con ninguna otra entidad gubernamental. Todas las herramientas son simuladores matemáticos de carácter estimativo y didáctico, por lo que no sustituyen la asesoría profesional vinculante de un contador público colegiado o un abogado especialista.
+                Calculadora SAT es operada y mantenida por <strong className="text-slate-900 dark:text-white">FkDigitalMedia</strong>, una iniciativa digital independiente orientada al desarrollo de software utilitario y divulgación cuantitativa.
               </p>
-            </div>
-
-            <hr className="border-slate-200 dark:border-slate-800 my-6" />
-
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Nuestra Misión</h2>
-            <p>
-              Democratizar el acceso a herramientas de cálculo fiscal confiables, transparentes y actualizadas con el marco legal aplicable (LISR, LIVA, LFT e IMSS en México; normativas de SUNAT y leyes laborales en Perú), empoderando a contribuyentes y trabajadores para planificar su flujo de caja y auditar sus recibos de pago.
-            </p>
-
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Nuestros Valores Fundamentales</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
-              <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
-                <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">🎯 Precisión</h3>
-                <p className="text-xs text-slate-450">Auditamos nuestras fórmulas contra las publicaciones oficiales del DOF del SAT en México y El Peruano / SUNAT en Perú.</p>
-              </div>
-              <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
-                <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">⚡ Velocidad</h3>
-                <p className="text-xs text-slate-450">Desarrollamos una arquitectura de carga inmediata y procesamiento en el navegador.</p>
-              </div>
-              <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
-                <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">🔒 Privacidad Total</h3>
-                <p className="text-xs text-slate-450">Tus datos financieros se calculan en tu dispositivo y nunca se almacenan en servidores externos.</p>
-              </div>
-              <div className="p-5 bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-850 rounded-xl">
-                <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">💡 Accesibilidad</h3>
-                <p className="text-xs text-slate-450">Diseñamos una interfaz limpia que desglosa paso a paso deducciones, tasas y retenciones.</p>
+              <p>
+                <strong className="text-slate-900 dark:text-white">Firoz Khan</strong> es la persona responsable del desarrollo, diseño de arquitectura técnica, programación de algoritmos y mantenimiento operativo de la plataforma.
+              </p>
+              <p>
+                Operamos bajo un compromiso estricto de verdad y transparencia: <strong>no inventamos despachos contables fantasma, juntas directivas simuladas ni comités ficticios de expertos</strong>. La responsabilidad técnica y el mantenimiento del código son asumidos directamente por Firoz Khan en el marco de FkDigitalMedia.
+              </p>
+              <div className="pt-1">
+                <a
+                  href="https://www.linkedin.com/in/firoz-khan-1153358a/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#0A66C2] hover:bg-[#004182] text-white text-xs font-semibold rounded-xl transition shadow-sm"
+                >
+                  <span>Ver perfil profesional de Firoz Khan en LinkedIn ↗</span>
+                </a>
               </div>
             </div>
+          </section>
 
-            <hr className="border-slate-200 dark:border-slate-800 my-6" />
-
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Metodología de Mantenimiento y Actualización de Tablas</h2>
-            <p>
-              Para asegurar la exactitud de los cálculos, mantenemos un seguimiento riguroso de las publicaciones normativas emitidas por los organismos oficiales:
+          {/* 3. Responsabilidad editorial */}
+          <section className="space-y-3">
+            <div className="flex items-center gap-2.5">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                3
+              </span>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                Responsabilidad Editorial
+              </h2>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+              Todo el contenido explicativo, las fórmulas matemáticas, los artículos informativos y los ejemplos numéricos publicados en CalculadoraSAT.org son supervisados bajo la responsabilidad editorial directa de <strong>FkDigitalMedia</strong> y <strong>Firoz Khan</strong>.
             </p>
-            <div className="space-y-4 mt-2">
-              <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl space-y-2">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
-                  <span>🇲🇽</span> Monitoreo Normativo en México
-                </h3>
-                <ul className="list-disc pl-5 text-xs space-y-1 text-slate-600 dark:text-slate-400">
-                  <li><strong>Diario Oficial de la Federación (DOF):</strong> Monitoreamos decretos, reformas fiscales y los anexos de la Resolución Miscelánea Fiscal (RMF) para actualizar las tablas de retención de ISR (Art. 96 y 152 LISR).</li>
-                  <li><strong>INEGI (UMA):</strong> El valor diario, mensual y anual de la Unidad de Medida y Actualización (UMA) se actualiza de inmediato tras su publicación en enero con entrada en vigor el 1 de febrero.</li>
-                  <li><strong>CONASAMI:</strong> Los salarios mínimos generales y de la Zona Libre de la Frontera Norte (ZLFN) se auditan al inicio de cada año fiscal.</li>
-                  <li><strong>IMSS y Ley del Seguro Social:</strong> Las cuotas de cesantía, vejez, enfermedad y maternidad, así como el tope de 25 UMAs, se mantienen al día conforme a la legislación social vigente.</li>
-                  <li><strong>Ley Federal del Trabajo (LFT):</strong> Regulaciones sobre aguinaldo, prima de antigüedad, finiquitos y la reforma de Vacaciones Dignas están incorporadas estrictamente en los algoritmos.</li>
-                </ul>
-              </div>
+            <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+              Nuestra política editorial exige que cada cálculo y cada artículo cuente con fundamento explícito en gacetas oficiales y leyes vigentes de México (LISR, LFT, CFF, decretos del DOF) o de Perú (Decretos Supremos y SUNAT). No publicamos contenido generado masivamente sin supervisión; cada recurso didáctico busca aportar valor directo y comprensible para el contribuyente.
+            </p>
+          </section>
 
-              <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl space-y-2">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
-                  <span>🇵🇪</span> Monitoreo Normativo en Perú
-                </h3>
-                <ul className="list-disc pl-5 text-xs space-y-1 text-slate-600 dark:text-slate-400">
-                  <li><strong>Diario Oficial El Peruano y MEF:</strong> El valor de la Unidad Impositiva Tributaria (UIT) se actualiza anualmente tras el Decreto Supremo correspondiente.</li>
-                  <li><strong>SUNAT (Renta 5ta e IGV):</strong> La escala acumulativa (8% al 30%), la deducción inafecta de 7 UIT y la tasa del 18% de IGV (16% + 2% IPM) se aplican según el D.S. N° 179-2004-EF y el D.S. N° 055-99-EF.</li>
-                  <li><strong>MTPE y Legislación Laboral:</strong> Las fórmulas de CTS (D.S. N° 001-97-TR) y Gratificaciones con Bonificación Extraordinaria (Ley N° 27735 y Ley N° 30334) calculan los devengados semestrales según los criterios oficiales del Ministerio de Trabajo.</li>
-                </ul>
+          {/* 4. Metodología de desarrollo de calculadoras */}
+          <section className="space-y-3">
+            <div className="flex items-center gap-2.5">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                4
+              </span>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                Metodología de Desarrollo de Calculadoras
+              </h2>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+              Cada motor de cálculo incorporado en el sitio sigue un ciclo estructurado de 4 fases de ingeniería:
+            </p>
+            <ol className="list-decimal pl-5 text-xs sm:text-sm space-y-2 text-slate-600 dark:text-slate-350">
+              <li>
+                <strong className="text-slate-800 dark:text-slate-200">Identificación Normativa:</strong> Selección del articulado legal aplicable (ej: Art. 96 LISR para tarifa mensual de ISR, Art. 87 LFT para aguinaldo mínimo, Art. 76 LFT para Vacaciones Dignas).
+              </li>
+              <li>
+                <strong className="text-slate-800 dark:text-slate-200">Extracción de Parámetros Oficiales:</strong> Recopilación directa de tablas y valores publicados por organismos de gobierno (INEGI para UMA, CONASAMI para salarios mínimos, SAT para tarifas de la RMF).
+              </li>
+              <li>
+                <strong className="text-slate-800 dark:text-slate-200">Programación Determinista:</strong> Traducción de la redacción jurídica a funciones de TypeScript puro que corren en el dispositivo del usuario sin dependencias externas opacas.
+              </li>
+              <li>
+                <strong className="text-slate-800 dark:text-slate-200">Doble Verificación y Pruebas Unitarias:</strong> Comparación contra casos de estudio oficiales del SAT y PROFEDET, respaldada por una suite automatizada de 51 pruebas unitarias (`npm run test:unit`).
+              </li>
+            </ol>
+            <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold pt-1">
+              <Link href="/metodologia" className="hover:underline">
+                🔬 Consulta nuestra metodología técnica detallada ➔
+              </Link>
+            </p>
+          </section>
+
+          {/* 5. Proceso de verificación de fuentes */}
+          <section className="space-y-3">
+            <div className="flex items-center gap-2.5">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                5
+              </span>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                Proceso de Verificación de Fuentes
+              </h2>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+              Mantenemos una política estricta de <strong>fuentes primarias oficiales exclusivamente</strong>. No tomamos tablas impositivas ni fórmulas salariales de blogs de terceros, foros o agregadores secundarios.
+            </p>
+            <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+              Nuestros algoritmos se fundamentan directamente en el Diario Oficial de la Federación (DOF), el repositorio de la Cámara de Diputados, el INEGI, la CONASAMI, el Banco de México, el IMSS y los portales oficiales de SUNAT y El Peruano. Cada cita incluye el título normativo, fecha de entrada en vigor y enlace verificable a dominios `.gob.mx` o `.gob.pe`.
+            </p>
+            <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold pt-1">
+              <Link href="/fuentes" className="hover:underline">
+                🏛️ Conoce nuestro catálogo de 13 fuentes gubernamentales verificadas ➔
+              </Link>
+            </p>
+          </section>
+
+          {/* 6. Proceso de actualización y revisión */}
+          <section className="space-y-3">
+            <div className="flex items-center gap-2.5">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                6
+              </span>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                Proceso de Actualización y Revisión
+              </h2>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+              Las calculadoras se mantienen al día mediante dos modalidades de supervisión:
+            </p>
+            <ul className="list-disc pl-5 text-xs sm:text-sm space-y-1.5 text-slate-600 dark:text-slate-350">
+              <li>
+                <strong className="text-slate-800 dark:text-slate-200">Revisiones Periódicas Anuales:</strong> En los meses de diciembre y enero monitoreamos los salarios mínimos de la CONASAMI, las tablas de ISR del Anexo 8 de la RMF y la publicación oficial de la UMA por el INEGI (con vigencia a partir del 1 de febrero).
+              </li>
+              <li>
+                <strong className="text-slate-800 dark:text-slate-200">Revisiones Extraordinarias por Reforma:</strong> Se detonan de inmediato cuando el Congreso o el Poder Ejecutivo publican reformas a la LISR, LFT o leyes de seguridad social en el DOF.
+              </li>
+            </ul>
+            <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+              Cada actualización de parámetros o corrección algorítmica queda asentada con fecha y fundamento en nuestro historial público de auditoría.
+            </p>
+            <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold pt-1">
+              <Link href="/actualizaciones" className="hover:underline">
+                🔄 Ver el registro público de actualizaciones y auditorías ➔
+              </Link>
+            </p>
+          </section>
+
+          {/* 7. Proceso de corrección de errores */}
+          <section className="space-y-3 bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200/80 dark:border-amber-800/40 rounded-2xl p-6">
+            <div className="flex items-center gap-2.5">
+              <span className="w-8 h-8 rounded-xl bg-amber-200 dark:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-black text-sm flex items-center justify-center">
+                7
+              </span>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                Proceso de Corrección de Errores
+              </h2>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+              Disponemos de un canal abierto y transparente para que usuarios, contadores públicos y desarrolladores reporten cualquier inconsistencia en los cálculos:
+            </p>
+            <ol className="list-decimal pl-5 text-xs sm:text-sm space-y-1.5 text-slate-600 dark:text-slate-350">
+              <li>
+                <strong className="text-slate-800 dark:text-slate-200">Recepción del Reporte:</strong> La observación se registra mediante nuestro formulario de 6 campos o correo directo.
+              </li>
+              <li>
+                <strong className="text-slate-800 dark:text-slate-200">Auditoría Normativa:</strong> Se coteja el valor observado contra el texto del decreto oficial en el DOF.
+              </li>
+              <li>
+                <strong className="text-slate-800 dark:text-slate-200">Parche de Código:</strong> Se ajusta la función matemática en el repositorio y se ejecutan las pruebas unitarias.
+              </li>
+              <li>
+                <strong className="text-slate-800 dark:text-slate-200">Publicación y Registro:</strong> Se despliega en producción en un plazo máximo de 48 horas hábiles y se documenta en `/actualizaciones`.
+              </li>
+            </ol>
+            <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold pt-1">
+              <Link href="/reportar-error" className="hover:underline">
+                ⚠️ Abrir el flujo de reporte de errores ➔
+              </Link>
+            </p>
+          </section>
+
+          {/* 8. Información de contacto */}
+          <section className="space-y-3">
+            <div className="flex items-center gap-2.5">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                8
+              </span>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                Información de Contacto
+              </h2>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+              Para consultas técnicas, sugerencias o contacto general, puedes comunicarte directamente con nuestro equipo:
+            </p>
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 text-xs sm:text-sm space-y-2">
+              <div>
+                <strong className="text-slate-900 dark:text-white">Correo Oficial:</strong>{' '}
+                <a href="mailto:hello@calculadorasat.org" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+                  hello@calculadorasat.org
+                </a>
+              </div>
+              <div>
+                <strong className="text-slate-900 dark:text-white">Horario de Atención:</strong> Lunes a Viernes de 9:00 AM a 6:00 PM (Hora Centro de México / UTC-6)
+              </div>
+              <div>
+                <strong className="text-slate-900 dark:text-white">Formulario Web:</strong>{' '}
+                <Link href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  Formulario de contacto disponible aquí
+                </Link>
               </div>
             </div>
+          </section>
 
-            <hr className="border-slate-200 dark:border-slate-800 my-6" />
+          {/* 9. Declaración de independencia */}
+          <section className="space-y-3">
+            <div className="flex items-center gap-2.5">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-black text-sm flex items-center justify-center">
+                9
+              </span>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                Declaración de Independencia
+              </h2>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed">
+              Calculadora SAT es una iniciativa digital privada, libre e independiente. No recibe subsidios públicos, patrocinios gubernamentales ni financiamiento de partidos políticos o cámaras empresariales. El desarrollo se mantiene de forma autónoma con el objetivo de ofrecer herramientas de cálculo universales, gratuitas y neutrales para todos los contribuyentes.
+            </p>
+          </section>
 
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Compromiso de Transparencia y Contacto</h2>
-            <p>
-              Calculadora SAT opera con un compromiso explícito de transparencia y veracidad. No pretendemos ser un despacho contable colegiado, un bufete jurídico ni un organismo gubernamental; no inventamos credenciales profesionales no verificables, grados de colegiatura inexistentes ni comités de expertos ficticios.
+          {/* 10. Deslinde de afiliación gubernamental */}
+          <section className="space-y-3 p-5 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-xs text-amber-900 dark:text-amber-200">
+            <div className="flex items-center gap-2 font-bold text-sm">
+              <span>⚠️</span>
+              <span>10. Deslinde de Afiliación Gubernamental</span>
+            </div>
+            <p className="leading-relaxed">
+              Calculadora SAT es un sitio web de divulgación tecnológica e información cuantitativa independiente. <strong>NO está afiliado, respaldado, autorizado ni patrocinado</strong> por el Servicio de Administración Tributaria (SAT) de México, ni por el Instituto Mexicano del Seguro Social (IMSS), ni por la Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) de Perú, ni por el Ministerio de Trabajo y Promoción del Empleo (MTPE), ni por ninguna otra entidad u organismo del gobierno federal, estatal o municipal.
             </p>
-            <p>
-              Nuestra labor consiste en estudiar la normativa legal pública vigente, traducirla en algoritmos matemáticos abiertos y ofrecer simuladores rápidos, claros y gratuitos. Si detectas cualquier discrepancia en alguna fórmula o tabla, o deseas hacernos llegar tus sugerencias, te invitamos a escribirnos directamente a <a href="mailto:hello@calculadorasat.org" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">hello@calculadorasat.org</a>.
+            <p className="leading-relaxed">
+              Todos los resultados obtenidos son simulaciones matemáticas con fines educativos, de planificación y orientación personal. No constituyen asesoría contable, fiscal o legal vinculante. Para trámites oficiales, declaraciones anuales vinculantes o dictámenes contables formales, acude ante un Contador Público colegiado o consulta los portales oficiales de la autoridad (`sat.gob.mx`, `imss.gob.mx`, `sunat.gob.pe`).
             </p>
-          </div>
+          </section>
         </div>
       </main>
 
@@ -351,4 +599,3 @@ export default async function AboutPage({ params }: PageProps) {
     </div>
   );
 }
-

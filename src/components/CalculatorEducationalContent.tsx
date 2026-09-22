@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { CalculatorConfig } from '@/types/calculator';
 import OfficialSourcesSection from './OfficialSourcesSection';
 import CalculatorUpdateHistory from './CalculatorUpdateHistory';
+import ReportErrorModal from './ReportErrorModal';
 
 interface CalculatorEducationalContentProps {
   config: CalculatorConfig;
@@ -449,13 +450,20 @@ export default function CalculatorEducationalContent({
               {isEn ? 'Report a Calculation Error or Observation' : 'Reportar una Observación o Discrepancia Numérica'}
             </h3>
           </div>
-          <a
-            href={`mailto:hello@calculadorasat.org?subject=${encodeURIComponent(`Observación técnica sobre ${config.title}`)}&body=${encodeURIComponent(`Hola equipo de Calculadora SAT,\n\nHe detectado la siguiente observación en la herramienta "${config.title}" (URL: /calculadoras/${config.categorySlug}/${config.slug}):\n\n- Valor o parámetro observado:\n- Fundamento o ley de referencia:\n- Corrección sugerida:\n\nSaludos.`)}`}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition shrink-0"
-          >
-            <span>✉️</span>
-            <span>{isEn ? 'Send Report (Email)' : 'Enviar Reporte al Equipo Técnico'}</span>
-          </a>
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            <ReportErrorModal
+              pageOrCalculator={config.title}
+              lang={lang}
+              triggerText={isEn ? 'Report an Error' : 'Reportar un Error'}
+            />
+            <a
+              href={`mailto:hello@calculadorasat.org?subject=${encodeURIComponent(`Observación técnica sobre ${config.title}`)}&body=${encodeURIComponent(`Hola equipo de Calculadora SAT,\n\nHe detectado la siguiente observación en la herramienta "${config.title}" (URL: /calculadoras/${config.categorySlug}/${config.slug}):\n\n- Valor o parámetro observado:\n- Fundamento o ley de referencia:\n- Corrección sugerida:\n\nSaludos.`)}`}
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs transition"
+            >
+              <span>✉️</span>
+              <span>{isEn ? 'Email Directly' : 'Por Correo'}</span>
+            </a>
+          </div>
         </div>
 
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">

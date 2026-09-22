@@ -92,6 +92,9 @@ export default function Footer({ lang = 'es' }: FooterProps) {
           <Link href={`${langPrefix}/actualizaciones`} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition font-bold text-indigo-600 dark:text-indigo-400 truncate">
             {isEn ? '🔄 Updates Log' : '🔄 Actualizaciones'}
           </Link>
+          <Link href={`${langPrefix}/reportar-error`} className="hover:text-amber-600 dark:hover:text-amber-400 transition font-bold text-amber-600 dark:text-amber-400 truncate">
+            {isEn ? '⚠️ Report an Error' : '⚠️ Reportar un Error'}
+          </Link>
           <Link href="/calendario-fiscal" className="hover:text-blue-600 dark:hover:text-blue-400 transition font-bold text-slate-700 dark:text-slate-300 truncate">
             {isEn ? 'Fiscal Calendar' : 'Calendario Fiscal'}
           </Link>

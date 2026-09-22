@@ -8,5 +8,9 @@ export interface Post {
   category: string;
   date: string;
   author: string;
+  editorialResponsibility?: string;
+  lastReviewed?: string;
+  lastUpdated?: string;
+  legalBasis?: string;
   status: 'draft' | 'published';
 }

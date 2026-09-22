@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import EditorialInfoCard from '@/components/EditorialInfoCard';
 import { getPostBySlug, getPublishedPosts } from '@/lib/blog';
 import { getSeoAlternates } from '@/lib/seo';
 import { renderMarkdown } from '@/lib/markdown';
@@ -50,7 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       locale: lang === 'en' ? 'en_US' : 'es_MX',
       type: 'article',
       publishedTime: post.date,
-      authors: [post.author],
+      authors: [post.author || 'Firoz Khan'],
     },
   };
 }
@@ -82,12 +83,20 @@ export default async function BlogPostPage({ params }: PageProps) {
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.lastUpdated || post.date,
     mainEntityOfPage: postUrl,
     author: {
-      '@type': 'Organization',
-      name: post.author,
-      url: 'https://www.calculadorasat.org/about'
+      '@type': 'Person',
+      name: 'Firoz Khan',
+      jobTitle: isEn ? 'Creator & Technical Lead' : 'Creador y Responsable Técnico',
+      worksFor: {
+        '@type': 'Organization',
+        name: 'FkDigitalMedia',
+        url: 'https://www.calculadorasat.org/about',
+      },
+      sameAs: [
+        'https://www.linkedin.com/in/firoz-khan-1153358a/',
+      ],
     },
     publisher: {
       '@type': 'Organization',
@@ -161,26 +170,17 @@ export default async function BlogPostPage({ params }: PageProps) {
               </p>
             )}
 
-            {/* Author & Editorial Verification Card */}
-            <div className="mt-6 p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-between flex-wrap gap-3 text-xs">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-black text-sm">
-                  CS
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900 dark:text-white">
-                    {post.author}
-                  </div>
-                  <div className="text-slate-550 dark:text-slate-400 text-[11px]">
-                    Revisión Técnica y Fundamento en la Ley del ISR Vigente
-                  </div>
-                </div>
-              </div>
-              <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
-                <span>✓</span>
-                <span>Contenido Verificado 2026</span>
-              </span>
-            </div>
+            {/* Truthful Author & Editorial Attribution Card */}
+            <EditorialInfoCard
+              author={post.author || 'Firoz Khan (FkDigitalMedia)'}
+              editorialResponsibility={post.editorialResponsibility}
+              publishedDate={post.date}
+              lastReviewedDate={post.lastReviewed || '2026-09-20'}
+              lastUpdatedDate={post.lastUpdated || '2026-09-20'}
+              legalBasis={post.legalBasis}
+              pageTitle={post.title}
+              lang={lang}
+            />
           </header>
 
           {/* Server-Rendered Article Body */}
