@@ -18,34 +18,34 @@ export default function Header({ lang = 'es', activePath }: HeaderProps) {
     <header className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 py-3 sm:py-4 transition-all">
       <div className="max-w-6xl mx-auto px-4">
         {/* Main Row: Logo + Controls */}
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
           <Link 
             href={langPrefix || '/'} 
-            className="font-black text-xl sm:text-2xl tracking-tight text-slate-950 dark:text-white hover:opacity-90 transition flex items-center gap-1 shrink-0"
+            className="font-black text-lg sm:text-2xl tracking-tight text-slate-950 dark:text-white hover:opacity-90 transition flex items-center gap-0.5 sm:gap-1 shrink-0"
           >
             Calculadora<span className="text-blue-600">SAT</span>
           </Link>
 
           {/* Controls: Country Switcher + Theme & Language */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1 sm:gap-2.5 shrink-0">
             {/* Country Selector Badges */}
             <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-lg text-xs font-semibold">
               <Link
                 href={langPrefix || '/'}
                 title={isEn ? 'Mexico (Primary Market)' : 'México (Mercado Principal)'}
-                className="px-2 py-1 rounded-md transition flex items-center gap-1 bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-xs"
+                className="px-1.5 sm:px-2 py-1 rounded-md transition flex items-center gap-1 bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-xs text-xs"
               >
                 <span>🇲🇽</span>
-                <span className="hidden sm:inline">MX</span>
+                <span className="hidden md:inline">MX</span>
               </Link>
               <Link
                 href="/peru"
                 title={isEn ? 'Peru Tax & Labor Hub' : 'Portal Tributario y Laboral Perú'}
-                className="px-2 py-1 rounded-md transition flex items-center gap-1 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                className="px-1.5 sm:px-2 py-1 rounded-md transition flex items-center gap-1 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white text-xs"
               >
                 <span>🇵🇪</span>
-                <span className="hidden sm:inline">PE</span>
+                <span className="hidden md:inline">PE</span>
               </Link>
             </div>
 
