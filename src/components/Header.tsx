@@ -152,148 +152,323 @@ export default function Header({ lang = 'es', activePath }: HeaderProps) {
         </nav>
       </div>
 
-      {/* Mobile Drawer Navigation (Overlay + Panel) */}
+      {/* Mobile Drawer Navigation (Full Slide-Out Drawer) */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[61px] bottom-0 z-40 bg-slate-950/60 backdrop-blur-xs flex flex-col">
-          <div className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-2xl p-5 overflow-y-auto max-h-[calc(100vh-61px)] space-y-6 animate-in slide-in-from-top-2 duration-200">
-            {/* Primary Category Links */}
-            <div>
-              <div className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">
-                {isEn ? 'Core Tools' : 'Herramientas Principales'}
+        <div className="md:hidden fixed inset-0 z-50 flex">
+          {/* Backdrop Overlay */}
+          <div 
+            className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm transition-opacity"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Drawer Container (Right-aligned, fully scrollable) */}
+          <div className="relative ml-auto w-full max-w-xs sm:max-w-sm bg-white dark:bg-slate-900 h-full shadow-2xl flex flex-col z-10 border-l border-slate-200 dark:border-slate-850">
+            {/* Drawer Header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50">
+              <div className="flex items-center gap-2">
+                <Link 
+                  href={langPrefix || '/'} 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="font-black text-lg text-slate-950 dark:text-white"
+                >
+                  Calculadora<span className="text-blue-600">SAT</span>
+                </Link>
+                <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900">
+                  2026
+                </span>
               </div>
-              <div className="grid grid-cols-1 gap-1 text-sm font-bold text-slate-700 dark:text-slate-200">
-                <Link
-                  href={`${langPrefix}/calculadoras/sat`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/40 hover:text-blue-600 transition"
-                >
-                  <span className="text-xl">🏛️</span>
-                  <div>
-                    <div>{isEn ? 'SAT Taxes' : 'Impuestos SAT'}</div>
-                    <div className="text-xs font-normal text-slate-400">IVA, ISR Personas Físicas y Morales</div>
-                  </div>
-                </Link>
-
-                <Link
-                  href={`${langPrefix}/calculadoras/nomina`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/40 hover:text-blue-600 transition"
-                >
-                  <span className="text-xl">💼</span>
-                  <div>
-                    <div>{isEn ? 'Payroll & Labor' : 'Nómina y Ley Federal del Trabajo'}</div>
-                    <div className="text-xs font-normal text-slate-400">Salario neto, aguinaldo, finiquito y PTU</div>
-                  </div>
-                </Link>
-
-                <Link
-                  href={`${langPrefix}/calculadoras/resico`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/40 hover:text-blue-600 transition"
-                >
-                  <span className="text-xl">🌱</span>
-                  <div>
-                    <div>RESICO</div>
-                    <div className="text-xs font-normal text-slate-400">Régimen Simplificado y Comparador</div>
-                  </div>
-                </Link>
-
-                <Link
-                  href="/tipo-de-cambio"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/40 hover:text-blue-600 transition"
-                >
-                  <span className="text-xl">💱</span>
-                  <div>
-                    <div>{isEn ? 'Currency & Exchange Rate' : 'Tipo de Cambio FIX DOF / Banxico'}</div>
-                    <div className="text-xs font-normal text-slate-400">Dólar a pesos mexicanos en tiempo real</div>
-                  </div>
-                </Link>
-
-                <Link
-                  href={`${langPrefix}/calculadoras`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/40 hover:text-blue-600 transition"
-                >
-                  <span className="text-xl">🧮</span>
-                  <div>
-                    <div>{isEn ? 'All 31 Calculators' : 'Todas las Calculadoras (31)'}</div>
-                    <div className="text-xs font-normal text-slate-400">Directorio completo de simuladores</div>
-                  </div>
-                </Link>
-              </div>
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+                aria-label="Cerrar menú"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
 
-            {/* Guides, Content & Fiscal Tools */}
-            <div className="border-t border-slate-100 dark:border-slate-800/80 pt-4">
-              <div className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">
-                {isEn ? 'Guides & Resources' : 'Guías y Recursos'}
+            {/* Drawer Body (Scrollable) */}
+            <div className="flex-1 overflow-y-auto p-5 space-y-6 text-slate-800 dark:text-slate-200">
+              {/* 1. Categorías Principales de Calculadoras */}
+              <div>
+                <div className="text-[11px] font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2.5 flex items-center gap-1.5">
+                  <span>🧮</span>
+                  <span>{isEn ? 'Calculators by Category' : 'Calculadoras por Categoría'}</span>
+                </div>
+                <div className="space-y-1 text-sm font-semibold">
+                  <Link
+                    href={`${langPrefix}/calculadoras/sat`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-2.5 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/40 text-slate-700 dark:text-slate-200 hover:text-blue-600 transition"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-lg">🏛️</span>
+                      <div>
+                        <div>{isEn ? 'SAT & Taxes' : 'Impuestos SAT'}</div>
+                        <div className="text-[11px] font-normal text-slate-400">IVA 16%/8%, ISR Personas Físicas y Morales</div>
+                      </div>
+                    </div>
+                    <span className="text-slate-400 text-xs">➔</span>
+                  </Link>
+
+                  <Link
+                    href={`${langPrefix}/calculadoras/nomina`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-2.5 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/40 text-slate-700 dark:text-slate-200 hover:text-blue-600 transition"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-lg">💼</span>
+                      <div>
+                        <div>{isEn ? 'Payroll & LFT' : 'Nómina y Laboral (LFT)'}</div>
+                        <div className="text-[11px] font-normal text-slate-400">Salario neto, aguinaldo, finiquito, PTU, IMSS</div>
+                      </div>
+                    </div>
+                    <span className="text-slate-400 text-xs">➔</span>
+                  </Link>
+
+                  <Link
+                    href={`${langPrefix}/calculadoras/resico`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-2.5 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/40 text-slate-700 dark:text-slate-200 hover:text-blue-600 transition"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-lg">🌱</span>
+                      <div>
+                        <div>RESICO 2026</div>
+                        <div className="text-[11px] font-normal text-slate-400">Tasas 1%-2.5% y Comparador Actividad Emp.</div>
+                      </div>
+                    </div>
+                    <span className="text-slate-400 text-xs">➔</span>
+                  </Link>
+
+                  <Link
+                    href={`${langPrefix}/calculadoras/finanzas-personales`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-2.5 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/40 text-slate-700 dark:text-slate-200 hover:text-blue-600 transition"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-lg">🪙</span>
+                      <div>
+                        <div>{isEn ? 'Personal Finance' : 'Finanzas Personales'}</div>
+                        <div className="text-[11px] font-normal text-slate-400">CETES, Hipotecas, Afore, Interés Compuesto</div>
+                      </div>
+                    </div>
+                    <span className="text-slate-400 text-xs">➔</span>
+                  </Link>
+
+                  <Link
+                    href={`${langPrefix}/calculadoras/negocios`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-2.5 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/40 text-slate-700 dark:text-slate-200 hover:text-blue-600 transition"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-lg">📈</span>
+                      <div>
+                        <div>{isEn ? 'Business & Costing' : 'Negocios y Costos'}</div>
+                        <div className="text-[11px] font-normal text-slate-400">Punto de equilibrio y Depreciación de activos</div>
+                      </div>
+                    </div>
+                    <span className="text-slate-400 text-xs">➔</span>
+                  </Link>
+
+                  <Link
+                    href="/tipo-de-cambio"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-2.5 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/40 text-slate-700 dark:text-slate-200 hover:text-blue-600 transition"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-lg">💱</span>
+                      <div>
+                        <div>{isEn ? 'Exchange Rate Banxico/DOF' : 'Tipo de Cambio Banxico/DOF'}</div>
+                        <div className="text-[11px] font-normal text-slate-400">Dólar FIX y conversor de divisas oficial</div>
+                      </div>
+                    </div>
+                    <span className="text-slate-400 text-xs">➔</span>
+                  </Link>
+
+                  <Link
+                    href={`${langPrefix}/calculadoras`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold transition mt-2"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-lg">✨</span>
+                      <div>{isEn ? 'View All 31 Calculators' : 'Ver el Directorio Completo (31)'}</div>
+                    </div>
+                    <span>➔</span>
+                  </Link>
+                </div>
               </div>
-              <div className="grid grid-cols-2 gap-2 text-xs font-bold text-slate-700 dark:text-slate-300">
-                <Link
-                  href={`${langPrefix}/guias`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2"
-                >
-                  <span>📚</span>
-                  <span>{isEn ? 'Guides' : 'Guías'}</span>
-                </Link>
-                <Link
-                  href="/calendario-fiscal"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2"
-                >
-                  <span>📅</span>
-                  <span>{isEn ? 'Calendar' : 'Calendario'}</span>
-                </Link>
-                <Link
-                  href={`${langPrefix}/blog`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2"
-                >
-                  <span>✍️</span>
-                  <span>Blog</span>
-                </Link>
-                <Link
-                  href="/formatos"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2"
-                >
-                  <span>📄</span>
-                  <span>{isEn ? 'HR Templates' : 'Formatos RH'}</span>
-                </Link>
-                <Link
-                  href="/peru"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-3 rounded-xl bg-red-50/80 dark:bg-red-950/30 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-950/50 transition flex items-center gap-2 col-span-2"
-                >
+
+              {/* 2. Portal Regional Perú */}
+              <div className="border-t border-slate-100 dark:border-slate-800 pt-4">
+                <div className="text-[11px] font-black uppercase tracking-wider text-red-600 dark:text-red-400 mb-2.5 flex items-center gap-1.5">
                   <span>🇵🇪</span>
-                  <span>{isEn ? 'Peru Hub (SUNAT, CTS, Gratificaciones)' : 'Portal Perú (SUNAT, CTS, Gratificaciones)'}</span>
-                </Link>
+                  <span>{isEn ? 'Peru Hub (SUNAT)' : 'Herramientas Perú (SUNAT)'}</span>
+                </div>
+                <div className="space-y-1 text-xs font-semibold">
+                  <Link
+                    href="/peru"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-2 rounded-xl bg-red-50/70 dark:bg-red-950/30 text-red-700 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-900/40 transition font-bold"
+                  >
+                    <span>{isEn ? 'Portal Perú Overview' : 'Portal General Perú'}</span>
+                    <span>➔</span>
+                  </Link>
+                  <Link
+                    href="/peru/calculadoras"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block p-2 rounded-lg text-slate-600 dark:text-slate-350 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+                  >
+                    • {isEn ? 'Peru Calculators (IGV, CTS, Grati, Renta 5ta)' : 'Calculadoras Perú (IGV 18%, CTS, Gratificación)'}
+                  </Link>
+                  <Link
+                    href="/peru/guias"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block p-2 rounded-lg text-slate-600 dark:text-slate-350 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+                  >
+                    • {isEn ? 'SUNAT Guides & Tax Deadlines' : 'Guías Tributarias y Laborales SUNAT'}
+                  </Link>
+                  <Link
+                    href="/peru/blog"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block p-2 rounded-lg text-slate-600 dark:text-slate-350 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+                  >
+                    • {isEn ? 'Peru Labor Articles' : 'Artículos y Normas SUNAT Perú'}
+                  </Link>
+                </div>
               </div>
-            </div>
 
-            {/* Transparency & Quality */}
-            <div className="border-t border-slate-100 dark:border-slate-800/80 pt-4">
-              <div className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">
-                {isEn ? 'Transparency & Trust' : 'Transparencia y Normatividad'}
+              {/* 3. Guías, Calendario y Recursos Prácticos */}
+              <div className="border-t border-slate-100 dark:border-slate-800 pt-4">
+                <div className="text-[11px] font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2.5">
+                  {isEn ? 'Guides & Resources' : 'Guías y Recursos Fiscales'}
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-xs font-bold text-slate-700 dark:text-slate-300">
+                  <Link
+                    href={`${langPrefix}/guias`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2"
+                  >
+                    <span className="text-base">📚</span>
+                    <span>{isEn ? 'Guides' : 'Guías SAT'}</span>
+                  </Link>
+
+                  <Link
+                    href="/calendario-fiscal"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2"
+                  >
+                    <span className="text-base">📅</span>
+                    <span>{isEn ? 'Calendar' : 'Calendario'}</span>
+                  </Link>
+
+                  <Link
+                    href={`${langPrefix}/blog`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2"
+                  >
+                    <span className="text-base">✍️</span>
+                    <span>Blog</span>
+                  </Link>
+
+                  <Link
+                    href="/formatos"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2"
+                  >
+                    <span className="text-base">📄</span>
+                    <span>{isEn ? 'HR Formats' : 'Formatos RH'}</span>
+                  </Link>
+
+                  <Link
+                    href="/widgets"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 col-span-2"
+                  >
+                    <span className="text-base">🧩</span>
+                    <span>{isEn ? 'Embeddable Widgets' : 'Widgets para Sitios Web'}</span>
+                  </Link>
+                </div>
               </div>
-              <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-600 dark:text-slate-400">
-                <Link href={`${langPrefix}/metodologia`} onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">
-                  🔬 {isEn ? 'Methodology' : 'Metodología'}
-                </Link>
-                <span>•</span>
-                <Link href={`${langPrefix}/fuentes`} onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">
-                  🏛️ {isEn ? 'Sources' : 'Fuentes'}
-                </Link>
-                <span>•</span>
-                <Link href={`${langPrefix}/actualizaciones`} onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">
-                  🔄 {isEn ? 'Updates' : 'Actualizaciones'}
-                </Link>
-                <span>•</span>
-                <Link href={`${langPrefix}/reportar-error`} onClick={() => setMobileMenuOpen(false)} className="hover:text-amber-600">
-                  ⚠️ {isEn ? 'Report Error' : 'Reportar Error'}
-                </Link>
+
+              {/* 4. Metodología, Fuentes y Transparencia */}
+              <div className="border-t border-slate-100 dark:border-slate-800 pt-4">
+                <div className="text-[11px] font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2.5">
+                  {isEn ? 'Trust & Methodology' : 'Metodología y Transparencia'}
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-xs font-semibold text-slate-600 dark:text-slate-400">
+                  <Link
+                    href={`${langPrefix}/metodologia`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5"
+                  >
+                    <span>🔬</span>
+                    <span>{isEn ? 'Methodology' : 'Metodología'}</span>
+                  </Link>
+
+                  <Link
+                    href={`${langPrefix}/fuentes`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5"
+                  >
+                    <span>🏛️</span>
+                    <span>{isEn ? 'Sources' : 'Fuentes DOF'}</span>
+                  </Link>
+
+                  <Link
+                    href={`${langPrefix}/actualizaciones`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5"
+                  >
+                    <span>🔄</span>
+                    <span>{isEn ? 'Updates' : 'Bitácora 2026'}</span>
+                  </Link>
+
+                  <Link
+                    href={`${langPrefix}/reportar-error`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-2.5 rounded-lg text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition flex items-center gap-1.5"
+                  >
+                    <span>⚠️</span>
+                    <span>{isEn ? 'Report Error' : 'Reportar Error'}</span>
+                  </Link>
+                </div>
+              </div>
+
+              {/* 5. Legal e Información Institucional */}
+              <div className="border-t border-slate-100 dark:border-slate-800 pt-4 pb-6">
+                <div className="text-[11px] font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2.5">
+                  {isEn ? 'Institutional & Legal' : 'Información y Marco Legal'}
+                </div>
+                <div className="flex flex-wrap gap-x-3 gap-y-1.5 text-xs text-slate-500 dark:text-slate-400">
+                  <Link href={`${langPrefix}/about`} onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">
+                    {isEn ? 'About Us' : 'Acerca de'}
+                  </Link>
+                  <span>•</span>
+                  <Link href={`${langPrefix}/contact`} onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">
+                    {isEn ? 'Contact' : 'Contacto'}
+                  </Link>
+                  <span>•</span>
+                  <Link href={`${langPrefix}/privacy`} onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">
+                    {isEn ? 'Privacy' : 'Privacidad'}
+                  </Link>
+                  <span>•</span>
+                  <Link href={`${langPrefix}/terms`} onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">
+                    {isEn ? 'Terms' : 'Términos'}
+                  </Link>
+                  <span>•</span>
+                  <Link href={`${langPrefix}/disclaimer`} onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">
+                    {isEn ? 'Legal Notice' : 'Aviso Legal'}
+                  </Link>
+                </div>
+
+                <p className="mt-4 text-[10px] text-slate-400 leading-relaxed">
+                  © 2026 Calculadora SAT. Plataforma informativa independiente no afiliada al SAT ni al IMSS.
+                </p>
               </div>
             </div>
           </div>
