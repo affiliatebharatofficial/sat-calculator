@@ -7,8 +7,6 @@ import enDict from '@/dictionaries/en.json';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import HomeInteractive from '@/components/HomeInteractive';
-import AIOpenButton from '@/components/AIOpenButton';
-import AIAssistantClient from '@/components/AI/AIAssistantClient';
 import { getSeoAlternates } from '@/lib/seo';
 
 interface PageProps {
@@ -622,26 +620,9 @@ export default async function Home({ params }: PageProps) {
           </div>
         </section>
 
-        {/* 7. AI Assistant Callout */}
-        <section className="bg-gradient-to-r from-violet-600 to-indigo-700 text-white rounded-3xl p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
-          <div className="space-y-2 text-center sm:text-left">
-            <span className="px-3 py-1 bg-white/15 text-violet-200 rounded-full text-xs font-semibold uppercase tracking-wider">
-              {dict.ai_callout.badge}
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              {dict.ai_callout.title}
-            </h3>
-            <p className="text-violet-100/90 text-xs sm:text-sm max-w-xl">
-              {dict.ai_callout.desc}
-            </p>
-          </div>
-          <AIOpenButton label={dict.ai_callout.button} />
-        </section>
-
       </main>
 
       <Footer lang={lang} />
-      <AIAssistantClient />
     </div>
   );
 }

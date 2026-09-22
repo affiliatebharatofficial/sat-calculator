@@ -2,8 +2,6 @@ import React from 'react';
 import { notFound, permanentRedirect } from 'next/navigation';
 import Link from 'next/link';
 import { getCalculatorsByCategory } from '../../../../calculators';
-import dynamic from 'next/dynamic';
-const AIAssistant = dynamic(() => import('../../../../components/AI/AIAssistant'));
 import LanguageSelector from '../../../../components/LanguageSelector';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -227,9 +225,6 @@ export default async function CategoryPage({ params }: PageProps) {
       </main>
 
       <Footer lang={lang} />
-
-      {/* Contextual AI Assistant */}
-      <AIAssistant activeCalculatorContext={`Categoría ${categoryInfo.name}`} />
     </div>
   );
 }

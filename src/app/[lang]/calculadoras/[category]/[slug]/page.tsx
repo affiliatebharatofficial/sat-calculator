@@ -5,8 +5,6 @@ import { CalculatorConfig } from '../../../../../types/calculator';
 import CalculatorEngine from '../../../../../components/CalculatorEngine';
 import CalculatorEducationalContent from '../../../../../components/CalculatorEducationalContent';
 import RichSnippets from '../../../../../components/SEO/RichSnippets';
-import dynamic from 'next/dynamic';
-const AIAssistant = dynamic(() => import('../../../../../components/AI/AIAssistant'));
 import LanguageSelector from '../../../../../components/LanguageSelector';
 import ThemeToggle from '../../../../../components/ThemeToggle';
 import Link from 'next/link';
@@ -157,9 +155,6 @@ export default async function CalculatorPage({ params }: PageProps) {
           lang={lang}
           relatedCalculators={relatedCalculators}
         />
-
-        {/* Contextual AI Assistant Drawer */}
-        <AIAssistant activeCalculatorContext={calculator.title} />
       </main>
 
       <Footer lang={lang} />
