@@ -109,6 +109,13 @@ export default async function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9602707669345879"
           crossOrigin="anonymous"
         ></script>
+        <script
+          type="text/javascript"
+          async
+          data-noptimize="1"
+          data-cfasync="false"
+          src="//scripts.scriptwrapper.com/tags/c23e2624-ae2a-4b52-bf67-1471e78365a3.js"
+        ></script>
       </head>
       <body className="min-h-full flex flex-col overflow-x-hidden text-slate-900 dark:text-slate-100">
         {/* Google Analytics (gtag.js) */}
