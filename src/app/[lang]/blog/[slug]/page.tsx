@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EditorialInfoCard from '@/components/EditorialInfoCard';
+import TopicalClusterResources from '@/components/TopicalClusterResources';
 import { getPostBySlug, getPublishedPosts } from '@/lib/blog';
 import { getSeoAlternates } from '@/lib/seo';
 import { renderMarkdown } from '@/lib/markdown';
@@ -189,31 +190,14 @@ export default async function BlogPostPage({ params }: PageProps) {
             dangerouslySetInnerHTML={{ __html: renderedContent }}
           />
 
-          {/* Contextual Calculator CTA Card */}
-          <section className="mt-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-950 dark:to-slate-950 border border-blue-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
-            <div className="text-center sm:text-left space-y-1">
-              <h3 className="text-lg font-extrabold text-slate-950 dark:text-white">
-                ¿Quieres simular tus deducciones y tu impuesto exacto?
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-                Calcula tu base gravable, aplica la tarifa anual del ISR y proyecta tu saldo a favor con nuestras calculadoras gratuitas.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2 shrink-0">
-              <Link
-                href="/calculadoras/sat/calculadora-isr"
-                className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition"
-              >
-                Calculadora de ISR ➔
-              </Link>
-              <Link
-                href="/calculadoras/conversiones/calculadora-uma"
-                className="px-5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs hover:border-blue-500 transition"
-              >
-                Consultar UMA ➔
-              </Link>
-            </div>
-          </section>
+          {/* Topical Cluster Specialized Resources */}
+          <TopicalClusterResources
+            currentType="guide"
+            currentSlug={post.slug}
+            currentCategorySlug={post.category}
+            lang={lang}
+            className="mt-12"
+          />
 
           {/* Editorial Integrity & Legal Sources Footer */}
           <div className="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2">

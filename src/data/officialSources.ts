@@ -169,6 +169,32 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     lastVerified: "Enero 2026",
     categorySlugs: ["peru"],
     calculatorSlugs: ["calculadora-quinta-categoria-peru", "calculadora-igv-peru", "consulta-ruc-sunat", "tipo-de-cambio-sunat"]
+  },
+  {
+    id: "liva-general",
+    institution: "Cámara de Diputados / SAT",
+    documentTitle: "Ley del Impuesto al Valor Agregado (LIVA) - Artículos 1, 1-A, 2-A, 4 y 5",
+    topic: "Tasa general del 16%, tasa 0%, actos exentos y acreditamiento del IVA",
+    publicationDate: "Última reforma publicada en DOF",
+    effectiveDate: "Vigente en el Ejercicio Fiscal 2026",
+    officialUrl: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIVA.pdf",
+    supportedRule: "Mecánica del traslado del 16% de IVA sobre valor de actos o actividades, desglose en CFDI, fórmula de acreditamiento mensual y retenciones de 2/3 partes a personas físicas.",
+    lastVerified: "Enero 2026",
+    categorySlugs: ["sat"],
+    calculatorSlugs: ["calculadora-iva", "calculadora-conversor-impuestos"]
+  },
+  {
+    id: "lss-cuotas-obreras",
+    institution: "Instituto Mexicano del Seguro Social (IMSS)",
+    documentTitle: "Ley del Seguro Social (LSS) - Artículos 27, 28, 106, 147 y 168",
+    topic: "Bases de cotización, cuotas obrero-patronales y financiamiento de los seguros de salud y retiro",
+    publicationDate: "Última reforma publicada en el DOF",
+    effectiveDate: "Vigente en el Ejercicio Fiscal 2026",
+    officialUrl: "https://www.imss.gob.mx/patrones/cuotas",
+    supportedRule: "Integración del Salario Base de Cotización (SBC), aportaciones obreras por ramos (enfermedad, maternidad, invalidez, vida, cesantía y vejez) y topes de 25 UMAs.",
+    lastVerified: "Enero 2026",
+    categorySlugs: ["nomina"],
+    calculatorSlugs: ["calculadora-salario-neto-bruto", "calculadora-semanas-cotizadas-imss", "calculadora-afore"]
   }
 ];
 

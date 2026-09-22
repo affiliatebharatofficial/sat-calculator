@@ -125,7 +125,7 @@ export default async function MethodologyPage({ params }: PageProps) {
         {/* Detailed Methodology Steps */}
         <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8">
           {/* Step 1 */}
-          <div className="border-b border-slate-100 dark:border-slate-800 pb-8 space-y-3">
+          <div id="identificacion-normas" className="scroll-mt-24 border-b border-slate-100 dark:border-slate-800 pb-8 space-y-3">
             <div className="flex items-center gap-2">
               <span className="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 font-extrabold text-xs flex items-center justify-center">
                 1
@@ -158,7 +158,7 @@ export default async function MethodologyPage({ params }: PageProps) {
           </div>
 
           {/* Step 2 */}
-          <div className="border-b border-slate-100 dark:border-slate-800 pb-8 space-y-3">
+          <div id="extraccion-formulas" className="scroll-mt-24 border-b border-slate-100 dark:border-slate-800 pb-8 space-y-3">
             <div className="flex items-center gap-2">
               <span className="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 font-extrabold text-xs flex items-center justify-center">
                 2
@@ -203,7 +203,7 @@ export default async function MethodologyPage({ params }: PageProps) {
           </div>
 
           {/* Step 3 */}
-          <div className="border-b border-slate-100 dark:border-slate-800 pb-8 space-y-3">
+          <div id="logica-algoritmica" className="scroll-mt-24 border-b border-slate-100 dark:border-slate-800 pb-8 space-y-3">
             <div className="flex items-center gap-2">
               <span className="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 font-extrabold text-xs flex items-center justify-center">
                 3
@@ -233,7 +233,7 @@ export default async function MethodologyPage({ params }: PageProps) {
           </div>
 
           {/* Step 4 */}
-          <div className="border-b border-slate-100 dark:border-slate-800 pb-8 space-y-3">
+          <div id="pruebas-unitarias" className="scroll-mt-24 border-b border-slate-100 dark:border-slate-800 pb-8 space-y-3">
             <div className="flex items-center gap-2">
               <span className="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 font-extrabold text-xs flex items-center justify-center">
                 4
@@ -272,7 +272,7 @@ export default async function MethodologyPage({ params }: PageProps) {
           </div>
 
           {/* Step 5 */}
-          <div className="border-b border-slate-100 dark:border-slate-800 pb-8 space-y-3">
+          <div id="casos-limite" className="scroll-mt-24 border-b border-slate-100 dark:border-slate-800 pb-8 space-y-3">
             <div className="flex items-center gap-2">
               <span className="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 font-extrabold text-xs flex items-center justify-center">
                 5
@@ -339,7 +339,7 @@ export default async function MethodologyPage({ params }: PageProps) {
           </div>
 
           {/* Step 7 */}
-          <div className="border-b border-slate-100 dark:border-slate-800 pb-8 space-y-3">
+          <div id="alcance-limitaciones" className="scroll-mt-24 border-b border-slate-100 dark:border-slate-800 pb-8 space-y-3">
             <div className="flex items-center gap-2">
               <span className="w-7 h-7 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 font-extrabold text-xs flex items-center justify-center">
                 7

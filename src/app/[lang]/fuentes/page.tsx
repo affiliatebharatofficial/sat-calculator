@@ -114,7 +114,8 @@ export default async function FuentesPage({ params }: PageProps) {
           {OFFICIAL_SOURCES.map((source) => (
             <article
               key={source.id}
-              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4 hover:border-slate-300 dark:hover:border-slate-700 transition"
+              id={source.id}
+              className="scroll-mt-24 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4 hover:border-slate-300 dark:hover:border-slate-700 transition"
             >
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-4">
                 <div className="flex items-center gap-2">
