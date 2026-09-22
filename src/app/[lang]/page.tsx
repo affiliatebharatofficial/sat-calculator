@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : '🧮 Calculadora SAT 2026 — IVA, ISR, RESICO y Nómina Gratis Online';
   const description = isEn
     ? 'Accurate Mexican tax and payroll calculators for 2026: calculate VAT (IVA), personal income tax (ISR), RESICO, severance, and year-end bonuses under current legislation.'
-    : 'Plataforma oficial de cálculo fiscal y de nómina en México 2026. Calcula IVA (16% u 8%), ISR Art. 96 y 152, RESICO, aguinaldo, finiquito y cuotas IMSS gratis.';
+    : 'Plataforma independiente e interactiva de cálculo fiscal y de nómina en México 2026. Calcula IVA (16% u 8%), ISR Art. 96 y 152, RESICO, aguinaldo, finiquito y cuotas IMSS gratis conforme a leyes vigentes.';
 
   return {
     title,

@@ -127,6 +127,27 @@ export default async function PrivacyPage({ params }: PageProps) {
               </section>
 
               <section className="space-y-3">
+                <h2 className="text-xl font-bold text-slate-950 dark:text-white">5.1 Google AdSense and Advertising Cookies</h2>
+                <p>
+                  Calculadora SAT uses Google AdSense and third-party advertising vendors to display contextual and personalized advertisements when users visit the Site.
+                </p>
+                <ul className="list-disc list-inside pl-2 space-y-1.5 text-xs sm:text-sm">
+                  <li>
+                    Third-party vendors, including Google, use cookies (such as the DoubleClick DART cookie) to serve ads based on a user&apos;s prior visits to this website or other websites on the Internet.
+                  </li>
+                  <li>
+                    Google&apos;s use of advertising cookies enables it and its partners to serve ads to users based on their visit to your sites and/or other sites on the Internet.
+                  </li>
+                  <li>
+                    Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline font-semibold">Google Ads Settings</a>.
+                  </li>
+                  <li>
+                    Alternatively, users can opt out of a third-party vendor&apos;s use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline font-semibold">www.aboutads.info</a> or <a href="https://youradchoices.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline font-semibold">youradchoices.com</a>.
+                  </li>
+                </ul>
+              </section>
+
+              <section className="space-y-3">
                 <h2 className="text-xl font-bold text-slate-950 dark:text-white">6. Artificial Intelligence Assistant</h2>
                 <p>When using AI-driven features, questions and prompts are processed by our technology provider to generate answers, ensure security, and prevent abuse. Please avoid submitting passwords or sensitive financial data.</p>
               </section>
@@ -416,6 +437,30 @@ export default async function PrivacyPage({ params }: PageProps) {
               <p className="text-xs text-slate-500">
                 Cuando el uso de cookies analíticas requiera consentimiento conforme a la legislación aplicable, estas tecnologías se activarán únicamente de acuerdo con las preferencias seleccionadas por el usuario.
               </p>
+            </section>
+
+            {/* 5.1 Google AdSense y Cookies de Publicidad */}
+            <section className="space-y-3">
+              <h2 className="text-xl font-bold text-slate-950 dark:text-white">
+                5.1 Google AdSense y Cookies Publicitarias
+              </h2>
+              <p>
+                Calculadora SAT utiliza el servicio publicitario <strong>Google AdSense</strong> y otros proveedores publicitarios para mostrar anuncios contextuales y relevantes.
+              </p>
+              <ul className="list-disc list-inside pl-2 space-y-1.5 text-xs sm:text-sm">
+                <li>
+                  Proveedores externos, incluido Google, utilizan cookies (como la cookie de DoubleClick DART) para publicar anuncios basados en las visitas anteriores de los usuarios a este sitio web o a otros sitios de Internet.
+                </li>
+                <li>
+                  El uso de cookies de publicidad permite a Google y a sus socios mostrar anuncios a los usuarios en función de sus visitas a este sitio y/u otros sitios de la red.
+                </li>
+                <li>
+                  Los usuarios pueden inhabilitar la publicidad personalizada consultando la <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline font-semibold">Configuración de anuncios de Google</a>.
+                </li>
+                <li>
+                  Asimismo, los usuarios pueden inhabilitar el uso de cookies de proveedores externos para la publicidad personalizada accediendo a <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline font-semibold">www.aboutads.info</a> o <a href="https://youradchoices.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline font-semibold">youradchoices.com</a>.
+                </li>
+              </ul>
             </section>
 
             {/* 6. Asistente de Inteligencia Artificial */}

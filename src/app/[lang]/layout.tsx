@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     url: 'https://www.calculadorasat.org',
     siteName: 'Calculadora SAT',
     title: '🧮 Calculadora SAT 2026 — IVA, ISR, RESICO y Nómina Gratis Online',
-    description: 'Plataforma oficial e interactiva de simulaciones fiscales y laborales en México: IVA, ISR, RESICO, Aguinaldo y Liquidaciones.',
+    description: 'Plataforma interactiva e independiente de simulaciones fiscales y laborales en México: IVA, ISR, RESICO, Aguinaldo y Liquidaciones.',
     images: [
       {
         url: 'https://www.calculadorasat.org/og-image.png',
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: '🧮 Calculadora SAT 2026 — IVA, ISR, RESICO y Nómina Gratis Online',
-    description: 'Plataforma oficial e interactiva de simulaciones fiscales y laborales en México.',
+    description: 'Plataforma interactiva e independiente de simulaciones fiscales y laborales en México.',
     images: ['https://www.calculadorasat.org/og-image.png'],
   },
   icons: {
