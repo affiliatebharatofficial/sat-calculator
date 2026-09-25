@@ -101,6 +101,7 @@ export default async function RootLayout({
     >
       <head>
         <meta name="google-site-verification" content="rRetDb7bEgDlPVqH4e0hWvIB__PrqNCSr2FYbfXsZMM" />
+        <meta name="google-adsense-account" content="ca-pub-9602707669345879" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <SEOHreflang />
         <script
