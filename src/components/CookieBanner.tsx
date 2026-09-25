@@ -10,7 +10,11 @@ export default function CookieBanner() {
     if (typeof window !== 'undefined') {
       const consent = localStorage.getItem('cookie-consent');
       if (!consent) {
-        setVisible(true);
+        // Show after initial page load and paint to avoid blocking First Contentful Paint and LCP
+        const timer = setTimeout(() => {
+          setVisible(true);
+        }, 1500);
+        return () => clearTimeout(timer);
       }
     }
   }, []);
