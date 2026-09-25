@@ -102,7 +102,10 @@ export default async function RootLayout({
       <head>
         <meta name="google-site-verification" content="rRetDb7bEgDlPVqH4e0hWvIB__PrqNCSr2FYbfXsZMM" />
         <meta name="google-adsense-account" content="ca-pub-9602707669345879" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://scripts.scriptwrapper.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://scripts.scriptwrapper.com" />
+        <link rel="dns-prefetch" href="https://eu-us-cdn.consentmanager.net" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <SEOHreflang />
         <script
           type="text/javascript"
@@ -113,18 +116,18 @@ export default async function RootLayout({
         ></script>
       </head>
       <body className="min-h-full flex flex-col overflow-x-hidden text-slate-900 dark:text-slate-100">
-        {/* Google Analytics (gtag.js) */}
+        {/* Google Analytics (gtag.js) - Loaded lazily to avoid blocking LCP and main thread */}
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-PFQQD895QD"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-PFQQD895QD');
+            gtag('config', 'G-PFQQD895QD', { page_path: window.location.pathname });
           `}
         </Script>
         <ThemeProvider>
