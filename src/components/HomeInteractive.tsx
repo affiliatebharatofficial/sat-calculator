@@ -109,8 +109,8 @@ export default function HomeInteractive({ lang, allCalculators }: HomeInteractiv
           <span>🇵🇪</span>
           <span>
             {isEn ? 'Operating with Peru? ' : '¿Realizas operaciones con Perú? '}
-            <a href="#herramientas-peru" className="underline font-bold text-white hover:text-blue-100">
-              {isEn ? 'Jump to Peru Module (SUNAT & Labor)' : 'Ver Módulo Especial de Herramientas para Perú ➔'}
+            <a href={`${langPrefix}/peru`} className="underline font-bold text-white hover:text-blue-100">
+              {isEn ? 'Open Peru Portal (SUNAT & Labor)' : 'Abrir Portal Perú (SUNAT y Laboral) ➔'}
             </a>
           </span>
         </div>

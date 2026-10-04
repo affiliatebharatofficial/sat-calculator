@@ -10,7 +10,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     effectiveDate: "Vigente en el Ejercicio Fiscal 2026",
     officialUrl: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf",
     supportedRule: "Tablas progresivas de límite inferior, cuota fija y porcentaje sobre el excedente del límite inferior para ISR mensual y anual.",
-    lastVerified: "Enero 2026",
+    lastVerified: "Febrero 2026",
     categorySlugs: ["sat", "nomina"],
     calculatorSlugs: ["calculadora-isr-pf", "calculadora-salario-neto-bruto", "calculadora-aguinaldo", "calculadora-finiquito-liquidacion"]
   },
@@ -23,7 +23,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     effectiveDate: "Vigente en el Ejercicio Fiscal 2026",
     officialUrl: "https://www.sat.gob.mx/regimen-simplificado-de-confianza",
     supportedRule: "Tasas marginales fijas del 1.00% al 2.50% sobre ingresos cobrados brutos hasta 3.5 millones de pesos y retención patronal del 1.25% por personas morales.",
-    lastVerified: "Enero 2026",
+    lastVerified: "Febrero 2026",
     categorySlugs: ["sat", "resico"],
     calculatorSlugs: ["calculadora-resico-pf", "comparador-resico-actividad-empresarial"]
   },
@@ -36,7 +36,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     effectiveDate: "Vigente en el Ejercicio Fiscal 2026",
     officialUrl: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf",
     supportedRule: "Cálculo de 3 meses de salario integrado + 20 días por año para despido injustificado, mínimo 15 días de aguinaldo, 25% de prima vacacional y 12 días por año de prima de antigüedad (topada al doble del SMG).",
-    lastVerified: "Enero 2026",
+    lastVerified: "Febrero 2026",
     categorySlugs: ["nomina"],
     calculatorSlugs: ["calculadora-finiquito-liquidacion", "calculadora-aguinaldo", "calculadora-vacaciones-prima"]
   },
@@ -49,7 +49,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     effectiveDate: "Vigente a partir del 1 de enero de 2023 en adelante",
     officialUrl: "https://www.dof.gob.mx/nota_detalle.php?codigo=5675822&fecha=27/12/2022",
     supportedRule: "Escala obligatoria de descanso continuo: mínimo 12 días laborables al primer año, aumentando 2 días por año subsecuente hasta llegar a 20 días en el quinto año.",
-    lastVerified: "Enero 2026",
+    lastVerified: "Febrero 2026",
     categorySlugs: ["nomina"],
     calculatorSlugs: ["calculadora-vacaciones-prima", "calculadora-finiquito-liquidacion"]
   },
@@ -75,7 +75,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     effectiveDate: "Vigente en el Ejercicio Fiscal 2026",
     officialUrl: "https://www.gob.mx/conasami",
     supportedRule: "Tope del doble del salario mínimo general diario para el cálculo de la prima de antigüedad del Artículo 162 de la LFT y piso salarial general.",
-    lastVerified: "Enero 2026",
+    lastVerified: "Febrero 2026",
     categorySlugs: ["nomina"],
     calculatorSlugs: ["calculadora-finiquito-liquidacion", "calculadora-salario-neto-bruto"]
   },
@@ -88,7 +88,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     effectiveDate: "Vigente en el Ejercicio Fiscal 2026",
     officialUrl: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIVA.pdf",
     supportedRule: "Tasa general del 16% en territorio nacional, acreditamiento de IVA trasladado con CFDI desglosado y fórmulas de desglose directo o adición de impuesto.",
-    lastVerified: "Enero 2026",
+    lastVerified: "Febrero 2026",
     categorySlugs: ["sat"],
     calculatorSlugs: ["calculadora-iva"]
   },
@@ -101,7 +101,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     effectiveDate: "Vigente en el Ejercicio Fiscal 2026",
     officialUrl: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf",
     supportedRule: "Porcentajes máximos autorizados de depreciación anual: equipo de cómputo (30%), vehículos (25%), mobiliario y equipo de oficina (10%) y construcciones (5%).",
-    lastVerified: "Enero 2026",
+    lastVerified: "Febrero 2026",
     categorySlugs: ["negocios"],
     calculatorSlugs: ["calculadora-depreciacion-activos"]
   },
@@ -114,7 +114,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     effectiveDate: "Vigente en todo el sistema bancario mexicano",
     officialUrl: "https://www.banxico.org.mx/marco-normativo/",
     supportedRule: "Cálculo del pago mínimo obligatorio como el mayor entre: el 1.5% del saldo insoluto de la línea más intereses e IVA, o el 1.25% del límite de la línea de crédito.",
-    lastVerified: "Enero 2026",
+    lastVerified: "Febrero 2026",
     categorySlugs: ["finanzas-personales"],
     calculatorSlugs: ["calculadora-pago-tarjeta-credito"]
   },
@@ -140,7 +140,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     effectiveDate: "Vigente en el Ejercicio Fiscal 2026",
     officialUrl: "https://serviciosdigitales.imss.gob.mx/semanascotizadas-web/",
     supportedRule: "Requisito de 500 semanas cotizadas para Ley 1973 y escala progresiva de semanas cotizadas para Ley 1997 (850 semanas mínimas en 2026 hacia las 1,000 semanas en 2031).",
-    lastVerified: "Enero 2026",
+    lastVerified: "Febrero 2026",
     categorySlugs: ["nomina"],
     calculatorSlugs: ["calculadora-semanas-cotizadas-imss", "calculadora-afore"]
   },
@@ -153,7 +153,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     effectiveDate: "Servicio público activo",
     officialUrl: "https://www.gob.mx/profedet",
     supportedRule: "Plazos de prescripción de la LFT: 2 meses para demandar despido injustificado (Art. 518) y 1 año para exigir pago de salarios y finiquito (Art. 516).",
-    lastVerified: "Enero 2026",
+    lastVerified: "Febrero 2026",
     categorySlugs: ["nomina"],
     calculatorSlugs: ["calculadora-finiquito-liquidacion"]
   },
@@ -166,7 +166,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     effectiveDate: "Vigente para el Ejercicio Gravable 2026 en Perú",
     officialUrl: "https://orientacion.sunat.gob.pe/impuesto-a-la-renta-de-quinta-categoria",
     supportedRule: "Deducción fija de 7 UITs para personas naturales domiciliadas que perciben rentas de trabajo y escalas progresivas acumulativas del 8% al 30%.",
-    lastVerified: "Enero 2026",
+    lastVerified: "Febrero 2026",
     categorySlugs: ["peru"],
     calculatorSlugs: ["calculadora-quinta-categoria-peru", "calculadora-igv-peru", "consulta-ruc-sunat", "tipo-de-cambio-sunat"]
   },
@@ -179,7 +179,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     effectiveDate: "Vigente en el Ejercicio Fiscal 2026",
     officialUrl: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIVA.pdf",
     supportedRule: "Mecánica del traslado del 16% de IVA sobre valor de actos o actividades, desglose en CFDI, fórmula de acreditamiento mensual y retenciones de 2/3 partes a personas físicas.",
-    lastVerified: "Enero 2026",
+    lastVerified: "Febrero 2026",
     categorySlugs: ["sat"],
     calculatorSlugs: ["calculadora-iva", "calculadora-conversor-impuestos"]
   },
@@ -192,7 +192,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     effectiveDate: "Vigente en el Ejercicio Fiscal 2026",
     officialUrl: "https://www.imss.gob.mx/patrones/cuotas",
     supportedRule: "Integración del Salario Base de Cotización (SBC), aportaciones obreras por ramos (enfermedad, maternidad, invalidez, vida, cesantía y vejez) y topes de 25 UMAs.",
-    lastVerified: "Enero 2026",
+    lastVerified: "Febrero 2026",
     categorySlugs: ["nomina"],
     calculatorSlugs: ["calculadora-salario-neto-bruto", "calculadora-semanas-cotizadas-imss", "calculadora-afore"]
   }

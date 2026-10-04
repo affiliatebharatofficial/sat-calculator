@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title:
       lang === 'en'
-        ? 'About Us & Editorial Transparency | Calculadora SAT'
-        : 'Acerca de Nosotros y Transparencia Editorial | Calculadora SAT',
+        ? 'About Us & Editorial Transparency'
+        : 'Acerca de Nosotros y Transparencia Editorial',
     description:
       lang === 'en'
         ? 'Learn who operates Calculadora SAT, our editorial responsibility, calculator development methodology, primary source verification, and error correction process.'

@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: lang === 'en'
-      ? 'Legal Disclaimer & Non-Affiliation Notice | Calculadora SAT'
-      : 'Aviso Legal y Deslinde de Responsabilidad | Calculadora SAT',
+      ? 'Legal Disclaimer & Non-Affiliation Notice'
+      : 'Aviso Legal y Deslinde de Responsabilidad',
     description: lang === 'en'
       ? 'Official informational disclaimer, non-affiliation declaration (SAT, SUNAT, IMSS), and computational scope for Calculadora SAT.'
       : 'Aviso legal e informativo oficial, declaración de no afiliación con SAT, SUNAT e IMSS, y alcance computacional de las calculadoras.',

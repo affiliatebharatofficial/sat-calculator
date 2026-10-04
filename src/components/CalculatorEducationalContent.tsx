@@ -114,7 +114,7 @@ export default function CalculatorEducationalContent({
             <div>
               <div className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2">
                 <i className="bi bi-calculator"></i>
-                {isEn ? 'Step 7: Formal Model' : 'Paso 7: Modelo Formal'}
+                {isEn ? 'Calculation Methodology' : 'Metodología de Cálculo'}
               </div>
               <h3 className="text-xl font-black text-slate-950 dark:text-white mb-3">
                 {isEn ? 'Formula & Calculation Methodology' : 'Fórmula y Metodología de Cálculo'}
@@ -137,7 +137,7 @@ export default function CalculatorEducationalContent({
             <div>
               <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-2">
                 <i className="bi bi-lightbulb-fill"></i>
-                {isEn ? 'Step 8: Real Figures' : 'Paso 8: Cifras Reales'}
+                {isEn ? 'Worked Example' : 'Ejemplo Práctico'}
               </div>
               <h3 className="text-xl font-black text-slate-950 dark:text-white mb-3">
                 {isEn ? 'Worked Numerical Example' : 'Ejemplo Práctico con Números Reales'}
@@ -147,7 +147,11 @@ export default function CalculatorEducationalContent({
               </div>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 italic">
-              {isEn
+              {config.categorySlug === 'peru'
+                ? isEn
+                  ? 'Step-by-step numerical breakdown illustrating the exact calculation flow with realistic Peruvian figures.'
+                  : 'Desglose numérico paso a paso que ilustra la operación con cifras reales en soles peruanos.'
+                : isEn
                 ? 'Step-by-step numerical breakdown illustrating the exact calculation flow with realistic Mexican figures.'
                 : 'Desglose numérico paso a paso que ilustra la operación con cifras reales en pesos mexicanos.'}
             </p>
@@ -163,7 +167,7 @@ export default function CalculatorEducationalContent({
         >
           <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
             <i className="bi bi-people-fill"></i>
-            {isEn ? 'Step 9: Intended Audience' : 'Paso 9: Destinatarios del Cálculo'}
+            {isEn ? 'Intended Audience' : 'Destinatarios'}
           </div>
           <h3 className="text-xl font-black text-slate-950 dark:text-white">
             {isEn ? `Who should use the ${config.title}?` : `¿A quién va dirigida la ${config.title}?`}
@@ -193,7 +197,7 @@ export default function CalculatorEducationalContent({
             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
               <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
                 <i className="bi bi-check-circle-fill"></i>
-                {isEn ? 'Step 10: Assumptions' : 'Paso 10: Supuestos del Modelo'}
+                {isEn ? 'Key Assumptions' : 'Supuestos Clave'}
               </div>
               <h3 className="text-xl font-black text-slate-950 dark:text-white">
                 {isEn ? 'Important Assumptions' : 'Supuestos Importantes del Cálculo'}
@@ -215,7 +219,7 @@ export default function CalculatorEducationalContent({
             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
               <div className="inline-flex items-center gap-2 text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">
                 <i className="bi bi-exclamation-octagon-fill"></i>
-                {isEn ? 'Step 11: Boundaries' : 'Paso 11: Límites y Errores'}
+                {isEn ? 'Limitations' : 'Limitaciones'}
               </div>
               <h3 className="text-xl font-black text-slate-950 dark:text-white">
                 {isEn ? 'Limitations & Pitfalls to Avoid' : 'Limitaciones y Errores a Evitar'}
@@ -241,7 +245,7 @@ export default function CalculatorEducationalContent({
         >
           <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
             <i className="bi bi-briefcase-fill"></i>
-            {isEn ? 'Step 12: Statutory Basis' : 'Paso 12: Fundamento Jurídico'}
+            {isEn ? 'Legal Basis' : 'Base Legal'}
           </div>
           <h3 className="text-xl font-black text-slate-950 dark:text-white">
             {isEn ? 'Applicable Legal & Tax Basis' : 'Fundamento Legal y Normativa Positiva'}
@@ -268,7 +272,7 @@ export default function CalculatorEducationalContent({
           <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 mb-3 border border-indigo-200 dark:border-indigo-800">
               <i className="bi bi-question-circle-fill"></i>
-              {isEn ? 'Step 14: Practical FAQs' : 'Paso 14: Preguntas Frecuentes'}
+              {isEn ? 'FAQs' : 'Preguntas Frecuentes'}
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-white tracking-tight">
               {isEn
@@ -316,7 +320,7 @@ export default function CalculatorEducationalContent({
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-2">
               <i className="bi bi-grid-fill"></i>
-              {isEn ? 'Step 15: Cross-Calculators' : 'Paso 15: Herramientas Complementarias'}
+              {isEn ? 'Related Tools' : 'Herramientas Relacionadas'}
             </div>
             <h2 className="text-2xl font-black text-slate-950 dark:text-white tracking-tight flex items-center gap-2">
               <span>🌐</span>
@@ -378,7 +382,7 @@ export default function CalculatorEducationalContent({
           <div>
             <div className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-1">
               <i className="bi bi-shield-check"></i>
-              {isEn ? 'Step 16: Feedback & Quality Assurance' : 'Paso 16: Control de Calidad y Reporte'}
+              {isEn ? 'Quality Assurance' : 'Control de Calidad'}
             </div>
             <h3 className="text-xl font-black text-slate-900 dark:text-white">
               {isEn ? 'Report a Calculation Error or Observation' : 'Reportar una Observación o Discrepancia Numérica'}
@@ -445,7 +449,7 @@ export default function CalculatorEducationalContent({
           <i className="bi bi-shield-check text-base text-slate-400 mt-0.5"></i>
           <div>
             <strong className="text-slate-700 dark:text-slate-300 font-semibold block mb-1">
-              {isEn ? 'Step 18: Legal & Informational Disclaimer' : 'Paso 18: Aviso Legal e Informativo'}
+              {isEn ? 'Legal Disclaimer' : 'Aviso Legal'}
             </strong>
             <p>
               {content.disclaimer

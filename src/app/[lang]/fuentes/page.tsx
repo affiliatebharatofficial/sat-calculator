@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('fuentes', lang);
 
   const title = isEn
-    ? 'Official Sources & Legal Directory | Calculadora SAT'
-    : 'Directorio de Fuentes Oficiales y Normatividad Jurídica | Calculadora SAT';
+    ? 'Official Sources & Legal Directory'
+    : 'Directorio de Fuentes Oficiales y Normatividad Jurídica';
 
   const description = isEn
     ? 'Complete directory of primary government sources, federal statutes, DOF publications, and official benchmarks backing CalculadoraSAT.org.'

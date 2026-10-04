@@ -3,7 +3,7 @@ import { CalculatorConfig } from '../../types/calculator';
 export const comisionesTarjetaDolaresCalculator: CalculatorConfig = {
   id: 'comisiones-tarjeta-dolares',
   title: 'Calculadora de Comisiones por Compras en Dólares con Tarjeta',
-  shortDescription: 'Calcula el costo real en Soles o Pesos de comprar en dólares con tu tarjeta bancaria incluyendo el margen cambiario (Spread) y la comisión por conversión Forex (3%-5%).',
+  shortDescription: 'Calcula el costo real en tu moneda local al comprar en dólares con tu tarjeta bancaria, incluyendo el margen cambiario (spread) y la comisión por conversión Forex (3%-5%).',
   category: 'Finanzas Personales',
   categorySlug: 'finanzas-personales',
   slug: 'calculadora-comisiones-tarjeta-dolares',

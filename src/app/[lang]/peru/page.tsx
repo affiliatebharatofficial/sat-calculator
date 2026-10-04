@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('peru', lang);
 
   const title = isEn
-    ? 'Peru Tax & Labor Portal 2026: SUNAT, IGV, CTS & 5ta Categoría | Calculadora SAT'
+    ? 'Peru Tax & Labor Portal 2026: SUNAT, IGV, CTS & 5ta Categoría'
     : '🇵🇪 Calculadoras Tributarias y Laborales de Perú 2026 — SUNAT, IGV, CTS y Renta 5ta';
   const description = isEn
     ? 'Dedicated portal for Peru: simulate 18% IGV, CTS deposits, July/Dec Gratifications with 9% EsSalud, 5th Category income tax with 7 UIT deduction, and official SUNAT daily exchange rates.'

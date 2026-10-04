@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('metodologia', lang);
 
   const title = isEn
-    ? 'Calculation Methodology & Verification Standards | Calculadora SAT'
-    : 'Metodología de Cálculo y Criterios de Verificación | Calculadora SAT';
+    ? 'Calculation Methodology & Verification Standards'
+    : 'Metodología de Cálculo y Criterios de Verificación';
 
   const description = isEn
     ? 'Discover our multi-step engineering and legal methodology: statutory identification, DOF parameter gathering, unit test validation, edge-case modeling, and error reporting.'

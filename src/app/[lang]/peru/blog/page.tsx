@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('peru/blog', lang);
 
   const title = isEn
-    ? 'Peru Tax & Labor Updates Blog 2026: SUNAT & SBS Insights | Calculadora SAT'
-    : 'Blog de Actualizaciones Fiscales y Laborales de Perú 2026 | Calculadora SAT';
+    ? 'Peru Tax & Labor Updates Blog 2026: SUNAT & SBS Insights'
+    : 'Blog de Actualizaciones Fiscales y Laborales de Perú 2026';
   const description = isEn
     ? 'Educational articles and updates on Peruvian tax codes, SUNAT electronic billing, UIT adjustments, and labor regulations under MTPE.'
     : 'Artículos de análisis y novedades sobre el régimen tributario de SUNAT, comprobantes de pago electrónicos, variaciones de la UIT y disposiciones del MTPE en Perú.';

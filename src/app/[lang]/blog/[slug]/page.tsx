@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!post) {
     return {
-      title: 'Artículo No Encontrado | Calculadora SAT',
+      title: 'Artículo No Encontrado',
       description: 'El artículo solicitado no está disponible o ha sido actualizado.',
     };
   }
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates(`blog/${slug}`, lang);
 
   return {
-    title: `${post.title} | Calculadora SAT`,
+    title: `${post.title}`,
     description: post.excerpt,
     keywords: [
       post.category.toLowerCase(),
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ],
     alternates: seoAlternates,
     openGraph: {
-      title: `${post.title} | Calculadora SAT`,
+      title: `${post.title}`,
       description: post.excerpt,
       url: seoAlternates.canonical,
       siteName: 'Calculadora SAT',

@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('calculadoras', lang);
 
   const title = isEn
-    ? 'All Financial, Tax & Labor Calculators 2026 | Calculadora SAT'
-    : 'Directorio de Calculadoras Fiscales y Laborales 2026 | Calculadora SAT';
+    ? 'All Financial, Tax & Labor Calculators 2026'
+    : 'Directorio de Calculadoras Fiscales y Laborales 2026';
   const description = isEn
     ? 'Comprehensive directory of simulators for Mexico: SAT (ISR, VAT, RESICO), LFT & IMSS payroll, personal finance, plus dedicated tools for Peru (SUNAT).'
     : 'Directorio completo de simuladores oficiales para México: impuestos SAT (ISR, IVA, RESICO), nómina LFT e IMSS, finanzas personales, y sección dedicada para Perú.';

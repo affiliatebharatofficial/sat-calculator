@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('', lang);
 
   const title = isEn
-    ? 'Tax & Labor Calculators Mexico 2026 | Calculadora SAT'
+    ? 'Tax & Labor Calculators Mexico 2026'
     : '🧮 Calculadora SAT 2026 — IVA, ISR, RESICO y Nómina Gratis Online';
   const description = isEn
     ? 'Accurate Mexican tax and payroll calculators for 2026: calculate VAT (IVA), personal income tax (ISR), RESICO, severance, and year-end bonuses under current legislation.'

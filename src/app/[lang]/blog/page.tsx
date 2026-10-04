@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('blog', lang);
 
   const title = lang === 'en' 
-    ? 'Fiscal & Tax Blog | Calculadora SAT' 
-    : 'Blog Fiscal y Financiero | Calculadora SAT';
+    ? 'Fiscal & Tax Blog' 
+    : 'Blog Fiscal y Financiero';
   const description = lang === 'en'
     ? 'Practical guides, SAT tax regulations, personal deductions, and financial calculation tutorials in Mexico.'
     : 'Guías prácticas, normatividad fiscal del SAT, deducciones personales y tutoriales de finanzas en México.';

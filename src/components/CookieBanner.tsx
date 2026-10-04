@@ -19,6 +19,21 @@ export default function CookieBanner() {
     }
   }, []);
 
+  // While the consent banner is visible, suppress sticky/adhesion ad wrappers
+  // (injected by the ad network with their own high z-index) so they can never
+  // cover the Aceptar/Rechazar buttons. Also legally sound: no ads before consent.
+  useEffect(() => {
+    if (!visible || typeof document === 'undefined') return;
+    const style = document.createElement('style');
+    style.id = 'cookie-banner-ad-suppression';
+    style.textContent =
+      '#adhesion_desktop_wrapper, #adhesion_mobile_wrapper, [id^="adhesion_"], [id*="sticky-ad"] { display: none !important; }';
+    document.head.appendChild(style);
+    return () => {
+      style.remove();
+    };
+  }, [visible]);
+
   const handleAccept = () => {
     localStorage.setItem('cookie-consent', 'accepted');
     setVisible(false);
@@ -32,7 +47,7 @@ export default function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-3 right-3 left-3 sm:bottom-6 sm:right-6 sm:left-6 md:right-8 md:left-auto md:max-w-md bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md border border-slate-800 dark:border-slate-850 p-4 sm:p-6 rounded-2xl shadow-2xl z-[9999] transition-all">
+    <div className="fixed bottom-3 right-3 left-3 sm:bottom-6 sm:right-6 sm:left-6 md:right-8 md:left-auto md:max-w-md bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md border border-slate-800 dark:border-slate-850 p-4 sm:p-6 rounded-2xl shadow-2xl z-[2147483647] transition-all">
       <div className="flex items-start gap-4">
         <div className="text-2xl mt-1">🍪</div>
         <div>

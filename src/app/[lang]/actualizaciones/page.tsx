@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('actualizaciones', lang);
 
   const title = isEn
-    ? 'Calculator Update History & Audit Trail | Calculadora SAT'
-    : 'Historial de Actualizaciones y Auditoría de Parámetros | Calculadora SAT';
+    ? 'Calculator Update History & Audit Trail'
+    : 'Historial de Actualizaciones y Auditoría de Parámetros';
 
   const description = isEn
     ? 'Verified audit log of parameter updates, annual tax bracket reviews, inflation adjustments, and statutory amendments across CalculadoraSAT.org.'

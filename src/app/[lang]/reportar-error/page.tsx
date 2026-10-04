@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title:
       lang === 'en'
-        ? 'Report a Calculation Error | Calculadora SAT Quality Assurance'
-        : 'Reportar un Error o Discrepancia | Control de Calidad Calculadora SAT',
+        ? 'Report a Calculation Error'
+        : 'Reportar un Error o Discrepancia',
     description:
       lang === 'en'
         ? 'Submit a technical or statutory calculation error report to our engineering team. We investigate all observations against official Mexican DOF and LISR publications within 48 business hours.'

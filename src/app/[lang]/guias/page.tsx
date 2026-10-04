@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('guias', lang);
 
   const title = isEn
-    ? 'Tax & Labor Knowledge Center: Practical Guides | Calculadora SAT'
-    : 'Centro de Guías Fiscales y Laborales México 2026 | Calculadora SAT';
+    ? 'Tax & Labor Knowledge Center: Practical Guides'
+    : 'Centro de Guías Fiscales y Laborales México 2026';
   const description = isEn
     ? 'Step-by-step practical guides on Mexican income tax (ISR), VAT formulas, RESICO regime comparisons, employee severance, and personal deductions under current statutory rules.'
     : 'Guías prácticas y fundamentadas paso a paso sobre cálculo de ISR, fórmulas de IVA (agregar o quitar), régimen RESICO, finiquito y liquidación LFT y deducciones personales SAT.';

@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoAlternates = getSeoAlternates('peru/guias', lang);
 
   const title = isEn
-    ? 'Peru Tax & Labor Statutory Guides 2026: IGV, CTS & SUNAT | Calculadora SAT'
+    ? 'Peru Tax & Labor Statutory Guides 2026: IGV, CTS & SUNAT'
     : 'Guías Tributarias y Laborales de Perú 2026 — SUNAT, CTS, IGV y Renta 5ta';
   const description = isEn
     ? 'Practical legal guides for Peru: how to calculate 18% IGV, semiannual CTS formulas under D.S. 001-97-TR, July/Dec gratifications with 9% EsSalud, and 5th Category progressive tax.'
