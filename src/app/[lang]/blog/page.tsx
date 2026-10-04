@@ -88,6 +88,16 @@ export default async function BlogListPage({ params }: PageProps) {
                 key={post.id}
                 className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden hover:shadow-xl hover:-translate-y-1 hover:border-blue-500/40 dark:hover:border-blue-400/40 transition-all duration-300 flex flex-col justify-between"
               >
+                {post.cover && (
+                  <Link href={`${langPrefix}/blog/${post.slug}`} className="block overflow-hidden shrink-0">
+                    <img
+                      src={post.cover}
+                      alt={post.title}
+                      loading="lazy"
+                      className="w-full h-44 object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </Link>
+                )}
                 <div className="p-6 sm:p-7">
                   <div className="flex items-center justify-between gap-2 mb-4 text-xs font-extrabold">
                     <span className="px-2.5 py-0.5 rounded uppercase tracking-wider bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400 font-bold">

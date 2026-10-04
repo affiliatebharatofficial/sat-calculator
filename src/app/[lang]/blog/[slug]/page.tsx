@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const seoAlternates = getSeoAlternates(`blog/${slug}`, lang);
+  const coverUrl = post.cover ? `https://www.calculadorasat.org${post.cover}` : undefined;
 
   return {
     title: `${post.title}`,
@@ -53,6 +54,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: 'article',
       publishedTime: post.date,
       authors: [post.author || 'Firoz Khan'],
+      ...(coverUrl ? { images: [{ url: coverUrl, width: 1200, height: 630, alt: post.title }] } : {}),
     },
   };
 }
@@ -70,6 +72,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const postUrl = `https://www.calculadorasat.org/blog/${post.slug}`;
+  const coverUrl = post.cover ? `https://www.calculadorasat.org${post.cover}` : undefined;
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -108,7 +111,8 @@ export default async function BlogPostPage({ params }: PageProps) {
         url: 'https://www.calculadorasat.org/icon.png'
       }
     },
-    inLanguage: post.lang === 'en' ? 'en-US' : 'es-MX'
+    inLanguage: post.lang === 'en' ? 'en-US' : 'es-MX',
+    ...(coverUrl ? { image: coverUrl } : {}),
   };
 
   const breadcrumbSchema = {
@@ -183,6 +187,13 @@ export default async function BlogPostPage({ params }: PageProps) {
               lang={lang}
             />
           </header>
+
+          {/* Cover image */}
+          {post.cover && (
+            <figure className="mb-8 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
+              <img src={post.cover} alt={post.title} className="w-full h-auto" />
+            </figure>
+          )}
 
           {/* Server-Rendered Article Body */}
           <div 

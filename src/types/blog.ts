@@ -13,4 +13,5 @@ export interface Post {
   lastUpdated?: string;
   legalBasis?: string;
   status: 'draft' | 'published';
+  cover?: string;
 }

@@ -127,6 +127,14 @@ export function renderMarkdown(markdown: string): string {
       continue;
     }
 
+    // Standalone image line -> <figure> (not wrapped in <p>)
+    const imgMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)$/);
+    if (imgMatch) {
+      flushList();
+      htmlParts.push(buildFigure(imgMatch[1], imgMatch[2], imgMatch[3] || imgMatch[1]));
+      continue;
+    }
+
     // Paragraph
     htmlParts.push(`<p class="mb-4 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal">${inlineFormat(trimmed)}</p>`);
   }
@@ -137,9 +145,29 @@ export function renderMarkdown(markdown: string): string {
   return htmlParts.join('\n');
 }
 
+function buildFigure(alt: string, src: string, caption?: string): string {
+  const safeAlt = alt.replace(/"/g, '&quot;');
+  const cap = caption || alt;
+  return (
+    `<figure class="my-8 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">` +
+    `<img src="${src}" alt="${safeAlt}" loading="lazy" class="w-full h-auto" />` +
+    (cap ? `<figcaption class="px-4 py-3 text-xs text-slate-500 dark:text-slate-400 text-center italic">${cap}</figcaption>` : '') +
+    `</figure>`
+  );
+}
+
 function inlineFormat(text: string): string {
   if (!text) return '';
-  return text
+  // Extract markdown images first so HTML-escaping and link parsing don't break them
+  const images: string[] = [];
+  const withPlaceholders = text.replace(
+    /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g,
+    (_m, alt: string, src: string, title: string) => {
+      images.push(buildFigure(alt, src, title || alt));
+      return `ZZIMG${images.length - 1}`;
+    }
+  );
+  const formatted = withPlaceholders
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
@@ -152,4 +180,6 @@ function inlineFormat(text: string): string {
       const targetAttr = isInternal ? '' : ' target="_blank" rel="noopener noreferrer"';
       return `<a href="${url}" class="text-blue-600 dark:text-blue-400 font-bold hover:underline transition-colors duration-150"${targetAttr}>${linkText}</a>`;
     });
+  // Restore extracted images
+  return formatted.replace(/ZZIMG(\d+)/g, (_m, i) => images[parseInt(i, 10)] || '');
 }
