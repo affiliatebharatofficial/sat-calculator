@@ -43,18 +43,6 @@ export default function LanguageSelector() {
         <span>ES</span>
         <span className="hidden sm:inline ml-1">🇲🇽</span>
       </button>
-      <button
-        onClick={() => handleLanguageChange('en')}
-        className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-all duration-200 ${
-          currentLang === 'en'
-            ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm scale-100'
-            : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
-        }`}
-        aria-label="Switch to English"
-      >
-        <span>EN</span>
-        <span className="hidden sm:inline ml-1">🇺🇸</span>
-      </button>
     </div>
   );
 }
