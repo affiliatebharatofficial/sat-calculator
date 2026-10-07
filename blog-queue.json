@@ -8,6 +8,13 @@
       "title": "Subsidio para el Empleo 2026: Tabla y Cómo se Aplica en tu Nómina"
     },
     {
+      "category": "Perú",
+      "legal": "Trámite de SUNAT",
+      "slug": "ruc-sunat-como-consultarlo-paso-a-paso",
+      "status": "done",
+      "title": "RUC en SUNAT: Cómo Consultarlo Paso a Paso"
+    },
+    {
       "category": "LFT",
       "legal": "Artículo 71 de la Ley Federal del Trabajo (LFT)",
       "slug": "prima-dominical-mexico-25-por-ciento-lft",
@@ -342,13 +349,6 @@
       "slug": "gratificacion-peru-julio-diciembre-calculo",
       "status": "pending",
       "title": "Gratificación en Perú: Cómo se Calcula (Julio y Diciembre)"
-    },
-    {
-      "category": "Perú",
-      "legal": "Trámite de SUNAT",
-      "slug": "ruc-sunat-como-consultarlo-paso-a-paso",
-      "status": "pending",
-      "title": "RUC en SUNAT: Cómo Consultarlo Paso a Paso"
     }
   ]
 }
