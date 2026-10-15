@@ -116,6 +116,8 @@ export default async function RootLayout({
         ></script>
       </head>
       <body className="min-h-full flex flex-col overflow-x-hidden text-slate-900 dark:text-slate-100">
+        {/* Mediavine Journey: block ALL ads sitewide (owner directive 2026-10-15) */}
+        <div id="ad-management-config-settings" data-blocklist-all="1"></div>
         {/* Google Analytics (gtag.js) - Loaded lazily to avoid blocking LCP and main thread */}
         <Script
           async
