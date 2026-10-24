@@ -76,6 +76,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Script from 'next/script';
 
 export default async function CalculatorPage({ params }: PageProps) {
   const resolvedParams = await params;
@@ -146,8 +147,22 @@ export default async function CalculatorPage({ params }: PageProps) {
           </span>
         </nav>
 
+        {/* Ad unit: 728x90 banner above the tool (owner ad code, 2026-10-24) */}
+        <div className="flex justify-center overflow-hidden my-2">
+          <Script id="bauval-banner-config" strategy="afterInteractive">
+            {`atOptions = { 'key' : 'f2312332bfa6cb87b88aa0ef2945c9bf', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };`}
+          </Script>
+          <Script src="https://bauval.org/22/f2312332bfa6cb87b88aa0ef2945c9bf" strategy="afterInteractive" />
+        </div>
+
         {/* Main Engine Component */}
         <CalculatorEngine slug={resolvedParams.slug} lang={lang} />
+
+        {/* Ad unit: container ad below the tool (owner ad code, 2026-10-24) */}
+        <div className="flex justify-center overflow-hidden my-4">
+          <Script async data-cfasync="false" src="https://bauval.org/21/25853722eb81fc70b78f2da078ce50d4" strategy="afterInteractive" />
+          <div id="container-25853722eb81fc70b78f2da078ce50d4"></div>
+        </div>
 
         {/* Server-Rendered Educational Content, Methodology, FAQs & Related Tools */}
         <CalculatorEducationalContent
