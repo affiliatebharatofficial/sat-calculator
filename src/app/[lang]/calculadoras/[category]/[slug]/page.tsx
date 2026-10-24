@@ -76,7 +76,6 @@ export async function generateMetadata({ params }: PageProps) {
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Script from 'next/script';
 
 export default async function CalculatorPage({ params }: PageProps) {
   const resolvedParams = await params;
@@ -147,21 +146,32 @@ export default async function CalculatorPage({ params }: PageProps) {
           </span>
         </nav>
 
-        {/* Ad unit: 728x90 banner above the tool (owner ad code, 2026-10-24) */}
-        <div className="flex justify-center overflow-hidden my-2">
-          <Script id="bauval-banner-config" strategy="afterInteractive">
-            {`atOptions = { 'key' : 'f2312332bfa6cb87b88aa0ef2945c9bf', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };`}
-          </Script>
-          <Script src="https://bauval.org/22/f2312332bfa6cb87b88aa0ef2945c9bf" strategy="afterInteractive" />
+        {/* Ad units (owner ad code, 2026-10-24; fixed 2026-10-24: plain in-place
+            <script> tags — next/script hoisted the banner script into <head>,
+            which made the ad render above the site header instead of by the tool) */}
+        <style>{`
+          .bauval-ad{display:flex;justify-content:center;width:100%;overflow:hidden;margin:12px 0}
+          .bauval-ad .bauval-frame{width:728px;max-width:100%;flex:0 1 auto}
+          .bauval-ad .bauval-frame iframe{max-width:100%}
+        `}</style>
+
+        {/* Ad unit: 728x90 banner directly above the tool */}
+        <div className="bauval-ad">
+          <div className="bauval-frame">
+            <script dangerouslySetInnerHTML={{ __html: `atOptions = { 'key' : 'f2312332bfa6cb87b88aa0ef2945c9bf', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };` }} />
+            <script src="https://bauval.org/22/f2312332bfa6cb87b88aa0ef2945c9bf" />
+          </div>
         </div>
 
         {/* Main Engine Component */}
         <CalculatorEngine slug={resolvedParams.slug} lang={lang} />
 
-        {/* Ad unit: container ad below the tool (owner ad code, 2026-10-24) */}
-        <div className="flex justify-center overflow-hidden my-4">
-          <Script async data-cfasync="false" src="https://bauval.org/21/25853722eb81fc70b78f2da078ce50d4" strategy="afterInteractive" />
-          <div id="container-25853722eb81fc70b78f2da078ce50d4"></div>
+        {/* Ad unit: container ad directly below the tool */}
+        <div className="bauval-ad">
+          <div className="bauval-frame">
+            <script async data-cfasync="false" src="https://bauval.org/21/25853722eb81fc70b78f2da078ce50d4" />
+            <div id="container-25853722eb81fc70b78f2da078ce50d4"></div>
+          </div>
         </div>
 
         {/* Server-Rendered Educational Content, Methodology, FAQs & Related Tools */}
