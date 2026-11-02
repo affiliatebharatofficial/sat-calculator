@@ -102,6 +102,7 @@ export default async function RootLayout({
       <head>
         <meta name="google-site-verification" content="rRetDb7bEgDlPVqH4e0hWvIB__PrqNCSr2FYbfXsZMM" />
         <meta name="google-adsense-account" content="ca-pub-9602707669345879" />
+        <meta name="revisit-after" content="7 days" />
         <link rel="preconnect" href="https://scripts.scriptwrapper.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://scripts.scriptwrapper.com" />
         <link rel="dns-prefetch" href="https://eu-us-cdn.consentmanager.net" />
