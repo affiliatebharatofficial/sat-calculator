@@ -151,6 +151,22 @@ export default async function BlogPostPage({ params }: PageProps) {
           </span>
         </nav>
 
+        {/* Ad units (same owner Adsterra/bauval code as calculator pages, 2026-11-04;
+            plain in-place <script> tags — next/script hoists banner scripts into <head>) */}
+        <style>{`
+          .bauval-ad{display:flex;justify-content:center;width:100%;overflow:hidden;margin:12px 0}
+          .bauval-ad .bauval-frame{width:728px;max-width:100%;flex:0 1 auto}
+          .bauval-ad .bauval-frame iframe{max-width:100%}
+        `}</style>
+
+        {/* Ad unit: 728x90 banner directly above the article */}
+        <div className="bauval-ad">
+          <div className="bauval-frame">
+            <script dangerouslySetInnerHTML={{ __html: `atOptions = { 'key' : 'f2312332bfa6cb87b88aa0ef2945c9bf', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };` }} />
+            <script src="https://bauval.org/22/f2312332bfa6cb87b88aa0ef2945c9bf" />
+          </div>
+        </div>
+
         {/* Article Container */}
         <article className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-12 shadow-sm">
           {/* Header Info */}
@@ -220,6 +236,14 @@ export default async function BlogPostPage({ params }: PageProps) {
             </p>
           </div>
         </article>
+
+        {/* Ad unit: container ad directly below the article */}
+        <div className="bauval-ad">
+          <div className="bauval-frame">
+            <script async data-cfasync="false" src="https://bauval.org/21/25853722eb81fc70b78f2da078ce50d4" />
+            <div id="container-25853722eb81fc70b78f2da078ce50d4"></div>
+          </div>
+        </div>
       </main>
 
       <Footer lang={lang} />
