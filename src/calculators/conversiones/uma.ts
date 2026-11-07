@@ -1,7 +1,7 @@
 import { CalculatorConfig } from '../../types/calculator';
 
 const UMA_HISTORIC_RATES: Record<number, { diario: number, mensual: number, anual: number }> = {
-  2026: { diario: 117.29, mensual: 3565.61, anual: 42794.64 },
+  2026: { diario: 117.31, mensual: 3566.22, anual: 42794.64 },
   2025: { diario: 113.14, mensual: 3439.46, anual: 41273.52 },
   2024: { diario: 108.57, mensual: 3300.53, anual: 39606.36 },
   2023: { diario: 103.74, mensual: 3153.70, anual: 37844.40 },
@@ -17,7 +17,7 @@ export const umaCalculator: CalculatorConfig = {
   slug: 'calculadora-conversor-uma',
   seo: {
     metaTitle: 'Calculadora de UMA a Pesos 2026 - Conversor Histórico Oficial INEGI',
-    metaDescription: 'Convierte UMA (Unidad de Medida y Actualización) a pesos mexicanos 2026. Valores oficiales del INEGI: diario ($117.29), mensual ($3,565.61) y anual ($42,794.64).',
+    metaDescription: 'Convierte UMA (Unidad de Medida y Actualización) a pesos mexicanos 2026. Valores oficiales del INEGI: diario ($117.31), mensual ($3,566.22) y anual ($42,794.64).',
     keywords: ['conversor uma a pesos', 'valor de la uma 2026', 'equivalencia uma sat', 'unidad de medida y actualizacion', 'tope 5 umas deducciones', 'calculo uma pesos inegi'],
     schemaType: 'Calculator'
   },
@@ -94,8 +94,8 @@ export const umaCalculator: CalculatorConfig = {
       'Trabajadores con créditos hipotecarios del Infonavit reestructurados en Unidades Mixtas o referenciados a la UMA.'
     ],
     explanation: 'La UMA fue creada mediante reforma constitucional publicada en el Diario Oficial de la Federación el 27 de enero de 2016 con un propósito fundamental: desindexar el salario mínimo. Antes de 2016, todas las leyes mexicanas expresaban multas y derechos en "Veces Salario Mínimo" (VSM). Cuando el salario mínimo subía para beneficiar a la clase trabajadora, automáticamente se disparaba el costo de las multas y la deuda de los créditos de vivienda, generando inflación artificial.\n\nAl crearse la UMA, el salario mínimo pudo incrementarse de forma independiente, mientras que la UMA se ajusta anualmente con base estricta en el Índice Nacional de Precios al Consumidor (inflación anual del año anterior). El INEGI publica los nuevos valores en enero de cada año y entran en vigor el 1 de febrero.',
-    formula: 'Pesos\\ Equivalentes = Unidades\\ UMA \\times Valor\\ Unitario\\ (Diario,\\ Mensual\\ o\\ Anual)\n\nEquivalencias Oficiales UMA 2026:\n- UMA Diario: $117.29 MXN\n- UMA Mensual (Diario x 30.4): $3,565.61 MXN\n- UMA Anual (Mensual x 12): $42,794.64 MXN\n- Tope General 5 UMAs Anuales (LISR Art. 151): $213,973.20 MXN',
-    example: 'Caso 1: Tope de Deducciones Personales SAT en Declaración Anual.\nEl Artículo 151 de la Ley del ISR establece que el monto total de deducciones personales generales no puede exceder el menor entre el 15% de tus ingresos o 5 UMAs anuales.\n- Cálculo del tope en 2026: 5 x $42,794.64 = $213,973.20 MXN.\nSi ganas $2,000,000 MXN anuales, tu 15% sería $300,000 MXN, pero el límite aplicable real se topa en $213,973.20 MXN.\n\nCaso 2: Exención de Aguinaldo en Nómina (Art. 93 LISR).\nEl aguinaldo está exento de pagar ISR hasta por el equivalente a 30 días de UMA diaria.\n- Cálculo de exención: 30 x $117.29 = $3,518.70 MXN libres de impuestos.',
+    formula: 'Pesos\\ Equivalentes = Unidades\\ UMA \\times Valor\\ Unitario\\ (Diario,\\ Mensual\\ o\\ Anual)\n\nEquivalencias Oficiales UMA 2026:\n- UMA Diario: $117.31 MXN\n- UMA Mensual (Diario x 30.4): $3,566.22 MXN\n- UMA Anual (Mensual x 12): $42,794.64 MXN\n- Tope General 5 UMAs Anuales (LISR Art. 151): $213,973.20 MXN',
+    example: 'Caso 1: Tope de Deducciones Personales SAT en Declaración Anual.\nEl Artículo 151 de la Ley del ISR establece que el monto total de deducciones personales generales no puede exceder el menor entre el 15% de tus ingresos o 5 UMAs anuales.\n- Cálculo del tope en 2026: 5 x $42,794.64 = $213,973.20 MXN.\nSi ganas $2,000,000 MXN anuales, tu 15% sería $300,000 MXN, pero el límite aplicable real se topa en $213,973.20 MXN.\n\nCaso 2: Exención de Aguinaldo en Nómina (Art. 93 LISR).\nEl aguinaldo está exento de pagar ISR hasta por el equivalente a 30 días de UMA diaria.\n- Cálculo de exención: 30 x $117.31 = $3,519.30 MXN libres de impuestos.',
     legislation: 'Artículo 26, Apartado B, párrafo sexto de la Constitución Política de los Estados Unidos Mexicanos; Ley para Determinar el Valor de la Unidad de Medida y Actualización; Artículo 93 y 151 de la Ley del Impuesto Sobre la Renta (LISR).',
     faqs: [
       {
@@ -120,7 +120,7 @@ export const umaCalculator: CalculatorConfig = {
       'Si recibes bonos, finiquitos o liquidaciones, recuerda que los conceptos exentos de ISR (prima de antigüedad hasta 90 UMAs, aguinaldo 30 UMAs) se cuantifican con la UMA diaria vigente en la fecha del pago.'
     ],
     errors: [
-      'Utilizar el valor del Salario Mínimo General ($248.93+ MXN) para calcular el tope de deducciones personales. El SAT rechaza automáticamente deducciones que tomen el salario mínimo en lugar de la UMA.',
+      'Utilizar el valor del Salario Mínimo General ($315.04 MXN en 2026) para calcular el tope de deducciones personales. El SAT rechaza automáticamente deducciones que tomen el salario mínimo en lugar de la UMA.',
       'Calcular multas multiplicando el valor mensual entre días sueltos en lugar de usar la tarifa de UMA diaria publicada.'
     ],
     sources: [

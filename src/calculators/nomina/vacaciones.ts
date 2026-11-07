@@ -15,8 +15,8 @@ const MONTHLY_ISR_BRACKETS = [
   { limitInferior: 375975.62, cuotaFija: 117911.48, tasa: 35.00 }
 ];
 
-// Official 2026 UMA daily value ($113.14 MXN)
-const UMA_2026 = 113.14;
+// Official 2026 UMA daily value ($117.31 MXN)
+const UMA_2026 = 117.31;
 
 function calculateISR(baseAmount: number): number {
   if (baseAmount <= 0) return 0;
@@ -104,7 +104,7 @@ export const vacationsCalculator: CalculatorConfig = {
     const pagoVacaciones = sueldoDiario * diasTomar;
     const primaBruta = pagoVacaciones * (tasaPrima / 100);
 
-    // Exemption limit: 15 UMA (2026 = $113.14 * 15 = $1,697.10 MXN)
+    // Exemption limit: 15 UMA (2026 = $117.31 * 15 = $1,759.65 MXN)
     const exentoLimite = 15 * UMA_2026;
     const montoExento = Math.min(primaBruta, exentoLimite);
     const montoGravado = Math.max(0, primaBruta - montoExento);
@@ -168,11 +168,11 @@ export const vacationsCalculator: CalculatorConfig = {
       'Empleados que auditan el pago proporcional de vacaciones y prima vacacional dentro de su finiquito o liquidación',
       'Trabajadores que desean verificar la tabla oficial de días de descanso que les corresponde según sus años de antigüedad acumulada'
     ],
-    howItWorks: 'Obtiene el salario diario dividiendo el sueldo mensual bruto entre 30 días. Determina los días de descanso anuales según la tabla reformada de Vacaciones Dignas (LFT Art. 76). Multiplica el salario diario por los días tomados para calcular el sueldo de vacaciones y aplica el porcentaje contractual de prima (mínimo 25%). Aplica la exención fiscal de 15 UMAs ($1,697.10 MXN en 2026) y calcula la retención de ISR sobre el remanente gravado con el método incremental del Art. 96 de la LISR.',
+    howItWorks: 'Obtiene el salario diario dividiendo el sueldo mensual bruto entre 30 días. Determina los días de descanso anuales según la tabla reformada de Vacaciones Dignas (LFT Art. 76). Multiplica el salario diario por los días tomados para calcular el sueldo de vacaciones y aplica el porcentaje contractual de prima (mínimo 25%). Aplica la exención fiscal de 15 UMAs ($1,759.65 MXN en 2026) y calcula la retención de ISR sobre el remanente gravado con el método incremental del Art. 96 de la LISR.',
     explanation: 'La prima vacacional es una prestación laboral obligatoria consagrada en el Artículo 80 de la Ley Federal del Trabajo. Su finalidad es otorgar un ingreso extraordinario en dinero para que el trabajador disfrute plenamente de su descanso anual. Tras la entrada en vigor de la reforma de "Vacaciones Dignas", el piso mínimo legal de descanso aumentó a 12 días laborables a partir del primer año de servicios, incrementando dos días por cada año subsecuente hasta llegar a 20 días en el quinto año. La prima vacacional legal no puede ser inferior al 25% sobre los salarios devengados durante el periodo de vacaciones. Fiscalmente, goza de una exención de hasta 15 Unidades de Medida y Actualización (UMA).',
-    formula: '1. Salario Diario = Sueldo Mensual Bruto / 30\n2. Días de Vacaciones = Conforme a tabla LFT Art. 76 (1 año = 12 días, 2 años = 14 días...)\n3. Pago de Vacaciones = Salario Diario * Días de Vacaciones a Tomar\n4. Prima Vacacional Bruta = Pago de Vacaciones * ( Porcentaje Prima / 100 )\n5. Límite Exento de ISR = 15 * Valor Diario de la UMA Vigente ($113.14 MXN en 2026 = $1,697.10 MXN)\n6. Monto Gravado = Max(0, Prima Vacacional Bruta - Límite Exento)\n7. ISR Retenido = ISR(Sueldo Mensual + Monto Gravado) - ISR(Sueldo Mensual)\n8. Prima Vacacional Neta = Prima Vacacional Bruta - ISR Retenido',
-    example: 'Trabajador con sueldo bruto mensual de $16,000.00 MXN, 1 año de antigüedad y 25% de prima legal:\n• Salario Diario: $16,000.00 ÷ 30 = $533.33 MXN\n• Días de vacaciones por ley (1 año): 12 días laborables\n• Sueldo de vacaciones: $533.33 × 12 = $6,400.00 MXN\n• Prima Vacacional Bruta (25%): $6,400.00 × 0.25 = $1,600.00 MXN\n• Exención fiscal (15 UMAs 2026 = 15 × $113.14): $1,697.10 MXN\n• Monto Gravable: $0.00 MXN (la prima de $1,600.00 es menor que el tope exento de $1,697.10)\n• ISR a retener: $0.00 MXN\n• Prima Vacacional Neta Libre a depositar: $1,600.00 MXN',
-    howToInterpret: 'El simulador presenta tres resultados clave:\n1. Sueldo de Vacaciones: Tu salario ordinario continúa pagándose normalmente durante tus días de descanso conforme al Artículo 76 de la LFT.\n2. Prima Vacacional Bruta vs Neta: La prima es un sobresueldo adicional (mínimo 25%). La prima neta es el importe final libre que recibes tras descontar el ISR sobre el excedente no exento.\n3. Exención fiscal de 15 UMAs: Los primeros $1,697.10 MXN (15 UMAs en 2026) están 100% libres de impuestos federales. Solo la fracción que sobrepase este umbral causa retención de ISR.',
+    formula: '1. Salario Diario = Sueldo Mensual Bruto / 30\n2. Días de Vacaciones = Conforme a tabla LFT Art. 76 (1 año = 12 días, 2 años = 14 días...)\n3. Pago de Vacaciones = Salario Diario * Días de Vacaciones a Tomar\n4. Prima Vacacional Bruta = Pago de Vacaciones * ( Porcentaje Prima / 100 )\n5. Límite Exento de ISR = 15 * Valor Diario de la UMA Vigente ($117.31 MXN en 2026 = $1,759.65 MXN)\n6. Monto Gravado = Max(0, Prima Vacacional Bruta - Límite Exento)\n7. ISR Retenido = ISR(Sueldo Mensual + Monto Gravado) - ISR(Sueldo Mensual)\n8. Prima Vacacional Neta = Prima Vacacional Bruta - ISR Retenido',
+    example: 'Trabajador con sueldo bruto mensual de $16,000.00 MXN, 1 año de antigüedad y 25% de prima legal:\n• Salario Diario: $16,000.00 ÷ 30 = $533.33 MXN\n• Días de vacaciones por ley (1 año): 12 días laborables\n• Sueldo de vacaciones: $533.33 × 12 = $6,400.00 MXN\n• Prima Vacacional Bruta (25%): $6,400.00 × 0.25 = $1,600.00 MXN\n• Exención fiscal (15 UMAs 2026 = 15 × $117.31): $1,759.65 MXN\n• Monto Gravable: $0.00 MXN (la prima de $1,600.00 es menor que el tope exento de $1,759.65)\n• ISR a retener: $0.00 MXN\n• Prima Vacacional Neta Libre a depositar: $1,600.00 MXN',
+    howToInterpret: 'El simulador presenta tres resultados clave:\n1. Sueldo de Vacaciones: Tu salario ordinario continúa pagándose normalmente durante tus días de descanso conforme al Artículo 76 de la LFT.\n2. Prima Vacacional Bruta vs Neta: La prima es un sobresueldo adicional (mínimo 25%). La prima neta es el importe final libre que recibes tras descontar el ISR sobre el excedente no exento.\n3. Exención fiscal de 15 UMAs: Los primeros $1,759.65 MXN (15 UMAs en 2026) están 100% libres de impuestos federales. Solo la fracción que sobrepase este umbral causa retención de ISR.',
     legislation: 'Ley Federal del Trabajo (LFT), Artículos 76 (Derecho al periodo anual de vacaciones pagadas, reforma Vacaciones Dignas), 78 (Disfrute continuo de al menos 12 días), 79 (Prohibición de compensación en dinero) y 80 (Prima vacacional no menor al 25%); Ley del Impuesto sobre la Renta (LISR), Artículo 93, Fracción XIV (Exención de 15 UMAs); e INEGI (Valor oficial de la UMA).',
     tips: [
       'Con la reforma de Vacaciones Dignas, los 12 días del primer año deben disfrutarse en forma continua, salvo que el trabajador y el patrón pacten voluntariamente distribuirlos en fracciones.',
@@ -182,7 +182,7 @@ export const vacationsCalculator: CalculatorConfig = {
     ],
     assumptions: [
       'El salario mensual ingresado es un sueldo ordinario fijo sin comisiones variables.',
-      'Se aplica el valor de la UMA oficial para 2026 ($113.14 MXN diarios) para determinar el tope exento de 15 UMAs ($1,697.10 MXN).',
+      'Se aplica el valor de la UMA oficial para 2026 ($117.31 MXN diarios) para determinar el tope exento de 15 UMAs ($1,759.65 MXN).',
       'La retención de ISR se calcula mediante el procedimiento incremental sobre la tarifa mensual del Artículo 96 de la LISR.'
     ],
     limitations: [
@@ -201,7 +201,7 @@ export const vacationsCalculator: CalculatorConfig = {
       },
       {
         question: '¿La prima vacacional paga impuestos (ISR)?',
-        answer: 'Sí, pero solo por el monto que exceda las 15 Unidades de Medida y Actualización (UMA). Para el ejercicio 2026, los primeros $1,697.10 MXN están 100% exentos de ISR. Si tu prima es de $2,500.00 MXN, solo pagarás ISR sobre el excedente de $802.90 MXN.'
+        answer: 'Sí, pero solo por el monto que exceda las 15 Unidades de Medida y Actualización (UMA). Para el ejercicio 2026, los primeros $1,759.65 MXN están 100% exentos de ISR. Si tu prima es de $2,500.00 MXN, solo pagarás ISR sobre el excedente de $740.35 MXN.'
       },
       {
         question: '¿Si no tomo mis vacaciones en el año, el patrón me las puede pagar con dinero?',
@@ -251,11 +251,11 @@ export const vacationsCalculator: CalculatorConfig = {
           'Workers verifying vacation and bonus amounts in severance or resignation settlement receipts (finiquito)',
           'Employees reviewing their statutory entitlement based on continuous years of service'
         ],
-        howItWorks: 'Divides gross monthly salary by 30 days to compute daily salary. Applies the reformed Vacaciones Dignas table (LFT Art. 76) to determine entitlement. Multiplies daily wage by days taken and applies the bonus percentage (minimum 25%). Applies the 15 UMA tax exemption ($1,697.10 MXN in 2026) and calculates incremental ISR withholding on the remaining taxable balance.',
+        howItWorks: 'Divides gross monthly salary by 30 days to compute daily salary. Applies the reformed Vacaciones Dignas table (LFT Art. 76) to determine entitlement. Multiplies daily wage by days taken and applies the bonus percentage (minimum 25%). Applies the 15 UMA tax exemption ($1,759.65 MXN in 2026) and calculates incremental ISR withholding on the remaining taxable balance.',
         explanation: 'The vacation bonus (prima vacacional) is a mandatory employee entitlement under Article 80 of Mexico\'s Federal Labor Law (LFT). It provides additional cash to ensure workers can enjoy their annual rest. Under the "Vacaciones Dignas" reform, first-year vacation leave starts at 12 working days, increasing by 2 days each subsequent year up to 20 days in year five. The statutory bonus cannot be less than 25% of wages earned during the vacation period, with up to 15 UMAs exempt from income tax (ISR).',
-        formula: '1. Daily Salary = Gross Monthly Salary / 30\n2. Statutory Days = Per LFT Art. 76 (Year 1 = 12 days, Year 2 = 14 days, etc.)\n3. Vacation Pay = Daily Salary * Vacation Days Taken\n4. Gross Bonus = Vacation Pay * ( Bonus Rate / 100 )\n5. ISR Exemption Limit = 15 * Official Daily UMA ($113.14 MXN in 2026 = $1,697.10 MXN)\n6. Taxable Amount = Max(0, Gross Bonus - Exemption Limit)\n7. ISR Withholding = Incremental tax on taxable bonus under LISR Art. 96\n8. Net Vacation Bonus = Gross Bonus - ISR Withholding',
-        example: 'Employee with $16,000.00 MXN gross monthly salary, 1 year of service, and 25% statutory bonus:\n• Daily Salary: $16,000.00 ÷ 30 = $533.33 MXN\n• Statutory vacation days (Year 1): 12 working days\n• Vacation pay: $533.33 × 12 = $6,400.00 MXN\n• Gross Vacation Bonus (25%): $6,400.00 × 0.25 = $1,600.00 MXN\n• Tax Exemption (15 UMAs 2026 = 15 × $113.14): $1,697.10 MXN\n• Taxable Amount: $0.00 MXN (gross bonus of $1,600.00 is below the $1,697.10 cap)\n• ISR Withholding: $0.00 MXN\n• Net Vacation Bonus Received: $1,600.00 MXN',
-        howToInterpret: 'The calculator highlights three vital indicators:\n1. Vacation Base Pay: Your regular wage continues to be paid in full during your statutory vacation leave days under Article 76 LFT.\n2. Gross vs. Net Vacation Bonus: The bonus is an additional legal payment (minimum 25%). The net bonus is the actual cash deposited after deducting ISR tax on any non-exempt amount.\n3. 15-UMA Tax Exemption: The first $1,697.10 MXN (15 daily UMAs in 2026) is 100% exempt from personal income tax. Only the amount exceeding this statutory threshold is subject to ISR withholding.',
+        formula: '1. Daily Salary = Gross Monthly Salary / 30\n2. Statutory Days = Per LFT Art. 76 (Year 1 = 12 days, Year 2 = 14 days, etc.)\n3. Vacation Pay = Daily Salary * Vacation Days Taken\n4. Gross Bonus = Vacation Pay * ( Bonus Rate / 100 )\n5. ISR Exemption Limit = 15 * Official Daily UMA ($117.31 MXN in 2026 = $1,759.65 MXN)\n6. Taxable Amount = Max(0, Gross Bonus - Exemption Limit)\n7. ISR Withholding = Incremental tax on taxable bonus under LISR Art. 96\n8. Net Vacation Bonus = Gross Bonus - ISR Withholding',
+        example: 'Employee with $16,000.00 MXN gross monthly salary, 1 year of service, and 25% statutory bonus:\n• Daily Salary: $16,000.00 ÷ 30 = $533.33 MXN\n• Statutory vacation days (Year 1): 12 working days\n• Vacation pay: $533.33 × 12 = $6,400.00 MXN\n• Gross Vacation Bonus (25%): $6,400.00 × 0.25 = $1,600.00 MXN\n• Tax Exemption (15 UMAs 2026 = 15 × $117.31): $1,759.65 MXN\n• Taxable Amount: $0.00 MXN (gross bonus of $1,600.00 is below the $1,759.65 cap)\n• ISR Withholding: $0.00 MXN\n• Net Vacation Bonus Received: $1,600.00 MXN',
+        howToInterpret: 'The calculator highlights three vital indicators:\n1. Vacation Base Pay: Your regular wage continues to be paid in full during your statutory vacation leave days under Article 76 LFT.\n2. Gross vs. Net Vacation Bonus: The bonus is an additional legal payment (minimum 25%). The net bonus is the actual cash deposited after deducting ISR tax on any non-exempt amount.\n3. 15-UMA Tax Exemption: The first $1,759.65 MXN (15 daily UMAs in 2026) is 100% exempt from personal income tax. Only the amount exceeding this statutory threshold is subject to ISR withholding.',
         legislation: 'Mexican Federal Labor Law (LFT), Articles 76 (Vacaciones Dignas entitlement), 78 (Continuous 12-day rest period), 79 (Prohibition of cash payout in lieu of time off) and 80 (25% minimum bonus); and Mexican Income Tax Law (LISR), Article 93, Fraction XIV (15 UMA exemption).',
         tips: [
           'Under the Vacaciones Dignas decree, the initial 12 days must be taken continuously unless mutually agreed otherwise in writing.',
@@ -265,7 +265,7 @@ export const vacationsCalculator: CalculatorConfig = {
         ],
         assumptions: [
           'Calculations assume a standard fixed monthly salary without variable sales commissions.',
-          'Applies the official 2026 UMA value ($113.14 MXN daily) for the 15 UMA statutory exemption ($1,697.10 MXN).',
+          'Applies the official 2026 UMA value ($117.31 MXN daily) for the 15 UMA statutory exemption ($1,759.65 MXN).',
           'ISR tax withholding follows the incremental procedure per Article 96 of Mexico\'s Income Tax Law.'
         ],
         limitations: [
@@ -284,7 +284,7 @@ export const vacationsCalculator: CalculatorConfig = {
           },
           {
             question: 'Is the Mexican vacation bonus subject to income tax (ISR)?',
-            answer: 'Yes, but only on amounts exceeding 15 UMAs. In 2026, the first $1,697.10 MXN is 100% exempt from ISR. Tax is withheld only on the amount exceeding this cap.'
+            answer: 'Yes, but only on amounts exceeding 15 UMAs. In 2026, the first $1,759.65 MXN is 100% exempt from ISR. Tax is withheld only on the amount exceeding this cap.'
           },
           {
             question: 'Can an employer pay cash instead of granting actual vacation days?',

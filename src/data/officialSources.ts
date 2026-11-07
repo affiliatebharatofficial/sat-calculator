@@ -59,7 +59,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     documentTitle: "Valores Oficiales de la Unidad de Medida y Actualización (UMA)",
     topic: "Valor diario, mensual y anual de la UMA conforme a la variación del INPC",
     publicationDate: "Publicación anual oficial cada enero en el DOF",
-    effectiveDate: "Valores oficiales para 2025 ($113.14 diario) y 2026 ($117.29 diario)",
+    effectiveDate: "Valores oficiales para 2025 ($113.14 diario) y 2026 ($117.31 diario)",
     officialUrl: "https://www.inegi.org.mx/temas/uma/",
     supportedRule: "Desindexación del salario mínimo para topes de exención fiscal (aguinaldo exento hasta 30 UMA, prima vacacional hasta 15 UMA, deducciones personales hasta 5 UMA anuales).",
     lastVerified: "Febrero 2026",

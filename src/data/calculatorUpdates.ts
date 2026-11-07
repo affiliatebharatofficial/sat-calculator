@@ -8,7 +8,7 @@ export const CALCULATOR_UPDATES: CalculatorUpdateRecord[] = [
     categorySlug: "sat",
     lastReviewed: "10 de febrero de 2026",
     lastParameterUpdate: "1 de febrero de 2026",
-    whatChanged: "Incorporación oficial del valor diario de la UMA de $117.29 MXN, mensual de $3,565.61 MXN y anual de $42,794.64 MXN.",
+    whatChanged: "Incorporación oficial del valor diario de la UMA de $117.31 MXN, mensual de $3,566.22 MXN y anual de $42,794.64 MXN.",
     reasonForUpdate: "Publicación obligatoria anual efectuada por el INEGI en el Diario Oficial de la Federación.",
     officialSource: "Comunicado de Prensa Oficial del INEGI y publicación en el DOF del 9 de enero.",
     officialUrl: "https://www.inegi.org.mx/temas/uma/"
@@ -80,7 +80,7 @@ export const CALCULATOR_UPDATES: CalculatorUpdateRecord[] = [
     categorySlug: "nomina",
     lastReviewed: "15 de enero de 2026",
     lastParameterUpdate: "1 de enero de 2026",
-    whatChanged: "Cálculo de exención fiscal de hasta 30 valores diarios de la UMA 2026 ($3,518.70 MXN) conforme al Art. 93 fracción XIV de la LISR.",
+    whatChanged: "Cálculo de exención fiscal de hasta 30 valores diarios de la UMA 2026 ($3,519.30 MXN) conforme al Art. 93 fracción XIV de la LISR.",
     reasonForUpdate: "Entrada en vigor del valor diario de la UMA publicado por el INEGI.",
     officialSource: "Artículo 87 LFT y Artículo 93 fracción XIV LISR.",
     officialUrl: "https://www.inegi.org.mx/temas/uma/"

@@ -357,7 +357,7 @@ if (vacacionesCalc) {
   // Test with salary above 15 UMA limit to test cap
   const resCap = vacacionesCalc.calculate({ sueldo_mensual: 30000, antiguedad: 1, tasa_prima: 25, dias_tomar: 0 });
   const exentoCap = resCap.results.find(r => r.label === 'Monto Exento de ISR (15 UMAs 2026)')?.value;
-  assert(Math.round((exentoCap || 0) * 100) / 100 === 1697.10, 'Vacaciones: Para sueldo alto, el tope exento es exactamente 15 UMAs 2026 ($1,697.10 MXN)');
+  assert(Math.round((exentoCap || 0) * 100) / 100 === 1759.65, 'Vacaciones: Para sueldo alto, el tope exento es exactamente 15 UMAs 2026 ($1,759.65 MXN)');
 } else {
   console.error('No se encontró la calculadora de Vacaciones.');
   failedTests++;

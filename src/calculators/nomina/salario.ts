@@ -15,7 +15,7 @@ const MONTHLY_ISR_BRACKETS = [
   { limitInferior: 375975.62, cuotaFija: 117911.48, tasa: 35.00 }
 ];
 
-const UMA_2026 = 113.14;
+const UMA_2026 = 117.31;
 
 // Function to calculate vacation days based on years of service (LFT México)
 function getVacationDays(years: number): number {
