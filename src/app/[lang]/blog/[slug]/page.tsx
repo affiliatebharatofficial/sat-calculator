@@ -10,6 +10,9 @@ import { getPostBySlug, getPublishedPosts } from '@/lib/blog';
 import { getSeoAlternates } from '@/lib/seo';
 import { renderMarkdown } from '@/lib/markdown';
 
+// Ads PAUSED 2026-11-08 (user request, temporary) — set ADS_ENABLED = true to re-enable the bauval units.
+const ADS_ENABLED = false;
+
 interface PageProps {
   params: Promise<{
     lang: string;
@@ -159,13 +162,15 @@ export default async function BlogPostPage({ params }: PageProps) {
           .bauval-ad .bauval-frame iframe{max-width:100%}
         `}</style>
 
-        {/* Ad unit: 728x90 banner directly above the article */}
+        {/* Ad unit: 728x90 banner directly above the article (PAUSED via ADS_ENABLED) */}
+        {ADS_ENABLED && (
         <div className="bauval-ad">
           <div className="bauval-frame">
             <script dangerouslySetInnerHTML={{ __html: `atOptions = { 'key' : 'f2312332bfa6cb87b88aa0ef2945c9bf', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };` }} />
             <script src="https://bauval.org/22/f2312332bfa6cb87b88aa0ef2945c9bf" />
           </div>
         </div>
+        )}
 
         {/* Article Container */}
         <article className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-12 shadow-sm">
@@ -196,8 +201,8 @@ export default async function BlogPostPage({ params }: PageProps) {
               author={post.author || 'Firoz Khan (FkDigitalMedia)'}
               editorialResponsibility={post.editorialResponsibility}
               publishedDate={post.date}
-              lastReviewedDate={post.lastReviewed || '2026-09-20'}
-              lastUpdatedDate={post.lastUpdated || '2026-09-20'}
+              lastReviewedDate={post.lastReviewed || post.date}
+              lastUpdatedDate={post.lastUpdated || post.date}
               legalBasis={post.legalBasis}
               pageTitle={post.title}
               lang={lang}
@@ -237,13 +242,15 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
         </article>
 
-        {/* Ad unit: container ad directly below the article */}
+        {/* Ad unit: container ad directly below the article (PAUSED via ADS_ENABLED) */}
+        {ADS_ENABLED && (
         <div className="bauval-ad">
           <div className="bauval-frame">
             <script async data-cfasync="false" src="https://bauval.org/21/25853722eb81fc70b78f2da078ce50d4" />
             <div id="container-25853722eb81fc70b78f2da078ce50d4"></div>
           </div>
         </div>
+        )}
       </main>
 
       <Footer lang={lang} />

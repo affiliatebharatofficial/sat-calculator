@@ -9,6 +9,9 @@ import LanguageSelector from '../../../../../components/LanguageSelector';
 import ThemeToggle from '../../../../../components/ThemeToggle';
 import Link from 'next/link';
 
+// Ads PAUSED 2026-11-08 (user request, temporary) — set ADS_ENABLED = true to re-enable the bauval units.
+const ADS_ENABLED = false;
+
 interface PageProps {
   params: Promise<{
     lang: string;
@@ -155,24 +158,28 @@ export default async function CalculatorPage({ params }: PageProps) {
           .bauval-ad .bauval-frame iframe{max-width:100%}
         `}</style>
 
-        {/* Ad unit: 728x90 banner directly above the tool */}
+        {/* Ad unit: 728x90 banner directly above the tool (PAUSED via ADS_ENABLED) */}
+        {ADS_ENABLED && (
         <div className="bauval-ad">
           <div className="bauval-frame">
             <script dangerouslySetInnerHTML={{ __html: `atOptions = { 'key' : 'f2312332bfa6cb87b88aa0ef2945c9bf', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };` }} />
             <script src="https://bauval.org/22/f2312332bfa6cb87b88aa0ef2945c9bf" />
           </div>
         </div>
+        )}
 
         {/* Main Engine Component */}
         <CalculatorEngine slug={resolvedParams.slug} lang={lang} />
 
-        {/* Ad unit: container ad directly below the tool */}
+        {/* Ad unit: container ad directly below the tool (PAUSED via ADS_ENABLED) */}
+        {ADS_ENABLED && (
         <div className="bauval-ad">
           <div className="bauval-frame">
             <script async data-cfasync="false" src="https://bauval.org/21/25853722eb81fc70b78f2da078ce50d4" />
             <div id="container-25853722eb81fc70b78f2da078ce50d4"></div>
           </div>
         </div>
+        )}
 
         {/* Server-Rendered Educational Content, Methodology, FAQs & Related Tools */}
         <CalculatorEducationalContent
