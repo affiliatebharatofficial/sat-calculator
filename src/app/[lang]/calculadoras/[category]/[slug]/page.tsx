@@ -9,8 +9,8 @@ import LanguageSelector from '../../../../../components/LanguageSelector';
 import ThemeToggle from '../../../../../components/ThemeToggle';
 import Link from 'next/link';
 
-// Ads PAUSED 2026-11-08 (user request, temporary) — set ADS_ENABLED = true to re-enable the bauval units.
-const ADS_ENABLED = false;
+// Ads RE-ENABLED 2026-11-10 (user request) — pause again 2026-11-11 08:00 IST (scheduled). Set ADS_ENABLED = false to pause.
+const ADS_ENABLED = true;
 
 interface PageProps {
   params: Promise<{
