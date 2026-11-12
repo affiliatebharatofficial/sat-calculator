@@ -10,8 +10,8 @@ import { getPostBySlug, getPublishedPosts } from '@/lib/blog';
 import { getSeoAlternates } from '@/lib/seo';
 import { renderMarkdown } from '@/lib/markdown';
 
-// Ads RE-ENABLED 2026-11-11 (user request). Set ADS_ENABLED = false to pause.
-const ADS_ENABLED = true;
+// Ads PAUSED 2026-11-12 08:00 IST (scheduled, user 2026-11-11). Set ADS_ENABLED = true to re-enable.
+const ADS_ENABLED = false;
 
 interface PageProps {
   params: Promise<{
