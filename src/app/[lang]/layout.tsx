@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import CookieBanner from "../../components/CookieBanner";
 import SEOHreflang from "../../components/SEO/SEOHreflang";
 import ThemeProvider from "../../components/ThemeProvider";
 import Script from "next/script";
@@ -128,7 +127,6 @@ export default async function RootLayout({
         </Script>
         <ThemeProvider>
           {children}
-          <CookieBanner />
         </ThemeProvider>
       </body>
     </html>
