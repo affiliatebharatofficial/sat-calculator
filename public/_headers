@@ -1,0 +1,10 @@
+# Cloudflare Static Assets headers.
+# next.config headers() do NOT apply to /public files served from the
+# Workers assets binding (verified live 2026-11-25: max-age=0) — this
+# file is the mechanism that does. NOTE: vendored files are unhashed —
+# if one ever changes, rename it or old caches serve stale copies.
+/vendor/bootstrap-icons/bootstrap-icons.min.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/vendor/bootstrap-icons/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
