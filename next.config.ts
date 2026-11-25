@@ -521,7 +521,9 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: '/(.*).(png|jpg|jpeg|svg|webp|woff2)',
+        // NOTE: vendored public files are unhashed — if a file here ever
+        // changes, rename it (e.g. add -v2) or old caches will serve stale copies.
+        source: '/(.*).(css|png|jpg|jpeg|svg|webp|woff2)',
         headers: [
           {
             key: 'Cache-Control',
