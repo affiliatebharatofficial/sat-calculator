@@ -101,20 +101,13 @@ export default async function RootLayout({
     >
       <head>
         <meta name="google-site-verification" content="rRetDb7bEgDlPVqH4e0hWvIB__PrqNCSr2FYbfXsZMM" />
-        <meta name="google-adsense-account" content="ca-pub-9602707669345879" />
+        <meta name="google-adsense-account" content="ca-pub-2792598457581530" />
         <meta name="revisit-after" content="7 days" />
-        <link rel="preconnect" href="https://scripts.scriptwrapper.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://scripts.scriptwrapper.com" />
-        <link rel="dns-prefetch" href="https://eu-us-cdn.consentmanager.net" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <SEOHreflang />
-        <script
-          type="text/javascript"
-          async
-          data-noptimize="1"
-          data-cfasync="false"
-          src="//scripts.scriptwrapper.com/tags/c23e2624-ae2a-4b52-bf67-1471e78365a3.js"
-        ></script>
+        {/* Mediavine Journey script REMOVED 2026-11-25 (perf): ads already blocked
+            both ways (ads.txt + blocklist div), the 78 KB scriptwrapper download
+            served nothing. Re-add the script tag to restore Journey. */}
       </head>
       <body className="min-h-full flex flex-col overflow-x-hidden text-slate-900 dark:text-slate-100">
         {/* Mediavine Journey: block ALL ads sitewide (owner directive 2026-10-15) */}

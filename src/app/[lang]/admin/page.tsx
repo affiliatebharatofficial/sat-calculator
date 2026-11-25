@@ -397,7 +397,7 @@ export default function AdminPage({ params }: { params: Promise<{ lang: string }
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-900 dark:text-slate-100 font-sans transition-colors duration-250">
       <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        href="/vendor/bootstrap-icons/bootstrap-icons.min.css"
       />
       
       {/* Toast Notification Banner */}

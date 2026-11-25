@@ -374,10 +374,19 @@ export default function CalculatorEngine({ slug, lang = 'es' }: CalculatorEngine
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 py-8">
+      {/* Bootstrap Icons: self-hosted + non-render-blocking (perf 2026-11-25).
+          media="print" keeps it off the critical path; onLoad switches it on. */}
       <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        href="/vendor/bootstrap-icons/bootstrap-icons.min.css"
+        media="print"
+        onLoad={(e) => {
+          (e.target as HTMLLinkElement).media = "all";
+        }}
       />
+      <noscript>
+        <link rel="stylesheet" href="/vendor/bootstrap-icons/bootstrap-icons.min.css" />
+      </noscript>
       {/* Title Section */}
       <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
