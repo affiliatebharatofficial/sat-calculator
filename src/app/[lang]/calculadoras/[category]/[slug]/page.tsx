@@ -9,8 +9,8 @@ import LanguageSelector from '../../../../../components/LanguageSelector';
 import ThemeToggle from '../../../../../components/ThemeToggle';
 import Link from 'next/link';
 
-// Ads RE-ENABLED 2026-11-25 (user request). Set ADS_ENABLED = false to pause.
-const ADS_ENABLED = true;
+// Ads PAUSED 2026-11-26 (user request). Set ADS_ENABLED = true to re-enable.
+const ADS_ENABLED = false;
 
 interface PageProps {
   params: Promise<{
